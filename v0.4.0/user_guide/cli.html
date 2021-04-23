@@ -1,0 +1,484 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Command Line Interface &mdash; hydromt  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Model API" href="../advanced/model_api.html" />
+    <link rel="prev" title="Models" href="models/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> hydromt
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_stories.html">User’s stories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models/index.html">Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Command Line Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configure-workflow">Configure workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build">build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#update">update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clip">clip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#region-options">Region options</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Advanced topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/model_api.html">Model API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/data_catalog.html">DataCatalog</a></li>
+</ul>
+<p class="caption"><span class="caption-text">References &amp; Help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/api_index.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hydromt</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Command Line Interface</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/user_guide/cli.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="command-line-interface">
+<span id="cli"></span><h1>Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="configure-workflow">
+<h2>Configure workflow<a class="headerlink" href="#configure-workflow" title="Permalink to this headline">¶</a></h2>
+<p>The command line interface (CLI) provides a high-level interface to the different models and methods
+in HydroMT. Currently three methods are supported and explained below:</p>
+<ul class="simple">
+<li><p><strong>build</strong> to prepare a model from scratch</p></li>
+<li><p><strong>update</strong> to update specific component(s) of an existing model</p></li>
+<li><p><strong>clip</strong> to extract a smaller sub-region of an existing model</p></li>
+</ul>
+<p>To use the CLI, you need to open a command prompt (exemple Windows command prompt, Linux prompt, Anaconda prompt, .bat or .cmd files) and first
+activate the HydroMT python environment and then run the command line with the HydroMT method:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">activate hydromt</span>
+<span class="go">hydromt build --help</span>
+</pre></div>
+</div>
+<p>The choice of components to include when building or updating a model is defined in the <a class="reference internal" href="models/index.html#ini-options"><span class="std std-ref">HydroMT configuration file</span></a>.
+The different methods and their command line arguments are described below.</p>
+</div>
+<div class="section" id="build">
+<span id="cli-build"></span><h2>build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h2>
+<p>To build a complete model from scratch using available data the build command can be used.
+The interface is identical for each model, but the configuration file has different
+options (see documentation of the individual models). The mandatory <a class="reference internal" href="#cli-region"><span class="std std-ref">region</span></a>
+argument describes the region of interest. The build method will start by running the setup_basemaps
+component of the model in order to prepare the model schematization/grid based on the region arguments.
+The configuration file should then start by listing the setup_basemaps components and then all the components
+that the user wants to include during the build. If no specific configuration is provided, only the setup_basemaps
+component will be prepared.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Usage: main build [OPTIONS] MODEL MODEL_ROOT REGION</span>
+
+<span class="go">  Build models from source data.</span>
+
+<span class="go">  Example usage:</span>
+<span class="go">  --------------</span>
+
+<span class="go">  To build a wflow model for a subbasin using and point coordinates snapped to cells with stream order &gt;= 4</span>
+<span class="go">  hydromt build wflow /path/to/model_root &quot;{&#39;subbasin&#39;: [-7.24, 62.09], &#39;strord&#39;: 4}&quot; -i /path/to/wflow_config.ini</span>
+
+<span class="go">  To build a wflow model based on basin ID</span>
+<span class="go">  hydromt build wflow /path/to/model_root &quot;{&#39;basin&#39;: 230001006}&quot;</span>
+
+<span class="go">  To build a sfincs model based on a bbox (for Texel)</span>
+<span class="go">  hydromt build sfincs /path/to/model_root &quot;{&#39;bbox&#39;: [4.6891,52.9750,4.9576,53.1994]}&quot;</span>
+
+<span class="go">Options:</span>
+<span class="go">  -r, --res FLOAT             Model resolution in model src.</span>
+<span class="go">  --build-base / --build-all  Deprecated!</span>
+<span class="go">  --opt TEXT                  Component specific keyword arguments, see the</span>
+<span class="go">                              setup_&lt;component&gt; method of the specific model for</span>
+<span class="go">                              more information about the arguments.</span>
+
+<span class="go">  -i, --config PATH           Path to hydroMT configuration file, for the model</span>
+<span class="go">                              specific implementation.</span>
+
+<span class="go">  -d, --data PATH             File path to yml data sources file. See</span>
+<span class="go">                              documentation for required yml file format.</span>
+
+<span class="go">  --dd, --deltares-data       Parse default deltares data yml from</span>
+<span class="go">                              https://github.com/DirkEilander/hydromt-</span>
+<span class="go">                              artifacts/releases</span>
+
+<span class="go">  -q, --quiet                 Decrease verbosity.</span>
+<span class="go">  -v, --verbose               Increase verbosity.</span>
+<span class="go">  --help                      Show this message and exit.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="update">
+<span id="cli-update"></span><h2>update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<p>The update method can be used to update one or several model components. The model components are
+identical to the headers in the ini-files of each model. Options for a component
+can be set in the ini-file or provides via command line with the <cite>c</cite> and <cite>opt</cite> options if only one component
+is updated. For several, use the configuration file with the <cite>i</cite> option.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Usage: main update [OPTIONS] MODEL MODEL_ROOT</span>
+
+<span class="go">  Update a specific component of a model. Set an output directory to copy the</span>
+<span class="go">  edited model to a new folder, otherwise maps are overwritten.</span>
+
+<span class="go">  Example usage:</span>
+<span class="go">  --------------</span>
+
+<span class="go">  Update (overwrite) landuse-landcover maps in a wflow model</span>
+<span class="go">  hydromt update wflow /path/to/model_root -c setup_lulcmaps --opt source_name=vito</span>
+
+<span class="go">  Update reservoir maps based on default settings in a wflow model and write to new directory</span>
+<span class="go">  hydromt update wflow /path/to/model_root -o /path/to/model_out -c setup_reservoirs</span>
+
+<span class="go">Options:</span>
+<span class="go">  -o, --model-out DIRECTORY  Output model folder. Maps in MODEL_ROOT are</span>
+<span class="go">                             overwritten if left empty.</span>
+
+<span class="go">  -c, --components TEXT      Model components from ini file to run</span>
+<span class="go">  --opt TEXT                 Component specific keyword arguments, see the</span>
+<span class="go">                             setup_&lt;component&gt; method of the specific model for</span>
+<span class="go">                             more information about the arguments.</span>
+
+<span class="go">  -i, --config PATH          Path to hydroMT configuration file, for the model</span>
+<span class="go">                             specific implementation.</span>
+
+<span class="go">  -d, --data PATH            File path to yml data sources file. See</span>
+<span class="go">                             documentation for required yml file format.</span>
+
+<span class="go">  --dd, --deltares-data      Parse default deltares data yml from</span>
+<span class="go">                             https://github.com/DirkEilander/hydromt-</span>
+<span class="go">                             artifacts/releases</span>
+
+<span class="go">  -q, --quiet                Decrease verbosity.</span>
+<span class="go">  -v, --verbose              Increase verbosity.</span>
+<span class="go">  --help                     Show this message and exit.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clip">
+<span id="cli-clip"></span><h2>clip<a class="headerlink" href="#clip" title="Permalink to this headline">¶</a></h2>
+<p>The clip method allows to clip a subregion from a model, including all static maps,
+static geometries and forcing data. This method has only been implemented for the
+wflow model so far. The <a class="reference internal" href="#cli-region"><span class="std std-ref">region</span></a> argument follows the same syntax as
+in the build method.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Usage: main clip [OPTIONS] MODEL MODEL_ROOT MODEL_DESTINATION REGION</span>
+
+<span class="go">  Create a new model based on clipped region of an existing model. If the</span>
+<span class="go">  existing model contains forcing, they will also be clipped to the new model.</span>
+
+<span class="go">  For options to build wflow models see:</span>
+
+<span class="go">  Example usage to clip a wflow model for a subbasin derived from point coordinates</span>
+<span class="go">  snapped to cells with stream order &gt;= 4</span>
+<span class="go">  hydromt clip wflow /path/to/model_root /path/to/model_destination &quot;{&#39;subbasin&#39;: [-7.24, 62.09], &#39;wflow_streamorder&#39;: 4}&quot;</span>
+
+<span class="go">  Example usage basin based on ID from model_root basins map</span>
+<span class="go">  hydromt clip wflow /path/to/model_root /path/to/model_destination &quot;{&#39;basin&#39;: 1}&quot;</span>
+
+<span class="go">  Example usage basins whose outlets are inside a geometry</span>
+<span class="go">  hydromt clip wflow /path/to/model_root /path/to/model_destination &quot;{&#39;outlet&#39;: &#39;geometry.geojson&#39;}&quot;</span>
+
+<span class="go">  All available option in the clip_staticmaps function help.</span>
+
+<span class="go">Options:</span>
+<span class="go">  -q, --quiet    Decrease verbosity.</span>
+<span class="go">  -v, --verbose  Increase verbosity.</span>
+<span class="go">  --help         Show this message and exit.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="region-options">
+<h2>Region options<a class="headerlink" href="#region-options" title="Permalink to this headline">¶</a></h2>
+<p id="cli-region">The region of interest can be described in three ways:</p>
+<ul>
+<li><p>based on <strong>geospatial region</strong> using <em>bbox</em>, <em>geom</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'bbox':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'geom':</span> <span class="pre">'/path/to/geometry_file'}</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Based on a <strong>hydrographic region</strong> using <em>basin</em>, <em>subbasin</em>, <em>interbasin</em>:</p>
+<p>A <em>basin</em> is defined by the entire area which drain to the sea or a local depression.
+Users can supply a point location <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">y]</span></code> or an area of interest based on a
+bounding box <code class="docutils literal notranslate"><span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]</span></code> or geometry <code class="docutils literal notranslate"><span class="pre">'/path/to/geometry_file'</span></code>
+for which the intersecting basin(s) are delineated.
+Optionally, <code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;:&lt;threshold&gt;</span></code> combinations (e.g. ‘uparea’:30) can be passed to
+define streams to filter the basin selection. To filter the basins based on their
+outlet location within the area of interest use <cite>‘outlets’: true</cite>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[x,</span> <span class="pre">y]}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'outlets':</span> <span class="pre">true}</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>A <em>subbasin</em> is based on a user supplied outlet location and defined by the area
+that drains into that outlet.
+Users can supply a the outlet point location <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">y]</span></code>, or an area of interest based
+on a bounding box <code class="docutils literal notranslate"><span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]</span></code> or geometry <code class="docutils literal notranslate"><span class="pre">'/path/to/geometry_file'</span></code>
+from which all outlet locations are used and all upstream area is delineated.
+Optionally, <code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;:&lt;threshold&gt;</span></code> combinations (e.g. ‘uparea’:30) can be passed to define streams to
+which the outlet point location are snapped or to filter outlets within the area of interest.
+To speed up the delineation process users can supply an initial bounding box of the subbasin
+(This must be larger than the area of interest!) with <code class="docutils literal notranslate"><span class="pre">'bounds':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]</span></code>
+In case not all upstream cells are included a warning is raised.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[x,</span> <span class="pre">y],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[x,</span> <span class="pre">y],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold,</span> <span class="pre">'bounds':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold,</span> <span class="pre">'bounds':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>An <em>interbasin</em> is based on a user supplied area of interest and contains the most
+downstream contiguous area that drains to any outflow of the area of interest.
+Users can supply an area of interest based on a bounding box <code class="docutils literal notranslate"><span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]</span></code>
+or geometry <code class="docutils literal notranslate"><span class="pre">'/path/to/geometry_file'</span></code> from which all outlet locations are used.
+Optionally, <code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;:&lt;threshold&gt;</span></code> (e.g. ‘uparea’:30) combinations can be passed to define streams
+to filter outlets within the area of interest. To only use basin outlets
+within the area of interest to derive interbasins use <cite>‘outlets’: true</cite>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">'outets':</span> <span class="pre">true}</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>based on the grid of <strong>another model</strong>, e.g:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'wflow':</span> <span class="pre">'/path/to/wflow/root'}</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>For a detailed desription of the options see <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.parse_region.html#hydromt.workflows.basin_mask.parse_region" title="hydromt.workflows.basin_mask.parse_region"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_region()</span></code></a>
+and <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.get_basin_geometry.html#hydromt.workflows.basin_mask.get_basin_geometry" title="hydromt.workflows.basin_mask.get_basin_geometry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_basin_geometry()</span></code></a>.</p>
+<img alt="../_images/region.png" src="../_images/region.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../advanced/model_api.html" class="btn btn-neutral float-right" title="Model API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="models/index.html" class="btn btn-neutral float-left" title="Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Deltares.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
