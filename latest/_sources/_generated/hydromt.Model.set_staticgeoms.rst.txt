@@ -1,0 +1,6 @@
+﻿hydromt.Model.set\_staticgeoms
+==============================
+
+.. currentmodule:: hydromt
+
+.. automethod:: Model.set_staticgeoms

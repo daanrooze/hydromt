@@ -1,0 +1,6 @@
+﻿hydromt.io.open\_vector\_from\_table
+====================================
+
+.. currentmodule:: hydromt.io
+
+.. autofunction:: open_vector_from_table

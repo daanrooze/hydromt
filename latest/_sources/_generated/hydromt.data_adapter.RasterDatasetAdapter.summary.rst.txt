@@ -1,0 +1,6 @@
+﻿hydromt.data\_adapter.RasterDatasetAdapter.summary
+==================================================
+
+.. currentmodule:: hydromt.data_adapter
+
+.. automethod:: RasterDatasetAdapter.summary

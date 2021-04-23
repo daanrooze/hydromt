@@ -1,0 +1,39 @@
+.. code-block:: console
+
+    Usage: main build [OPTIONS] MODEL MODEL_ROOT REGION
+    
+      Build models from source data.
+    
+      Example usage:
+      --------------
+    
+      To build a wflow model for a subbasin using and point coordinates snapped to cells with stream order >= 4
+      hydromt build wflow /path/to/model_root "{'subbasin': [-7.24, 62.09], 'strord': 4}" -i /path/to/wflow_config.ini
+    
+      To build a wflow model based on basin ID
+      hydromt build wflow /path/to/model_root "{'basin': 230001006}"
+    
+      To build a sfincs model based on a bbox (for Texel)
+      hydromt build sfincs /path/to/model_root "{'bbox': [4.6891,52.9750,4.9576,53.1994]}"
+    
+    Options:
+      -r, --res FLOAT             Model resolution in model src.
+      --build-base / --build-all  Deprecated!
+      --opt TEXT                  Component specific keyword arguments, see the
+                                  setup_<component> method of the specific model for
+                                  more information about the arguments.
+    
+      -i, --config PATH           Path to hydroMT configuration file, for the model
+                                  specific implementation.
+    
+      -d, --data PATH             File path to yml data sources file. See
+                                  documentation for required yml file format.
+    
+      --dd, --deltares-data       Parse default deltares data yml from
+                                  https://github.com/DirkEilander/hydromt-
+                                  artifacts/releases
+    
+      -q, --quiet                 Decrease verbosity.
+      -v, --verbose               Increase verbosity.
+      --help                      Show this message and exit.
+    

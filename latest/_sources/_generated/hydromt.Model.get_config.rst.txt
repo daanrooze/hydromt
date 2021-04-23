@@ -1,0 +1,6 @@
+﻿hydromt.Model.get\_config
+=========================
+
+.. currentmodule:: hydromt
+
+.. automethod:: Model.get_config

@@ -1,0 +1,6 @@
+﻿hydromt.Model.res
+=================
+
+.. currentmodule:: hydromt
+
+.. autoproperty:: Model.res

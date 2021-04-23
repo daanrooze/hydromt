@@ -1,0 +1,6 @@
+﻿hydromt.workflows.forcing.precip
+================================
+
+.. currentmodule:: hydromt.workflows.forcing
+
+.. autofunction:: precip

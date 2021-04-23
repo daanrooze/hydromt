@@ -1,0 +1,6 @@
+﻿hydromt.Model.build
+===================
+
+.. currentmodule:: hydromt
+
+.. automethod:: Model.build

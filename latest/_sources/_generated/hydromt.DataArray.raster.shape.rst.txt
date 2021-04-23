@@ -1,0 +1,6 @@
+﻿hydromt.DataArray.raster.shape
+==============================
+
+.. currentmodule:: hydromt
+
+.. autoaccessorattribute:: DataArray.raster.shape

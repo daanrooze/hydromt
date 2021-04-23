@@ -1,0 +1,6 @@
+﻿hydromt.gis\_utils.cellres
+==========================
+
+.. currentmodule:: hydromt.gis_utils
+
+.. autofunction:: cellres

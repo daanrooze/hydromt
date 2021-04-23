@@ -1,0 +1,33 @@
+﻿hydromt.data\_adapter.GeoDatasetAdapter
+=======================================
+
+.. currentmodule:: hydromt.data_adapter
+
+.. autoclass:: GeoDatasetAdapter
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~GeoDatasetAdapter.__init__
+      ~GeoDatasetAdapter.export_data
+      ~GeoDatasetAdapter.get_data
+      ~GeoDatasetAdapter.resolve_paths
+      ~GeoDatasetAdapter.summary
+      ~GeoDatasetAdapter.to_dict
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~GeoDatasetAdapter.data_type
+   
+   
