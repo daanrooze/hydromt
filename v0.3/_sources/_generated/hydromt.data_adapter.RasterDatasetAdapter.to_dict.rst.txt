@@ -1,0 +1,6 @@
+﻿hydromt.data\_adapter.RasterDatasetAdapter.to\_dict
+===================================================
+
+.. currentmodule:: hydromt.data_adapter
+
+.. automethod:: RasterDatasetAdapter.to_dict

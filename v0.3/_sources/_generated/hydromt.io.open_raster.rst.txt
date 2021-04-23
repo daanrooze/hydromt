@@ -1,0 +1,6 @@
+﻿hydromt.io.open\_raster
+=======================
+
+.. currentmodule:: hydromt.io
+
+.. autofunction:: open_raster

@@ -1,0 +1,6 @@
+﻿hydromt.data\_adapter.DataCatalog.update
+========================================
+
+.. currentmodule:: hydromt.data_adapter
+
+.. automethod:: DataCatalog.update

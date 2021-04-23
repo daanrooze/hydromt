@@ -1,0 +1,6 @@
+﻿hydromt.data\_adapter.GeoDatasetAdapter.to\_dict
+================================================
+
+.. currentmodule:: hydromt.data_adapter
+
+.. automethod:: GeoDatasetAdapter.to_dict

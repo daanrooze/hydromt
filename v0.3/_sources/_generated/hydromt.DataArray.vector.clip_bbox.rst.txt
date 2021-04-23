@@ -1,0 +1,6 @@
+﻿hydromt.DataArray.vector.clip_bbox
+==================================
+
+.. currentmodule:: hydromt
+
+.. autoaccessormethod:: DataArray.vector.clip_bbox

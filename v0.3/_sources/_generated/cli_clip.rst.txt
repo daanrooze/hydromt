@@ -1,0 +1,26 @@
+.. code-block:: console
+
+    Usage: main clip [OPTIONS] MODEL MODEL_ROOT MODEL_DESTINATION REGION
+    
+      Create a new model based on clipped region of an existing model. If the
+      existing model contains forcing, they will also be clipped to the new model.
+    
+      For options to build wflow models see:
+    
+      Example usage to clip a wflow model for a subbasin derived from point coordinates
+      snapped to cells with stream order >= 4
+      hydromt clip wflow /path/to/model_root /path/to/model_destination "{'subbasin': [-7.24, 62.09], 'wflow_streamorder': 4}"
+    
+      Example usage basin based on ID from model_root basins map
+      hydromt clip wflow /path/to/model_root /path/to/model_destination "{'basin': 1}"
+    
+      Example usage basins whose outlets are inside a geometry
+      hydromt clip wflow /path/to/model_root /path/to/model_destination "{'outlet': 'geometry.geojson'}"
+    
+      All available option in the clip_staticmaps function help.
+    
+    Options:
+      -q, --quiet    Decrease verbosity.
+      -v, --verbose  Increase verbosity.
+      --help         Show this message and exit.
+    

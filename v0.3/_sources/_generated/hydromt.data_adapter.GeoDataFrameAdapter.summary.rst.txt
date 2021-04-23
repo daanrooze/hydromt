@@ -1,0 +1,6 @@
+﻿hydromt.data\_adapter.GeoDataFrameAdapter.summary
+=================================================
+
+.. currentmodule:: hydromt.data_adapter
+
+.. automethod:: GeoDataFrameAdapter.summary

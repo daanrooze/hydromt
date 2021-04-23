@@ -1,0 +1,6 @@
+﻿hydromt.Model.forcing
+=====================
+
+.. currentmodule:: hydromt
+
+.. autoproperty:: Model.forcing

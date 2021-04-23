@@ -1,0 +1,6 @@
+﻿hydromt.DataArray.raster.idx_to_xy
+==================================
+
+.. currentmodule:: hydromt
+
+.. autoaccessormethod:: DataArray.raster.idx_to_xy

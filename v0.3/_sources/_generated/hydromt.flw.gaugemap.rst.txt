@@ -1,0 +1,6 @@
+﻿hydromt.flw.gaugemap
+====================
+
+.. currentmodule:: hydromt.flw
+
+.. autofunction:: gaugemap

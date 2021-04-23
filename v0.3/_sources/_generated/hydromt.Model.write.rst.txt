@@ -1,0 +1,6 @@
+﻿hydromt.Model.write
+===================
+
+.. currentmodule:: hydromt
+
+.. automethod:: Model.write

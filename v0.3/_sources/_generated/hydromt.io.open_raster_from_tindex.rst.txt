@@ -1,0 +1,6 @@
+﻿hydromt.io.open\_raster\_from\_tindex
+=====================================
+
+.. currentmodule:: hydromt.io
+
+.. autofunction:: open_raster_from_tindex

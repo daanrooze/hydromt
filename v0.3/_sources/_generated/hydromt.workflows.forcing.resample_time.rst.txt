@@ -1,0 +1,6 @@
+﻿hydromt.workflows.forcing.resample\_time
+========================================
+
+.. currentmodule:: hydromt.workflows.forcing
+
+.. autofunction:: resample_time
