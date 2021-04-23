@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.raster.xcoords
-================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessorattribute:: DataArray.raster.xcoords

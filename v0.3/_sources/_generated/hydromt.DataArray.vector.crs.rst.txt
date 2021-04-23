@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.vector.crs
-============================
-
-.. currentmodule:: hydromt
-
-.. autoaccessorattribute:: DataArray.vector.crs

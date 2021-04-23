@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.raster.aligned_grid
-=====================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessormethod:: DataArray.raster.aligned_grid

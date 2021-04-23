@@ -1,6 +1,0 @@
-﻿hydromt.gis\_utils.filter\_gdf
-==============================
-
-.. currentmodule:: hydromt.gis_utils
-
-.. autofunction:: filter_gdf

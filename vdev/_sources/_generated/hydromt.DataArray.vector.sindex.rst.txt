@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.vector.sindex
-===============================
-
-.. currentmodule:: hydromt
-
-.. autoaccessorattribute:: DataArray.vector.sindex

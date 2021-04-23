@@ -1,6 +1,0 @@
-﻿hydromt.io.open\_mfraster
-=========================
-
-.. currentmodule:: hydromt.io
-
-.. autofunction:: open_mfraster

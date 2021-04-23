@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.raster.reproject_like
-=======================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessormethod:: DataArray.raster.reproject_like

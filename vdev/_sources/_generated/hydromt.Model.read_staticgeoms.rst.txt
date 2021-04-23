@@ -1,6 +1,0 @@
-﻿hydromt.Model.read\_staticgeoms
-===============================
-
-.. currentmodule:: hydromt
-
-.. automethod:: Model.read_staticgeoms

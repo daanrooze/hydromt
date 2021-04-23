@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.raster.transform_bounds
-=========================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessormethod:: DataArray.raster.transform_bounds

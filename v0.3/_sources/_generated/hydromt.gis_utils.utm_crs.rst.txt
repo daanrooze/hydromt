@@ -1,6 +1,0 @@
-﻿hydromt.gis\_utils.utm\_crs
-===========================
-
-.. currentmodule:: hydromt.gis_utils
-
-.. autofunction:: utm_crs

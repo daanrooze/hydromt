@@ -1,6 +1,0 @@
-﻿hydromt.Model.staticmaps
-========================
-
-.. currentmodule:: hydromt
-
-.. autoproperty:: Model.staticmaps

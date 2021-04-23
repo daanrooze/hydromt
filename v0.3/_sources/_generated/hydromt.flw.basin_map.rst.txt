@@ -1,6 +1,0 @@
-﻿hydromt.flw.basin\_map
-======================
-
-.. currentmodule:: hydromt.flw
-
-.. autofunction:: basin_map

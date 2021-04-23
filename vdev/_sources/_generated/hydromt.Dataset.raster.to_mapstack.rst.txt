@@ -1,6 +1,0 @@
-﻿hydromt.Dataset.raster.to_mapstack
-==================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessormethod:: Dataset.raster.to_mapstack

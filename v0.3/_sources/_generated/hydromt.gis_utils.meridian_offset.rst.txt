@@ -1,6 +1,0 @@
-﻿hydromt.gis\_utils.meridian\_offset
-===================================
-
-.. currentmodule:: hydromt.gis_utils
-
-.. autofunction:: meridian_offset

@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.vector.ycoords
-================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessorattribute:: DataArray.vector.ycoords

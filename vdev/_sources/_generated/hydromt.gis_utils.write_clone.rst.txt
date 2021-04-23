@@ -1,6 +1,0 @@
-﻿hydromt.gis\_utils.write\_clone
-===============================
-
-.. currentmodule:: hydromt.gis_utils
-
-.. autofunction:: write_clone

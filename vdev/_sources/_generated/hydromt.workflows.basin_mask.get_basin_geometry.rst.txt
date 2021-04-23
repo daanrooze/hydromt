@@ -1,6 +1,0 @@
-﻿hydromt.workflows.basin\_mask.get\_basin\_geometry
-==================================================
-
-.. currentmodule:: hydromt.workflows.basin_mask
-
-.. autofunction:: get_basin_geometry

@@ -1,6 +1,0 @@
-﻿hydromt.gis\_utils.cellarea
-===========================
-
-.. currentmodule:: hydromt.gis_utils
-
-.. autofunction:: cellarea

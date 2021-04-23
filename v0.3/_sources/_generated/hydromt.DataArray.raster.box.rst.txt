@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.raster.box
-============================
-
-.. currentmodule:: hydromt
-
-.. autoaccessorattribute:: DataArray.raster.box

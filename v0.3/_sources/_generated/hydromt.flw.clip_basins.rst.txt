@@ -1,6 +1,0 @@
-﻿hydromt.flw.clip\_basins
-========================
-
-.. currentmodule:: hydromt.flw
-
-.. autofunction:: clip_basins

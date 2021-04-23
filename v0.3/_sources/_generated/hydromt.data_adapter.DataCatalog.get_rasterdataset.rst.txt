@@ -1,6 +1,0 @@
-﻿hydromt.data\_adapter.DataCatalog.get\_rasterdataset
-====================================================
-
-.. currentmodule:: hydromt.data_adapter
-
-.. automethod:: DataCatalog.get_rasterdataset

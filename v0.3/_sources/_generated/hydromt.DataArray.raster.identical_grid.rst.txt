@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.raster.identical_grid
-=======================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessormethod:: DataArray.raster.identical_grid

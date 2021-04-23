@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.vector.bounds
-===============================
-
-.. currentmodule:: hydromt
-
-.. autoaccessorattribute:: DataArray.vector.bounds

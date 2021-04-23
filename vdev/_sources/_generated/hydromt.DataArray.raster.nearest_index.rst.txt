@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.raster.nearest_index
-======================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessormethod:: DataArray.raster.nearest_index

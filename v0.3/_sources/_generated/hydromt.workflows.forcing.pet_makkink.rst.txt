@@ -1,6 +1,0 @@
-﻿hydromt.workflows.forcing.pet\_makkink
-======================================
-
-.. currentmodule:: hydromt.workflows.forcing
-
-.. autofunction:: pet_makkink

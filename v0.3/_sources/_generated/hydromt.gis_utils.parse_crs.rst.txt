@@ -1,6 +1,0 @@
-﻿hydromt.gis\_utils.parse\_crs
-=============================
-
-.. currentmodule:: hydromt.gis_utils
-
-.. autofunction:: parse_crs

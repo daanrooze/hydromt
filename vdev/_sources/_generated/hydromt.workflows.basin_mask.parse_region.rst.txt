@@ -1,6 +1,0 @@
-﻿hydromt.workflows.basin\_mask.parse\_region
-===========================================
-
-.. currentmodule:: hydromt.workflows.basin_mask
-
-.. autofunction:: parse_region

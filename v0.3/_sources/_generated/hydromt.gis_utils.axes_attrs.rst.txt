@@ -1,6 +1,0 @@
-﻿hydromt.gis\_utils.axes\_attrs
-==============================
-
-.. currentmodule:: hydromt.gis_utils
-
-.. autofunction:: axes_attrs

@@ -1,6 +1,0 @@
-﻿hydromt.Model.write\_config
-===========================
-
-.. currentmodule:: hydromt
-
-.. automethod:: Model.write_config

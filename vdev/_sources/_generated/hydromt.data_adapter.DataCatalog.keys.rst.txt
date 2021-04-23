@@ -1,6 +1,0 @@
-﻿hydromt.data\_adapter.DataCatalog.keys
-======================================
-
-.. currentmodule:: hydromt.data_adapter
-
-.. autoproperty:: DataCatalog.keys

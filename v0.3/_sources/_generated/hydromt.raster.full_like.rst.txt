@@ -1,6 +1,0 @@
-﻿hydromt.raster.full\_like
-=========================
-
-.. currentmodule:: hydromt.raster
-
-.. autofunction:: full_like

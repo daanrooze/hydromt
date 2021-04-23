@@ -1,6 +1,0 @@
-﻿hydromt.workflows.basemaps.topography
-=====================================
-
-.. currentmodule:: hydromt.workflows.basemaps
-
-.. autofunction:: topography

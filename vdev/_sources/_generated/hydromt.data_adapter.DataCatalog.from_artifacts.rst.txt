@@ -1,6 +1,0 @@
-﻿hydromt.data\_adapter.DataCatalog.from\_artifacts
-=================================================
-
-.. currentmodule:: hydromt.data_adapter
-
-.. automethod:: DataCatalog.from_artifacts

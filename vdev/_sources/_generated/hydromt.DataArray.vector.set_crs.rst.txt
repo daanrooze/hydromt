@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.vector.set_crs
-================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessormethod:: DataArray.vector.set_crs

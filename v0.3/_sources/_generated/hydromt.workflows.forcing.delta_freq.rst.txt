@@ -1,6 +1,0 @@
-﻿hydromt.workflows.forcing.delta\_freq
-=====================================
-
-.. currentmodule:: hydromt.workflows.forcing
-
-.. autofunction:: delta_freq

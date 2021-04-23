@@ -1,6 +1,0 @@
-﻿hydromt.data\_adapter.GeoDatasetAdapter.summary
-===============================================
-
-.. currentmodule:: hydromt.data_adapter
-
-.. automethod:: GeoDatasetAdapter.summary

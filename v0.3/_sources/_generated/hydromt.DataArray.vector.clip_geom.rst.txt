@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.vector.clip_geom
-==================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessormethod:: DataArray.vector.clip_geom

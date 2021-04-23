@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.vector.x_dim
-==============================
-
-.. currentmodule:: hydromt
-
-.. autoaccessorattribute:: DataArray.vector.x_dim

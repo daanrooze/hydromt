@@ -1,6 +1,0 @@
-﻿hydromt.gis\_utils.affine\_to\_coords
-=====================================
-
-.. currentmodule:: hydromt.gis_utils
-
-.. autofunction:: affine_to_coords

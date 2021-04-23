@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.raster.mask_nodata
-====================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessormethod:: DataArray.raster.mask_nodata

@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.vector.geometry
-=================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessorattribute:: DataArray.vector.geometry

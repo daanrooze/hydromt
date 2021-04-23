@@ -1,6 +1,0 @@
-﻿hydromt.Dataset.vector.from_gdf
-===============================
-
-.. currentmodule:: hydromt
-
-.. autoaccessormethod:: Dataset.vector.from_gdf
