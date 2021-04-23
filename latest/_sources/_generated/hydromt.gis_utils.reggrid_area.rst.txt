@@ -1,6 +1,0 @@
-﻿hydromt.gis\_utils.reggrid\_area
-================================
-
-.. currentmodule:: hydromt.gis_utils
-
-.. autofunction:: reggrid_area

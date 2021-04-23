@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.raster.height
-===============================
-
-.. currentmodule:: hydromt
-
-.. autoaccessorattribute:: DataArray.raster.height

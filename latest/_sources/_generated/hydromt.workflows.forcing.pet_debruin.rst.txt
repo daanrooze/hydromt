@@ -1,6 +1,0 @@
-﻿hydromt.workflows.forcing.pet\_debruin
-======================================
-
-.. currentmodule:: hydromt.workflows.forcing
-
-.. autofunction:: pet_debruin

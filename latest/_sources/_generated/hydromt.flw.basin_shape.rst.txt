@@ -1,6 +1,0 @@
-﻿hydromt.flw.basin\_shape
-========================
-
-.. currentmodule:: hydromt.flw
-
-.. autofunction:: basin_shape

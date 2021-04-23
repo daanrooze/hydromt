@@ -1,6 +1,0 @@
-﻿hydromt.merge.merge
-===================
-
-.. currentmodule:: hydromt.merge
-
-.. autofunction:: merge

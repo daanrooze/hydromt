@@ -1,6 +1,0 @@
-﻿hydromt.gis\_utils.write\_map
-=============================
-
-.. currentmodule:: hydromt.gis_utils
-
-.. autofunction:: write_map

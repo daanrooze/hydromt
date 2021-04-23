@@ -1,6 +1,0 @@
-﻿hydromt.workflows.basemaps.hydrography
-======================================
-
-.. currentmodule:: hydromt.workflows.basemaps
-
-.. autofunction:: hydrography

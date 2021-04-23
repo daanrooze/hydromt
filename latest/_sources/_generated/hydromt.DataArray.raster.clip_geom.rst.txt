@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.raster.clip_geom
-==================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessormethod:: DataArray.raster.clip_geom

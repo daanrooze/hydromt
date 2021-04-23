@@ -1,6 +1,0 @@
-﻿hydromt.flw.flwdir\_from\_da
-============================
-
-.. currentmodule:: hydromt.flw
-
-.. autofunction:: flwdir_from_da

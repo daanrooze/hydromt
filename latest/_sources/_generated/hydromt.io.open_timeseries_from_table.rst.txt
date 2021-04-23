@@ -1,6 +1,0 @@
-﻿hydromt.io.open\_timeseries\_from\_table
-========================================
-
-.. currentmodule:: hydromt.io
-
-.. autofunction:: open_timeseries_from_table

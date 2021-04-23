@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.raster.reindex2d
-==================================
-
-.. currentmodule:: hydromt
-
-.. autoaccessormethod:: DataArray.raster.reindex2d

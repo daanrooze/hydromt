@@ -1,6 +1,0 @@
-﻿hydromt.data\_adapter.DataCatalog.sources
-=========================================
-
-.. currentmodule:: hydromt.data_adapter
-
-.. autoproperty:: DataCatalog.sources

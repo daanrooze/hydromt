@@ -1,6 +1,0 @@
-﻿hydromt.DataArray.raster.dims
-=============================
-
-.. currentmodule:: hydromt
-
-.. autoaccessorattribute:: DataArray.raster.dims
