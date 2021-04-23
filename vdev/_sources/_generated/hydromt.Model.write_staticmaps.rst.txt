@@ -1,0 +1,6 @@
+﻿hydromt.Model.write\_staticmaps
+===============================
+
+.. currentmodule:: hydromt
+
+.. automethod:: Model.write_staticmaps

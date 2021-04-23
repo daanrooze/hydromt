@@ -1,0 +1,6 @@
+﻿hydromt.flw.upscale\_flwdir
+===========================
+
+.. currentmodule:: hydromt.flw
+
+.. autofunction:: upscale_flwdir

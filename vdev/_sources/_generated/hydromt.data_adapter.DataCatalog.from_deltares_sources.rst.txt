@@ -1,0 +1,6 @@
+﻿hydromt.data\_adapter.DataCatalog.from\_deltares\_sources
+=========================================================
+
+.. currentmodule:: hydromt.data_adapter
+
+.. automethod:: DataCatalog.from_deltares_sources

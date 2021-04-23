@@ -1,0 +1,6 @@
+﻿hydromt.Model.config
+====================
+
+.. currentmodule:: hydromt
+
+.. autoproperty:: Model.config

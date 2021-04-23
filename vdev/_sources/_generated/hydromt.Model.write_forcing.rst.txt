@@ -1,0 +1,6 @@
+﻿hydromt.Model.write\_forcing
+============================
+
+.. currentmodule:: hydromt
+
+.. automethod:: Model.write_forcing

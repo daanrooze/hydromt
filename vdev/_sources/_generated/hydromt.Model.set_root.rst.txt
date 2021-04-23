@@ -1,0 +1,6 @@
+﻿hydromt.Model.set\_root
+=======================
+
+.. currentmodule:: hydromt
+
+.. automethod:: Model.set_root

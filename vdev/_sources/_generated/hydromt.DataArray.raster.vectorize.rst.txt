@@ -1,0 +1,6 @@
+﻿hydromt.DataArray.raster.vectorize
+==================================
+
+.. currentmodule:: hydromt
+
+.. autoaccessormethod:: DataArray.raster.vectorize

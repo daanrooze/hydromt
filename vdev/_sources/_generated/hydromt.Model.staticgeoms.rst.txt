@@ -1,0 +1,6 @@
+﻿hydromt.Model.staticgeoms
+=========================
+
+.. currentmodule:: hydromt
+
+.. autoproperty:: Model.staticgeoms
