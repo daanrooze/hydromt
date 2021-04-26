@@ -41,7 +41,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Introduction" href="../../user_guide/intro.html" />
-    <link rel="prev" title="Examples" href="../index.html" /> 
+    <link rel="prev" title="Reading raster data" href="read_raster_data.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -97,7 +97,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../user_stories.html">User’s stories</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#hydromt-examples">hydroMT Examples</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Delineate basin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="read_raster_data.html">Read raster data</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Delineate basins</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Import-packages">Import packages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Read-data">Read data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id1">Delineate basins</a></li>
@@ -529,7 +530,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-04-23 15:42:50,575 - basin_delineation - log - INFO - HydroMT version: 0.4.0
+2021-04-26 09:13:05,050 - basin_delineation - log - INFO - HydroMT version: 0.4.0
 </pre></div></div>
 </div>
 </div>
@@ -563,16 +564,16 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-04-23 15:42:50,586 - basin_delineation - data_adapter - INFO - Downloading file to /home/runner/.hydromt_data/data/v0.0.2/data.tar.gz
-2021-04-23 15:42:51,108 - basin_delineation - data_adapter - DEBUG - Unpacking data from /home/runner/.hydromt_data/data/v0.0.2/data.tar.gz
-2021-04-23 15:42:52,277 - basin_delineation - data_adapter - INFO - Updating data sources from yml file /home/runner/.hydromt_data/data/v0.0.2/data_catalog.yml
+2021-04-26 09:13:05,062 - basin_delineation - data_adapter - INFO - Downloading file to /home/runner/.hydromt_data/data/v0.0.2/data.tar.gz
+2021-04-26 09:13:05,772 - basin_delineation - data_adapter - DEBUG - Unpacking data from /home/runner/.hydromt_data/data/v0.0.2/data.tar.gz
+2021-04-26 09:13:07,141 - basin_delineation - data_adapter - INFO - Updating data sources from yml file /home/runner/.hydromt_data/data/v0.0.2/data_catalog.yml
 {&#39;category&#39;: &#39;topography&#39;,
  &#39;paper_doi&#39;: &#39;10.1029/2019WR024873&#39;,
  &#39;paper_ref&#39;: &#39;Yamazaki et al. (2019)&#39;,
  &#39;source_license&#39;: &#39;CC-BY-NC 4.0 or ODbL 1.0&#39;,
  &#39;source_url&#39;: &#39;http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro&#39;,
  &#39;source_version&#39;: 1.0}
-2021-04-23 15:42:52,341 - basin_delineation - data_adapter - INFO - DataCatalog: Getting hydro_merit RasterDataset raster data from /home/runner/.hydromt_data/data/v0.0.2/hydro_merit/{variable}.tif
+2021-04-26 09:13:07,214 - basin_delineation - data_adapter - INFO - DataCatalog: Getting hydro_merit RasterDataset raster data from /home/runner/.hydromt_data/data/v0.0.2/hydro_merit/{variable}.tif
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -614,7 +615,7 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="section" id="id1">
 <h2>Delineate basins<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>Several examples to delineate sub-, inter- or full basins are provided below. Together with the command line interface (CLI) syntax for the <strong>``hydromt build``</strong> command. All CLI options are described in the <code class="docutils literal notranslate"><span class="pre">parse_region</span></code> method.</p>
+<p>Several examples to delineate sub-, inter- or full basins are provided below. Together with the command line interface (CLI) syntax for the <code class="docutils literal notranslate"><span class="pre">hydromt</span> <span class="pre">build</span></code> command. All CLI options are described in the <code class="docutils literal notranslate"><span class="pre">parse_region</span></code> method.</p>
 <p>Get the basin based on a point location <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">y]</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -640,8 +641,8 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-04-23 15:42:56,114 - basin_delineation - basin_mask - DEBUG - Getting basin IDs at point locations.
-2021-04-23 15:42:56,184 - basin_delineation - basin_mask - INFO - basin bbox: [12.1958, 45.5850, 12.8983, 46.4167] / size: 408029
+2021-04-26 09:13:11,373 - basin_delineation - basin_mask - DEBUG - Getting basin IDs at point locations.
+2021-04-26 09:13:11,448 - basin_delineation - basin_mask - INFO - basin bbox: [12.1958, 45.5850, 12.8983, 46.4167] / size: 408029
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -708,7 +709,7 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-04-23 15:43:15,448 - basin_delineation - basin_mask - INFO - basin bbox: [12.2350, 45.7950, 12.8783, 46.4167] / size: 293449
+2021-04-26 09:13:32,824 - basin_delineation - basin_mask - INFO - basin bbox: [12.2350, 45.7950, 12.8783, 46.4167] / size: 293449
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -770,7 +771,7 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-04-23 15:43:26,176 - basin_delineation - basin_mask - INFO - basin bbox: [12.1958, 45.7192, 12.8783, 46.4167] / size: 400335
+2021-04-26 09:13:44,983 - basin_delineation - basin_mask - INFO - basin bbox: [12.1958, 45.7192, 12.8783, 46.4167] / size: 400335
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -834,7 +835,7 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-04-23 15:43:36,476 - basin_delineation - basin_mask - INFO - basin bbox: [12.5000, 45.7200, 12.7000, 46.0000] / size: 63515
+2021-04-26 09:13:56,727 - basin_delineation - basin_mask - INFO - basin bbox: [12.5000, 45.7200, 12.7000, 46.0000] / size: 63515
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -882,7 +883,7 @@ with the basin index vector data makes faster basin delineation possible.</p>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="../../user_guide/intro.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../index.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="read_raster_data.html" class="btn btn-neutral float-left" title="Reading raster data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
