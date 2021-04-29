@@ -226,7 +226,13 @@
         <span class="n">deltares_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">ENTRYPOINTS</span>  <span class="c1"># load within method to avoid circular imports</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span>
+        <span class="n">ep</span> <span class="o">=</span> <span class="n">ENTRYPOINTS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_NAME</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">ep</span><span class="o">.</span><span class="n">distro</span><span class="o">.</span><span class="n">version</span> <span class="k">if</span> <span class="n">ep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">ep</span><span class="o">.</span><span class="n">distro</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="n">ep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;unknown&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initializing </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_NAME</span><span class="si">}</span><span class="s2"> model from </span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s2"> (v</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">)</span>
 
         <span class="c1"># link to data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_catalog</span> <span class="o">=</span> <span class="n">DataCatalog</span><span class="p">(</span>
