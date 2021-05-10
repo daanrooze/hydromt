@@ -30,6 +30,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -187,6 +188,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">isdir</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">basename</span><span class="p">,</span> <span class="n">isfile</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -200,6 +202,7 @@
 <span class="kn">from</span> <span class="nn">pyflwdir</span> <span class="kn">import</span> <span class="n">pyflwdir</span>
 
 <span class="c1"># local</span>
+<span class="kn">from</span> <span class="nn">..io</span> <span class="kn">import</span> <span class="n">open_raster</span>
 <span class="kn">from</span> <span class="nn">..raster</span> <span class="kn">import</span> <span class="n">full_like</span>
 <span class="kn">from</span> <span class="nn">..flw</span> <span class="kn">import</span> <span class="n">flwdir_from_da</span><span class="p">,</span> <span class="n">basin_map</span><span class="p">,</span> <span class="n">stream_map</span><span class="p">,</span> <span class="n">outlet_map</span>
 <span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">MODELS</span>
@@ -224,9 +227,13 @@
 
 <span class="sd">        * {&#39;geom&#39;: (path to) geopandas.GeoDataFrame[Polygon]}</span>
 
-<span class="sd">        For an copy of another models grid:</span>
+<span class="sd">        For a region based of another models grid:</span>
 
-<span class="sd">        * {wflow/sfincs/..: root}</span>
+<span class="sd">        * {&#39;&lt;model_name&gt;&#39;: root}</span>
+
+<span class="sd">        For a region based of the grid of a raster file:</span>
+
+<span class="sd">        * {&#39;grid&#39;: (path to) raster file}</span>
 
 <span class="sd">        Entire basin can be defined based on an ID, one or multiple point location (x, y),</span>
 <span class="sd">        or a region of interest (bounding box or geometry) for which the basin IDs are</span>
@@ -281,7 +288,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    kind : {&#39;basin&#39;, &#39;subbasin&#39;, &#39;interbasin&#39;, &#39;geom&#39;, &#39;bbox&#39;}</span>
+<span class="sd">    kind : {&#39;basin&#39;, &#39;subbasin&#39;, &#39;interbasin&#39;, &#39;geom&#39;, &#39;bbox&#39;, &#39;grid&#39;}</span>
 <span class="sd">        region kind</span>
 <span class="sd">    kwargs : dict</span>
 <span class="sd">        parsed region json</span>
@@ -292,17 +299,23 @@
         <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;basid&quot;</span><span class="p">,</span> <span class="s2">&quot;geom&quot;</span><span class="p">,</span> <span class="s2">&quot;bbox&quot;</span><span class="p">,</span> <span class="s2">&quot;xy&quot;</span><span class="p">],</span>
         <span class="s2">&quot;subbasin&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;geom&quot;</span><span class="p">,</span> <span class="s2">&quot;bbox&quot;</span><span class="p">,</span> <span class="s2">&quot;xy&quot;</span><span class="p">],</span>
         <span class="s2">&quot;interbasin&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;geom&quot;</span><span class="p">,</span> <span class="s2">&quot;bbox&quot;</span><span class="p">,</span> <span class="s2">&quot;xy&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;outlet&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;geom&quot;</span><span class="p">,</span> <span class="s2">&quot;bbox&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;outlet&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;geom&quot;</span><span class="p">,</span> <span class="s2">&quot;bbox&quot;</span><span class="p">],</span>  <span class="c1"># deprecated!</span>
         <span class="s2">&quot;geom&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;geom&quot;</span><span class="p">],</span>
         <span class="s2">&quot;bbox&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;bbox&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;grid&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;RasterDataArray&quot;</span><span class="p">],</span>
     <span class="p">}</span>
     <span class="n">kind</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">kwargs</span><span class="p">))</span>
     <span class="n">value0</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="n">MODELS</span><span class="p">:</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mod</span><span class="o">=</span><span class="n">MODELS</span><span class="p">[</span><span class="n">kind</span><span class="p">](</span><span class="n">root</span><span class="o">=</span><span class="n">value0</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">))</span>
         <span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;model&quot;</span>
+    <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;grid&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value0</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">))</span> <span class="ow">and</span> <span class="n">isfile</span><span class="p">(</span><span class="n">value0</span><span class="p">):</span>
+            <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">open_raster</span><span class="p">(</span><span class="n">value0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value0</span><span class="p">,</span> <span class="p">(</span><span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)):</span>
+            <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">value0</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">kind</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
-        <span class="n">k_lst</span> <span class="o">=</span> <span class="s1">&#39;&quot;, &quot;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="n">k_lst</span> <span class="o">=</span> <span class="s1">&#39;&quot;, &quot;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">MODELS</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Region key &quot;</span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s1">&quot; not understood, select from &quot;</span><span class="si">{</span><span class="n">k_lst</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">kwarg</span> <span class="o">=</span> <span class="n">_parse_region_value</span><span class="p">(</span><span class="n">value0</span><span class="p">)</span>
@@ -313,11 +326,13 @@
                 <span class="sa">f</span><span class="s1">&#39;provide one of &quot;</span><span class="si">{</span><span class="n">v_lst</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
             <span class="p">)</span>
         <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwarg</span><span class="p">)</span>
-    <span class="n">kwargs_str</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">kwargs_str</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">):</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;GeoDataFrame (</span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2"> rows)&quot;</span>
-            <span class="n">kwargs_str</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">})</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;GeoDataFrame </span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">total_bounds</span><span class="si">}</span><span class="s2"> (crs = </span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">crs</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;DataArray </span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">bounds</span><span class="si">}</span><span class="s2"> (crs = </span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="n">kwargs_str</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">})</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parsed region (kind=</span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">kwargs_str</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">kind</span><span class="p">,</span> <span class="n">kwargs</span></div>
 

@@ -30,6 +30,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -239,10 +240,6 @@
             <span class="n">data_libs</span><span class="o">=</span><span class="n">data_libs</span><span class="p">,</span> <span class="n">deltares_data</span><span class="o">=</span><span class="n">deltares_data</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span>
         <span class="p">)</span>
 
-        <span class="c1"># model paths</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_config_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CONF</span> <span class="k">if</span> <span class="n">config_fn</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config_fn</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_root</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
-
         <span class="c1"># placeholders</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_staticmaps</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_staticgeoms</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># dictionnary of gdp.GeoDataFrame</span>
@@ -250,6 +247,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># nested dictionary</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># dictionnary of xr.DataArray</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># dictionnary of xr.DataArray</span>
+
+        <span class="c1"># model paths</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CONF</span> <span class="k">if</span> <span class="n">config_fn</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config_fn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_root</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_check_get_opt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check all opt keys and raise sensible error messages if unknonwn.&quot;&quot;&quot;</span>
@@ -279,16 +280,45 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Model.build"><a class="viewcode-back" href="../../../_generated/hydromt.Model.build.html#hydromt.Model.build">[docs]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.build"><a class="viewcode-back" href="../../../_generated/hydromt.Model.build.html#hydromt.Model.build">[docs]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Single method to setup and write a full model schematization and</span>
-<span class="sd">        configuration from scratch&quot;&quot;&quot;</span>
+<span class="sd">        configuration from scratch</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        region: dict</span>
+<span class="sd">            Description of model region. See :py:meth:`~hydromt.workflows.parse_region`</span>
+<span class="sd">            for all options.</span>
+<span class="sd">        res: float, optional</span>
+<span class="sd">            Model restolution. Use only if applicable to your model. By default None.</span>
+<span class="sd">        write: bool, optional</span>
+<span class="sd">            Write the complete model schematization after setting up all model components.</span>
+<span class="sd">            By default True.</span>
+<span class="sd">        opt: dict, optional</span>
+<span class="sd">            Model setup configuration. This is a nested dictionary where the first-level</span>
+<span class="sd">            keys are the names of model spedific setup methods and the second-level</span>
+<span class="sd">            keys the arguments of the method:</span>
+
+<span class="sd">            ```{</span>
+<span class="sd">                &lt;name of method1&gt;: {</span>
+<span class="sd">                    &lt;argument1&gt;: &lt;value1&gt;, &lt;argument2&gt;: &lt;value2&gt;</span>
+<span class="sd">                    }</span>
+<span class="sd">                &lt;name of method2&gt;: {</span>
+<span class="sd">                    ...</span>
+<span class="sd">                    }</span>
+<span class="sd">                }</span>
+<span class="sd">            }```</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_get_opt</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span>
 
         <span class="c1"># run setup_config and setup_basemaps first!</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_log_method</span><span class="p">(</span><span class="s2">&quot;setup_config&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">opt</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;setup_config&quot;</span><span class="p">,</span> <span class="p">{}))</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;setup_basemaps&quot;</span><span class="p">,</span> <span class="p">{})</span>
         <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># res is optional</span>
             <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">res</span><span class="o">=</span><span class="n">res</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_log_method</span><span class="p">(</span><span class="s2">&quot;setup_basemaps&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -302,7 +332,31 @@
 
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Single method to setup and write a full model schematization and</span>
-<span class="sd">        configuration from scratch&quot;&quot;&quot;</span>
+<span class="sd">        configuration from scratch</span>
+
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        model_out: str, path, optional</span>
+<span class="sd">            Desitation folder to write the model schematization after updating</span>
+<span class="sd">            the model. If None the updated model components are overwritten in the</span>
+<span class="sd">            current model schematization if these exist. By defualt None.</span>
+<span class="sd">        write: bool, optional</span>
+<span class="sd">            Write the updated model schematization to disk. By default True.</span>
+<span class="sd">        opt: dict, optional</span>
+<span class="sd">            Model update configuration. This is a nested dictionary where the first-level</span>
+<span class="sd">            keys are the names of model spedific setup methods and the second-level</span>
+<span class="sd">            keys the arguments of the method:</span>
+
+<span class="sd">            ```{</span>
+<span class="sd">                &lt;name of method1&gt;: {</span>
+<span class="sd">                    &lt;argument1&gt;: &lt;value1&gt;, &lt;argument2&gt;: &lt;value2&gt;</span>
+<span class="sd">                    }</span>
+<span class="sd">                &lt;name of method2&gt;: {</span>
+<span class="sd">                    ...</span>
+<span class="sd">                    }</span>
+<span class="sd">            }```</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_get_opt</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span>
 
         <span class="c1"># read current model</span>
@@ -399,20 +453,23 @@
         <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">configwrite</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Model.read_config"><a class="viewcode-back" href="../../../_generated/hydromt.Model.read_config.html#hydromt.Model.read_config">[docs]</a>    <span class="k">def</span> <span class="nf">read_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize default config and fill with config at &lt;config_fn&gt;&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">config_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_config_fn</span> <span class="o">=</span> <span class="n">config_fn</span>
+        <span class="sd">&quot;&quot;&quot;Parse config from file. If no config file found a default config file is</span>
+<span class="sd">        read in writing mode.&quot;&quot;&quot;</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;User defined&quot;</span>
+        <span class="k">if</span> <span class="n">config_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># prioritize user defined config path (new v0.4.1)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read</span><span class="p">:</span>  <span class="c1"># write-only mode &gt; read default config</span>
+                <span class="n">config_fn</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_DATADIR</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_NAME</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CONF</span><span class="p">)</span>
+                <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;Default&quot;</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># append or write mode &gt; read model config</span>
+                <span class="n">config_fn</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config_fn</span><span class="p">)</span>
+                <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;Model&quot;</span>
         <span class="n">cfdict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read</span><span class="p">:</span>
-            <span class="n">fn_def</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_DATADIR</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_NAME</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CONF</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">isfile</span><span class="p">(</span><span class="n">fn_def</span><span class="p">):</span>
-                <span class="n">cfdict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configread</span><span class="p">(</span><span class="n">fn_def</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Default config read from </span><span class="si">{</span><span class="n">fn_def</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">fn</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config_fn</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">isfile</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
-                <span class="n">cfdict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configread</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model config read from </span><span class="si">{</span><span class="n">fn</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">config_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">isfile</span><span class="p">(</span><span class="n">config_fn</span><span class="p">):</span>
+                <span class="n">cfdict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configread</span><span class="p">(</span><span class="n">config_fn</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2"> config read from </span><span class="si">{</span><span class="n">config_fn</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2"> config file not found at </span><span class="si">{</span><span class="n">config_fn</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="n">cfdict</span></div>
 
 <div class="viewcode-block" id="Model.write_config"><a class="viewcode-back" href="../../../_generated/hydromt.Model.write_config.html#hydromt.Model.write_config">[docs]</a>    <span class="k">def</span> <span class="nf">write_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config_root</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -609,16 +666,25 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">staticmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;xarray.dataset representation of all parameter maps&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;xarray.Dataset representation of all static parameter maps&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_staticmaps</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">read_staticmaps</span><span class="p">()</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No staticmaps defined&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_staticmaps</span>
 
 <div class="viewcode-block" id="Model.set_staticmaps"><a class="viewcode-back" href="../../../_generated/hydromt.Model.set_staticmaps.html#hydromt.Model.set_staticmaps">[docs]</a>    <span class="k">def</span> <span class="nf">set_staticmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add data to staticmaps&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Add data to staticmaps.</span>
+
+<span class="sd">        All layers of staticmaps must have identical spatial coordinates.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data: xarray.DataArray or xarray.Dataset</span>
+<span class="sd">            new map layer to add to staticmaps</span>
+<span class="sd">        name: str, optional</span>
+<span class="sd">            Name of new map layer, this is used to overwrite the name of a DataArray</span>
+<span class="sd">            or to select a variable from a Dataset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">name</span>
@@ -636,8 +702,6 @@
             <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_dataset</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_staticmaps</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># new data</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;First parameter map(s) should xarray.Dataset&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_staticmaps</span> <span class="o">=</span> <span class="n">data</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
@@ -854,7 +918,9 @@
         <span class="k">if</span> <span class="s2">&quot;region&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">staticgeoms</span><span class="p">:</span>
             <span class="n">region</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">staticgeoms</span><span class="p">[</span><span class="s2">&quot;region&quot;</span><span class="p">]</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">staticmaps</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">crs</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">to_epsg</span><span class="p">()</span>
+            <span class="n">crs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span>
+            <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">crs</span><span class="o">.</span><span class="n">to_epsg</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">crs</span> <span class="o">=</span> <span class="n">crs</span><span class="o">.</span><span class="n">to_epsg</span><span class="p">()</span>  <span class="c1"># not all CRS have an EPSG code</span>
             <span class="n">region</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">region</span>
 

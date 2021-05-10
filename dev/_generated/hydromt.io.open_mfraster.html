@@ -30,6 +30,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -232,8 +233,8 @@
 <div class="section" id="hydromt-io-open-mfraster">
 <h1>hydromt.io.open_mfraster<a class="headerlink" href="#hydromt-io-open-mfraster" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="hydromt.io.open_mfraster">
-<code class="sig-prename descclassname"><span class="pre">hydromt.io.</span></code><code class="sig-name descname"><span class="pre">open_mfraster</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">paths</span></em>, <em class="sig-param"><span class="pre">chunks={}</span></em>, <em class="sig-param"><span class="pre">concat=False</span></em>, <em class="sig-param"><span class="pre">concat_dim='dim0'</span></em>, <em class="sig-param"><span class="pre">mosaic=False</span></em>, <em class="sig-param"><span class="pre">mosaic_kwargs={}</span></em>, <em class="sig-param"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.io</span> <span class="pre">(WARNING)&gt;</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/io.html#open_mfraster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.io.open_mfraster" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="hydromt.io.open_mfraster">
+<span class="sig-prename descclassname"><span class="pre">hydromt.io.</span></span><span class="sig-name descname"><span class="pre">open_mfraster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">paths</span></em>, <em class="sig-param"><span class="pre">chunks={}</span></em>, <em class="sig-param"><span class="pre">concat=False</span></em>, <em class="sig-param"><span class="pre">concat_dim='dim0'</span></em>, <em class="sig-param"><span class="pre">mosaic=False</span></em>, <em class="sig-param"><span class="pre">mosaic_kwargs={}</span></em>, <em class="sig-param"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.io</span> <span class="pre">(WARNING)&gt;</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/io.html#open_mfraster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.io.open_mfraster" title="Permalink to this definition">¶</a></dt>
 <dd><p>Open multiple gdal-readable files as single Dataset with geospatial attributes.</p>
 <p>Each raster is turned into a DataArray with its name inferred from the filename.
 By default all DataArray are assumed to be on an identical grid and the output

@@ -30,6 +30,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -230,8 +231,8 @@
 <div class="section" id="hydromt-workflows-basin-mask-parse-region">
 <h1>hydromt.workflows.basin_mask.parse_region<a class="headerlink" href="#hydromt-workflows-basin-mask-parse-region" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="hydromt.workflows.basin_mask.parse_region">
-<code class="sig-prename descclassname"><span class="pre">hydromt.workflows.basin_mask.</span></code><code class="sig-name descname"><span class="pre">parse_region</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">region</span></em>, <em class="sig-param"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.workflows.basin_mask</span> <span class="pre">(WARNING)&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/workflows/basin_mask.html#parse_region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.workflows.basin_mask.parse_region" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="hydromt.workflows.basin_mask.parse_region">
+<span class="sig-prename descclassname"><span class="pre">hydromt.workflows.basin_mask.</span></span><span class="sig-name descname"><span class="pre">parse_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">region</span></em>, <em class="sig-param"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.workflows.basin_mask</span> <span class="pre">(WARNING)&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/workflows/basin_mask.html#parse_region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.workflows.basin_mask.parse_region" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks and returns parsed region arguments.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -241,9 +242,13 @@
 <li><p>{‘bbox’: [xmin, ymin, xmax, ymax]}</p></li>
 <li><p>{‘geom’: (path to) geopandas.GeoDataFrame[Polygon]}</p></li>
 </ul>
-<p>For an copy of another models grid:</p>
+<p>For a region based of another models grid:</p>
 <ul class="simple">
-<li><p>{wflow/sfincs/..: root}</p></li>
+<li><p>{‘&lt;model_name&gt;’: root}</p></li>
+</ul>
+<p>For a region based of the grid of a raster file:</p>
+<ul class="simple">
+<li><p>{‘grid’: (path to) raster file}</p></li>
 </ul>
 <p>Entire basin can be defined based on an ID, one or multiple point location (x, y),
 or a region of interest (bounding box or geometry) for which the basin IDs are
@@ -287,7 +292,7 @@ Common use-cases include:</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><strong>kind</strong> (<em>{‘basin’, ‘subbasin’, ‘interbasin’, ‘geom’, ‘bbox’}</em>) – region kind</p></li>
+<li><p><strong>kind</strong> (<em>{‘basin’, ‘subbasin’, ‘interbasin’, ‘geom’, ‘bbox’, ‘grid’}</em>) – region kind</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em>) – parsed region json</p></li>
 </ul>
 </p>

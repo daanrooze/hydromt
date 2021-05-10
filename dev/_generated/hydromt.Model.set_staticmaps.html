@@ -30,6 +30,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -231,9 +232,19 @@
 <div class="section" id="hydromt-model-set-staticmaps">
 <h1>hydromt.Model.set_staticmaps<a class="headerlink" href="#hydromt-model-set-staticmaps" title="Permalink to this headline">¶</a></h1>
 <dl class="py method">
-<dt id="hydromt.Model.set_staticmaps">
-<code class="sig-prename descclassname"><span class="pre">Model.</span></code><code class="sig-name descname"><span class="pre">set_staticmaps</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/models/model_api.html#Model.set_staticmaps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.Model.set_staticmaps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add data to staticmaps</p>
+<dt class="sig sig-object py" id="hydromt.Model.set_staticmaps">
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">set_staticmaps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/models/model_api.html#Model.set_staticmaps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.Model.set_staticmaps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add data to staticmaps.</p>
+<p>All layers of staticmaps must have identical spatial coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>xarray.DataArray</em><em> or </em><em>xarray.Dataset</em>) – new map layer to add to staticmaps</p></li>
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of new map layer, this is used to overwrite the name of a DataArray
+or to select a variable from a Dataset.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
