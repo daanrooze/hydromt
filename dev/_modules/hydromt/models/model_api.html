@@ -115,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../roadmap.html">Roadmap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">What’s new</a></li>
 </ul>
 
             
@@ -185,17 +185,15 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;General and basic API for models in HydroMT&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span><span class="p">,</span> <span class="n">abstractproperty</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">isdir</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">basename</span><span class="p">,</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">abspath</span><span class="p">,</span> <span class="n">exists</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">isdir</span><span class="p">,</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">abspath</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">box</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 <span class="kn">import</span> <span class="nn">inspect</span>
 
 <span class="kn">from</span> <span class="nn">..data_adapter</span> <span class="kn">import</span> <span class="n">DataCatalog</span>
@@ -224,7 +222,8 @@
         <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
         <span class="n">config_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">data_libs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">deltares_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">deltares_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">artifact_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">ENTRYPOINTS</span>  <span class="c1"># load within method to avoid circular imports</span>
@@ -237,7 +236,10 @@
 
         <span class="c1"># link to data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_catalog</span> <span class="o">=</span> <span class="n">DataCatalog</span><span class="p">(</span>
-            <span class="n">data_libs</span><span class="o">=</span><span class="n">data_libs</span><span class="p">,</span> <span class="n">deltares_data</span><span class="o">=</span><span class="n">deltares_data</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span>
+            <span class="n">data_libs</span><span class="o">=</span><span class="n">data_libs</span><span class="p">,</span>
+            <span class="n">deltares_data</span><span class="o">=</span><span class="n">deltares_data</span><span class="p">,</span>
+            <span class="n">artifact_data</span><span class="o">=</span><span class="n">artifact_data</span><span class="p">,</span>
+            <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># placeholders</span>

@@ -121,7 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">What’s new</a></li>
 </ul>
 
             
@@ -219,10 +219,11 @@
 <p>This folder contains several ipython notebook examples for <strong>hydroMT</strong>.</p>
 <p>To run these examples start with the <strong>binder</strong> badge above.</p>
 <p>To run these examples on your local machine create a conda e nvironment based on the
-environment.yml in the root of this repository and than start jupyer notebook.
+environment.yml in the binder folder of this repository and than start jupyer notebook.
 Run the following steps the examples folder:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda env create -f ../environment.yml</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda env create -f ../binder/environment.yml  # install dependencies</span>
 <span class="go">conda activate hydromt</span>
+<span class="go">flit install --dep production  # install hydromt</span>
 <span class="go">jupyter notebook</span>
 </pre></div>
 </div>

@@ -121,7 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">Roadmap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">What’s new</a></li>
 </ul>
 
             
@@ -220,11 +220,32 @@
 <p>HydroMT core can easily access and navigate through different model implementations thanks to its plugin architecture.
 The hydromt package contains core functionnalities and the command line interface. The models, following HydroMT’s
 architecture, are then implemented in separate plugins available in other python packages.</p>
-<p>TO BE ADDED more info</p>
+<p>All the <strong>core functionnalities</strong> are included in the <strong>hydromt package</strong>. This includes:</p>
+<ul class="simple">
+<li><p>Command Line Interface and methods (build, update, clip).</p></li>
+<li><p>High end methods for raster and vector processing, GIS, configuration and flow direction functionnalities.</p></li>
+<li><p>Data reading, processing and export via the <code class="docutils literal notranslate"><span class="pre">DataCatalog</span></code>.</p></li>
+<li><p>General workflows from input data to model data such as basin_mask or forcing.</p></li>
+<li><p>Definition of the hydroMT <code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">API</span></code> class.</p></li>
+</ul>
+<p>Implementation of hydroMT core functionnalities for specific models are realised in separate <strong>plugin packages</strong> (one per model). In each plugin, you can find:</p>
+<ul class="simple">
+<li><p>Definition of a Model class compliant to the <code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">API</span></code> with model specific methods and attributes.</p></li>
+<li><p>Model specific workflows to go from input data to model data.</p></li>
+<li><p>Specific documentation and examples.</p></li>
+</ul>
+<p>The plugin architecture of HydroMT (including known existing plugins and plugins in development) is then:</p>
+<img alt="../../_images/hydromt_plugins.png" src="../../_images/hydromt_plugins.png" />
 </div>
 <div class="section" id="available-model-plugins">
 <h2>Available model plugins<a class="headerlink" href="#available-model-plugins" title="Permalink to this headline">¶</a></h2>
-<p>TO BE ADDED link to the model plugin documentation</p>
+<p>The known existing plugin packages can be found at:</p>
+<ul class="simple">
+<li><p>Delft-FIAT: <a class="reference external" href="https://github.com/Deltares/hydromt_fiat">https://github.com/Deltares/hydromt_fiat</a></p></li>
+<li><p>DELWAQ: <a class="reference external" href="https://github.com/Deltares/hydromt_delwaq">https://github.com/Deltares/hydromt_delwaq</a></p></li>
+<li><p>SFINCS: <a class="reference external" href="https://github.com/Deltares/hydromt_sfincs">https://github.com/Deltares/hydromt_sfincs</a></p></li>
+<li><p>Wflow: <a class="reference external" href="https://github.com/Deltares/hydromt_wflow">https://github.com/Deltares/hydromt_wflow</a></p></li>
+</ul>
 </div>
 </div>
 

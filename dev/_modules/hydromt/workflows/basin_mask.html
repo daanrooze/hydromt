@@ -115,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../roadmap.html">Roadmap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">What’s new</a></li>
 </ul>
 
             
@@ -187,23 +187,16 @@
 <span class="sd">basin maps or flow direction maps.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">isdir</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">basename</span><span class="p">,</span> <span class="n">isfile</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">isdir</span><span class="p">,</span> <span class="n">isfile</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">box</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">from</span> <span class="nn">pyflwdir.regions</span> <span class="kn">import</span> <span class="n">region_bounds</span>
-<span class="kn">from</span> <span class="nn">pyflwdir</span> <span class="kn">import</span> <span class="n">pyflwdir</span>
 
 <span class="c1"># local</span>
 <span class="kn">from</span> <span class="nn">..io</span> <span class="kn">import</span> <span class="n">open_raster</span>
-<span class="kn">from</span> <span class="nn">..raster</span> <span class="kn">import</span> <span class="n">full_like</span>
 <span class="kn">from</span> <span class="nn">..flw</span> <span class="kn">import</span> <span class="n">flwdir_from_da</span><span class="p">,</span> <span class="n">basin_map</span><span class="p">,</span> <span class="n">stream_map</span><span class="p">,</span> <span class="n">outlet_map</span>
 <span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">MODELS</span>
 <span class="kn">from</span> <span class="nn">..data_adapter</span> <span class="kn">import</span> <span class="n">GeoDataFrameAdapter</span>

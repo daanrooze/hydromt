@@ -115,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../roadmap.html">Roadmap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">What’s new</a></li>
 </ul>
 
             
@@ -184,13 +184,8 @@
   <h1>Source code for hydromt.workflows.basemaps</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">isdir</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">basename</span><span class="p">,</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">abspath</span>
-<span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">from</span> <span class="nn">pyflwdir</span> <span class="kn">import</span> <span class="n">dem</span>
@@ -210,7 +205,6 @@
     <span class="n">uparea_name</span><span class="o">=</span><span class="s2">&quot;uparea&quot;</span><span class="p">,</span>
     <span class="n">basins_name</span><span class="o">=</span><span class="s2">&quot;basins&quot;</span><span class="p">,</span>
     <span class="n">strord_name</span><span class="o">=</span><span class="s2">&quot;strord&quot;</span><span class="p">,</span>
-    <span class="n">channel_dir</span><span class="o">=</span><span class="s2">&quot;up&quot;</span><span class="p">,</span>
     <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;infer&quot;</span><span class="p">,</span>
     <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
@@ -244,8 +238,6 @@
 <span class="sd">        Upscaling method for flow direction data, by default &#39;com2&#39;.</span>
 <span class="sd">    flwdir_name, elevtn_name, uparea_name : str, optional</span>
 <span class="sd">        Name of flow direction, elevation and upstream area variables in ds</span>
-<span class="sd">    channel_dir : {&#39;up&#39;, &#39;down&#39;}</span>
-<span class="sd">        Define channel up or downstream from outlet, be default upstream</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>

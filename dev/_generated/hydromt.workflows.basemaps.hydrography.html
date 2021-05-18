@@ -132,7 +132,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">What’s new</a></li>
 </ul>
 
             
@@ -232,7 +232,7 @@
 <h1>hydromt.workflows.basemaps.hydrography<a class="headerlink" href="#hydromt-workflows-basemaps-hydrography" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hydromt.workflows.basemaps.hydrography">
-<span class="sig-prename descclassname"><span class="pre">hydromt.workflows.basemaps.</span></span><span class="sig-name descname"><span class="pre">hydrography</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">ds</span></em>, <em class="sig-param"><span class="pre">res</span></em>, <em class="sig-param"><span class="pre">xy=None</span></em>, <em class="sig-param"><span class="pre">upscale_method='com2'</span></em>, <em class="sig-param"><span class="pre">flwdir_name='flwdir'</span></em>, <em class="sig-param"><span class="pre">uparea_name='uparea'</span></em>, <em class="sig-param"><span class="pre">basins_name='basins'</span></em>, <em class="sig-param"><span class="pre">strord_name='strord'</span></em>, <em class="sig-param"><span class="pre">channel_dir='up'</span></em>, <em class="sig-param"><span class="pre">ftype='infer'</span></em>, <em class="sig-param"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.workflows.basemaps</span> <span class="pre">(WARNING)&gt;</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/workflows/basemaps.html#hydrography"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.workflows.basemaps.hydrography" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">hydromt.workflows.basemaps.</span></span><span class="sig-name descname"><span class="pre">hydrography</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">ds</span></em>, <em class="sig-param"><span class="pre">res</span></em>, <em class="sig-param"><span class="pre">xy=None</span></em>, <em class="sig-param"><span class="pre">upscale_method='com2'</span></em>, <em class="sig-param"><span class="pre">flwdir_name='flwdir'</span></em>, <em class="sig-param"><span class="pre">uparea_name='uparea'</span></em>, <em class="sig-param"><span class="pre">basins_name='basins'</span></em>, <em class="sig-param"><span class="pre">strord_name='strord'</span></em>, <em class="sig-param"><span class="pre">ftype='infer'</span></em>, <em class="sig-param"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.workflows.basemaps</span> <span class="pre">(WARNING)&gt;</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/workflows/basemaps.html#hydrography"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.workflows.basemaps.hydrography" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns hydrography maps (see list below) and FlwdirRaster object based on
 gridded flow directon and elevation data input. If the resolution is larger than the
 source resolution, the flow direction data gets resampled and river length and slope
@@ -251,7 +251,6 @@ are based on subgrid flow paths.</p>
 <li><p><strong>flwdir_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of flow direction, elevation and upstream area variables in ds</p></li>
 <li><p><strong>elevtn_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of flow direction, elevation and upstream area variables in ds</p></li>
 <li><p><strong>uparea_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of flow direction, elevation and upstream area variables in ds</p></li>
-<li><p><strong>channel_dir</strong> (<em>{'up'</em><em>, </em><em>'down'}</em>) – Define channel up or downstream from outlet, be default upstream</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
