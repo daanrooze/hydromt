@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.4.1.dev
+                v0.4.2.dev
               </div>
             
           
@@ -198,8 +198,8 @@
 <span class="c1"># local</span>
 <span class="kn">from</span> <span class="nn">..io</span> <span class="kn">import</span> <span class="n">open_raster</span>
 <span class="kn">from</span> <span class="nn">..flw</span> <span class="kn">import</span> <span class="n">flwdir_from_da</span><span class="p">,</span> <span class="n">basin_map</span><span class="p">,</span> <span class="n">stream_map</span><span class="p">,</span> <span class="n">outlet_map</span>
-<span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">MODELS</span>
 <span class="kn">from</span> <span class="nn">..data_adapter</span> <span class="kn">import</span> <span class="n">GeoDataFrameAdapter</span>
+<span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">ENTRYPOINTS</span><span class="p">,</span> <span class="n">model_plugins</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -299,8 +299,9 @@
     <span class="p">}</span>
     <span class="n">kind</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">kwargs</span><span class="p">))</span>
     <span class="n">value0</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="n">MODELS</span><span class="p">:</span>
-        <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mod</span><span class="o">=</span><span class="n">MODELS</span><span class="p">[</span><span class="n">kind</span><span class="p">](</span><span class="n">root</span><span class="o">=</span><span class="n">value0</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="n">ENTRYPOINTS</span><span class="p">:</span>
+        <span class="n">model_class</span> <span class="o">=</span> <span class="n">model_plugins</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">ENTRYPOINTS</span><span class="p">[</span><span class="n">kind</span><span class="p">],</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">)</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mod</span><span class="o">=</span><span class="n">model_class</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">value0</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">))</span>
         <span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;model&quot;</span>
     <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;grid&quot;</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value0</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">))</span> <span class="ow">and</span> <span class="n">isfile</span><span class="p">(</span><span class="n">value0</span><span class="p">):</span>
@@ -308,7 +309,7 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value0</span><span class="p">,</span> <span class="p">(</span><span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)):</span>
             <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">value0</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">kind</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
-        <span class="n">k_lst</span> <span class="o">=</span> <span class="s1">&#39;&quot;, &quot;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">MODELS</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="n">k_lst</span> <span class="o">=</span> <span class="s1">&#39;&quot;, &quot;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">ENTRYPOINTS</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Region key &quot;</span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s1">&quot; not understood, select from &quot;</span><span class="si">{</span><span class="n">k_lst</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">kwarg</span> <span class="o">=</span> <span class="n">_parse_region_value</span><span class="p">(</span><span class="n">value0</span><span class="p">)</span>
