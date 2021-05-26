@@ -323,18 +323,17 @@
                 <span class="n">dims</span><span class="o">=</span><span class="n">ds_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">basins</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">_FillValue</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># NOTE: this else statement seems wrong. instead an error is at place</span>
-            <span class="c1"># ds_out.coords[&quot;mask&quot;] = (</span>
-            <span class="c1">#     ds[&quot;mask&quot;]</span>
-            <span class="c1">#     .astype(np.int8)</span>
-            <span class="c1">#     .raster.reproject_like(da_flw, method=&quot;nearest&quot;)</span>
-            <span class="c1">#     .astype(np.bool)</span>
-            <span class="c1"># )</span>
-            <span class="c1"># basins = ds_out[&quot;mask&quot;].values.astype(np.int32)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Unable to upscale the flow direction. &quot;</span>
-                <span class="s2">&quot;Consider using a larger domain or higher spatial resolution. &quot;</span>
-                <span class="s2">&quot;For subbasin models, consider a (higher) threshold to snap the outlet.&quot;</span>
+            <span class="c1"># This is a patch for basins which are clipped based on bbox or wrong geom</span>
+            <span class="n">ds_out</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span>
+                <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">reproject_like</span><span class="p">(</span><span class="n">da_flw</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">basins</span> <span class="o">=</span> <span class="n">ds_out</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;The basin delination might be wrong as no original resolution outlets &quot;</span>
+                <span class="s2">&quot;are found in the upscaled map.&quot;</span>
             <span class="p">)</span>
         <span class="n">ds_out</span><span class="p">[</span><span class="n">basins_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="n">basins</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">_FillValue</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
         <span class="c1"># calculate upstream area using subgrid ucat cell areas</span>
@@ -397,6 +396,7 @@
         <span class="n">attrs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">_FillValue</span><span class="o">=-</span><span class="mi">9999</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;km2&quot;</span><span class="p">)</span>
         <span class="n">ds_out</span><span class="p">[</span><span class="s2">&quot;subare&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="n">subare</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="n">attrs</span><span class="p">)</span>
     <span class="c1"># logging</span>
+    <span class="n">npits</span> <span class="o">=</span> <span class="n">flwdir_out</span><span class="o">.</span><span class="n">idxs_pit</span><span class="o">.</span><span class="n">size</span>
     <span class="n">xy_pit</span> <span class="o">=</span> <span class="n">flwdir_out</span><span class="o">.</span><span class="n">xy</span><span class="p">(</span><span class="n">flwdir_out</span><span class="o">.</span><span class="n">idxs_pit</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
     <span class="n">xy_pit_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">y</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">xy_pit</span><span class="p">)])</span>
     <span class="c1"># stream order</span>
@@ -411,7 +411,7 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
         <span class="sa">f</span><span class="s2">&quot;Map shape: </span><span class="si">{</span><span class="n">ds_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">; active cells: </span><span class="si">{</span><span class="n">flwdir_out</span><span class="o">.</span><span class="n">ncells</span><span class="si">}</span><span class="s2">.&quot;</span>
     <span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Outlet coordinates (head): </span><span class="si">{</span><span class="n">xy_pit_str</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Outlet coordinates (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">xy_pit</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">npits</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">xy_pit_str</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ds_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
             <span class="s2">&quot;The output extent should at consist of two cells on each axis. &quot;</span>
