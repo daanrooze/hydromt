@@ -90,14 +90,14 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_stories.html">User’s stories</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
 </ul>
-<p class="caption"><span class="caption-text">User Guide</span></p>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="user_guide/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_guide/terminology.html">Terminology</a></li>
@@ -105,12 +105,12 @@
 <li class="toctree-l1"><a class="reference internal" href="user_guide/models/index.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_guide/cli.html">Command Line Interface</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Advanced topics</span></p>
+<p class="caption" role="heading"><span class="caption-text">Advanced topics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="advanced/model_api.html">Model API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced/data_catalog.html">DataCatalog</a></li>
 </ul>
-<p class="caption"><span class="caption-text">References &amp; Help</span></p>
+<p class="caption" role="heading"><span class="caption-text">References &amp; Help</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="api/api_index.html">API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
@@ -245,12 +245,14 @@
 <h3>Added<a class="headerlink" href="#added" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Small patch for geoms/bbox regions when upscaling flow dir.</p></li>
+<li><p>Mask option in merge.merge method for improved open_raster_from_tindex.</p></li>
 </ul>
 </div>
 <div class="section" id="changed">
 <h3>Changed<a class="headerlink" href="#changed" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>New import of model plugins. Before plugins were only loaded when import MODELS or xxxModel from hydromt.models and not when importing hydromt as before.</p></li>
+<li><p>Dropped dask version pins</p></li>
 </ul>
 </div>
 <div class="section" id="deprecated">

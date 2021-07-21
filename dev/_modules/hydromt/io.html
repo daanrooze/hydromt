@@ -89,14 +89,14 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../user_stories.html">User’s stories</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a></li>
 </ul>
-<p class="caption"><span class="caption-text">User Guide</span></p>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../user_guide/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../user_guide/terminology.html">Terminology</a></li>
@@ -104,12 +104,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../user_guide/models/index.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../user_guide/cli.html">Command Line Interface</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Advanced topics</span></p>
+<p class="caption" role="heading"><span class="caption-text">Advanced topics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/model_api.html">Model API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/data_catalog.html">DataCatalog</a></li>
 </ul>
-<p class="caption"><span class="caption-text">References &amp; Help</span></p>
+<p class="caption" role="heading"><span class="caption-text">References &amp; Help</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../api/api_index.html">API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
@@ -368,11 +368,11 @@
                 <span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">da_lst</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">concat_dim</span><span class="p">)</span>
                 <span class="n">da</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">concat_dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">IndexVariable</span><span class="p">(</span><span class="n">concat_dim</span><span class="p">,</span> <span class="n">index_lst</span><span class="p">)</span>
                 <span class="n">da</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">sortby</span><span class="p">(</span><span class="n">concat_dim</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">concat_dim</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+                <span class="n">da</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">da_lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
+                <span class="n">da</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;source_file&quot;</span><span class="p">:</span> <span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fn_attrs</span><span class="p">)})</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">da</span> <span class="o">=</span> <span class="n">merge</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">da_lst</span><span class="p">,</span> <span class="o">**</span><span class="n">mosaic_kwargs</span><span class="p">)</span>  <span class="c1"># spatial merge</span>
-        <span class="n">da</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">da_lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
         <span class="n">ds</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">to_dataset</span><span class="p">()</span>  <span class="c1"># dataset for consistency</span>
-        <span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">source_files</span><span class="o">=</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fn_attrs</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">da_lst</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ds</span></div>
@@ -425,13 +425,9 @@
             <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">fn</span><span class="p">))</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">is_absolute</span><span class="p">():</span>
                 <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">fn</span><span class="p">))))</span>
-    <span class="c1"># set destination crs and bounds to speed up merging</span>
-    <span class="k">if</span> <span class="s2">&quot;dst_crs&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mosaic_kwargs</span><span class="p">:</span>
-        <span class="n">mosaic_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dst_crs</span><span class="o">=</span><span class="n">geom</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
-    <span class="k">if</span> <span class="s2">&quot;dst_bounds&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mosaic_kwargs</span><span class="p">:</span>
-        <span class="n">dst_bounds</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">mosaic_kwargs</span><span class="p">[</span><span class="s2">&quot;dst_crs&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">total_bounds</span>
-        <span class="n">mosaic_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dst_bounds</span><span class="o">=</span><span class="n">dst_bounds</span><span class="p">)</span>
     <span class="c1"># read &amp; merge data</span>
+    <span class="k">if</span> <span class="s2">&quot;dst_bounds&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mosaic_kwargs</span><span class="p">:</span>
+        <span class="n">mosaic_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="n">geom</span><span class="p">)</span>  <span class="c1"># limit output domain to bbox/geom</span>
     <span class="n">ds_out</span> <span class="o">=</span> <span class="n">open_mfraster</span><span class="p">(</span>
         <span class="n">paths</span><span class="p">,</span> <span class="n">mosaic</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mosaic_kwargs</span><span class="o">=</span><span class="n">mosaic_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span>

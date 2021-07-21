@@ -89,14 +89,14 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../user_stories.html">User’s stories</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples</a></li>
 </ul>
-<p class="caption"><span class="caption-text">User Guide</span></p>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../user_guide/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../user_guide/terminology.html">Terminology</a></li>
@@ -104,12 +104,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../user_guide/models/index.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../user_guide/cli.html">Command Line Interface</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Advanced topics</span></p>
+<p class="caption" role="heading"><span class="caption-text">Advanced topics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../advanced/model_api.html">Model API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../advanced/data_catalog.html">DataCatalog</a></li>
 </ul>
-<p class="caption"><span class="caption-text">References &amp; Help</span></p>
+<p class="caption" role="heading"><span class="caption-text">References &amp; Help</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/api_index.html">API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
@@ -594,8 +594,6 @@
 <span class="sd">        &gt;&gt; set_config(&#39;b&#39;, &#39;c&#39;, &#39;d&#39;, 99) # identical to set_config(&#39;b.d.e&#39;, 99)</span>
 <span class="sd">        &gt;&gt; {&#39;a&#39;: 1, &#39;b&#39;: {&#39;c&#39;: {&#39;d&#39;: 99}}}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Model opened in read-only mode&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;set_config() requires a least one key and one value.&quot;</span><span class="p">)</span>
         <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
