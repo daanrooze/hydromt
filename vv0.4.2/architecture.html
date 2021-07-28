@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Architecture &mdash; hydromt  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="hydromt.data_adapter.GeoDataFrameAdapter.get_data" href="_generated/hydromt.data_adapter.GeoDataFrameAdapter.get_data.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> hydromt
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.4.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_stories.html">User’s stories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/data.html">Data input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/models/index.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/cli.html">Command Line Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="advanced/model_api.html">Model API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/data_catalog.html">DataCatalog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References &amp; Help</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api/api_index.html">API reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-architecture">General Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data">Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#workflows">Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#models">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interface">Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">What’s new</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hydromt</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Architecture</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/architecture.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="general-architecture">
+<h2>General Architecture<a class="headerlink" href="#general-architecture" title="Permalink to this headline">¶</a></h2>
+<p>The HydroMT package contains GIS, hydrological, statistical and plotting methods to enable
+the use of global and local datasets in environmental models and analyze these data as well as
+model results. It leverage the rich scientific python eco-system by building on many
+packages including xarray, geopandas, rasterio, scipy, pyflwdir.</p>
+<p>The architecture of the package contains several submodules (shown in the next figure):</p>
+<ul class="simple">
+<li><p><strong>Methods</strong>: core of the package containing a range of methods for
+raster (raster) and geometry (vector) based GIS, hydro- and topograpahy data (flw), plotting (plots)
+and statistics (stats).</p></li>
+<li><p><strong>Data adapter</strong>: parser from input data to unified internal raster, point or vector representation.</p></li>
+<li><p><strong>Worflows</strong>: methods are combined in workflows for commenly used transformations from input
+to model data.</p></li>
+<li><p><strong>Models</strong>: contains a basic general model API class which can easiliy be
+implemented and, if required extended, for individual models.</p></li>
+<li><p><strong>Interface</strong>: the package is accessible both via a python interface and a higher level command line interface
+for setting up models.</p></li>
+</ul>
+<img alt="_images/hydromt_architecture_full.png" src="_images/hydromt_architecture_full.png" />
+<p>The package so far is optimized for models which require regular gridded data, vector data
+as static input maps. Data analysis is focussed on timeseries at point locations or
+regular gridded data. Methods to support models which require input data or preduce output
+in other types of grid definitions are not (yet) supported.</p>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<p>At it’s core the package exists of a range of methods for raster (raster) and geometry (vector)
+based GIS, hydro- and topograpahy data (flw), plotting (plots) and statistics (stats).
+The package adopts the xarray data structure for any type of regular gridded data, while
+geometry data is handled by the geopandas package. We combined methods from rasterio and xarray into a powerfull
+<strong>raster submodule</strong> for all raster GIS methods. For hydro- and topographical methods we make
+use of the pyflwdir package of which some function are wrapped to work directly on
+xarray object in the <strong>flw submodule</strong>. We anticipate to extent the library with a
+<strong>stats submudule</strong> for statistical functions for xarray objects which are particular
+to the hydroshpere and/or not available in xarray. The <strong>plots submudule</strong> will contain
+convienence methods for commenly used plots of input maps as well as output maps and
+timeseries in a standardized layout. The total suite of these methods, conveniently
+wrapped for xarray and (geo)pandas datatypes, creates a rich environment for
+analysis and manipulation of geospatial data.</p>
+</div>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<p>HydroMT uses many (global) datasets to build models. These datasets are available
+within the Deltares network and linked to hydroMT through a library yml file.
+This file is parsed by hydroMT after which the the dataset can be accessed by just
+its name through the <code class="xref py py-meth docutils literal notranslate"><span class="pre">RasterDataAdapter()</span></code> and
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">VectorDataAdapter()</span></code> classes.</p>
+</div>
+<div class="section" id="workflows">
+<h2>Workflows<a class="headerlink" href="#workflows" title="Permalink to this headline">¶</a></h2>
+<p>Methods are combined in workflows for commenly used transformations from input
+to model data. Workflows typically receive xarray and or geopandas data and have key-word
+arguments to define the standerdized variable names of required variables. An example
+workflow is to define a list of input hydrography parameters (e.g.: flow direction,
+river length, river slope, upstream area, etc.) at model resolution based on input
+elevation data from (global) datasets.</p>
+</div>
+<div class="section" id="models">
+<h2>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h2>
+<p>The models submodule contains a basic general model API class which can easiliy be
+implemented and, if required extended, for individual models. The general model API
+contains methods to read, write and build models and ensures a common interface to
+different models.</p>
+</div>
+<div class="section" id="interface">
+<h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
+<p>The python interface is more flexible and allows to build models from
+a short script of just a few lines and is the only interface for analysis of model
+results. Besides the python interface we developed a higher level command line interface
+for setting up models. Highly variable arguments such as model in/output path and model
+region are set from the command line wheras other required argumens which very less between
+model instances can be passed on through a hydromt configuration file.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="_generated/hydromt.data_adapter.GeoDataFrameAdapter.get_data.html" class="btn btn-neutral float-left" title="hydromt.data_adapter.GeoDataFrameAdapter.get_data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Deltares.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
