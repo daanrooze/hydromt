@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                v0.4.2.dev
+                v0.4.3.dev
               </div>
             
           
@@ -240,9 +240,9 @@ and parse geospatial attributes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>rasterio.DatasetReader</em><em>, or </em><em>rasterio.WarpedVRT</em>) – Path to the file to open. Or already open rasterio dataset.</p></li>
-<li><p><strong>mask_nodata</strong> (<em>bool</em><em>, </em><em>optional</em>) – set nodata values to np.nan (xarray default nodata value)</p></li>
-<li><p><strong>chunks</strong> (<em>int</em><em>, </em><em>tuple</em><em> or </em><em>dict</em><em>, </em><em>optional</em>) – Chunk sizes along each dimension, e.g., <code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">(5,</span> <span class="pre">5)</span></code> or
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>rasterio.DatasetReader</em><em>, or </em><em>rasterio.WarpedVRT</em>) – Path to the file to open. Or already open rasterio dataset.</p></li>
+<li><p><strong>mask_nodata</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – set nodata values to np.nan (xarray default nodata value)</p></li>
+<li><p><strong>chunks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – Chunk sizes along each dimension, e.g., <code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">(5,</span> <span class="pre">5)</span></code> or
 <code class="docutils literal notranslate"><span class="pre">{'x':</span> <span class="pre">5,</span> <span class="pre">'y':</span> <span class="pre">5}</span></code>. If chunks is provided, it used to load the new
 DataArray into a dask array.</p></li>
 <li><p><strong>**kwargs</strong> – key-word arguments are passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.open_rasterio()</span></code></p></li>

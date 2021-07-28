@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                v0.4.2.dev
+                v0.4.3.dev
               </div>
             
           
@@ -246,18 +246,18 @@ by <code class="xref py py-meth docutils literal notranslate"><span class="pre">
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>dst_crs</strong> (<em>int</em><em>, </em><em>dict</em><em>, or </em><em>str</em><em>, </em><em>optional</em>) – Target CRS. Accepts EPSG codes (int or str); proj (str or dict) or wkt (str)
+<li><p><strong>dst_crs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – Target CRS. Accepts EPSG codes (int or str); proj (str or dict) or wkt (str)
 “utm” is accepted and will return the centroid utm zone CRS</p></li>
-<li><p><strong>dst_res</strong> (<em>tuple</em><em> (</em><em>x resolution</em><em>, </em><em>y resolution</em><em>) or </em><em>float</em><em>, </em><em>optional</em>) – Target resolution, in units of target CRS.</p></li>
+<li><p><strong>dst_res</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em> (</em><em>x resolution</em><em>, </em><em>y resolution</em><em>) or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – Target resolution, in units of target CRS.</p></li>
 <li><p><strong>dst_transform</strong> (<em>affine.Affine</em><em>(</em><em>)</em><em>, </em><em>optional</em>) – Target affine transformation. Will be calculated if None.</p></li>
-<li><p><strong>dst_width</strong> (<em>int</em><em>, </em><em>optional</em>) – Output file size in pixels and lines. Cannot be used together with
+<li><p><strong>dst_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Output file size in pixels and lines. Cannot be used together with
 resolution (dst_res).</p></li>
-<li><p><strong>dst_height</strong> (<em>int</em><em>, </em><em>optional</em>) – Output file size in pixels and lines. Cannot be used together with
+<li><p><strong>dst_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Output file size in pixels and lines. Cannot be used together with
 resolution (dst_res).</p></li>
-<li><p><strong>dst_nodata</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – The nodata value used to initialize the destination; it will
+<li><p><strong>dst_nodata</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – The nodata value used to initialize the destination; it will
 remain in all areas not covered by the reprojected source. If None, the
 source nodata value will be used.</p></li>
-<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – See rasterio.warp.reproject for existing methods, by default nearest.
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – See rasterio.warp.reproject for existing methods, by default nearest.
 Additionally “nearest_index” can be used for KDTree based downsampling.</p></li>
 <li><p><strong>align</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, align target transform to resolution</p></li>
 </ul>
@@ -266,7 +266,7 @@ Additionally “nearest_index” can be used for KDTree based downsampling.</p><
 <dd class="field-even"><p><strong>da_reproject</strong> – A reprojected DataArray.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>xarray.DataArray</p>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.19.1.dev6)">xarray.DataArray</a></p>
 </dd>
 </dl>
 </dd></dl>

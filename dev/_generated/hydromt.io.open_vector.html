@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                v0.4.2.dev
+                v0.4.3.dev
               </div>
             
           
@@ -242,7 +242,7 @@ for the x- and y-coordinates, or if given, the x_dim and y_dim arguments.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>fn</strong> (<em>str</em>) – path to geometry file</p></li>
+<li><p><strong>fn</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – path to geometry file</p></li>
 <li><p><strong>driver</strong> (<em>{'csv'</em><em>, </em><em>'xls'</em><em>, </em><em>'xy'</em><em>, </em><em>'vector'}</em><em>, </em><em>optional</em>) – driver used to read the file: <code class="xref py py-meth docutils literal notranslate"><span class="pre">geopandas.open_file()</span></code> for gdal vector files,
 <a class="reference internal" href="hydromt.io.open_vector_from_table.html#hydromt.io.open_vector_from_table" title="hydromt.io.open_vector_from_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hydromt.io.open_vector_from_table()</span></code></a> for csv, xls(x) and xy files.
 By default None, and infered from file extention.</p></li>
@@ -256,8 +256,8 @@ Cannot be used with bbox.</p></li>
 <li><p><strong>predicate</strong> (<em>{'intersects'</em><em>, </em><em>'within'</em><em>, </em><em>'contains'</em><em>, </em><em>'overlaps'</em><em>, </em><em>'crosses'</em><em>, </em><em>'touches'}</em><em>, </em><em>optional</em>) – If predicate is provided, the GeoDataFrame is filtered by testing
 the predicate function against each item. Requires bbox or mask.
 By default ‘intersects’</p></li>
-<li><p><strong>x_dim</strong> (<em>str</em>) – Name of x, y-coordinate columns, only applicable for csv or xls tables</p></li>
-<li><p><strong>y_dim</strong> (<em>str</em>) – Name of x, y-coordinate columns, only applicable for csv or xls tables</p></li>
+<li><p><strong>x_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of x, y-coordinate columns, only applicable for csv or xls tables</p></li>
+<li><p><strong>y_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of x, y-coordinate columns, only applicable for csv or xls tables</p></li>
 <li><p><strong>assert_gtype</strong> (<em>{Point</em><em>, </em><em>LineString</em><em>, </em><em>Polygon}</em><em>, </em><em>optional</em>) – If given, assert geometry type</p></li>
 <li><p><strong>mode</strong> (<em>{'r'</em><em>, </em><em>'a'</em><em>, </em><em>'w'}</em>) – file opening mode (fiona files only), by default ‘r’</p></li>
 <li><p><strong>**kwargs</strong> – Keyword args to be passed to the driver method when opening the file</p></li>
@@ -267,7 +267,7 @@ By default ‘intersects’</p></li>
 <dd class="field-even"><p><strong>gdf</strong> – Parsed geometry file</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>geopandas.GeoDataFrame</p>
+<dd class="field-odd"><p><a class="reference external" href="https://geopandas.org/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.9.0)">geopandas.GeoDataFrame</a></p>
 </dd>
 </dl>
 </dd></dl>

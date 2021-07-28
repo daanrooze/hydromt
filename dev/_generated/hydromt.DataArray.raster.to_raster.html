@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                v0.4.2.dev
+                v0.4.3.dev
               </div>
             
           
@@ -239,14 +239,14 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>raster_path</strong> (<em>str</em>) – The path to output the raster to.</p></li>
-<li><p><strong>driver</strong> (<em>str</em><em>, </em><em>optional</em>) – The name of the GDAL/rasterio driver to use to export the raster.
+<li><p><strong>raster_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The path to output the raster to.</p></li>
+<li><p><strong>driver</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The name of the GDAL/rasterio driver to use to export the raster.
 Default is “GTiff”.</p></li>
-<li><p><strong>dtype</strong> (<em>str</em><em>, </em><em>optional</em>) – The data type to write the raster to. Default is the datasets dtype.</p></li>
-<li><p><strong>tags</strong> (<em>dict</em><em>, </em><em>optional</em>) – A dictionary of tags to write to the raster.</p></li>
-<li><p><strong>windowed</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, it will write using the windows of the output raster.
+<li><p><strong>dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The data type to write the raster to. Default is the datasets dtype.</p></li>
+<li><p><strong>tags</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary of tags to write to the raster.</p></li>
+<li><p><strong>windowed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, it will write using the windows of the output raster.
 Default is False.</p></li>
-<li><p><strong>mask</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, set nodata values where ‘mask’ coordinate equals False.</p></li>
+<li><p><strong>mask</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, set nodata values where ‘mask’ coordinate equals False.</p></li>
 <li><p><strong>**profile_kwargs</strong> – Additional keyword arguments to pass into writing the raster. The
 nodata, transform, crs, count, width, and height attributes
 are ignored.</p></li>

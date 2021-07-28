@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                v0.4.2.dev
+                v0.4.3.dev
               </div>
             
           
@@ -240,15 +240,15 @@ and resampling of time dimension to frequency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>temp</strong> (<em>xarray.DataArray</em>) – DataArray of temperature forcing [°C]</p></li>
-<li><p><strong>dem_model</strong> (<em>xarray.DataArray</em>) – DataArray of the target resolution and projection, contains elevation
+<li><p><strong>temp</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.19.1.dev6)"><em>xarray.DataArray</em></a>) – DataArray of temperature forcing [°C]</p></li>
+<li><p><strong>dem_model</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.19.1.dev6)"><em>xarray.DataArray</em></a>) – DataArray of the target resolution and projection, contains elevation
 data</p></li>
-<li><p><strong>dem_forcing</strong> (<em>xarray.DataArray</em>) – DataArray of elevation at forcing resolution. If provided this is used
+<li><p><strong>dem_forcing</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.19.1.dev6)"><em>xarray.DataArray</em></a>) – DataArray of elevation at forcing resolution. If provided this is used
 with <cite>dem_model</cite> to correct the temperature downscaling using a lapse rate</p></li>
-<li><p><strong>lapse_correction</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, temperature is correctured based on lapse rate, by default True.</p></li>
-<li><p><strong>freq</strong> (<em>str</em><em>, </em><em>Timedelta</em>) – output frequency of timedimension</p></li>
-<li><p><strong>reproj_method</strong> (<em>str</em><em>, </em><em>optional</em>) – Method for spatital reprojection of precip, by default ‘nearest_index’</p></li>
-<li><p><strong>lapse_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – lapse rate of temperature [C m-1] (default: -0.0065)</p></li>
+<li><p><strong>lapse_correction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, temperature is correctured based on lapse rate, by default True.</p></li>
+<li><p><strong>freq</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>Timedelta</em>) – output frequency of timedimension</p></li>
+<li><p><strong>reproj_method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – Method for spatital reprojection of precip, by default ‘nearest_index’</p></li>
+<li><p><strong>lapse_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – lapse rate of temperature [C m-1] (default: -0.0065)</p></li>
 <li><p><strong>resample_kwargs</strong> – Additional key-word arguments (e.g. label, closed) for time resampling method</p></li>
 </ul>
 </dd>
@@ -256,7 +256,7 @@ with <cite>dem_model</cite> to correct the temperature downscaling using a lapse
 <dd class="field-even"><p><strong>t_out</strong> – processed temperature forcing</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>xarray.DataArray (lazy)</p>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.19.1.dev6)">xarray.DataArray</a> (lazy)</p>
 </dd>
 </dl>
 </dd></dl>

@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                v0.4.2.dev
+                v0.4.3.dev
               </div>
             
           
@@ -240,22 +240,22 @@ Skip if input data already at output frequency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>da</strong> (<em>xarray.DataArray</em>) – Input data</p></li>
-<li><p><strong>freq</strong> (<em>str</em><em>, </em><em>pd.timedelta</em>) – Output frequency.</p></li>
+<li><p><strong>da</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.19.1.dev6)"><em>xarray.DataArray</em></a>) – Input data</p></li>
+<li><p><strong>freq</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>pd.timedelta</em>) – Output frequency.</p></li>
 <li><p><strong>label</strong> (<em>{'left'</em><em>, </em><em>'right'}</em><em>, </em><em>optional</em>) – Side of each interval to use for labeling. By default ‘right’.</p></li>
 <li><p><strong>closed</strong> (<em>{'left'</em><em>, </em><em>'right'}</em><em>, </em><em>optional</em>) – Side of each interval to treat as closed. By default ‘right’.</p></li>
-<li><p><strong>upsampling</strong> (<em>str</em><em>, </em><em>optional</em>) – Resampling method if output frequency is higher, lower (resp.) compared
+<li><p><strong>upsampling</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – Resampling method if output frequency is higher, lower (resp.) compared
 to input frequency.</p></li>
-<li><p><strong>downsampling</strong> (<em>str</em><em>, </em><em>optional</em>) – Resampling method if output frequency is higher, lower (resp.) compared
+<li><p><strong>downsampling</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – Resampling method if output frequency is higher, lower (resp.) compared
 to input frequency.</p></li>
-<li><p><strong>conserve_mass</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True multiply output with relative change in frequency to conserve mass</p></li>
+<li><p><strong>conserve_mass</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – If True multiply output with relative change in frequency to conserve mass</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>pet</strong> – Resampled data.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>xarray.DataArray</p>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.19.1.dev6)">xarray.DataArray</a></p>
 </dd>
 </dl>
 </dd></dl>

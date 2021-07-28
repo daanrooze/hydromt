@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                v0.4.2.dev
+                v0.4.3.dev
               </div>
             
           
@@ -243,15 +243,15 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ds</strong> (<em>xarray.Dataset</em>) – dataset containing flow direction data</p></li>
+<li><p><strong>ds</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.19.1.dev6)"><em>xarray.Dataset</em></a>) – dataset containing flow direction data</p></li>
 <li><p><strong>flwdir</strong> (<em>pyflwdir.FlwdirRaster</em>) – Flow direction raster object</p></li>
-<li><p><strong>idxs</strong> (<em>1D array</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – linear indices of sub(basin) outlets, by default is None.</p></li>
+<li><p><strong>idxs</strong> (<em>1D array</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – linear indices of sub(basin) outlets, by default is None.</p></li>
 <li><p><strong>xy</strong> (<em>tuple of 1D array of float</em><em>, </em><em>optional</em>) – x, y coordinates of sub(basin) outlets, by default is None.</p></li>
-<li><p><strong>outlets</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True and xy and idxs are None, the basin map is derived for basin outlets
+<li><p><strong>outlets</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – If True and xy and idxs are None, the basin map is derived for basin outlets
 only, excluding pits at the edge of the domain of incomplete basins.</p></li>
 <li><p><strong>ids</strong> (<em>1D array of int32</em><em>, </em><em>optional</em>) – IDs of (sub)basins, must be larger than zero, by default None</p></li>
 <li><p><strong>stream</strong> (<em>2D array of bool</em><em>, </em><em>optional</em>) – Mask of stream cells used to snap outlets to, by default None</p></li>
-<li><p><strong>stream_kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Parameter-treshold pairs to define streams. Multiple threshold will be combined
+<li><p><strong>stream_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – Parameter-treshold pairs to define streams. Multiple threshold will be combined
 using a logical_and operation. If a stream if provided, it is combined with the
 threhold based map as well.</p></li>
 </ul>

@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                v0.4.2.dev
+                v0.4.3.dev
               </div>
             
           
@@ -248,7 +248,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_forcing</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># dictionnary of xr.DataArray</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># nested dictionary</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># dictionnary of xr.DataArray</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># dictionnary of xr.DataArray</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># dictionnary of xr.DataArray and/or xr.Dataset</span>
 
         <span class="c1"># model paths</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CONF</span> <span class="k">if</span> <span class="n">config_fn</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config_fn</span>
@@ -476,6 +476,8 @@
 
 <div class="viewcode-block" id="Model.write_config"><a class="viewcode-back" href="../../../_generated/hydromt.Model.write_config.html#hydromt.Model.write_config">[docs]</a>    <span class="k">def</span> <span class="nf">write_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config_root</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Write config to &lt;root/config_fn&gt;&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Model opened in read-only mode&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">config_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_config_fn</span> <span class="o">=</span> <span class="n">config_name</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -536,35 +538,28 @@
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Model opened in read-only mode&quot;</span><span class="p">)</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="Model.read_states"><a class="viewcode-back" href="../../../_generated/hydromt.Model.read_states.html#hydromt.Model.read_states">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">read_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Read states at &lt;root/?/&gt; and parse to dict of xr.DataArray&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">:</span>
             <span class="c1"># start fresh in read-only mode</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="Model.write_states"><a class="viewcode-back" href="../../../_generated/hydromt.Model.write_states.html#hydromt.Model.write_states">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">write_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;write states at &lt;root/?/&gt; in model ready format&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Model opened in read-only mode&quot;</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="Model.read_results"><a class="viewcode-back" href="../../../_generated/hydromt.Model.read_results.html#hydromt.Model.read_results">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">read_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Read results at &lt;root/?/&gt; and parse to dict of xr.DataArray&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">:</span>
             <span class="c1"># start fresh in read-only mode</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
-
-    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">write_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;write results at &lt;root/?/&gt; in model ready format&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Model opened in read-only mode&quot;</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
     <span class="c1">## model configuration</span>
 
@@ -710,12 +705,8 @@
                 <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">dims</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataset</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">dvar</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">dvar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_staticmaps</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">:</span>
-                        <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span>
-                            <span class="sa">f</span><span class="s2">&quot;Cannot overwrite staticmap </span><span class="si">{</span><span class="n">dvar</span><span class="si">}</span><span class="s2"> in read-only mode&quot;</span>
-                        <span class="p">)</span>
-                    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overwriting staticmap: </span><span class="si">{</span><span class="n">dvar</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Replacing staticmap: </span><span class="si">{</span><span class="n">dvar</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_staticmaps</span><span class="p">[</span><span class="n">dvar</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">dvar</span><span class="p">]</span></div>
 
     <span class="nd">@property</span>
@@ -734,10 +725,8 @@
                 <span class="s2">&quot;First parameter map(s) should be geopandas.GeoDataFrame or geopandas.GeoSeries&quot;</span>
             <span class="p">)</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_staticgeoms</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot overwrite staticgeom </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> in read-only mode&quot;</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overwriting staticgeom: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Replacing staticgeom: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_staticgeoms</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">geom</span></div>
 
     <span class="nd">@property</span>
@@ -775,8 +764,6 @@
             <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forcing</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot replace forcing </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> in read-only mode&quot;</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Replacing forcing: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_forcing</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span></div>
 
@@ -788,7 +775,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">read_states</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span>
 
-    <span class="k">def</span> <span class="nf">set_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.set_states"><a class="viewcode-back" href="../../../_generated/hydromt.Model.set_states.html#hydromt.Model.set_states">[docs]</a>    <span class="k">def</span> <span class="nf">set_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add data to states attribute which is a dictionary of xarray.DataArray.</span>
 <span class="sd">        The dictionary key is taken from the variable name. In case of a DataArray</span>
 <span class="sd">        without name, the name can be passed using the optional name argument.</span>
@@ -815,10 +802,8 @@
             <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot replace state </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> in read-only mode&quot;</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Replacing state: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -828,19 +813,26 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">read_results</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_results</span>
 
-    <span class="k">def</span> <span class="nf">set_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add data to results attribute which is a dictionary of xarray.DataArray.</span>
+<div class="viewcode-block" id="Model.set_results"><a class="viewcode-back" href="../../../_generated/hydromt.Model.set_results.html#hydromt.Model.set_results">[docs]</a>    <span class="k">def</span> <span class="nf">set_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">split_dataset</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add data to results attribute which is a dictionary of xarray.DataArray and/or xarray.Dataset.</span>
+
 <span class="sd">        The dictionary key is taken from the variable name. In case of a DataArray</span>
-<span class="sd">        without name, the name can be passed using the optional name argument.</span>
+<span class="sd">        without name, the name can be passed using the optional name argument. In case of</span>
+<span class="sd">        a Dataset, the dictionnary key is passed using the name argument.</span>
+
+<span class="sd">        Dataset can either be added as is to the dictionnary (default) or split into several</span>
+<span class="sd">        DataArrays using the split_dataset argument.</span>
 
 <span class="sd">        Arguments</span>
 <span class="sd">        ---------</span>
 <span class="sd">        data: xarray.Dataset or xarray.DataArray</span>
 <span class="sd">            New forcing data to add</span>
 <span class="sd">        name: str, optional</span>
-<span class="sd">            Variable name, only in case data is of type DataArray</span>
+<span class="sd">            Variable name, only in case data is of type DataArray or if a Dataset is added as is (split_dataset=False).</span>
+<span class="sd">        split_dataset: bool, optional</span>
+<span class="sd">            If data is a xarray.Dataset, either add it as is to results or split it into several xarray.DataArrays.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># check dataset dtype</span>
+        <span class="c1"># check data dtype</span>
         <span class="n">dtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dtypes</span><span class="p">]):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Data type not recognized&quot;</span><span class="p">)</span>
@@ -851,14 +843,21 @@
             <span class="k">elif</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">name</span>
             <span class="k">elif</span> <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Name required for forcing DataArray.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Name required for result DataArray.&quot;</span><span class="p">)</span>
             <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot replace results </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> in read-only mode&quot;</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Replacing result: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="c1"># Add to results</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">split_dataset</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Replacing result: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Name required to add DataSet directly to results&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Replacing result: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span></div>
 
     <span class="c1">## properties / methods below can be used directly in actual class</span>
 
@@ -964,8 +963,9 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="n">non_compliant</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;results&quot;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>  <span class="c1"># non-empty dict</span>
+            <span class="n">dtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dtypes</span><span class="p">]):</span>
                     <span class="n">non_compliant</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;results.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">non_compliant</span>

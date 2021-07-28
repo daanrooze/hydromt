@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                v0.4.2.dev
+                v0.4.3.dev
               </div>
             
           
@@ -261,6 +261,12 @@
 <tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.Model.forcing.html#hydromt.Model.forcing" title="hydromt.Model.forcing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.forcing</span></code></a></p></td>
 <td><p>dict of xarray.dataarray representation of all forcing</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.Model.states.html#hydromt.Model.states" title="hydromt.Model.states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.states</span></code></a></p></td>
+<td><p>dict xarray.dataarray representation of all states</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.Model.results.html#hydromt.Model.results" title="hydromt.Model.results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.results</span></code></a></p></td>
+<td><p>dict xarray.dataarray representation of model results</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -336,6 +342,21 @@
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.Model.write_forcing.html#hydromt.Model.write_forcing" title="hydromt.Model.write_forcing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_forcing</span></code></a>()</p></td>
 <td><p>write forcing at &lt;root/?/&gt; in model ready format</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.Model.set_states.html#hydromt.Model.set_states" title="hydromt.Model.set_states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_states</span></code></a>(data[, name])</p></td>
+<td><p>Add data to states attribute which is a dictionary of xarray.DataArray.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.Model.read_states.html#hydromt.Model.read_states" title="hydromt.Model.read_states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_states</span></code></a>()</p></td>
+<td><p>Read states at &lt;root/?/&gt; and parse to dict of xr.DataArray</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.Model.write_states.html#hydromt.Model.write_states" title="hydromt.Model.write_states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_states</span></code></a>()</p></td>
+<td><p>write states at &lt;root/?/&gt; in model ready format</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.Model.set_results.html#hydromt.Model.set_results" title="hydromt.Model.set_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_results</span></code></a>(data[, name, split_dataset])</p></td>
+<td><p>Add data to results attribute which is a dictionary of xarray.DataArray and/or xarray.Dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.Model.read_results.html#hydromt.Model.read_results" title="hydromt.Model.read_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_results</span></code></a>()</p></td>
+<td><p>Read results at &lt;root/?/&gt; and parse to dict of xr.DataArray</p></td>
 </tr>
 </tbody>
 </table>
