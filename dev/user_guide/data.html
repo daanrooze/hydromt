@@ -1,77 +1,38 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Data input &mdash; hydromt  documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Models" href="models/index.html" />
     <link rel="prev" title="Terminology" href="terminology.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> hydromt
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 0.4.3.dev
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,18 +40,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
@@ -144,71 +94,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">What’s new</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">hydromt</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Data input</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/user_guide/data.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS overrides for sphinx_rtd_theme */
@@ -233,8 +142,8 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="data-input">
-<span id="data"></span><h1>Data input<a class="headerlink" href="#data-input" title="Permalink to this headline">¶</a></h1>
+<section id="data-input">
+<span id="data"></span><h1>Data input<a class="headerlink" href="#data-input" title="Permalink to this headline"></a></h1>
 <p>HydroMT makes use of various types of data sources such as vector data, raster (timeseries) data,
 point location timeseries and tabulated data. All but the tabulate data can be accessed
 through the so-called data-catalog which is build from <strong>.yml</strong> files. The yml file
@@ -261,8 +170,8 @@ To read data from the deltares network use the <code class="docutils literal not
 <span class="n">ds</span> <span class="o">=</span> <span class="n">data_cat</span><span class="o">.</span><span class="n">get_rasterdataset</span><span class="p">(</span><span class="s1">&#39;merit_hydro&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>  <span class="c1"># returns xarray.dataset</span>
 </pre></div>
 </div>
-<div class="section" id="data-catalog-yaml-file">
-<span id="data-yaml"></span><h2>Data catalog yaml file<a class="headerlink" href="#data-catalog-yaml-file" title="Permalink to this headline">¶</a></h2>
+<section id="data-catalog-yaml-file">
+<span id="data-yaml"></span><h2>Data catalog yaml file<a class="headerlink" href="#data-catalog-yaml-file" title="Permalink to this headline"></a></h2>
 <p>Each dataset, is added in the yaml file with a user-defined name. This name is used in
 the ini file (CLI) or <a class="reference internal" href="../_generated/hydromt.data_adapter.DataCatalog.html#hydromt.data_adapter.DataCatalog" title="hydromt.data_adapter.DataCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCatalog</span></code></a> <em>get_data</em>  methods (Python), see basic usage above.
 A full dataset entry for a dataset called <strong>my_dataset</strong> is given in the example below.
@@ -320,9 +229,9 @@ This is used in combination with each data source <strong>path</strong> argument
 within HydroMT are <em>topography</em>, <em>meteo</em>, <em>soil</em>, <em>landuse &amp; landcover</em>, <em>surface water</em>, <em>ocean</em>, <em>socio economic</em>, <em>observed data</em>
 but the user is free to define its own categories. The category attribute can also be added to each source meta attributes.</p></li>
 </ul>
-</div>
-<div class="section" id="supported-data-types-and-associated-drivers">
-<h2>Supported data types and associated drivers<a class="headerlink" href="#supported-data-types-and-associated-drivers" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="supported-data-types-and-associated-drivers">
+<h2>Supported data types and associated drivers<a class="headerlink" href="#supported-data-types-and-associated-drivers" title="Permalink to this headline"></a></h2>
 <p>HydroMT currently supports the following data types:</p>
 <ul class="simple">
 <li><p><strong>RasterDataset</strong>: static and dynamic raster data</p></li>
@@ -338,7 +247,7 @@ some examples.</p>
 <p>Tabulated data without a spatial component such as mapping tables are planned to be added.
 Please contact us through the issue list if you would like to add other drivers.</p>
 <table class="colwidths-given docutils align-default" id="id1">
-<caption><span class="caption-text">RasterDataset</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-text">RasterDataset</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 17%" />
 <col style="width: 25%" />
@@ -357,7 +266,7 @@ Please contact us through the issue list if you would like to add other drivers.
 <td><p>GeoTIFF, ArcASCII, VRT, etc. (see <a class="reference external" href="http://www.gdal.org/formats_list.html">GDAL formats</a>)</p></td>
 <td><p><a class="reference internal" href="../_generated/hydromt.io.open_mfraster.html#hydromt.io.open_mfraster" title="hydromt.io.open_mfraster"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_mfraster()</span></code></a></p></td>
 <td><p>Based on <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_rasterio.html#xarray.open_rasterio" title="(in xarray v0.19.1.dev6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_rasterio()</span></code></a>
-and <a class="reference external" href="https://rasterio.readthedocs.io/en/latest/api/rasterio.html#rasterio.open" title="(in rasterio v1.2.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">rasterio.open()</span></code></a></p></td>
+and <a class="reference external" href="https://rasterio.readthedocs.io/en/latest/api/rasterio.html#rasterio.open" title="(in rasterio v1.3dev)"><code class="xref py py-func docutils literal notranslate"><span class="pre">rasterio.open()</span></code></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">raster_tindex</span></code></p></td>
 <td><p>raster tile index file (see <a class="reference external" href="https://gdal.org/programs/gdaltindex.html">gdaltindex</a>)</p></td>
@@ -372,7 +281,7 @@ and <a class="reference external" href="https://rasterio.readthedocs.io/en/lates
 </tbody>
 </table>
 <table class="colwidths-given docutils align-default" id="id2">
-<caption><span class="caption-text">GeoDataFrame</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-text">GeoDataFrame</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 17%" />
 <col style="width: 25%" />
@@ -400,7 +309,7 @@ and <a class="reference external" href="https://rasterio.readthedocs.io/en/lates
 </tbody>
 </table>
 <table class="colwidths-given docutils align-default" id="id3">
-<caption><span class="caption-text">GeoDataset</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-text">GeoDataset</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 17%" />
 <col style="width: 25%" />
@@ -433,8 +342,8 @@ and <a class="reference external" href="https://rasterio.readthedocs.io/en/lates
 <li><p>x: x coordinate [“x”, “longitude”, “lon”, “long”].</p></li>
 <li><p>y: y-coordinate [“y”, “latitude”, “lat”].</p></li>
 </ul>
-<div class="section" id="single-variable-geotiff-raster">
-<h3>Single variable GeoTiff raster<a class="headerlink" href="#single-variable-geotiff-raster" title="Permalink to this headline">¶</a></h3>
+<section id="single-variable-geotiff-raster">
+<h3>Single variable GeoTiff raster<a class="headerlink" href="#single-variable-geotiff-raster" title="Permalink to this headline"></a></h3>
 <p>Single raster files are parsed to a <strong>RasterDataset</strong> based on the <strong>raster</strong> driver.
 This driver supports 2D raster for which the dimensions are names “x” and “y”.
 A potential third dimension is called “dim0”.
@@ -454,9 +363,9 @@ and allows lazy reading of the data.</p>
     <span class="nt">source_license</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CC-BY-3.0</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="multi-variable-virtual-raster-tileset-vrt">
-<h3>Multi variable Virtual Raster Tileset (VRT)<a class="headerlink" href="#multi-variable-virtual-raster-tileset-vrt" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="multi-variable-virtual-raster-tileset-vrt">
+<h3>Multi variable Virtual Raster Tileset (VRT)<a class="headerlink" href="#multi-variable-virtual-raster-tileset-vrt" title="Permalink to this headline"></a></h3>
 <p>Multiple raster layers from different files are parsed to a <strong>RasterDataset</strong> using the <strong>raster</strong> driver.
 Each raster becomes a variable in the resulting RasterDataset based on its filename.
 The path to multiple files can be set using a sting glob or several keys,
@@ -492,9 +401,9 @@ gdalbuildvrt (see <a class="reference external" href="https://gdal.org/programs/
     <span class="nt">source_license</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CC-BY-NC 4.0 or ODbL 1.0</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="tiled-raster-dataset">
-<h3>Tiled raster dataset<a class="headerlink" href="#tiled-raster-dataset" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="tiled-raster-dataset">
+<h3>Tiled raster dataset<a class="headerlink" href="#tiled-raster-dataset" title="Permalink to this headline"></a></h3>
 <p>Tiled index datasets are parsed to a <strong>RasterDataset</strong> using the <strong>raster_tindex</strong> driver.
 This data format is used to combine raster tiles with different CRS projections.
 A polygon vector file (e.g. GeoPackage) is used to make a tile index with the spatial
@@ -522,9 +431,9 @@ which contains the raster tile file names.</p>
     <span class="nt">source_version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.01</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="netcdf-raster-dataset">
-<h3>Netcdf raster dataset<a class="headerlink" href="#netcdf-raster-dataset" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="netcdf-raster-dataset">
+<h3>Netcdf raster dataset<a class="headerlink" href="#netcdf-raster-dataset" title="Permalink to this headline"></a></h3>
 <p>Netcdf and Zarr raster data are parsed to <strong>RasterDataset</strong> using the <strong>netcdf</strong> and <strong>zarr</strong> drivers.
 A typical raster netcdf or zarr raster dataset has the following structure with
 two (“y” and “x”) or three (“dim0”, “y” and “x”) dimensions.
@@ -575,9 +484,9 @@ unify the data to match the hydroMT naming and unit <a class="reference internal
     <span class="nt">precip</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1000</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="geopackage-spatial-vector-data">
-<h3>GeoPackage spatial vector data<a class="headerlink" href="#geopackage-spatial-vector-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="geopackage-spatial-vector-data">
+<h3>GeoPackage spatial vector data<a class="headerlink" href="#geopackage-spatial-vector-data" title="Permalink to this headline"></a></h3>
 <p>Sptial vector data is parsed to a <strong>GeoDataFrame</strong> using the <strong>vector</strong> driver.
 For large spatial vector datasets we recommend the GeoPackage format as it includes a
 spatial index for fast filtering of the data based on spatial location. An example is
@@ -599,9 +508,9 @@ columns of the attribute table in case of a GeoDataFrame.</p>
     <span class="nt">source_info</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">data combined from World Bank and CIA World Factbook</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="point-vector-from-text-delimited-data">
-<h3>Point vector from text delimited data<a class="headerlink" href="#point-vector-from-text-delimited-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="point-vector-from-text-delimited-data">
+<h3>Point vector from text delimited data<a class="headerlink" href="#point-vector-from-text-delimited-data" title="Permalink to this headline"></a></h3>
 <p>Tabulated point vector data files can be parsed to a <strong>GeoDataFrame</strong> with the <strong>vector_table</strong>
 driver. This driver reads CSV (or similar delimited text files), EXCEL and XY
 (white-space delimited text file without headers) files. See this list of <a class="reference internal" href="#dimensions">dimensions</a>
@@ -637,9 +546,9 @@ options.</p>
     <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">csv</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="netcdf-point-timeseries-dataset">
-<h3>Netcdf point timeseries dataset<a class="headerlink" href="#netcdf-point-timeseries-dataset" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="netcdf-point-timeseries-dataset">
+<h3>Netcdf point timeseries dataset<a class="headerlink" href="#netcdf-point-timeseries-dataset" title="Permalink to this headline"></a></h3>
 <p>Netcdf and Zarr point timeseries data are parsed to <strong>GeoDataset</strong> using the <strong>netcdf</strong> and <strong>zarr</strong> drivers.
 A typical netcdf or zarr point timeseries dataset has the following structure with
 two (“time” and “index”) dimensions, where the index dimension has x and y coordinates.
@@ -681,9 +590,9 @@ unify the data to match the hydroMT naming and unit <a class="reference internal
     <span class="nt">source_url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.8c59054f?tab=overview</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="csv-point-timeseries-data">
-<h3>CSV point timeseries data<a class="headerlink" href="#csv-point-timeseries-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="csv-point-timeseries-data">
+<h3>CSV point timeseries data<a class="headerlink" href="#csv-point-timeseries-data" title="Permalink to this headline"></a></h3>
 <p>Point timeseries data where the geospatial point geometries and timeseries are saved in
 seperate (text) files are parsed to <strong>GeoDataset</strong> using the <strong>vector</strong> driver.
 The GeoDataset must at least contain a location index with point geometries which is refered to by the <code class="docutils literal notranslate"><span class="pre">path</span></code> argument
@@ -704,23 +613,23 @@ For more options see the <a class="reference internal" href="../_generated/hydro
 </div>
 <p><em>Tabulated time series text file</em></p>
 <p>This data is read using the <a class="reference internal" href="../_generated/hydromt.io.open_timeseries_from_table.html#hydromt.io.open_timeseries_from_table" title="hydromt.io.open_timeseries_from_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_timeseries_from_table()</span></code></a> method. To
-read the time stamps the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html#pandas.to_datetime" title="(in pandas v1.3.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code></a> method is used.</p>
+read the time stamps the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html#pandas.to_datetime" title="(in pandas v1.3.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code></a> method is used.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">time, &lt;ID1&gt;, &lt;ID2&gt;</span>
 <span class="go">&lt;time1&gt;, &lt;value&gt;, &lt;value&gt;</span>
 <span class="go">&lt;time2&gt;, &lt;value&gt;, &lt;value&gt;</span>
 <span class="go">...</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="conventions-on-variable-names-and-units">
-<span id="data-convention"></span><h2>Conventions on variable names and units<a class="headerlink" href="#conventions-on-variable-names-and-units" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="conventions-on-variable-names-and-units">
+<span id="data-convention"></span><h2>Conventions on variable names and units<a class="headerlink" href="#conventions-on-variable-names-and-units" title="Permalink to this headline"></a></h2>
 <p>This section lists the different variable naming and unit conventions of HydroMT by types. This list is still in development.
 Names and units mentioned here are mandatory in order for the input data to be processed correctly and produced the right derived data.
 It is also possible to use the rename option so that variables and model data produced by HydroMT have more explicit names.
 A list of recognized <a class="reference internal" href="#dimensions">dimensions</a> is found here.</p>
-<div class="section" id="topography">
-<h3>Topography<a class="headerlink" href="#topography" title="Permalink to this headline">¶</a></h3>
+<section id="topography">
+<h3>Topography<a class="headerlink" href="#topography" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>elevtn: altitude [m].</p></li>
 <li><p>mdt: mean dynamic topography [m].</p></li>
@@ -730,9 +639,9 @@ A list of recognized <a class="reference internal" href="#dimensions">dimensions
 <li><p>strord: Stralher streamorder [-].</p></li>
 <li><p>basins: basins ID mapping [-].</p></li>
 </ul>
-</div>
-<div class="section" id="surface-waters">
-<h3>Surface waters<a class="headerlink" href="#surface-waters" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="surface-waters">
+<h3>Surface waters<a class="headerlink" href="#surface-waters" title="Permalink to this headline"></a></h3>
 <p>Rivers:</p>
 <ul class="simple">
 <li><p>rivlen: river length [m].</p></li>
@@ -759,16 +668,16 @@ A list of recognized <a class="reference internal" href="#dimensions">dimensions
 <ul class="simple">
 <li><p>simple_id: glacier ID in the current database [-].</p></li>
 </ul>
-</div>
-<div class="section" id="landuse-and-landcover">
-<h3>Landuse and landcover<a class="headerlink" href="#landuse-and-landcover" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="landuse-and-landcover">
+<h3>Landuse and landcover<a class="headerlink" href="#landuse-and-landcover" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>landuse: landuse classification [-].</p></li>
 <li><p>LAI: Leaf Area Index [-].</p></li>
 </ul>
-</div>
-<div class="section" id="soil">
-<h3>Soil<a class="headerlink" href="#soil" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="soil">
+<h3>Soil<a class="headerlink" href="#soil" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>bd_sl*: bulk density of the different soil layers (1 to 7 in soilgridsv2017) [g cm-3].</p></li>
 <li><p>clyppt_sl*: clay content of the different soil layers (1 to 7 in soilgridsv2017) [%].</p></li>
@@ -779,9 +688,9 @@ A list of recognized <a class="reference internal" href="#dimensions">dimensions
 <li><p>soilthickness: soil thickness [cm].</p></li>
 <li><p>tax_usda: USDA soil classification [-].</p></li>
 </ul>
-</div>
-<div class="section" id="meteorology">
-<h3>Meteorology<a class="headerlink" href="#meteorology" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="meteorology">
+<h3>Meteorology<a class="headerlink" href="#meteorology" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>precip: precipitation (rainfall+snowfall) [mm].</p></li>
 <li><p>temp: average temperature [oC].</p></li>
@@ -791,9 +700,9 @@ A list of recognized <a class="reference internal" href="#dimensions">dimensions
 <li><p>kin: shortwave incoming radiation [W m-2].</p></li>
 <li><p>kout: TOA incident solar radiation [W m-2].</p></li>
 </ul>
-</div>
-<div class="section" id="hydrology">
-<h3>Hydrology<a class="headerlink" href="#hydrology" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="hydrology">
+<h3>Hydrology<a class="headerlink" href="#hydrology" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>run: surface water runoff (overland flow + river discharge) [m3/s].</p></li>
 <li><p>vol: water volumes [m3].</p></li>
@@ -803,16 +712,16 @@ A list of recognized <a class="reference internal" href="#dimensions">dimensions
 <li><p>inwater: sum of all fluxes entering/leaving the surface waters (precipitation, evaporation, infiltration…) [m3/s].</p></li>
 <li><p>inwaterInternal: sum of all fluxes between the land and river surface waters (part of inwater) [m3/s].</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="suggested-global-datasets">
-<span id="datasets"></span><h2>Suggested global datasets<a class="headerlink" href="#suggested-global-datasets" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="suggested-global-datasets">
+<span id="datasets"></span><h2>Suggested global datasets<a class="headerlink" href="#suggested-global-datasets" title="Permalink to this headline"></a></h2>
 <p>Below is the list of suggested data sources for use with HydroMT. The overview contains
 links to the source of and available literature behind each dataset. The complete
 datasets are available within the Deltares network and a slice of data is available
 for demonstration purposes.</p>
 <table class="colwidths-auto docutils align-default" id="id4" style="width: 50">
-<caption><span class="caption-text">Data Catalog</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-text">Data Catalog</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>name (link)</p></th>
 <th class="head"><p>category</p></th>
@@ -823,6 +732,426 @@ for demonstration purposes.</p>
 </tr>
 </thead>
 <tbody>
+<tr class="row-even"><td><p><a class="reference external" href="http://chelsa-climate.org/downloads/">chelsa_v1.2</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1038/sdata.2017.122">Karger et al. (2017)</a></p></td>
+<td><p>1.2</p></td>
+<td><p>CC BY 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.chc.ucsb.edu/data/chirps">chirps_africa_daily_v2.0</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1038/sdata.2015.66">Funk et al (2015)</a></p></td>
+<td><p>v2.0</p></td>
+<td><p>CC</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.chc.ucsb.edu/data/chirps">chirps_global_daily_v2.0</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.3133/ds832">Funk et al (2014)</a></p></td>
+<td><p>v2.0</p></td>
+<td><p>CC</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018">corine_2018_v2020_u1</a></p></td>
+<td><p>landuse &amp; landcover</p></td>
+<td><p>RasterDataset</p></td>
+<td></td>
+<td><p>v.2020_20u1</p></td>
+<td><p><a class="reference external" href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018?tab=metadata">Specific</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">eobs_v22.0e</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1029/2017JD028200">Cornes et al (2018)</a></p></td>
+<td><p>22.0e</p></td>
+<td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">Specific</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">eobs_v23.1e</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1029/2017JD028200">Cornes et al (2018)</a></p></td>
+<td><p>23.1e</p></td>
+<td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">Specific</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">eobs_orography_v20.0e</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1029/2017JD028200">Cornes et al (2018)</a></p></td>
+<td><p>20.0e</p></td>
+<td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">Specific</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">eobs_orography_v22.0e</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1029/2017JD028200">Cornes et al (2018)</a></p></td>
+<td><p>22.0e</p></td>
+<td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">Specific</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">eobs_orography_v23.1e</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1029/2017JD028200">Cornes et al (2018)</a></p></td>
+<td><p>23.1e</p></td>
+<td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">Specific</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://doi.org/10.24381/cds.bd0915c6">era5_daily</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1002/qj.3803">Hersbach et al. (2019)</a></p></td>
+<td><p>ERA5 daily data on pressure levels</p></td>
+<td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products">Specific</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://doi.org/10.24381/cds.bd0915c6">era5_hourly</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1002/qj.3803">Hersbach et al. (2019)</a></p></td>
+<td><p>ERA5 hourly data on pressure levels</p></td>
+<td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products">Specific</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://doi.org/10.24381/cds.bd0915c6">era5_orography</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1002/qj.3803">Hersbach et al. (2019)</a></p></td>
+<td><p>ERA5 hourly data on pressure levels</p></td>
+<td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products">Specific</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://gadm.org/download_world.html">gadm_level1_v3.6</a></p></td>
+<td><p>geography</p></td>
+<td><p>GeoDataFrame</p></td>
+<td></td>
+<td><p>3.6</p></td>
+<td><p><a class="reference external" href="https://gadm.org/license.html">Specific</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://gadm.org/download_world.html">gadm_level2_v3.6</a></p></td>
+<td><p>geography</p></td>
+<td><p>GeoDataFrame</p></td>
+<td></td>
+<td><p>3.6</p></td>
+<td><p><a class="reference external" href="https://gadm.org/license.html">Specific</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://gadm.org/download_world.html">gadm_level3_v3.6</a></p></td>
+<td><p>geography</p></td>
+<td><p>GeoDataFrame</p></td>
+<td></td>
+<td><p>3.6</p></td>
+<td><p><a class="reference external" href="https://gadm.org/license.html">Specific</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://doi.org/10.6084/m9.figshare.7756202.v1">gcn250_v1</a></p></td>
+<td><p>soil</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1038/s41597-019-0155-x">Jaafar et al. (2019)</a></p></td>
+<td><p>v1</p></td>
+<td><p>CC BY 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p>gdp_world_v1</p></td>
+<td><p>socio economic</p></td>
+<td><p>GeoDataFrame</p></td>
+<td></td>
+<td><p>1.0</p></td>
+<td><p>CC BY-4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.bodc.ac.uk/data/open_download/gebco/gebco_2020/geotiff/">gebco_v2020</a></p></td>
+<td><p>topography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.5285/a29c5465-b138-234d-e053-6c86abc040b9">Weatherall et al (2020)</a></p></td>
+<td><p>2020</p></td>
+<td><p><a class="reference external" href="https://www.gebco.net/data_and_products/gridded_bathymetry_data/#a1">Specific</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://due.esrin.esa.int/page_globcover.php">globcover_2009_v2.3</a></p></td>
+<td><p>landuse</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1594/PANGAEA.787668">Arino et al (2012)</a></p></td>
+<td><p>v2.3</p></td>
+<td><p>CC-BY-3.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/dataset/0c6b9751-a71f-4062-830b-43c9f432370f">ghs_pop_2015_4326_v2019a</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.2905/0C6B9751-A71F-4062-830B-43C9F432370F">Schiavina et al (2019)</a></p></td>
+<td><p>R2019A_v1.0</p></td>
+<td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/licence/com_reuse">Specific</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://ghsl.jrc.ec.europa.eu/download.php?ds=pop">ghs_pop_2015_54009_v2019a</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.2760/062975">Florczyk et al (2019)</a></p></td>
+<td></td>
+<td><p>CC BY 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/dataset/jrc-ghsl-ghs_smod_pop_globe_r2016a">ghs_smod_2015_54009_v2016a</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p>Pesaresi and Freire (2016)</p></td>
+<td><p>R2016A_v1.0</p></td>
+<td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/licence/com_reuse">Specific</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/dataset/42e8be89-54ff-464e-be7b-bf9e64da5218">ghs_smod_2015_54009_v2019a</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.2905/42E8BE89-54FF-464E-BE7B-BF9E64DA5218">Pesaresi et al (2019)</a></p></td>
+<td><p>R2019A_v2.0</p></td>
+<td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/licence/com_reuse">Specific</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_buffaloes_v3</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.7910/DVN/5U8MWI">Gilbert at al (2018)</a></p></td>
+<td><p>GLW 3, last downloaded 2020-06-11</p></td>
+<td><p>CC 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_cattle_v3</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.7910/DVN/GIVQ75">Gilbert at al (2018)</a></p></td>
+<td><p>GLW 3, last downloaded 2020-06-11</p></td>
+<td><p>CC 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_chicken_v3</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.7910/DVN/SUFASB">Gilbert at al (2018)</a></p></td>
+<td><p>GLW 3, last downloaded 2020-06-11</p></td>
+<td><p>CC 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_ducks_v3</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.7910/DVN/ICHCBH">Gilbert at al (2018)</a></p></td>
+<td><p>GLW 3, last downloaded 2020-06-11</p></td>
+<td><p>CC 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_goats_v3</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.7910/DVN/OCPH42">Gilbert at al (2018)</a></p></td>
+<td><p>GLW 3, last downloaded 2020-06-11</p></td>
+<td><p>CC 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_horses_v3</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.7910/DVN/7Q52MV">Gilbert at al (2018)</a></p></td>
+<td><p>GLW 3, last downloaded 2020-06-11</p></td>
+<td><p>CC 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_pigs_v3</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.7910/DVN/33N0JG">Gilbert at al (2018)</a></p></td>
+<td><p>GLW 3, last downloaded 2020-06-11</p></td>
+<td><p>CC 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_sheeps_v3</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.7910/DVN/BLWPZN">Gilbert at al (2018)</a></p></td>
+<td><p>GLW 3, last downloaded 2020-06-11</p></td>
+<td><p>CC 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/StationCatalogue">grdc</a></p></td>
+<td><p>observed data</p></td>
+<td><p>GeoDataFrame</p></td>
+<td></td>
+<td></td>
+<td><p><a class="reference external" href="https://www.bafg.de/GRDC/EN/02_srvcs/21_tmsrs/210_prtl/tou.html;jsessionid=A56D50D4A36D3D8707CBF00CBD71F106.live11291?nn=2862854">Specific</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.globio.info/download-grip-dataset">grip_roads_v4</a></p></td>
+<td><p>road</p></td>
+<td><p>GeoDataFrame</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1088/1748-9326/aabd42">Meijer et al, 2018</a></p></td>
+<td><p>v4</p></td>
+<td><p>CC0-1.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.1297434">grwl_v1.01</a></p></td>
+<td><p>surface water</p></td>
+<td><p>GeoDataFrame</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1126/science.aat0636">Allen and Pavelsky (2018)</a></p></td>
+<td><p>1.01</p></td>
+<td><p>CC BY 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.1297434">grwl_mask_v1.01</a></p></td>
+<td><p>hydrography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1126/science.aat0636">Allen and Pavelsky (2018)</a></p></td>
+<td><p>1.01</p></td>
+<td><p>CC BY 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://global-surface-water.appspot.com/download">gswo_v2019</a></p></td>
+<td><p>hydrography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1038/nature20584">Pekel et al. (2016)</a></p></td>
+<td><p>v1_1_2019</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.dlr.de/guf">guf_bld_2012_v02</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1016/j.isprsjprs.2017.10.012">Esch et al (2017)</a></p></td>
+<td></td>
+<td><p><a class="reference external" href="https://www.dlr.de/eoc/en/PortalData/60/Resources/dokumente/guf/DLR-GUF_LicenseAgreement-and-OrderForm.pdf">Specific</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>hydro_lakes</p></td>
+<td><p>surface water</p></td>
+<td><p>GeoDataFrame</p></td>
+<td></td>
+<td><p>1.0</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>hydro_reservoirs</p></td>
+<td><p>surface water</p></td>
+<td><p>GeoDataFrame</p></td>
+<td></td>
+<td><p>1.0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://koeppen-geiger.vu-wien.ac.at/present.htm">koppen_geiger</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1127/0941-2948/2006/0130">Kottek et al. (2006)</a></p></td>
+<td><p>2017</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro_v1.0</a></p></td>
+<td><p>topography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1029/2019WR024873">Yamazaki et al. (2019)</a></p></td>
+<td><p>1.0</p></td>
+<td><p>CC-BY-NC 4.0 or ODbL 1.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>merit_hydro_index_v1.0</p></td>
+<td><p>topography</p></td>
+<td><p>GeoDataFrame</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.5194/hess-2020-582">Eilander et al. (in review)</a></p></td>
+<td></td>
+<td><p>CC-BY-NC 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro_patch_v1.0</a></p></td>
+<td><p>topography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1029/2019WR024873">Yamazaki et al. (2019)</a></p></td>
+<td><p>1.0 Deltares patch</p></td>
+<td><p>CC-BY-NC 4.0 or ODbL 1.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://zenodo.org/record/5166932#.YVbxJ5pByUk">merit_hydro_ihu_30sec_v1.0</a></p></td>
+<td><p>topography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.5166932">Eilander et al. (2020)</a></p></td>
+<td><p>1.0</p></td>
+<td><p>ODC-By 1.0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://lpdaac.usgs.gov/products/mcd15a3hv006/">modis_mcd15a3h_v006</a></p></td>
+<td><p>landuse</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.5067/MODIS/MCD15A3H.006">Myneni et al (2015)</a></p></td>
+<td><p>MCD15A3H V006</p></td>
+<td><p><a class="reference external" href="https://lpdaac.usgs.gov/data/data-citation-and-policies/">Specific</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://osmdata.openstreetmap.de/data/coastlines.html">osm_coastlines_v20200109</a></p></td>
+<td><p>geography</p></td>
+<td><p>GeoDataFrame</p></td>
+<td></td>
+<td><p>1.0</p></td>
+<td><p>ODbL</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://osmdata.openstreetmap.de/data/coastlines.html">osm_landareas_v20200109</a></p></td>
+<td><p>geography</p></td>
+<td><p>GeoDataFrame</p></td>
+<td></td>
+<td><p>1.0</p></td>
+<td><p>ODbL</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/insitu-glaciers-extent?tab=overview">rgi_v0.6</a></p></td>
+<td><p>surface water</p></td>
+<td><p>GeoDataFrame</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.3189/2014JoG13J176">Pfeffer et al. (2014)</a></p></td>
+<td><p>6.0</p></td>
+<td><p>CC BY 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://zenodo.org/record/3552776#.YVbOrppByUk">rivers_lin2019_v1</a></p></td>
+<td><p>hydrography</p></td>
+<td><p>GeoDataFrame</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3552776">Lin et al. (2019)</a></p></td>
+<td><p>1</p></td>
+<td><p>CC-BY-NC 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://webmap.ornl.gov/ogc/dataset.jsp?ds_id=10023">simard_v2011</a></p></td>
+<td><p>landuse</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1029/2011JG001708">Simard et al (2011)</a></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.isric.org/explore/soilgrids/faq-soilgrids-2017">soilgrids_v1.0</a></p></td>
+<td><p>soil</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1371/journal.pone.0169748">Hengl et al. (2017)</a></p></td>
+<td><p>2017</p></td>
+<td><p>ODbL</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.isric.org/explore/soilgrids/faq-soilgrids">soilgrids_v2.0</a></p></td>
+<td><p>soil</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/https://doi.org/10.5194/soil-2020-65">de Sousa et al. (2020)</a></p></td>
+<td><p>2020</p></td>
+<td><p>CC BY 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2015_v2.0.2</a></p></td>
+<td><p>landuse</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3939038">Buchhorn et al (2020)</a></p></td>
+<td><p>v2.0.2</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2016_v3.0.1</a></p></td>
+<td><p>landuse</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3518026">Buchhorn et al (2020)</a></p></td>
+<td><p>v3.0.1</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2017_v3.0.1</a></p></td>
+<td><p>landuse</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3518036">Buchhorn et al (2020)</a></p></td>
+<td><p>v3.0.1</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2018_v3.0.1</a></p></td>
+<td><p>landuse</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3518038">Buchhorn et al (2020)</a></p></td>
+<td><p>v3.0.1</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2019_v3.0.1</a></p></td>
+<td><p>landuse</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3939050">Buchhorn et al (2020)</a></p></td>
+<td><p>v3.0.1</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://datacatalog.worldbank.org/dataset/world-bank-official-boundaries">wb_countries_v20200319</a></p></td>
+<td><p>socio-economic</p></td>
+<td><p>GeoDataFrame</p></td>
+<td></td>
+<td></td>
+<td><p>CC-BY 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.worldclim.org/data/worldclim21.html">worldclim_v2.0</a></p></td>
+<td><p>meteo</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1002/joc.5086">Fick and Hijmans (2017)</a></p></td>
+<td><p>2</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://un-spider.org/links-and-resources/data-sources/world-settlement-footprint-2015-wsf-dlr-eoc">wsf_bld_2015_v1</a></p></td>
+<td><p>socio economic</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1038/s41597-020-00580-5">Marconcini at al (2020)</a></p></td>
+<td></td>
+<td><p>CC0 1.0</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference external" href="http://chelsa-climate.org/downloads/">chelsa</a></p></td>
 <td><p>meteo</p></td>
 <td><p>RasterDataset</p></td>
@@ -851,20 +1180,6 @@ for demonstration purposes.</p>
 <td><p>v.2020_20u1</p></td>
 <td><p><a class="reference external" href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018?tab=metadata">Specific</a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.space.dtu.dk/english/research/scientific_data_and_models/global_mean_dynamic_topography">dtu10mdt</a></p></td>
-<td><p>topography</p></td>
-<td><p>RasterDataset</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.1029/2008JC005179">Andersen and Knudsen (2009)</a></p></td>
-<td><p>2010</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.space.dtu.dk/english/research/scientific_data_and_models/global_mean_dynamic_topography">dtu10mdt_egm96</a></p></td>
-<td><p>topography</p></td>
-<td><p>RasterDataset</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.1029/2008JC005179">Andersen and Knudsen (2009)</a></p></td>
-<td><p>2010</p></td>
-<td></td>
-</tr>
 <tr class="row-even"><td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">eobs</a></p></td>
 <td><p>meteo</p></td>
 <td><p>RasterDataset</p></td>
@@ -886,53 +1201,11 @@ for demonstration purposes.</p>
 <td><p>ERA5 daily data on pressure levels</p></td>
 <td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products">Specific</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://doi.org/10.24381/cds.bd0915c6">era5_hourly</a></p></td>
-<td><p>meteo</p></td>
-<td><p>RasterDataset</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.1002/qj.3803">Hersbach et al. (2019)</a></p></td>
-<td><p>ERA5 hourly data on pressure levels</p></td>
-<td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products">Specific</a></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://doi.org/10.24381/cds.bd0915c6">era5_orography</a></p></td>
-<td><p>meteo</p></td>
-<td><p>RasterDataset</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.1002/qj.3803">Hersbach et al. (2019)</a></p></td>
-<td><p>ERA5 hourly data on pressure levels</p></td>
-<td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products">Specific</a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.eea.europa.eu/ds_resolveuid/06227e40310045408ac8be0d469e1189">europe_coastline</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://gadm.org/download_world.html">gadm</a></p></td>
 <td><p>geography</p></td>
 <td><p>GeoDataFrame</p></td>
 <td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.eea.europa.eu/ds_resolveuid/06227e40310045408ac8be0d469e1189">europe_landareas</a></p></td>
-<td><p>geography</p></td>
-<td><p>GeoDataFrame</p></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://gadm.org/download_world.html">gadm_level1</a></p></td>
-<td><p>geography</p></td>
-<td><p>GeoDataFrame</p></td>
-<td></td>
-<td><p>1.0</p></td>
-<td><p><a class="reference external" href="https://gadm.org/license.html">Specific</a></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://gadm.org/download_world.html">gadm_level2</a></p></td>
-<td><p>geography</p></td>
-<td><p>GeoDataFrame</p></td>
-<td></td>
-<td><p>1.0</p></td>
-<td><p><a class="reference external" href="https://gadm.org/license.html">Specific</a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://gadm.org/download_world.html">gadm_level3</a></p></td>
-<td><p>geography</p></td>
-<td><p>GeoDataFrame</p></td>
-<td></td>
-<td><p>1.0</p></td>
+<td><p>3.6</p></td>
 <td><p><a class="reference external" href="https://gadm.org/license.html">Specific</a></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference external" href="https://doi.org/10.6084/m9.figshare.7756202.v1">gcn250</a></p></td>
@@ -956,40 +1229,26 @@ for demonstration purposes.</p>
 <td><p>2020</p></td>
 <td><p><a class="reference external" href="https://www.gebco.net/data_and_products/gridded_bathymetry_data/#a1">Specific</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/dataset/42e8be89-54ff-464e-be7b-bf9e64da5218">ghs-smod_2015_v2</a></p></td>
-<td><p>socio economic</p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="http://due.esrin.esa.int/page_globcover.php">globcover</a></p></td>
+<td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.2905/42E8BE89-54FF-464E-BE7B-BF9E64DA5218">Pesaresi et al (2019)</a></p></td>
-<td><p>R2019A_v2.0</p></td>
-<td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/licence/com_reuse">Specific</a></p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1594/PANGAEA.787668">Arino et al (2012)</a></p></td>
+<td><p>v2.3</p></td>
+<td><p>CC-BY-3.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/dataset/0c6b9751-a71f-4062-830b-43c9f432370f">ghs_pop_2015</a></p></td>
-<td><p>socio economic</p></td>
-<td><p>RasterDataset</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.2905/0C6B9751-A71F-4062-830B-43C9F432370F">Schiavina et al (2019)</a></p></td>
-<td><p>R2019A_v1.0</p></td>
-<td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/licence/com_reuse">Specific</a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://ghsl.jrc.ec.europa.eu/download.php?ds=pop">ghs_pop_2015_54009</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://ghsl.jrc.ec.europa.eu/download.php?ds=pop">ghs_pop</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.2760/062975">Florczyk et al (2019)</a></p></td>
 <td></td>
 <td><p>CC BY 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/dataset/jrc-ghsl-ghs_smod_pop_globe_r2016a">ghs_smod_2015</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/dataset/42e8be89-54ff-464e-be7b-bf9e64da5218">ghs_smod</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
-<td><p>Pesaresi and Freire (2016)</p></td>
-<td><p>R2016A_v1.0</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.2905/42E8BE89-54FF-464E-BE7B-BF9E64DA5218">Pesaresi et al (2019)</a></p></td>
+<td><p>R2019A_v2.0</p></td>
 <td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/licence/com_reuse">Specific</a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="http://due.esrin.esa.int/page_globcover.php">globcover</a></p></td>
-<td><p>landuse &amp; landcover</p></td>
-<td><p>RasterDataset</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.1594/PANGAEA.787668">Arino et al (2012)</a></p></td>
-<td></td>
-<td><p>CC-BY-3.0</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_buffaloes</a></p></td>
 <td><p>socio economic</p></td>
@@ -1040,82 +1299,40 @@ for demonstration purposes.</p>
 <td><p>GLW 3, last downloaded 2020-06-11</p></td>
 <td><p>CC 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_sheep</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_sheeps</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.7910/DVN/BLWPZN">Gilbert at al (2018)</a></p></td>
 <td><p>GLW 3, last downloaded 2020-06-11</p></td>
 <td><p>CC 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/StationCatalogue">grdc</a></p></td>
-<td><p>observed data</p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.globio.info/download-grip-dataset">grip_roads</a></p></td>
+<td><p>road</p></td>
 <td><p>GeoDataFrame</p></td>
-<td></td>
-<td></td>
-<td><p><a class="reference external" href="https://www.bafg.de/GRDC/EN/02_srvcs/21_tmsrs/210_prtl/tou.html;jsessionid=A56D50D4A36D3D8707CBF00CBD71F106.live11291?nn=2862854">Specific</a></p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1088/1748-9326/aabd42">Meijer et al, 2018</a></p></td>
+<td><p>v4</p></td>
+<td><p>CC0-1.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.globio.info/download-grip-dataset">grib_roads_hig</a></p></td>
-<td><p>socio economic</p></td>
-<td><p>GeoDataFrame</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.1088/1748-9326/aabd42">Meijer at al (2018)</a></p></td>
-<td></td>
-<td><p>CC BY 4.0</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.globio.info/download-grip-dataset">grib_roads_loc</a></p></td>
-<td><p>socio economic</p></td>
-<td><p>GeoDataFrame</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.1088/1748-9326/aabd42">Meijer at al (2018)</a></p></td>
-<td></td>
-<td><p>CC BY 4.0</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.globio.info/download-grip-dataset">grib_roads_pri</a></p></td>
-<td><p>socio economic</p></td>
-<td><p>GeoDataFrame</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.1088/1748-9326/aabd42">Meijer at al (2018)</a></p></td>
-<td></td>
-<td><p>CC BY 4.0</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.globio.info/download-grip-dataset">grib_roads_sec</a></p></td>
-<td><p>socio economic</p></td>
-<td><p>GeoDataFrame</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.1088/1748-9326/aabd42">Meijer at al (2018)</a></p></td>
-<td></td>
-<td><p>CC BY 4.0</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.globio.info/download-grip-dataset">grib_roads_ter</a></p></td>
-<td><p>socio economic</p></td>
-<td><p>GeoDataFrame</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.1088/1748-9326/aabd42">Meijer at al (2018)</a></p></td>
-<td></td>
-<td><p>CC BY 4.0</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.1297434">grwl</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.1297434">grwl</a></p></td>
 <td><p>surface water</p></td>
 <td><p>GeoDataFrame</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1126/science.aat0636">Allen and Pavelsky (2018)</a></p></td>
 <td><p>1.01</p></td>
 <td><p>CC BY 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.1297434">grwl_mask</a></p></td>
-<td><p>surface water</p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.1297434">grwl_mask</a></p></td>
+<td><p>hydrography</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1126/science.aat0636">Allen and Pavelsky (2018)</a></p></td>
 <td><p>1.01</p></td>
 <td><p>CC BY 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://global-surface-water.appspot.com/download">gswo</a></p></td>
-<td><p>surface water</p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://global-surface-water.appspot.com/download">gswo</a></p></td>
+<td><p>hydrography</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1038/nature20584">Pekel et al. (2016)</a></p></td>
 <td><p>v1_1_2019</p></td>
 <td></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.8c59054f?tab=overview">gtsmv3_eu_era5</a></p></td>
-<td><p>ocean</p></td>
-<td><p>GeoDataset</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.24381/cds.8c59054f">Copernicus Climate Change Service 2019</a></p></td>
-<td><p>GTSM v3.0</p></td>
-<td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products">Specific</a></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference external" href="http://www.dlr.de/guf">guf_bld_2012</a></p></td>
 <td><p>socio economic</p></td>
@@ -1124,40 +1341,12 @@ for demonstration purposes.</p>
 <td></td>
 <td><p><a class="reference external" href="https://www.dlr.de/eoc/en/PortalData/60/Resources/dokumente/guf/DLR-GUF_LicenseAgreement-and-OrderForm.pdf">Specific</a></p></td>
 </tr>
-<tr class="row-odd"><td><p>hydro_lakes</p></td>
-<td><p>surface water</p></td>
-<td><p>GeoDataFrame</p></td>
-<td></td>
-<td><p>1.0</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>hydro_reservoirs</p></td>
-<td><p>surface water</p></td>
-<td><p>GeoDataFrame</p></td>
-<td></td>
-<td><p>1.0</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="http://koeppen-geiger.vu-wien.ac.at/present.htm">koppen_geiger</a></p></td>
-<td><p>meteo</p></td>
-<td><p>RasterDataset</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.1127/0941-2948/2006/0130">Kottek et al. (2006)</a></p></td>
-<td><p>2017</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro</a></p></td>
 <td><p>topography</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1029/2019WR024873">Yamazaki et al. (2019)</a></p></td>
 <td><p>1.0</p></td>
 <td><p>CC-BY-NC 4.0 or ODbL 1.0</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.4138776">merit_hydro_1k</a></p></td>
-<td><p>topography</p></td>
-<td><p>RasterDataset</p></td>
-<td><p><a class="reference external" href="https://doi.org/10.5194/hess-2020-582">Eilander et al. (in review)</a></p></td>
-<td><p>0.1</p></td>
-<td><p>CC-BY-NC 4.0</p></td>
 </tr>
 <tr class="row-even"><td><p>merit_hydro_index</p></td>
 <td><p>topography</p></td>
@@ -1166,8 +1355,22 @@ for demonstration purposes.</p>
 <td></td>
 <td><p>CC-BY-NC 4.0</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro_patch</a></p></td>
+<td><p>topography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1029/2019WR024873">Yamazaki et al. (2019)</a></p></td>
+<td><p>1.0 Deltares patch</p></td>
+<td><p>CC-BY-NC 4.0 or ODbL 1.0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://zenodo.org/record/5166932#.YVbxJ5pByUk">merit_hydro_ihu</a></p></td>
+<td><p>topography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.5166932">Eilander et al. (2020)</a></p></td>
+<td><p>1.0</p></td>
+<td><p>ODC-By 1.0</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference external" href="https://lpdaac.usgs.gov/products/mcd15a3hv006/">modis_lai</a></p></td>
-<td><p>landuse &amp; landcover</p></td>
+<td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5067/MODIS/MCD15A3H.006">Myneni et al (2015)</a></p></td>
 <td><p>MCD15A3H V006</p></td>
@@ -1195,7 +1398,7 @@ for demonstration purposes.</p>
 <td><p>CC BY 4.0</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference external" href="https://webmap.ornl.gov/ogc/dataset.jsp?ds_id=10023">simard</a></p></td>
-<td><p>landuse &amp; landcover</p></td>
+<td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1029/2011JG001708">Simard et al (2011)</a></p></td>
 <td></td>
@@ -1208,12 +1411,26 @@ for demonstration purposes.</p>
 <td><p>2017</p></td>
 <td><p>ODbL</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito</a></p></td>
-<td><p>landuse &amp; landcover</p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.isric.org/explore/soilgrids/faq-soilgrids">soilgrids_2020</a></p></td>
+<td><p>soil</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/https://doi.org/10.5194/soil-2020-65">de Sousa et al. (2020)</a></p></td>
+<td><p>2020</p></td>
+<td><p>CC BY 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito</a></p></td>
+<td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3939038">Buchhorn et al (2020)</a></p></td>
 <td><p>v2.0.2</p></td>
 <td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://datacatalog.worldbank.org/dataset/world-bank-official-boundaries">wb_countries</a></p></td>
+<td><p>socio-economic</p></td>
+<td><p>GeoDataFrame</p></td>
+<td></td>
+<td></td>
+<td><p>CC-BY 4.0</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference external" href="https://www.worldclim.org/data/worldclim21.html">worldclim</a></p></td>
 <td><p>meteo</p></td>
@@ -1231,55 +1448,38 @@ for demonstration purposes.</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="models/index.html" class="btn btn-neutral float-right" title="Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="terminology.html" class="btn btn-neutral float-left" title="Terminology" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="models/index.html" class="btn btn-neutral float-right" title="Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright Deltares.
-
-    </p>
+    <p>&#169; Copyright Deltares.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
