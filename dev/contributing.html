@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> hydromt
           </a>
               <div class="version">
-                0.4.3.dev
+                0.4.4.dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -75,6 +75,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#initial-setup">Initial Setup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#running-the-tests">Running the tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#running-code-format-checks">Running code format checks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-release">Creating a release</a></li>
 </ul>
 </li>
 </ul>
@@ -263,6 +264,33 @@ Make sure the check below returns <em>All done!</em> before commiting your edits
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>black .
 </pre></div>
 </div>
+</section>
+<section id="creating-a-release">
+<h3>Creating a release<a class="headerlink" href="#creating-a-release" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>Prepare the release by bumping the version number in the __init__.py and updating the docs/changelog.rst file</p></li>
+<li><p>First create a new release on github under <a class="reference external" href="https://github.com/Deltares/hydromt/releases">https://github.com/Deltares/hydromt/releases</a>. We use semantic versioning and describe the release based on the CHANGELOG.</p></li>
+<li><p>Make sure to update and clean your local git folder. This remmoves all files which are not tracked by git.</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git pull
+<span class="gp">$ </span>git clean -xfd
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Build wheels and sdist for the package and check the resulting files in the dist/ directory.</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flit build
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Then use publish to pypi. It will prompt you for your username and password.</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flit publish --repository pypi
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Bump the version number in __init__.py to the next release number with “.dev” postfix and push commit</p></li>
+</ol>
 </section>
 </section>
 </section>
