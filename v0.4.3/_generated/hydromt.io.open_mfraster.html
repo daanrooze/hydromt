@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hydromt.io.open_mfraster &mdash; hydromt  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="hydromt.io.open_raster_from_tindex" href="hydromt.io.open_raster_from_tindex.html" />
+    <link rel="prev" title="hydromt.io.open_raster" href="hydromt.io.open_raster.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> hydromt
+          </a>
+              <div class="version">
+                0.4.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_stories.html">User’s stories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/data.html">Data input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/models/index.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/cli.html">Command Line Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/model_api.html">Model API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/data_catalog.html">DataCatalog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References &amp; Help</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api/api_index.html">API reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../api/api_methods.html">Methods</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../api/api_methods.html#reading-writing">Reading/writing</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../api/api_methods.html#reading-methods">Reading methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/api_methods.html#raster-writing-methods">Raster writing methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#raster-methods">Raster methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#geospatial-timeseries-methods">Geospatial timeseries methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#flow-direction-methods">Flow direction methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#general-gis-methods">General GIS methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/api_workflows.html">Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/api_models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/api_data_adapter.html">Data Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">What’s new</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hydromt</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../api/api_index.html">API reference</a> &raquo;</li>
+          <li><a href="../api/api_methods.html">Methods</a> &raquo;</li>
+      <li>hydromt.io.open_mfraster</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_generated/hydromt.io.open_mfraster.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="hydromt-io-open-mfraster">
+<h1>hydromt.io.open_mfraster<a class="headerlink" href="#hydromt-io-open-mfraster" title="Permalink to this headline"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hydromt.io.open_mfraster">
+<span class="sig-prename descclassname"><span class="pre">hydromt.io.</span></span><span class="sig-name descname"><span class="pre">open_mfraster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">paths</span></em>, <em class="sig-param"><span class="pre">chunks={}</span></em>, <em class="sig-param"><span class="pre">concat=False</span></em>, <em class="sig-param"><span class="pre">concat_dim='dim0'</span></em>, <em class="sig-param"><span class="pre">mosaic=False</span></em>, <em class="sig-param"><span class="pre">mosaic_kwargs={}</span></em>, <em class="sig-param"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.io</span> <span class="pre">(WARNING)&gt;</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/io.html#open_mfraster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.io.open_mfraster" title="Permalink to this definition"></a></dt>
+<dd><p>Open multiple gdal-readable files as single Dataset with geospatial attributes.</p>
+<p>Each raster is turned into a DataArray with its name inferred from the filename.
+By default all DataArray are assumed to be on an identical grid and the output
+dataset is a merge of the rasters.
+If <code class="docutils literal notranslate"><span class="pre">concat</span></code> the DataArrays are concatenated along <code class="docutils literal notranslate"><span class="pre">concat_dim</span></code> returning a
+Dataset with a single 3D DataArray.
+If <code class="docutils literal notranslate"><span class="pre">mosaic</span></code> the DataArrays are concatenated along the the spatial dimensions
+using <code class="xref py py-meth docutils literal notranslate"><span class="pre">merge()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Paths to the rasterio/gdal files.
+Paths can be provided as list of paths or a path pattern string which is
+interpreted according to the rules used by the Unix shell. The variable name
+is derived from the basename minus extension in case a list of paths:
+<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.&lt;extension&gt;</span></code> and based on the file basename minus pre-, postfix and
+extension in a path pattern: <code class="docutils literal notranslate"><span class="pre">&lt;prefix&gt;&lt;*name&gt;&lt;postfix&gt;.&lt;extension&gt;</span></code></p></li>
+<li><p><strong>chunks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – Chunk sizes along each dimension, e.g., 5, (5, 5) or {‘x’: 5, ‘y’: 5}.
+If chunks is provided, it used to load the new DataArray into a dask array.</p></li>
+<li><p><strong>concat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, concatenate raster along <code class="docutils literal notranslate"><span class="pre">concat_dim</span></code>. We destinguish the following
+filenames from which the numerical index and variable name are inferred, where
+the variable name is based on the first raster.
+<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;_&lt;index&gt;.&lt;extension&gt;</span></code>
+<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;*&lt;postfix&gt;.&lt;index&gt;</span></code> (PCRaster style; requires path pattern)
+<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;&lt;index&gt;.&lt;extension&gt;</span></code>
+<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.&lt;extension&gt;</span></code> (index based on order)</p></li>
+<li><p><strong>concat_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – Dimension name of concatenate index, by default ‘dim0’</p></li>
+<li><p><strong>mosaic</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – If True create mosaic of several rasters. The variable is named based on
+variable name infered from the first raster.</p></li>
+<li><p><strong>mosaic_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – Mosaic key_word arguments to unify raster crs and/or resolution. See
+<a class="reference internal" href="hydromt.merge.merge.html#hydromt.merge.merge" title="hydromt.merge.merge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hydromt.merge.merge()</span></code></a> for options.</p></li>
+<li><p><strong>**kwargs</strong> – key-word arguments are passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">hydromt.raster.open_raster()</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>data</strong> – The newly created DataSet.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>DataSet</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hydromt.io.open_raster.html" class="btn btn-neutral float-left" title="hydromt.io.open_raster" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hydromt.io.open_raster_from_tindex.html" class="btn btn-neutral float-right" title="hydromt.io.open_raster_from_tindex" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Deltares.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
