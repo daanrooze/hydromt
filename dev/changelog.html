@@ -168,6 +168,8 @@
 <ul class="simple">
 <li><p>Fix bug in io.open_vector and io.open_vector_from_table with WindowsPath fn</p></li>
 <li><p>Fix data_libs usage from [global] section of config in cli/main.py</p></li>
+<li><p>Bugfix sampling for rasters with ‘mask’ coordinate</p></li>
+<li><p>Bugfix logical operator in merge method</p></li>
 </ul>
 </section>
 <section id="improved">
@@ -175,6 +177,7 @@
 <ul class="simple">
 <li><p>generalize DataCatalog artifact kwargs to allow for multiple yml files from artifacts</p></li>
 <li><p>use mamba for github actions</p></li>
+<li><p>keep geom attributes with &lt;Dataset/DataArray&gt;.vector.to_gdf method</p></li>
 </ul>
 </section>
 <section id="deprecated">

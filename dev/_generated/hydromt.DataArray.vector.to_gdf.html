@@ -148,7 +148,7 @@
 <span class="sig-prename descclassname"><span class="pre">DataArray.vector.</span></span><span class="sig-name descname"><span class="pre">to_gdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reducer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hydromt.DataArray.vector.to_gdf" title="Permalink to this definition"></a></dt>
 <dd><p>Return geopandas GeoDataFrame with Point geometry based on DataArray
 coordinates. If a reducer is passed the DataArray values are reduced along
-the “time” dimension and saved in a column with same name as the DataArray.</p>
+all non-index dimensions and saved in a column with same name as the GeoDataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>reducer</strong> (<em>callable</em>) – input to <code class="docutils literal notranslate"><span class="pre">xarray.DataArray.reducer</span></code> func argument</p>

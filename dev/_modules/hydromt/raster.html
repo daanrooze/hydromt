@@ -712,6 +712,7 @@
 <span class="sd">        ojb_out: xr.Dataset or xr.DataArray</span>
 <span class="sd">            Output sample data</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: add method for line geometries</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;Point&quot;</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Only point geometries accepted&quot;</span><span class="p">)</span>
 
@@ -738,7 +739,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">x_dim</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">((</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="s2">&quot;wdw&quot;</span><span class="p">),</span> <span class="n">cwdw</span><span class="p">),</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">y_dim</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">((</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="s2">&quot;wdw&quot;</span><span class="p">),</span> <span class="n">rwdw</span><span class="p">),</span>
                 <span class="p">}</span>
-            <span class="p">)</span><span class="o">.</span><span class="n">set_coords</span><span class="p">(</span><span class="s2">&quot;mask&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">ds_sel</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
                 <span class="p">{</span>
@@ -747,15 +748,10 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">x_dim</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">y_dim</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">),</span>
                 <span class="p">}</span>
-            <span class="p">)</span><span class="o">.</span><span class="n">set_coords</span><span class="p">(</span><span class="s2">&quot;mask&quot;</span><span class="p">)</span>
-        <span class="n">obj_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">ds_sel</span><span class="p">)</span>
-        <span class="k">if</span> <span class="kc">True</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">obj_out</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]):</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj_out</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
-                <span class="n">obj_out</span> <span class="o">=</span> <span class="n">obj_out</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">obj_out</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">],</span> <span class="n">obj_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">obj_out</span><span class="o">.</span><span class="n">data_vars</span><span class="p">:</span>
-                    <span class="n">nodata</span> <span class="o">=</span> <span class="n">obj_out</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span>
-                    <span class="n">obj_out</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj_out</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">obj_out</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">],</span> <span class="n">nodata</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">obj_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">ds_sel</span><span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">y_dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_dim</span><span class="p">]])</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="o">~</span><span class="n">ds_sel</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]):</span>  <span class="c1"># mask out of domain points</span>
+            <span class="n">obj_out</span> <span class="o">=</span> <span class="n">obj_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">mask</span><span class="p">(</span><span class="n">ds_sel</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">obj_out</span>
 
     <span class="k">def</span> <span class="nf">zonal_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">stats</span><span class="p">,</span> <span class="n">all_touched</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
