@@ -146,12 +146,12 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>fn_locs</strong> (<em>path</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to point location file, see <code class="xref py py-meth docutils literal notranslate"><span class="pre">geopandas.read_file()</span></code> for options.</p></li>
-<li><p><strong>fn_data</strong> (<em>path</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to data file of which the index dimension which should match the geospatial
+<li><p><strong>fn_locs</strong> (<em>path</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Path to point location file, see <code class="xref py py-meth docutils literal notranslate"><span class="pre">geopandas.read_file()</span></code> for options.</p></li>
+<li><p><strong>fn_data</strong> (<em>path</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Path to data file of which the index dimension which should match the geospatial
 coordinates index.
 This can either be a csv with datetime in the first column and the location
 index in the header row, or a netcdf with a time and index dimensions.</p></li>
-<li><p><strong>var_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – Name of the variable in case of a csv fn_data file. By default, None and
+<li><p><strong>var_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – Name of the variable in case of a csv fn_data file. By default, None and
 infered from basename.</p></li>
 <li><p><strong>crs</strong> (str, <cite>pyproj.CRS</cite>, or dict) – Source coordinate reference system, ignored for files with a native crs.</p></li>
 <li><p><strong>bbox</strong> (<em>array of float</em><em>, </em><em>default None</em>) – Filter features by given bounding box described by [xmin, ymin, xmax, ymax]

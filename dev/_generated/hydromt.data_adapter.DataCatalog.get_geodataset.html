@@ -153,17 +153,17 @@ will be returned as xarray.DataArray rather than Dataset.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path_or_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Data catalog key. If a path to a file is provided it will be added
+<li><p><strong>path_or_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Data catalog key. If a path to a file is provided it will be added
 to the data_catalog with its based on the file basename without extension.</p></li>
 <li><p><strong>bbox</strong> (<em>array-like of floats</em>) – (xmin, ymin, xmax, ymax) bounding box of area of interest.</p></li>
 <li><p><strong>geom</strong> (<em>geopandas.GeoDataFrame/Series</em><em>,</em>) – A geometry defining the area of interest.</p></li>
-<li><p><strong>buffer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – Buffer around the <cite>bbox</cite> or <cite>geom</cite> area of interest in meters. By default 0.</p></li>
-<li><p><strong>align</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – Resolution to align the bounding box, by default None</p></li>
+<li><p><strong>buffer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>optional</em>) – Buffer around the <cite>bbox</cite> or <cite>geom</cite> area of interest in meters. By default 0.</p></li>
+<li><p><strong>align</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>optional</em>) – Resolution to align the bounding box, by default None</p></li>
 <li><p><strong>variables</strong> (<em>list of str</em><em>, </em><em>optional.</em>) – Names of GeoDataset variables to return. By default all dataset variables
 are returned.</p></li>
 <li><p><strong>time_tuple</strong> (<em>tuple of str</em><em>, </em><em>datetime</em><em>, </em><em>optional</em>) – Start and end date of period of interest. By default the entire time period
 of the dataset is returned.</p></li>
-<li><p><strong>single_var_as_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, return a DataArray if the dataset conists of a single variable.
+<li><p><strong>single_var_as_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, return a DataArray if the dataset conists of a single variable.
 If False, always return a Dataset. By default True.</p></li>
 </ul>
 </dd>

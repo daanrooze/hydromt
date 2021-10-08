@@ -153,25 +153,25 @@ using <code class="xref py py-meth docutils literal notranslate"><span class="pr
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Paths to the rasterio/gdal files.
+<li><p><strong>paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – Paths to the rasterio/gdal files.
 Paths can be provided as list of paths or a path pattern string which is
 interpreted according to the rules used by the Unix shell. The variable name
 is derived from the basename minus extension in case a list of paths:
 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.&lt;extension&gt;</span></code> and based on the file basename minus pre-, postfix and
 extension in a path pattern: <code class="docutils literal notranslate"><span class="pre">&lt;prefix&gt;&lt;*name&gt;&lt;postfix&gt;.&lt;extension&gt;</span></code></p></li>
-<li><p><strong>chunks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – Chunk sizes along each dimension, e.g., 5, (5, 5) or {‘x’: 5, ‘y’: 5}.
+<li><p><strong>chunks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><em>tuple</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a><em>, </em><em>optional</em>) – Chunk sizes along each dimension, e.g., 5, (5, 5) or {‘x’: 5, ‘y’: 5}.
 If chunks is provided, it used to load the new DataArray into a dask array.</p></li>
-<li><p><strong>concat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, concatenate raster along <code class="docutils literal notranslate"><span class="pre">concat_dim</span></code>. We destinguish the following
+<li><p><strong>concat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, concatenate raster along <code class="docutils literal notranslate"><span class="pre">concat_dim</span></code>. We destinguish the following
 filenames from which the numerical index and variable name are inferred, where
 the variable name is based on the first raster.
 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;_&lt;index&gt;.&lt;extension&gt;</span></code>
 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;*&lt;postfix&gt;.&lt;index&gt;</span></code> (PCRaster style; requires path pattern)
 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;&lt;index&gt;.&lt;extension&gt;</span></code>
 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.&lt;extension&gt;</span></code> (index based on order)</p></li>
-<li><p><strong>concat_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – Dimension name of concatenate index, by default ‘dim0’</p></li>
-<li><p><strong>mosaic</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – If True create mosaic of several rasters. The variable is named based on
+<li><p><strong>concat_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – Dimension name of concatenate index, by default ‘dim0’</p></li>
+<li><p><strong>mosaic</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – If True create mosaic of several rasters. The variable is named based on
 variable name infered from the first raster.</p></li>
-<li><p><strong>mosaic_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – Mosaic key_word arguments to unify raster crs and/or resolution. See
+<li><p><strong>mosaic_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a><em>, </em><em>optional</em>) – Mosaic key_word arguments to unify raster crs and/or resolution. See
 <a class="reference internal" href="hydromt.merge.merge.html#hydromt.merge.merge" title="hydromt.merge.merge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hydromt.merge.merge()</span></code></a> for options.</p></li>
 <li><p><strong>**kwargs</strong> – key-word arguments are passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">hydromt.raster.open_raster()</span></code></p></li>
 </ul>

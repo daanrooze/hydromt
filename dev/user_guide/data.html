@@ -239,7 +239,7 @@ but the user is free to define its own categories. The category attribute can al
 <li><p><strong>GeoDataset</strong> dynamic point location data</p></li>
 </ul>
 <p>Internally the RasterDataset and GeoDataset are represented by <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.19.1.dev6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> objects
-and GeoDataFrame by <a class="reference external" href="https://geopandas.org/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a>. We use externaly
+and GeoDataFrame by <a class="reference external" href="https://geopandas.org/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a>. We use externaly
 availabe data readers, often wrapped in hydroMT functions, to parse many different file
 formats to this standardized internal data representation. An overview of the supported
 data formats and associated drivers and python methods are shown below followed by
@@ -299,7 +299,7 @@ and <a class="reference external" href="https://rasterio.readthedocs.io/en/lates
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vector</span></code></p></td>
 <td><p>ESRI Shapefile, GeoPackage, GeoJSON, etc.</p></td>
 <td><p><a class="reference internal" href="../_generated/hydromt.io.open_vector.html#hydromt.io.open_vector" title="hydromt.io.open_vector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_vector()</span></code></a></p></td>
-<td><p>Point, Line and Polygon geometries. Uses <a class="reference external" href="https://geopandas.org/docs/reference/api/geopandas.read_file.html#geopandas.read_file" title="(in GeoPandas v0.9.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">geopandas.read_file()</span></code></a></p></td>
+<td><p>Point, Line and Polygon geometries. Uses <a class="reference external" href="https://geopandas.org/docs/reference/api/geopandas.read_file.html#geopandas.read_file" title="(in GeoPandas v0.10.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">geopandas.read_file()</span></code></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vector_table</span></code></p></td>
 <td><p>CSV, XY, and EXCEL.</p></td>

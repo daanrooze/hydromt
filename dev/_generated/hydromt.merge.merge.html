@@ -156,9 +156,9 @@ grid is defined it is based on the first DataArray in the list.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data_arrays</strong> (<em>list of xarray.DataArray</em>) – Tiles to merge</p></li>
-<li><p><strong>dst_crs</strong> (<em>pyproj.CRS</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – CRS (or EPSG code) of destination grid</p></li>
+<li><p><strong>dst_crs</strong> (<em>pyproj.CRS</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – CRS (or EPSG code) of destination grid</p></li>
 <li><p><strong>dst_bounds</strong> (<em>list of float</em>) – Bounding box [xmin, ymin, xmax, ymax] of destination grid</p></li>
-<li><p><strong>dst_res</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Resolution of destination grid</p></li>
+<li><p><strong>dst_res</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – Resolution of destination grid</p></li>
 <li><p><strong>mask</strong> (<em>geopands.GeoDataFrame</em><em>, </em><em>optional</em>) – Mask of destination area of interest.
 Used to determine dst_crs, dst_bounds and dst_res if missing.</p></li>
 <li><p><strong>merge_method</strong> (<em>{'first'</em><em>,</em><em>'last'</em><em>,</em><em>'min'</em><em>,</em><em>'max'</em><em>,</em><em>'new'}</em><em>, </em><em>callable</em>) – <p>Merge method:</p>
