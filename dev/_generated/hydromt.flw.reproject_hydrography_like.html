@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hydromt.flw.clip_basins &mdash; hydromt  documentation</title>
+  <title>hydromt.flw.reproject_hydrography_like &mdash; hydromt  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="hydromt.gis_utils.spread2d" href="hydromt.gis_utils.spread2d.html" />
-    <link rel="prev" title="hydromt.flw.outlet_map" href="hydromt.flw.outlet_map.html" /> 
+    <link rel="next" title="hydromt.flw.upscale_flwdir" href="hydromt.flw.upscale_flwdir.html" />
+    <link rel="prev" title="hydromt.flw.d8_from_dem" href="hydromt.flw.d8_from_dem.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,13 +71,13 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../api/api_methods.html#flow-direction-methods">Flow direction methods</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.flwdir_from_da.html">hydromt.flw.flwdir_from_da</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.d8_from_dem.html">hydromt.flw.d8_from_dem</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.reproject_hydrography_like.html">hydromt.flw.reproject_hydrography_like</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">hydromt.flw.reproject_hydrography_like</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.upscale_flwdir.html">hydromt.flw.upscale_flwdir</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.stream_map.html">hydromt.flw.stream_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.basin_map.html">hydromt.flw.basin_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">hydromt.flw.clip_basins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#general-gis-methods">General GIS methods</a></li>
@@ -110,9 +110,9 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../api/api_index.html">API reference</a> &raquo;</li>
           <li><a href="../api/api_methods.html">Methods</a> &raquo;</li>
-      <li>hydromt.flw.clip_basins</li>
+      <li>hydromt.flw.reproject_hydrography_like</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_generated/hydromt.flw.clip_basins.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_generated/hydromt.flw.reproject_hydrography_like.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -144,24 +144,33 @@
     text-align: unset;
 }
 </style>
-<section id="hydromt-flw-clip-basins">
-<h1>hydromt.flw.clip_basins<a class="headerlink" href="#hydromt-flw-clip-basins" title="Permalink to this headline"></a></h1>
+<section id="hydromt-flw-reproject-hydrography-like">
+<h1>hydromt.flw.reproject_hydrography_like<a class="headerlink" href="#hydromt-flw-reproject-hydrography-like" title="Permalink to this headline"></a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="hydromt.flw.clip_basins">
-<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">clip_basins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'flwdir'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">stream_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#clip_basins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.clip_basins" title="Permalink to this definition"></a></dt>
-<dd><p>Clip a dataset to a subbasin.</p>
+<dt class="sig sig-object py" id="hydromt.flw.reproject_hydrography_like">
+<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">reproject_hydrography_like</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">ds_hydro</span></em>, <em class="sig-param"><span class="pre">da_elv</span></em>, <em class="sig-param"><span class="pre">river_upa=5</span></em>, <em class="sig-param"><span class="pre">method='bilinear'</span></em>, <em class="sig-param"><span class="pre">uparea_name='uparea'</span></em>, <em class="sig-param"><span class="pre">flwdir_name='flwdir'</span></em>, <em class="sig-param"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.flw</span> <span class="pre">(WARNING)&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#reproject_hydrography_like"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.reproject_hydrography_like" title="Permalink to this definition"></a></dt>
+<dd><p>Reproject flow direction and upstream area data to the <cite>da_elv</cite> crs and grid.
+Note that the resolution of <cite>da_elv</cite> and <cite>ds_hydro</cite> should be similar or smaller
+for good results.</p>
+<p>The reprojection is based on a synthetic elevation grid defined by the
+destination elevation minus the reprojected log10 upstream area [km2] grids.
+Additionally, rivers are vectorized and burned into the synthetic elevation grid
+for better results.</p>
+<p>If not all upstream area is inlcuded, the upstream area of rivers entering the
+domain will be used as boundary conditions to the reprojected upsteam area raster.</p>
+<p>NOTE: this method is still experimental and might change in the future!</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ds</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.19.1.dev6)"><em>xarray.Dataset</em></a>) – dataset containing flow direction data</p></li>
-<li><p><strong>flwdir</strong> (<em>pyflwdir.FlwdirRaster</em>) – Flow direction raster object</p></li>
-<li><p><strong>xy</strong> (<em>tuple of array_like of float</em>) – x, y coordinates of (sub)basin outlet locations</p></li>
-<li><p><strong>flwdir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – name of flow direction DataArray, by default ‘dir’</p></li>
-<li><p><strong>stream_kwargs</strong> (<em>key-word arguments</em>) – name of variable in ds and threshold value</p></li>
+<li><p><strong>ds_hydro</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.19.1.dev6)"><em>xarray.Dataset</em></a>) – Dataset with gridded flow directions named <cite>flwdir_name</cite> and upstream area
+named <cite>uparea_name</cite> [km2].</p></li>
+<li><p><strong>da_elv</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.19.1.dev6)"><em>xarray.DataArray</em></a>) – DataArray with elevation on destination grid.</p></li>
+<li><p><strong>river_upa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>optional</em>) – Minimum upstream area threshold for rivers, by default 5 [km2]</p></li>
+<li><p><strong>method</strong> – Interpolation method for the upstream area grid.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>clipped dataset</p>
+<dd class="field-even"><p>Reprojected flow direction and upstream area grids.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.19.1.dev6)">xarray.Dataset</a></p>
@@ -175,8 +184,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hydromt.flw.outlet_map.html" class="btn btn-neutral float-left" title="hydromt.flw.outlet_map" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hydromt.gis_utils.spread2d.html" class="btn btn-neutral float-right" title="hydromt.gis_utils.spread2d" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hydromt.flw.d8_from_dem.html" class="btn btn-neutral float-left" title="hydromt.flw.d8_from_dem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hydromt.flw.upscale_flwdir.html" class="btn btn-neutral float-right" title="hydromt.flw.upscale_flwdir" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

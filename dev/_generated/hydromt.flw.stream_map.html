@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hydromt.flw.basin_shape &mdash; hydromt  documentation</title>
+  <title>hydromt.flw.stream_map &mdash; hydromt  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="hydromt.flw.clip_basins" href="hydromt.flw.clip_basins.html" />
-    <link rel="prev" title="hydromt.flw.basin_map" href="hydromt.flw.basin_map.html" /> 
+    <link rel="next" title="hydromt.flw.basin_map" href="hydromt.flw.basin_map.html" />
+    <link rel="prev" title="hydromt.flw.upscale_flwdir" href="hydromt.flw.upscale_flwdir.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -70,11 +70,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#geospatial-timeseries-methods">Geospatial timeseries methods</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api/api_methods.html#flow-direction-methods">Flow direction methods</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.flwdir_from_da.html">hydromt.flw.flwdir_from_da</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.gaugemap.html">hydromt.flw.gaugemap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.basin_map.html">hydromt.flw.basin_map</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">hydromt.flw.basin_shape</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.d8_from_dem.html">hydromt.flw.d8_from_dem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.reproject_hydrography_like.html">hydromt.flw.reproject_hydrography_like</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.upscale_flwdir.html">hydromt.flw.upscale_flwdir</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">hydromt.flw.stream_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.basin_map.html">hydromt.flw.basin_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#general-gis-methods">General GIS methods</a></li>
@@ -107,9 +110,9 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../api/api_index.html">API reference</a> &raquo;</li>
           <li><a href="../api/api_methods.html">Methods</a> &raquo;</li>
-      <li>hydromt.flw.basin_shape</li>
+      <li>hydromt.flw.stream_map</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_generated/hydromt.flw.basin_shape.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_generated/hydromt.flw.stream_map.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -141,26 +144,27 @@
     text-align: unset;
 }
 </style>
-<section id="hydromt-flw-basin-shape">
-<h1>hydromt.flw.basin_shape<a class="headerlink" href="#hydromt-flw-basin-shape" title="Permalink to this headline"></a></h1>
+<section id="hydromt-flw-stream-map">
+<h1>hydromt.flw.stream_map<a class="headerlink" href="#hydromt-flw-stream-map" title="Permalink to this headline"></a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="hydromt.flw.basin_shape">
-<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">basin_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basin_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'basins'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#basin_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.basin_shape" title="Permalink to this definition"></a></dt>
-<dd><p>Return a shape of the basin.</p>
+<dt class="sig sig-object py" id="hydromt.flw.stream_map">
+<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">stream_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">stream_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#stream_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.stream_map" title="Permalink to this definition"></a></dt>
+<dd><p>Return a stream mask DataArray</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ds</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.19.1.dev6)"><em>xarray.Dataset</em></a>) – dataset containing flow direction data</p></li>
-<li><p><strong>flwdir</strong> (<em>pyflwdir.FlwdirRaster</em>) – Flow direction raster object</p></li>
-<li><p><strong>basin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – Name of data variable with basin array, by default “basins”. If not found in
-ds it is derived on the fly.</p></li>
+<li><p><strong>stream</strong> (<em>2D array of bool</em><em>, </em><em>optional</em>) – Initial mask of stream cells. If a stream if provided, it is combined with the
+threshold based map using a logical AND operation..</p></li>
+<li><p><strong>stream_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a><em>, </em><em>optional</em>) – Parameter-treshold pairs to define streams. Multiple threshold will be combined
+using a logical AND operation.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>GeoDataFrame with basin shapes.</p>
+<dd class="field-even"><p><strong>stream</strong> – stream mask</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://geopandas.org/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.0)">geopandas.GeoDataFrame</a></p>
+<dd class="field-odd"><p>xarray.DataArray of bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -171,8 +175,8 @@ ds it is derived on the fly.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hydromt.flw.basin_map.html" class="btn btn-neutral float-left" title="hydromt.flw.basin_map" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hydromt.flw.clip_basins.html" class="btn btn-neutral float-right" title="hydromt.flw.clip_basins" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hydromt.flw.upscale_flwdir.html" class="btn btn-neutral float-left" title="hydromt.flw.upscale_flwdir" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hydromt.flw.basin_map.html" class="btn btn-neutral float-right" title="hydromt.flw.basin_map" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

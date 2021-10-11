@@ -92,14 +92,18 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#flow-direction-methods">Flow direction methods</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.flwdir_from_da.html">hydromt.flw.flwdir_from_da</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.gaugemap.html">hydromt.flw.gaugemap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.basin_map.html">hydromt.flw.basin_map</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.basin_shape.html">hydromt.flw.basin_shape</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.d8_from_dem.html">hydromt.flw.d8_from_dem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.reproject_hydrography_like.html">hydromt.flw.reproject_hydrography_like</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.upscale_flwdir.html">hydromt.flw.upscale_flwdir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.stream_map.html">hydromt.flw.stream_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.basin_map.html">hydromt.flw.basin_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#general-gis-methods">General GIS methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.gis_utils.spread2d.html">hydromt.gis_utils.spread2d</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.gis_utils.parse_crs.html">hydromt.gis_utils.parse_crs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.gis_utils.utm_crs.html">hydromt.gis_utils.utm_crs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.gis_utils.affine_to_coords.html">hydromt.gis_utils.affine_to_coords</a></li>
@@ -362,6 +366,12 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.xy_to_idx.html#hydromt.DataArray.raster.xy_to_idx" title="hydromt.DataArray.raster.xy_to_idx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.xy_to_idx</span></code></a>(xs, ys[, mask, ...])</p></td>
 <td><p>Return linear index of x, y coordinates</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.flipud.html#hydromt.DataArray.raster.flipud" title="hydromt.DataArray.raster.flipud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.flipud</span></code></a>()</p></td>
+<td><p>Returns raster flipped along y-axis</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.area_grid.html#hydromt.DataArray.raster.area_grid" title="hydromt.DataArray.raster.area_grid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.area_grid</span></code></a>([dtype])</p></td>
+<td><p>Returns the grid cell area [m2].</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -465,7 +475,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.axes_attrs.html#hydromt.gis_utils.axes_attrs" title="hydromt.gis_utils.axes_attrs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.axes_attrs</span></code></a>(crs)</p></td>
 <td><p>Provide CF-compliant variable names and metadata for axes</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.meridian_offset.html#hydromt.gis_utils.meridian_offset" title="hydromt.gis_utils.meridian_offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.meridian_offset</span></code></a>(ds, x_name[, bbox])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.meridian_offset.html#hydromt.gis_utils.meridian_offset" title="hydromt.gis_utils.meridian_offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.meridian_offset</span></code></a>(ds[, x_name, bbox])</p></td>
 <td><p>re-arange data along x dim</p></td>
 </tr>
 </tbody>
@@ -612,6 +622,8 @@
 </section>
 <section id="flow-direction-methods">
 <h2>Flow direction methods<a class="headerlink" href="#flow-direction-methods" title="Permalink to this headline"></a></h2>
+<p>These methods are based on the pyflwdir library. For more flow direction based methods
+visit the <a class="reference external" href="https://deltares.github.io/pyflwdir/latest/">pyflwdir docs.</a></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -621,20 +633,29 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.flw.flwdir_from_da.html#hydromt.flw.flwdir_from_da" title="hydromt.flw.flwdir_from_da"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.flwdir_from_da</span></code></a>(da[, ftype, check_ftype, ...])</p></td>
 <td><p>Parse dataarray to flow direction raster object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.flw.gaugemap.html#hydromt.flw.gaugemap" title="hydromt.flw.gaugemap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.gaugemap</span></code></a>(ds[, idxs, xy, ids, mask, ...])</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.flw.d8_from_dem.html#hydromt.flw.d8_from_dem" title="hydromt.flw.d8_from_dem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.d8_from_dem</span></code></a>(da_elv[, gdf_stream, ...])</p></td>
+<td><p>Derive D8 flow directions grid from an elevation grid.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.flw.basin_map.html#hydromt.flw.basin_map" title="hydromt.flw.basin_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.basin_map</span></code></a>(ds, flwdir[, xy, idxs, ...])</p></td>
-<td><p>Return a (sub)basin ID DataArray</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.flw.basin_shape.html#hydromt.flw.basin_shape" title="hydromt.flw.basin_shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.basin_shape</span></code></a>(ds, flwdir[, basin_name, mask])</p></td>
-<td><p>Return a shape of the basin.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.flw.clip_basins.html#hydromt.flw.clip_basins" title="hydromt.flw.clip_basins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.clip_basins</span></code></a>(ds, flwdir, xy[, flwdir_name])</p></td>
-<td><p>Clip a dataset to a subbasin.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.flw.reproject_hydrography_like.html#hydromt.flw.reproject_hydrography_like" title="hydromt.flw.reproject_hydrography_like"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.reproject_hydrography_like</span></code></a>(ds_hydro, da_elv)</p></td>
+<td><p>Reproject flow direction and upstream area data to the <cite>da_elv</cite> crs and grid.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.flw.upscale_flwdir.html#hydromt.flw.upscale_flwdir" title="hydromt.flw.upscale_flwdir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.upscale_flwdir</span></code></a>(ds, flwdir, scale_ratio)</p></td>
 <td><p>Upscale flow direction network to lower resolution and resample other data variables in dataset to the same resolution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.flw.stream_map.html#hydromt.flw.stream_map" title="hydromt.flw.stream_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.stream_map</span></code></a>(ds[, stream])</p></td>
+<td><p>Return a stream mask DataArray</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.flw.basin_map.html#hydromt.flw.basin_map" title="hydromt.flw.basin_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.basin_map</span></code></a>(ds, flwdir[, xy, idxs, ...])</p></td>
+<td><p>Return a (sub)basin map, with unique non-zero IDs for each subbasin.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.flw.gauge_map.html#hydromt.flw.gauge_map" title="hydromt.flw.gauge_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.gauge_map</span></code></a>(ds[, idxs, xy, ids, stream, ...])</p></td>
+<td><p>Return map with unique gauge IDs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.flw.outlet_map.html#hydromt.flw.outlet_map" title="hydromt.flw.outlet_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.outlet_map</span></code></a>(da_flw[, ftype])</p></td>
+<td><p>Returns a mask of basin outlets/pits from a flow direction raster.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.flw.clip_basins.html#hydromt.flw.clip_basins" title="hydromt.flw.clip_basins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.clip_basins</span></code></a>(ds, flwdir, xy[, flwdir_name])</p></td>
+<td><p>Clip a dataset to a subbasin.</p></td>
 </tr>
 </tbody>
 </table>
@@ -647,28 +668,31 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.parse_crs.html#hydromt.gis_utils.parse_crs" title="hydromt.gis_utils.parse_crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.parse_crs</span></code></a>(crs[, bbox])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.spread2d.html#hydromt.gis_utils.spread2d" title="hydromt.gis_utils.spread2d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.spread2d</span></code></a>(da_obs[, nodata, ...])</p></td>
+<td><p>Returns values of <cite>da_obs</cite> spreaded to cells with <cite>nodata</cite> value within <cite>da_mask</cite>, powered by <code class="xref py py-meth docutils literal notranslate"><span class="pre">pyflwdir.gis_utils.spread2d()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.parse_crs.html#hydromt.gis_utils.parse_crs" title="hydromt.gis_utils.parse_crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.parse_crs</span></code></a>(crs[, bbox])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.utm_crs.html#hydromt.gis_utils.utm_crs" title="hydromt.gis_utils.utm_crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.utm_crs</span></code></a>(bbox)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.utm_crs.html#hydromt.gis_utils.utm_crs" title="hydromt.gis_utils.utm_crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.utm_crs</span></code></a>(bbox)</p></td>
 <td><p>Returns wkt string of nearest UTM projects</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.affine_to_coords.html#hydromt.gis_utils.affine_to_coords" title="hydromt.gis_utils.affine_to_coords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.affine_to_coords</span></code></a>(transform, shape)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.affine_to_coords.html#hydromt.gis_utils.affine_to_coords" title="hydromt.gis_utils.affine_to_coords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.affine_to_coords</span></code></a>(transform, shape)</p></td>
 <td><p>Returs a raster axis with pixel center coordinates based on the transform.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.reggrid_area.html#hydromt.gis_utils.reggrid_area" title="hydromt.gis_utils.reggrid_area"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.reggrid_area</span></code></a>(lats, lons)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.reggrid_area.html#hydromt.gis_utils.reggrid_area" title="hydromt.gis_utils.reggrid_area"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.reggrid_area</span></code></a>(lats, lons)</p></td>
 <td><p>Returns the cell area [m2] for a regular grid based on its cell centres lat, lon coordinates.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.cellarea.html#hydromt.gis_utils.cellarea" title="hydromt.gis_utils.cellarea"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.cellarea</span></code></a>(lat[, xres, yres])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.cellarea.html#hydromt.gis_utils.cellarea" title="hydromt.gis_utils.cellarea"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.cellarea</span></code></a>(lat[, xres, yres])</p></td>
 <td><p>Return the area [m2] of cell based on the cell center latitude and its resolution in measured in degrees.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.cellres.html#hydromt.gis_utils.cellres" title="hydromt.gis_utils.cellres"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.cellres</span></code></a>(lat[, xres, yres])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.cellres.html#hydromt.gis_utils.cellres" title="hydromt.gis_utils.cellres"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.cellres</span></code></a>(lat[, xres, yres])</p></td>
 <td><p>Return the cell (x, y) resolution [m] based on cell center latitude and its resolution measured in degrees.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.write_map.html#hydromt.gis_utils.write_map" title="hydromt.gis_utils.write_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.write_map</span></code></a>(data, raster_path, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.write_map.html#hydromt.gis_utils.write_map" title="hydromt.gis_utils.write_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.write_map</span></code></a>(data, raster_path, ...)</p></td>
 <td><p>Write pcraster map files using pcr.report functionality.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.write_clone.html#hydromt.gis_utils.write_clone" title="hydromt.gis_utils.write_clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.write_clone</span></code></a>(tmpdir, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.write_clone.html#hydromt.gis_utils.write_clone" title="hydromt.gis_utils.write_clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.write_clone</span></code></a>(tmpdir, ...)</p></td>
 <td><p>write pcraster clone file to a tmpdir using gdal</p></td>
 </tr>
 </tbody>

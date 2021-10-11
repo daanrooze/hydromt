@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="hydromt.gis_utils.parse_crs" href="hydromt.gis_utils.parse_crs.html" />
-    <link rel="prev" title="hydromt.flw.clip_basins" href="hydromt.flw.clip_basins.html" /> 
+    <link rel="next" title="hydromt.flw.stream_map" href="hydromt.flw.stream_map.html" />
+    <link rel="prev" title="hydromt.flw.reproject_hydrography_like" href="hydromt.flw.reproject_hydrography_like.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -70,11 +70,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#geospatial-timeseries-methods">Geospatial timeseries methods</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api/api_methods.html#flow-direction-methods">Flow direction methods</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.flwdir_from_da.html">hydromt.flw.flwdir_from_da</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.gaugemap.html">hydromt.flw.gaugemap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.basin_map.html">hydromt.flw.basin_map</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.basin_shape.html">hydromt.flw.basin_shape</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.d8_from_dem.html">hydromt.flw.d8_from_dem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.reproject_hydrography_like.html">hydromt.flw.reproject_hydrography_like</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">hydromt.flw.upscale_flwdir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.stream_map.html">hydromt.flw.stream_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.basin_map.html">hydromt.flw.basin_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#general-gis-methods">General GIS methods</a></li>
@@ -148,8 +151,9 @@
 <span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">upscale_flwdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">ds</span></em>, <em class="sig-param"><span class="pre">flwdir</span></em>, <em class="sig-param"><span class="pre">scale_ratio</span></em>, <em class="sig-param"><span class="pre">method='com2'</span></em>, <em class="sig-param"><span class="pre">uparea_name=None</span></em>, <em class="sig-param"><span class="pre">flwdir_name='flwdir'</span></em>, <em class="sig-param"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.flw</span> <span class="pre">(WARNING)&gt;</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#upscale_flwdir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.upscale_flwdir" title="Permalink to this definition"></a></dt>
 <dd><p>Upscale flow direction network to lower resolution and resample other data
 variables in dataset to the same resolution.</p>
-<p>Note: This method only works for D8 or LDD flow directon data.</p>
-<p># TODO add refs</p>
+<p>Note: This method only works for D8 data.</p>
+<p># TODO add doi
+Based on: Eilander et al. (2021).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -177,8 +181,8 @@ variables in dataset to the same resolution.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hydromt.flw.clip_basins.html" class="btn btn-neutral float-left" title="hydromt.flw.clip_basins" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hydromt.gis_utils.parse_crs.html" class="btn btn-neutral float-right" title="hydromt.gis_utils.parse_crs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hydromt.flw.reproject_hydrography_like.html" class="btn btn-neutral float-left" title="hydromt.flw.reproject_hydrography_like" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hydromt.flw.stream_map.html" class="btn btn-neutral float-right" title="hydromt.flw.stream_map" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

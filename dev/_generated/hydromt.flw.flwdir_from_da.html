@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="hydromt.flw.gaugemap" href="hydromt.flw.gaugemap.html" />
+    <link rel="next" title="hydromt.flw.d8_from_dem" href="hydromt.flw.d8_from_dem.html" />
     <link rel="prev" title="hydromt.gis_utils.filter_gdf" href="hydromt.gis_utils.filter_gdf.html" /> 
 </head>
 
@@ -70,11 +70,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#geospatial-timeseries-methods">Geospatial timeseries methods</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api/api_methods.html#flow-direction-methods">Flow direction methods</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">hydromt.flw.flwdir_from_da</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.gaugemap.html">hydromt.flw.gaugemap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.basin_map.html">hydromt.flw.basin_map</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.basin_shape.html">hydromt.flw.basin_shape</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.d8_from_dem.html">hydromt.flw.d8_from_dem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.reproject_hydrography_like.html">hydromt.flw.reproject_hydrography_like</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.upscale_flwdir.html">hydromt.flw.upscale_flwdir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.stream_map.html">hydromt.flw.stream_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.basin_map.html">hydromt.flw.basin_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#general-gis-methods">General GIS methods</a></li>
@@ -145,7 +148,7 @@
 <h1>hydromt.flw.flwdir_from_da<a class="headerlink" href="#hydromt-flw-flwdir-from-da" title="Permalink to this headline"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hydromt.flw.flwdir_from_da">
-<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">flwdir_from_da</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ftype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#flwdir_from_da"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.flwdir_from_da" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">flwdir_from_da</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">da</span></em>, <em class="sig-param"><span class="pre">ftype='infer'</span></em>, <em class="sig-param"><span class="pre">check_ftype=True</span></em>, <em class="sig-param"><span class="pre">mask=None</span></em>, <em class="sig-param"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.flw</span> <span class="pre">(WARNING)&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#flwdir_from_da"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.flwdir_from_da" title="Permalink to this definition"></a></dt>
 <dd><p>Parse dataarray to flow direction raster object. If a mask coordinate is present
 this will be passed on the the pyflwdir.from_array method.</p>
 <dl class="field-list simple">
@@ -173,7 +176,7 @@ this will be passed on the the pyflwdir.from_array method.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="hydromt.gis_utils.filter_gdf.html" class="btn btn-neutral float-left" title="hydromt.gis_utils.filter_gdf" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hydromt.flw.gaugemap.html" class="btn btn-neutral float-right" title="hydromt.flw.gaugemap" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hydromt.flw.d8_from_dem.html" class="btn btn-neutral float-right" title="hydromt.flw.d8_from_dem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

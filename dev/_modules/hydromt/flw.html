@@ -101,14 +101,29 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">from</span> <span class="nn">rasterio.transform</span> <span class="kn">import</span> <span class="n">from_origin</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">import</span> <span class="nn">pyflwdir</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">gis_utils</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;flwdir_from_da&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;d8_from_dem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;reproject_hydrography_like&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;stream_map&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basin_map&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;outlet_map&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;clip_basins&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;upscale_flwdir&quot;</span><span class="p">,</span>
+<span class="p">]</span>
 
-<div class="viewcode-block" id="flwdir_from_da"><a class="viewcode-back" href="../../_generated/hydromt.flw.flwdir_from_da.html#hydromt.flw.flwdir_from_da">[docs]</a><span class="k">def</span> <span class="nf">flwdir_from_da</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;infer&quot;</span><span class="p">,</span> <span class="n">check_ftype</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="c1">### FLWDIR METHODS ###</span>
+
+
+<div class="viewcode-block" id="flwdir_from_da"><a class="viewcode-back" href="../../_generated/hydromt.flw.flwdir_from_da.html#hydromt.flw.flwdir_from_da">[docs]</a><span class="k">def</span> <span class="nf">flwdir_from_da</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;infer&quot;</span><span class="p">,</span> <span class="n">check_ftype</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parse dataarray to flow direction raster object. If a mask coordinate is present</span>
 <span class="sd">    this will be passed on the the pyflwdir.from_array method.</span>
 
@@ -133,12 +148,12 @@
 
     <span class="n">crs</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span>
     <span class="n">latlon</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">crs</span><span class="o">.</span><span class="n">to_epsg</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4326</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">crs</span><span class="o">.</span><span class="n">is_geographic</span><span class="p">:</span>
         <span class="n">latlon</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">_crs</span> <span class="o">=</span> <span class="s2">&quot;geographic CRS with unit degree&quot;</span>
     <span class="k">elif</span> <span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">da</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">is_projected</span><span class="p">:</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Assuming a projected CRS with unit meter.&quot;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">crs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">crs</span><span class="o">.</span><span class="n">is_geographic</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;unknown geographic CRS unit&quot;</span><span class="p">)</span>
+        <span class="n">_crs</span> <span class="o">=</span> <span class="s2">&quot;projected CRS with unit meter&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initializing flwdir with </span><span class="si">{</span><span class="n">_crs</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
         <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">values</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">and</span> <span class="n">mask</span> <span class="ow">and</span> <span class="s2">&quot;mask&quot;</span> <span class="ow">in</span> <span class="n">da</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
@@ -157,225 +172,69 @@
     <span class="k">return</span> <span class="n">flwdir</span></div>
 
 
-<div class="viewcode-block" id="gaugemap"><a class="viewcode-back" href="../../_generated/hydromt.flw.gaugemap.html#hydromt.flw.gaugemap">[docs]</a><span class="k">def</span> <span class="nf">gaugemap</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">idxs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flwdir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">):</span>
-    <span class="c1"># Snap if mask and flwdir are not None</span>
-    <span class="k">if</span> <span class="n">xy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">idxs</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">xy_to_idx</span><span class="p">(</span><span class="n">xs</span><span class="o">=</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ys</span><span class="o">=</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">elif</span> <span class="n">idxs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either idxs or xy required&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">ids</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">idxs</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
-    <span class="c1"># Snapping</span>
-    <span class="c1"># TODO: should we do the snapping similar to basin_map ??</span>
-    <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">flwdir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">idxs</span><span class="p">,</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">snap</span><span class="p">(</span><span class="n">idxs</span><span class="o">=</span><span class="n">idxs</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dist</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">):</span>
-            <span class="n">far</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">dist</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">])</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Snapping distance of </span><span class="si">{</span><span class="n">far</span><span class="si">}</span><span class="s2"> gauge(s) is &gt; 10km&quot;</span><span class="p">)</span>
-    <span class="n">gauges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
-    <span class="n">gauges</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span> <span class="o">=</span> <span class="n">ids</span>
-    <span class="n">da_gauges</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
-        <span class="n">dims</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span>
-        <span class="n">coords</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>
-        <span class="n">data</span><span class="o">=</span><span class="n">gauges</span><span class="p">,</span>
-        <span class="n">attrs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">_FillValue</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<div class="viewcode-block" id="d8_from_dem"><a class="viewcode-back" href="../../_generated/hydromt.flw.d8_from_dem.html#hydromt.flw.d8_from_dem">[docs]</a><span class="k">def</span> <span class="nf">d8_from_dem</span><span class="p">(</span><span class="n">da_elv</span><span class="p">,</span> <span class="n">gdf_stream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">outlets</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Derive D8 flow directions grid from an elevation grid.</span>
+
+<span class="sd">    Outlets occur at the edge of the data or at the interface with nodata values.</span>
+<span class="sd">    A local depressions is filled based on its lowest pour point level if the pour point</span>
+<span class="sd">    depth is smaller than the maximum pour point depth `max_depth`, otherwise the lowest</span>
+<span class="sd">    elevation in the depression becomes a pit.</span>
+
+<span class="sd">    Based on: Wang, L., &amp; Liu, H. (2006). https://doi.org/10.1080/13658810500433453</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    da_elv: 2D xarray.DataArray</span>
+<span class="sd">        elevation raster</span>
+<span class="sd">    gdf_stream: geopandas.GeoDataArray, optional</span>
+<span class="sd">        stream vector layer with &#39;uparea&#39; [km2] column which is used to burn</span>
+<span class="sd">        the river in the elevation data.</span>
+<span class="sd">    max_depth: float, optional</span>
+<span class="sd">        Maximum pour point depth. Depressions with a larger pour point</span>
+<span class="sd">        depth are set as pit. A negative value (default) equals an infitely</span>
+<span class="sd">        large pour point depth causing all depressions to be filled.</span>
+<span class="sd">    outlets: {&#39;edge&#39;, &#39;min&#39;}</span>
+<span class="sd">        Position for basin outlet(s) at the all valid elevation edge cell (&#39;edge&#39;)</span>
+<span class="sd">        or only the minimum elevation edge cell (&#39;min&#39;)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    da_flw: 2D xarray.DataArray</span>
+<span class="sd">        D8 flow direction data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nodata</span> <span class="o">=</span> <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span>
+    <span class="n">crs</span> <span class="o">=</span> <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span>
+    <span class="k">assert</span> <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="n">nodata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">nodata</span><span class="p">)</span>
+    <span class="c1"># burn in river if</span>
+    <span class="k">if</span> <span class="n">gdf_stream</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;uparea&quot;</span> <span class="ow">in</span> <span class="n">gdf_stream</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">gdf_stream</span> <span class="o">=</span> <span class="n">gdf_stream</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;uparea&quot;</span><span class="p">)</span>
+        <span class="n">dst_rivupa</span> <span class="o">=</span> <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">rasterize</span><span class="p">(</span><span class="n">gdf_stream</span><span class="p">,</span> <span class="n">col_name</span><span class="o">=</span><span class="s2">&quot;uparea&quot;</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># make sure the rivers have a slope and are below all other elevation cells.</span>
+        <span class="c1"># river elevation = min(elv) - log10(uparea[m2]) from rasterized river uparea.</span>
+        <span class="n">elvmin</span> <span class="o">=</span> <span class="n">da_elv</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">da_elv</span> <span class="o">!=</span> <span class="n">nodata</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">elvriv</span> <span class="o">=</span> <span class="n">elvmin</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">dst_rivupa</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">))</span>
+        <span class="c1"># synthetic elevation with river burned in</span>
+        <span class="n">da_elv</span> <span class="o">=</span> <span class="n">elvriv</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">da_elv</span> <span class="o">!=</span> <span class="n">nodata</span><span class="p">,</span> <span class="n">dst_rivupa</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> <span class="n">da_elv</span><span class="p">)</span>
+        <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="n">nodata</span><span class="p">)</span>
+        <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">crs</span><span class="p">)</span>
+    <span class="c1"># derive new flow directions from (synthetic) elevation</span>
+    <span class="n">d8</span> <span class="o">=</span> <span class="n">pyflwdir</span><span class="o">.</span><span class="n">dem</span><span class="o">.</span><span class="n">fill_depressions</span><span class="p">(</span>
+        <span class="n">da_elv</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+        <span class="n">max_depth</span><span class="o">=</span><span class="n">max_depth</span><span class="p">,</span>
+        <span class="n">nodata</span><span class="o">=</span><span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span><span class="p">,</span>
+        <span class="n">outlets</span><span class="o">=</span><span class="n">outlets</span><span class="p">,</span>
+    <span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># return xarray data array</span>
+    <span class="n">da_flw</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+        <span class="n">dims</span><span class="o">=</span><span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span>
+        <span class="n">coords</span><span class="o">=</span><span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">d8</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;flwdir&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="k">return</span> <span class="n">da_gauges</span><span class="p">,</span> <span class="n">idxs</span><span class="p">,</span> <span class="n">ids</span></div>
-
-
-<span class="k">def</span> <span class="nf">outlet_map</span><span class="p">(</span><span class="n">da_flw</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;infer&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns a mask of basin outlets/pits from a flow direction raster.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    da_flw: xr.DataArray</span>
-<span class="sd">        Flow direction data array</span>
-<span class="sd">    ftype : {&#39;d8&#39;, &#39;ldd&#39;, &#39;nextxy&#39;, &#39;nextidx&#39;, &#39;infer&#39;}, optional</span>
-<span class="sd">        name of flow direction type, infer from data if &#39;infer&#39;, by default is &#39;infer&#39;</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    da_basin : xarray.DataArray of int32</span>
-<span class="sd">        basin ID map</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">ftype</span> <span class="o">==</span> <span class="s2">&quot;infer&quot;</span><span class="p">:</span>
-        <span class="n">ftype</span> <span class="o">=</span> <span class="n">pyflwdir</span><span class="o">.</span><span class="n">pyflwdir</span><span class="o">.</span><span class="n">_infer_ftype</span><span class="p">(</span><span class="n">da_flw</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">ftype</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pyflwdir</span><span class="o">.</span><span class="n">pyflwdir</span><span class="o">.</span><span class="n">FTYPES</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown pyflwdir ftype: </span><span class="si">{</span><span class="n">ftype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">pit_values</span> <span class="o">=</span> <span class="n">pyflwdir</span><span class="o">.</span><span class="n">pyflwdir</span><span class="o">.</span><span class="n">FTYPES</span><span class="p">[</span><span class="n">ftype</span><span class="p">]</span><span class="o">.</span><span class="n">_pv</span>
-    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">da_flw</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">pit_values</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="n">da_flw</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">da_flw</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">stream_map</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">stream_kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return a stream mask DataArray</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ds : xarray.Dataset</span>
-<span class="sd">        dataset containing flow direction data</span>
-<span class="sd">    stream: 2D array of bool, optional</span>
-<span class="sd">        Initial mask of stream cells used to snap outlets to, by default None</span>
-<span class="sd">    stream_kwargs : dict, optional</span>
-<span class="sd">        Parameter-treshold pairs to define streams. Multiple threshold will be combined</span>
-<span class="sd">        using a logical_and operation. If a stream if provided, it is combined with the</span>
-<span class="sd">        threhold based map as well.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    stream : xarray.DataArray of bool</span>
-<span class="sd">        stream mask</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">stream</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span> <span class="k">if</span> <span class="n">stream</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">stream</span>
-        <span class="n">stream</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
-            <span class="n">coords</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mask&quot;</span>
-        <span class="p">)</span>  <span class="c1"># all True</span>
-    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">stream_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">stream</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">!=</span> <span class="n">ds</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span><span class="p">,</span> <span class="n">ds</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">value</span><span class="p">),</span> <span class="kc">False</span>
-        <span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">stream</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Stream criteria resulted in invalid mask.&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">stream</span>
-
-
-<div class="viewcode-block" id="basin_map"><a class="viewcode-back" href="../../_generated/hydromt.flw.basin_map.html#hydromt.flw.basin_map">[docs]</a><span class="k">def</span> <span class="nf">basin_map</span><span class="p">(</span>
-    <span class="n">ds</span><span class="p">,</span>
-    <span class="n">flwdir</span><span class="p">,</span>
-    <span class="n">xy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">idxs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">outlets</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">stream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">stream_kwargs</span><span class="p">,</span>
-<span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return a (sub)basin ID DataArray</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ds : xarray.Dataset</span>
-<span class="sd">        dataset containing flow direction data</span>
-<span class="sd">    flwdir : pyflwdir.FlwdirRaster</span>
-<span class="sd">        Flow direction raster object</span>
-<span class="sd">    idxs : 1D array or int, optional</span>
-<span class="sd">        linear indices of sub(basin) outlets, by default is None.</span>
-<span class="sd">    xy : tuple of 1D array of float, optional</span>
-<span class="sd">        x, y coordinates of sub(basin) outlets, by default is None.</span>
-<span class="sd">    outlets : bool, optional</span>
-<span class="sd">        If True and xy and idxs are None, the basin map is derived for basin outlets</span>
-<span class="sd">        only, excluding pits at the edge of the domain of incomplete basins.</span>
-<span class="sd">    ids : 1D array of int32, optional</span>
-<span class="sd">        IDs of (sub)basins, must be larger than zero, by default None</span>
-<span class="sd">    stream: 2D array of bool, optional</span>
-<span class="sd">        Mask of stream cells used to snap outlets to, by default None</span>
-<span class="sd">    stream_kwargs : dict, optional</span>
-<span class="sd">        Parameter-treshold pairs to define streams. Multiple threshold will be combined</span>
-<span class="sd">        using a logical_and operation. If a stream if provided, it is combined with the</span>
-<span class="sd">        threhold based map as well.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    da_basin : xarray.DataArray of int32</span>
-<span class="sd">        basin ID map</span>
-<span class="sd">    xy : tuple of array_like of float</span>
-<span class="sd">        snapped x, y coordinates of sub(basin) outlets</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">flwdir</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;flwdir and ds dimensions do not match&quot;</span><span class="p">)</span>
-    <span class="c1"># get stream map</span>
-    <span class="n">locs</span> <span class="o">=</span> <span class="n">xy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">idxs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-    <span class="k">if</span> <span class="n">locs</span> <span class="ow">and</span> <span class="p">(</span><span class="n">stream</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">stream_kwargs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="c1"># snap provided xy/idxs to streams</span>
-        <span class="n">stream</span> <span class="o">=</span> <span class="n">stream_map</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span> <span class="o">**</span><span class="n">stream_kwargs</span><span class="p">)</span>
-        <span class="n">idxs</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">snap</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">,</span> <span class="n">idxs</span><span class="o">=</span><span class="n">idxs</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">xy</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="n">locs</span> <span class="ow">and</span> <span class="n">outlets</span><span class="p">:</span>
-        <span class="c1"># get idxs from real outlets excluding pits at the domain edge</span>
-        <span class="n">idxs</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">idxs_outlet</span>
-        <span class="k">if</span> <span class="n">idxs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;No outlets found in domain. &quot;</span>
-                <span class="s2">&quot;Provide &#39;xy&#39; or &#39;idxs&#39; outlet locations or set &#39;outlets&#39; to False.&quot;</span>
-            <span class="p">)</span>
-        <span class="n">ids</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">da_basins</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
-        <span class="n">data</span><span class="o">=</span><span class="n">flwdir</span><span class="o">.</span><span class="n">basins</span><span class="p">(</span><span class="n">idxs</span><span class="o">=</span><span class="n">idxs</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
-        <span class="n">dims</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span>
-        <span class="n">coords</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">da_basins</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">idxs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">xy</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">xy</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">da_basins</span><span class="p">,</span> <span class="n">xy</span></div>
-
-
-<div class="viewcode-block" id="basin_shape"><a class="viewcode-back" href="../../_generated/hydromt.flw.basin_shape.html#hydromt.flw.basin_shape">[docs]</a><span class="k">def</span> <span class="nf">basin_shape</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">flwdir</span><span class="p">,</span> <span class="n">basin_name</span><span class="o">=</span><span class="s2">&quot;basins&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return a shape of the basin.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ds : xarray.Dataset</span>
-<span class="sd">        dataset containing flow direction data</span>
-<span class="sd">    flwdir : pyflwdir.FlwdirRaster</span>
-<span class="sd">        Flow direction raster object</span>
-<span class="sd">    basin_name : str, optional</span>
-<span class="sd">        Name of data variable with basin array, by default &quot;basins&quot;. If not found in</span>
-<span class="sd">        ds it is derived on the fly.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    geopandas.GeoDataFrame</span>
-<span class="sd">        GeoDataFrame with basin shapes.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">flwdir</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;flwdir and ds dimensions do not match&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">basin_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">:</span>
-        <span class="n">ds</span><span class="p">[</span><span class="n">basin_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">basin_map</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">flwdir</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">da_basins</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">basin_name</span><span class="p">]</span>
-    <span class="n">nodata</span> <span class="o">=</span> <span class="n">da_basins</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span>
-    <span class="k">if</span> <span class="n">mask</span> <span class="ow">and</span> <span class="s2">&quot;mask&quot;</span> <span class="ow">in</span> <span class="n">da_basins</span><span class="o">.</span><span class="n">coords</span> <span class="ow">and</span> <span class="n">nodata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">da_basins</span> <span class="o">=</span> <span class="n">da_basins</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">da_basins</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nodata</span><span class="p">)</span>
-        <span class="n">da_basins</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="n">nodata</span><span class="p">)</span>
-    <span class="n">gdf</span> <span class="o">=</span> <span class="n">da_basins</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">vectorize</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-    <span class="n">gdf</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">basin_name</span>
-    <span class="k">return</span> <span class="n">gdf</span></div>
-
-
-<div class="viewcode-block" id="clip_basins"><a class="viewcode-back" href="../../_generated/hydromt.flw.clip_basins.html#hydromt.flw.clip_basins">[docs]</a><span class="k">def</span> <span class="nf">clip_basins</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">flwdir</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="n">flwdir_name</span><span class="o">=</span><span class="s2">&quot;flwdir&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">stream_kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Clip a dataset to a subbasin.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ds : xarray.Dataset</span>
-<span class="sd">        dataset containing flow direction data</span>
-<span class="sd">    flwdir : pyflwdir.FlwdirRaster</span>
-<span class="sd">        Flow direction raster object</span>
-<span class="sd">    xy : tuple of array_like of float</span>
-<span class="sd">        x, y coordinates of (sub)basin outlet locations</span>
-<span class="sd">    flwdir_name : str, optional</span>
-<span class="sd">        name of flow direction DataArray, by default &#39;dir&#39;</span>
-<span class="sd">    stream_kwargs : key-word arguments</span>
-<span class="sd">        name of variable in ds and threshold value</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    xarray.Dataset</span>
-<span class="sd">        clipped dataset</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">da_basins</span><span class="p">,</span> <span class="n">xy</span> <span class="o">=</span> <span class="n">basin_map</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">flwdir</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="o">**</span><span class="n">stream_kwargs</span><span class="p">)</span>
-    <span class="n">idxs_pit</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="o">*</span><span class="n">xy</span><span class="p">)</span>
-    <span class="c1"># set pit values in DataArray</span>
-    <span class="n">pit_value</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">_core</span><span class="o">.</span><span class="n">_pv</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pit_value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-        <span class="n">pit_value</span> <span class="o">=</span> <span class="n">pit_value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">dir_arr</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">flwdir_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">dir_arr</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">idxs_pit</span><span class="p">]</span> <span class="o">=</span> <span class="n">pit_value</span>
-    <span class="n">attrs</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">flwdir_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">ds</span><span class="p">[</span><span class="n">flwdir_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">dims</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dir_arr</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="n">attrs</span><span class="p">)</span>
-    <span class="c1"># clip data</span>
-    <span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">da_basins</span>
-    <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">clip_mask</span><span class="p">(</span><span class="n">da_basins</span><span class="p">)</span></div>
+    <span class="n">da_flw</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="mi">247</span><span class="p">)</span>
+    <span class="n">da_flw</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">crs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">da_flw</span></div>
 
 
 <div class="viewcode-block" id="upscale_flwdir"><a class="viewcode-back" href="../../_generated/hydromt.flw.upscale_flwdir.html#hydromt.flw.upscale_flwdir">[docs]</a><span class="k">def</span> <span class="nf">upscale_flwdir</span><span class="p">(</span>
@@ -391,9 +250,10 @@
     <span class="sd">&quot;&quot;&quot;Upscale flow direction network to lower resolution and resample other data</span>
 <span class="sd">    variables in dataset to the same resolution.</span>
 
-<span class="sd">    Note: This method only works for D8 or LDD flow directon data.</span>
+<span class="sd">    Note: This method only works for D8 data.</span>
 
-<span class="sd">    # TODO add refs</span>
+<span class="sd">    # TODO add doi</span>
+<span class="sd">    Based on: Eilander et al. (2021).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -459,6 +319,385 @@
         <span class="n">attrs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;subgrid outlet index&quot;</span><span class="p">,</span> <span class="n">_FillValue</span><span class="o">=</span><span class="n">flwdir</span><span class="o">.</span><span class="n">_mv</span><span class="p">),</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">da_flwdir</span><span class="p">,</span> <span class="n">flwdir_out</span></div>
+
+
+<div class="viewcode-block" id="reproject_hydrography_like"><a class="viewcode-back" href="../../_generated/hydromt.flw.reproject_hydrography_like.html#hydromt.flw.reproject_hydrography_like">[docs]</a><span class="k">def</span> <span class="nf">reproject_hydrography_like</span><span class="p">(</span>
+    <span class="n">ds_hydro</span><span class="p">,</span>
+    <span class="n">da_elv</span><span class="p">,</span>
+    <span class="n">river_upa</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;bilinear&quot;</span><span class="p">,</span>
+    <span class="n">uparea_name</span><span class="o">=</span><span class="s2">&quot;uparea&quot;</span><span class="p">,</span>
+    <span class="n">flwdir_name</span><span class="o">=</span><span class="s2">&quot;flwdir&quot;</span><span class="p">,</span>
+    <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Reproject flow direction and upstream area data to the `da_elv` crs and grid.</span>
+<span class="sd">    Note that the resolution of `da_elv` and `ds_hydro` should be similar or smaller</span>
+<span class="sd">    for good results.</span>
+
+<span class="sd">    The reprojection is based on a synthetic elevation grid defined by the</span>
+<span class="sd">    destination elevation minus the reprojected log10 upstream area [km2] grids.</span>
+<span class="sd">    Additionally, rivers are vectorized and burned into the synthetic elevation grid</span>
+<span class="sd">    for better results.</span>
+
+<span class="sd">    If not all upstream area is inlcuded, the upstream area of rivers entering the</span>
+<span class="sd">    domain will be used as boundary conditions to the reprojected upsteam area raster.</span>
+
+<span class="sd">    NOTE: this method is still experimental and might change in the future!</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds_hydro: xarray.Dataset</span>
+<span class="sd">        Dataset with gridded flow directions named `flwdir_name` and upstream area</span>
+<span class="sd">        named `uparea_name` [km2].</span>
+<span class="sd">    da_elv: xarray.DataArray</span>
+<span class="sd">        DataArray with elevation on destination grid.</span>
+<span class="sd">    river_upa: float, optional</span>
+<span class="sd">        Minimum upstream area threshold for rivers, by default 5 [km2]</span>
+<span class="sd">    method:</span>
+<span class="sd">        Interpolation method for the upstream area grid.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xarray.Dataset</span>
+<span class="sd">        Reprojected flow direction and upstream area grids.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO fix for case without ds_hydro, but with gdf_stream</span>
+    <span class="c1"># check N-&gt;S orientation</span>
+    <span class="k">assert</span> <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="n">ds_hydro</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span>
+    <span class="n">crs</span> <span class="o">=</span> <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span>
+    <span class="n">bbox</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
+    <span class="c1"># pad da_elv to avoid boundary problems</span>
+    <span class="n">buf0</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">transform</span>
+    <span class="n">dst_transform</span> <span class="o">=</span> <span class="n">from_origin</span><span class="p">(</span>
+        <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">buf0</span> <span class="o">*</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">buf0</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">4</span><span class="p">]),</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+    <span class="p">)</span>
+    <span class="n">dst_shape</span> <span class="o">=</span> <span class="n">nrow</span> <span class="o">+</span> <span class="n">buf0</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">+</span> <span class="n">buf0</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="n">xcoords</span><span class="p">,</span> <span class="n">ycoords</span> <span class="o">=</span> <span class="n">gis_utils</span><span class="o">.</span><span class="n">affine_to_coords</span><span class="p">(</span><span class="n">dst_transform</span><span class="p">,</span> <span class="n">dst_shape</span><span class="p">)</span>
+    <span class="n">da_elv</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+        <span class="n">dims</span><span class="o">=</span><span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span>
+        <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">x_dim</span><span class="p">:</span> <span class="n">xcoords</span><span class="p">,</span> <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">y_dim</span><span class="p">:</span> <span class="n">ycoords</span><span class="p">},</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">da_elv</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">buf0</span><span class="p">,</span> <span class="s2">&quot;edge&quot;</span><span class="p">),</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="n">da_elv</span><span class="o">.</span><span class="n">attrs</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">crs</span><span class="p">)</span>
+    <span class="c1"># reproject uparea &amp; elevation with buffer</span>
+    <span class="n">da_upa</span> <span class="o">=</span> <span class="n">ds_hydro</span><span class="p">[</span><span class="n">uparea_name</span><span class="p">]</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">reproject_like</span><span class="p">(</span><span class="n">da_elv</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">)</span>
+    <span class="n">max_upa</span> <span class="o">=</span> <span class="n">da_upa</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">da_upa</span> <span class="o">!=</span> <span class="n">da_upa</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">nodata</span> <span class="o">=</span> <span class="n">da_elv</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span>
+    <span class="c1"># vectorize and reproject river uparea</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">ds_hydro</span><span class="p">[</span><span class="n">uparea_name</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">river_upa</span>
+    <span class="n">flwdir_src</span> <span class="o">=</span> <span class="n">flwdir_from_da</span><span class="p">(</span><span class="n">ds_hydro</span><span class="p">[</span><span class="n">flwdir_name</span><span class="p">],</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+    <span class="n">feats</span> <span class="o">=</span> <span class="n">flwdir_src</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">uparea</span><span class="o">=</span><span class="n">ds_hydro</span><span class="p">[</span><span class="n">uparea_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">gdf_stream</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_features</span><span class="p">(</span><span class="n">feats</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">ds_hydro</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+    <span class="n">gdf_stream</span> <span class="o">=</span> <span class="n">gdf_stream</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;uparea&quot;</span><span class="p">)</span>
+    <span class="c1"># only area with upa otherwise the outflows are not resolved!</span>
+    <span class="c1"># synthetic elevation -&gt; reprojected elevation - log10(reprojected uparea[m2])</span>
+    <span class="n">elvsyn</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">da_elv</span> <span class="o">!=</span> <span class="n">nodata</span><span class="p">,</span> <span class="n">da_upa</span> <span class="o">!=</span> <span class="n">da_upa</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span><span class="p">),</span>
+        <span class="n">da_elv</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">da_upa</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">)),</span>
+        <span class="n">nodata</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">elvsyn</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="n">nodata</span><span class="p">)</span>
+    <span class="n">elvsyn</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">crs</span><span class="p">)</span>
+    <span class="c1"># get flow directions</span>
+    <span class="n">da_flw</span> <span class="o">=</span> <span class="n">d8_from_dem</span><span class="p">(</span><span class="n">elvsyn</span><span class="p">,</span> <span class="n">gdf_stream</span><span class="p">)</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">clip_bbox</span><span class="p">(</span><span class="n">bbox</span><span class="p">)</span>
+    <span class="c1"># calculate upstream area with uparea from rivers at edge</span>
+    <span class="n">flwdir</span> <span class="o">=</span> <span class="n">flwdir_from_da</span><span class="p">(</span><span class="n">da_flw</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;d8&quot;</span><span class="p">)</span>
+    <span class="n">da_flw</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>  <span class="c1"># to set outflow pits after clip</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">area</span> <span class="o">/</span> <span class="mf">1e6</span>  <span class="c1"># area [km2]</span>
+    <span class="c1"># get inflow cells: headwater river cells at edge</span>
+    <span class="n">rivupa</span> <span class="o">=</span> <span class="n">da_flw</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">rasterize</span><span class="p">(</span><span class="n">gdf_stream</span><span class="p">,</span> <span class="n">col_name</span><span class="o">=</span><span class="s2">&quot;uparea&quot;</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">_edge</span> <span class="o">=</span> <span class="n">pyflwdir</span><span class="o">.</span><span class="n">gis_utils</span><span class="o">.</span><span class="n">get_edge</span><span class="p">(</span><span class="n">da_flw</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="mi">247</span><span class="p">)</span>
+    <span class="n">headwater</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span>
+        <span class="n">rivupa</span><span class="o">.</span><span class="n">values</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">upstream_sum</span><span class="p">(</span><span class="n">rivupa</span><span class="o">.</span><span class="n">values</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="p">)</span>
+    <span class="n">inflow_idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">headwater</span><span class="p">,</span> <span class="n">_edge</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">inflow_idxs</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># use nearest mapping to avoid duplicating uparea when reprojecting to higher res.</span>
+        <span class="n">gdf0</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+            <span class="n">index</span><span class="o">=</span><span class="n">inflow_idxs</span><span class="p">,</span>
+            <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="o">*</span><span class="n">flwdir</span><span class="o">.</span><span class="n">xy</span><span class="p">(</span><span class="n">inflow_idxs</span><span class="p">)),</span>
+            <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">gdf0</span><span class="p">[</span><span class="s2">&quot;idx2&quot;</span><span class="p">],</span> <span class="n">gdf0</span><span class="p">[</span><span class="s2">&quot;dst2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gis_utils</span><span class="o">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">gdf0</span><span class="p">,</span> <span class="n">gdf_stream</span><span class="p">)</span>
+        <span class="n">gdf0</span> <span class="o">=</span> <span class="n">gdf0</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;dst2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s2">&quot;idx2&quot;</span><span class="p">)</span>
+        <span class="n">gdf0</span><span class="p">[</span><span class="s2">&quot;uparea&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf_stream</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">gdf0</span><span class="p">[</span><span class="s2">&quot;idx2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s2">&quot;uparea&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        <span class="c1"># set stream uparea to selected inflow cells and calculate total uparea</span>
+        <span class="n">area</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">gdf0</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf0</span><span class="p">[</span><span class="s2">&quot;uparea&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Calculating upstream area with </span><span class="si">{</span><span class="n">gdf0</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2"> input cell at the domain edge.&quot;</span>
+        <span class="p">)</span>
+    <span class="n">da_upa</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+        <span class="n">dims</span><span class="o">=</span><span class="n">da_flw</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span>
+        <span class="n">coords</span><span class="o">=</span><span class="n">da_flw</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">flwdir</span><span class="o">.</span><span class="n">accuflux</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;uparea&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">da_upa</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="o">-</span><span class="mi">9999</span><span class="p">)</span>
+    <span class="n">da_upa</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">crs</span><span class="p">)</span>
+    <span class="n">max_upa1</span> <span class="o">=</span> <span class="n">da_upa</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Reprojected maximum upstream area: </span><span class="si">{</span><span class="n">max_upa1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> km2 (</span><span class="si">{</span><span class="n">max_upa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> km2)&quot;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">da_flw</span><span class="p">,</span> <span class="n">da_upa</span><span class="p">])</span></div>
+
+
+<span class="c1">### hydrography maps ###</span>
+
+
+<span class="k">def</span> <span class="nf">gaugemap</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">idxs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flwdir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method has been deprecated. See :py:meth:`~hydromt.flw.gauge_map`&quot;&quot;&quot;</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+        <span class="s1">&#39;The &quot;gaugemap&quot; method has been deprecated, use  &quot;gauge_map&quot; instead.&#39;</span><span class="p">,</span>
+        <span class="ne">DeprecationWarning</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">gauge_map</span><span class="p">(</span>
+        <span class="n">ds</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+        <span class="n">idxs</span><span class="o">=</span><span class="n">idxs</span><span class="p">,</span>
+        <span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">,</span>
+        <span class="n">ids</span><span class="o">=</span><span class="n">ids</span><span class="p">,</span>
+        <span class="n">stream</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+        <span class="n">flwdir</span><span class="o">=</span><span class="n">flwdir</span><span class="p">,</span>
+        <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="gauge_map"><a class="viewcode-back" href="../../_generated/hydromt.flw.gauge_map.html#hydromt.flw.gauge_map">[docs]</a><span class="k">def</span> <span class="nf">gauge_map</span><span class="p">(</span>
+    <span class="n">ds</span><span class="p">,</span> <span class="n">idxs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flwdir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return map with unique gauge IDs. Initial gauge locations are snapped to the</span>
+<span class="sd">    nearest downstream river defined by mask if both `flwdir` and `mask` are provided.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds : xarray.Dataset</span>
+<span class="sd">        dataset containing flow direction data</span>
+<span class="sd">    idxs : 1D array or int, optional</span>
+<span class="sd">        linear indices of gauges, by default is None.</span>
+<span class="sd">    xy : tuple of 1D array of float, optional</span>
+<span class="sd">        x, y coordinates of gauges, by default is None.</span>
+<span class="sd">    outlets : bool, optional</span>
+<span class="sd">        If True and xy and idxs are None, the basin map is derived for basin outlets</span>
+<span class="sd">        only, excluding pits at the edge of the domain of incomplete basins.</span>
+<span class="sd">    ids : 1D array of int32, optional</span>
+<span class="sd">        IDs of gauges, values must be larger than zero, by default None.</span>
+<span class="sd">    flwdir : pyflwdir.FlwdirRaster</span>
+<span class="sd">        Flow direction raster object</span>
+<span class="sd">    stream: 2D array of bool, optional</span>
+<span class="sd">        Mask of stream cells used to snap gauges to, by default None</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xarray.DataArray</span>
+<span class="sd">        Map with unique gauge IDs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Snap if mask and flwdir are not None</span>
+    <span class="k">if</span> <span class="n">xy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">idxs</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">xy_to_idx</span><span class="p">(</span><span class="n">xs</span><span class="o">=</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ys</span><span class="o">=</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">idxs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either idxs or xy required&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ids</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">idxs</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="c1"># Snapping</span>
+    <span class="c1"># TODO: should we do the snapping similar to basin_map ??</span>
+    <span class="k">if</span> <span class="n">stream</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">flwdir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">idxs</span><span class="p">,</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">snap</span><span class="p">(</span><span class="n">idxs</span><span class="o">=</span><span class="n">idxs</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dist</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">):</span>
+            <span class="n">far</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">dist</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">])</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Snapping distance of </span><span class="si">{</span><span class="n">far</span><span class="si">}</span><span class="s2"> gauge(s) is &gt; 10km&quot;</span><span class="p">)</span>
+    <span class="n">gauges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">gauges</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span> <span class="o">=</span> <span class="n">ids</span>
+    <span class="n">da_gauges</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+        <span class="n">dims</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span>
+        <span class="n">coords</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">gauges</span><span class="p">,</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">_FillValue</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">da_gauges</span><span class="p">,</span> <span class="n">idxs</span><span class="p">,</span> <span class="n">ids</span></div>
+
+
+<div class="viewcode-block" id="outlet_map"><a class="viewcode-back" href="../../_generated/hydromt.flw.outlet_map.html#hydromt.flw.outlet_map">[docs]</a><span class="k">def</span> <span class="nf">outlet_map</span><span class="p">(</span><span class="n">da_flw</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;infer&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a mask of basin outlets/pits from a flow direction raster.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    da_flw: xr.DataArray</span>
+<span class="sd">        Flow direction data array</span>
+<span class="sd">    ftype : {&#39;d8&#39;, &#39;ldd&#39;, &#39;nextxy&#39;, &#39;nextidx&#39;, &#39;infer&#39;}, optional</span>
+<span class="sd">        name of flow direction type, infer from data if &#39;infer&#39;, by default is &#39;infer&#39;</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    da_basin : xarray.DataArray of int32</span>
+<span class="sd">        basin ID map</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ftype</span> <span class="o">==</span> <span class="s2">&quot;infer&quot;</span><span class="p">:</span>
+        <span class="n">ftype</span> <span class="o">=</span> <span class="n">pyflwdir</span><span class="o">.</span><span class="n">pyflwdir</span><span class="o">.</span><span class="n">_infer_ftype</span><span class="p">(</span><span class="n">da_flw</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">ftype</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pyflwdir</span><span class="o">.</span><span class="n">pyflwdir</span><span class="o">.</span><span class="n">FTYPES</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown pyflwdir ftype: </span><span class="si">{</span><span class="n">ftype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">pit_values</span> <span class="o">=</span> <span class="n">pyflwdir</span><span class="o">.</span><span class="n">pyflwdir</span><span class="o">.</span><span class="n">FTYPES</span><span class="p">[</span><span class="n">ftype</span><span class="p">]</span><span class="o">.</span><span class="n">_pv</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">da_flw</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">pit_values</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="n">da_flw</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">da_flw</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="stream_map"><a class="viewcode-back" href="../../_generated/hydromt.flw.stream_map.html#hydromt.flw.stream_map">[docs]</a><span class="k">def</span> <span class="nf">stream_map</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">stream_kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a stream mask DataArray</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds : xarray.Dataset</span>
+<span class="sd">        dataset containing flow direction data</span>
+<span class="sd">    stream: 2D array of bool, optional</span>
+<span class="sd">        Initial mask of stream cells. If a stream if provided, it is combined with the</span>
+<span class="sd">        threshold based map using a logical AND operation..</span>
+<span class="sd">    stream_kwargs : dict, optional</span>
+<span class="sd">        Parameter-treshold pairs to define streams. Multiple threshold will be combined</span>
+<span class="sd">        using a logical AND operation.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    stream : xarray.DataArray of bool</span>
+<span class="sd">        stream mask</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">stream</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span> <span class="k">if</span> <span class="n">stream</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">stream</span>
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+            <span class="n">coords</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mask&quot;</span>
+        <span class="p">)</span>  <span class="c1"># all True</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">stream_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">!=</span> <span class="n">ds</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span><span class="p">,</span> <span class="n">ds</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">value</span><span class="p">),</span> <span class="kc">False</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">stream</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Stream criteria resulted in invalid mask.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">stream</span></div>
+
+
+<div class="viewcode-block" id="basin_map"><a class="viewcode-back" href="../../_generated/hydromt.flw.basin_map.html#hydromt.flw.basin_map">[docs]</a><span class="k">def</span> <span class="nf">basin_map</span><span class="p">(</span>
+    <span class="n">ds</span><span class="p">,</span>
+    <span class="n">flwdir</span><span class="p">,</span>
+    <span class="n">xy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">idxs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">outlets</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">stream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">stream_kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a (sub)basin map, with unique non-zero IDs for each subbasin.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds : xarray.Dataset</span>
+<span class="sd">        Dataset used for output grid definition and containing `stream_kwargs` variables.</span>
+<span class="sd">    flwdir : pyflwdir.FlwdirRaster</span>
+<span class="sd">        Flow direction raster object</span>
+<span class="sd">    idxs : 1D array or int, optional</span>
+<span class="sd">        linear indices of sub(basin) outlets, by default is None.</span>
+<span class="sd">    xy : tuple of 1D array of float, optional</span>
+<span class="sd">        x, y coordinates of sub(basin) outlets, by default is None.</span>
+<span class="sd">    outlets : bool, optional</span>
+<span class="sd">        If True and xy and idxs are None, the basin map is derived for basin outlets</span>
+<span class="sd">        only, excluding pits at the edge of the domain of incomplete basins.</span>
+<span class="sd">    ids : 1D array of int32, optional</span>
+<span class="sd">        IDs of (sub)basins, must be larger than zero, by default None</span>
+<span class="sd">    stream: 2D array of bool, optional</span>
+<span class="sd">        Mask of stream cells used to snap outlets to, by default None</span>
+<span class="sd">    stream_kwargs : dict, optional</span>
+<span class="sd">        Parameter-treshold pairs to define streams. Multiple threshold will be combined</span>
+<span class="sd">        using a logical_and operation. If a stream if provided, it is combined with the</span>
+<span class="sd">        threhold based map as well.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    da_basin : xarray.DataArray of int32</span>
+<span class="sd">        basin ID map</span>
+<span class="sd">    xy : tuple of array_like of float</span>
+<span class="sd">        snapped x, y coordinates of sub(basin) outlets</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">flwdir</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;flwdir and ds dimensions do not match&quot;</span><span class="p">)</span>
+    <span class="c1"># get stream map</span>
+    <span class="n">locs</span> <span class="o">=</span> <span class="n">xy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">idxs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">locs</span> <span class="ow">and</span> <span class="p">(</span><span class="n">stream</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">stream_kwargs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="c1"># snap provided xy/idxs to streams</span>
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">stream_map</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span> <span class="o">**</span><span class="n">stream_kwargs</span><span class="p">)</span>
+        <span class="n">idxs</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">snap</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">,</span> <span class="n">idxs</span><span class="o">=</span><span class="n">idxs</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">locs</span> <span class="ow">and</span> <span class="n">outlets</span><span class="p">:</span>
+        <span class="c1"># get idxs from real outlets excluding pits at the domain edge</span>
+        <span class="n">idxs</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">idxs_outlet</span>
+        <span class="k">if</span> <span class="n">idxs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;No outlets found in domain. &quot;</span>
+                <span class="s2">&quot;Provide &#39;xy&#39; or &#39;idxs&#39; outlet locations or set &#39;outlets&#39; to False.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">ids</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">da_basins</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">flwdir</span><span class="o">.</span><span class="n">basins</span><span class="p">(</span><span class="n">idxs</span><span class="o">=</span><span class="n">idxs</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+        <span class="n">dims</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span>
+        <span class="n">coords</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">da_basins</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">idxs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">xy</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">da_basins</span><span class="p">,</span> <span class="n">xy</span></div>
+
+
+<span class="k">def</span> <span class="nf">basin_shape</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">flwdir</span><span class="p">,</span> <span class="n">basin_name</span><span class="o">=</span><span class="s2">&quot;basins&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method  will be deprecated. Use :py:meth:`~hydromt.flw.basin_map` in combination</span>
+<span class="sd">    with :py:meth:`~hydromt.raster.RasterDataArray.vectorize` instead.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">flwdir</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;flwdir and ds dimensions do not match&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">basin_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">:</span>
+        <span class="n">ds</span><span class="p">[</span><span class="n">basin_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">basin_map</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">flwdir</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">da_basins</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">basin_name</span><span class="p">]</span>
+    <span class="n">nodata</span> <span class="o">=</span> <span class="n">da_basins</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span>
+    <span class="k">if</span> <span class="n">mask</span> <span class="ow">and</span> <span class="s2">&quot;mask&quot;</span> <span class="ow">in</span> <span class="n">da_basins</span><span class="o">.</span><span class="n">coords</span> <span class="ow">and</span> <span class="n">nodata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">da_basins</span> <span class="o">=</span> <span class="n">da_basins</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">da_basins</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nodata</span><span class="p">)</span>
+        <span class="n">da_basins</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="n">nodata</span><span class="p">)</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">da_basins</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">vectorize</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+    <span class="n">gdf</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">basin_name</span>
+    <span class="k">return</span> <span class="n">gdf</span>
+
+
+<div class="viewcode-block" id="clip_basins"><a class="viewcode-back" href="../../_generated/hydromt.flw.clip_basins.html#hydromt.flw.clip_basins">[docs]</a><span class="k">def</span> <span class="nf">clip_basins</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">flwdir</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="n">flwdir_name</span><span class="o">=</span><span class="s2">&quot;flwdir&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">stream_kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Clip a dataset to a subbasin.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds : xarray.Dataset</span>
+<span class="sd">        dataset containing flow direction data</span>
+<span class="sd">    flwdir : pyflwdir.FlwdirRaster</span>
+<span class="sd">        Flow direction raster object</span>
+<span class="sd">    xy : tuple of array_like of float</span>
+<span class="sd">        x, y coordinates of (sub)basin outlet locations</span>
+<span class="sd">    flwdir_name : str, optional</span>
+<span class="sd">        name of flow direction DataArray, by default &#39;dir&#39;</span>
+<span class="sd">    stream_kwargs : key-word arguments</span>
+<span class="sd">        name of variable in ds and threshold value</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xarray.Dataset</span>
+<span class="sd">        clipped dataset</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">da_basins</span><span class="p">,</span> <span class="n">xy</span> <span class="o">=</span> <span class="n">basin_map</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">flwdir</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="o">**</span><span class="n">stream_kwargs</span><span class="p">)</span>
+    <span class="n">idxs_pit</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="o">*</span><span class="n">xy</span><span class="p">)</span>
+    <span class="c1"># set pit values in DataArray</span>
+    <span class="n">pit_value</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">_core</span><span class="o">.</span><span class="n">_pv</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pit_value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">pit_value</span> <span class="o">=</span> <span class="n">pit_value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dir_arr</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">flwdir_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">dir_arr</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">idxs_pit</span><span class="p">]</span> <span class="o">=</span> <span class="n">pit_value</span>
+    <span class="n">attrs</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">flwdir_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">ds</span><span class="p">[</span><span class="n">flwdir_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">dims</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dir_arr</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="n">attrs</span><span class="p">)</span>
+    <span class="c1"># clip data</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">da_basins</span>
+    <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">clip_mask</span><span class="p">(</span><span class="n">da_basins</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

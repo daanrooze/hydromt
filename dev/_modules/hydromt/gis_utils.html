@@ -108,6 +108,11 @@
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">box</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
 <span class="kn">from</span> <span class="nn">pyflwdir</span> <span class="kn">import</span> <span class="n">core_conversion</span><span class="p">,</span> <span class="n">core_d8</span><span class="p">,</span> <span class="n">core_ldd</span>
+<span class="kn">from</span> <span class="nn">pyflwdir</span> <span class="kn">import</span> <span class="n">gis_utils</span> <span class="k">as</span> <span class="n">gis</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;spread2d&quot;</span><span class="p">]</span>
 
 <span class="n">_R</span> <span class="o">=</span> <span class="mf">6371e3</span>  <span class="c1"># Radius of earth in m. Use 3956e3 for miles</span>
 <span class="n">XATTRS</span> <span class="o">=</span> <span class="p">{</span>
@@ -180,7 +185,7 @@
 <span class="p">}</span>
 <span class="n">GDAL_EXT_CODE_MAP</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">GDAL_DRIVER_CODE_MAP</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
-<span class="c1">##</span>
+<span class="c1">## GEOM functions</span>
 
 
 <div class="viewcode-block" id="filter_gdf"><a class="viewcode-back" href="../../_generated/hydromt.gis_utils.filter_gdf.html#hydromt.gis_utils.filter_gdf">[docs]</a><span class="k">def</span> <span class="nf">filter_gdf</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">geom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">predicate</span><span class="o">=</span><span class="s2">&quot;intersects&quot;</span><span class="p">):</span>
@@ -266,8 +271,10 @@
     <span class="k">return</span> <span class="n">x_dim</span><span class="p">,</span> <span class="n">y_dim</span><span class="p">,</span> <span class="n">x_attrs</span><span class="p">,</span> <span class="n">y_attrs</span></div>
 
 
-<div class="viewcode-block" id="meridian_offset"><a class="viewcode-back" href="../../_generated/hydromt.gis_utils.meridian_offset.html#hydromt.gis_utils.meridian_offset">[docs]</a><span class="k">def</span> <span class="nf">meridian_offset</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">x_name</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="meridian_offset"><a class="viewcode-back" href="../../_generated/hydromt.gis_utils.meridian_offset.html#hydromt.gis_utils.meridian_offset">[docs]</a><span class="k">def</span> <span class="nf">meridian_offset</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">x_name</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;re-arange data along x dim&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">is_projected</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The method is only applicable to geographic CRS&quot;</span><span class="p">)</span>
     <span class="n">lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
     <span class="n">w</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">lons</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">lons</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">bbox</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">w</span> <span class="ow">and</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">180</span><span class="p">:</span>  <span class="c1"># 180W - 180E &gt; 360W - 0W</span>
@@ -278,8 +285,9 @@
         <span class="n">lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lons</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">,</span> <span class="n">lons</span> <span class="o">-</span> <span class="mi">360</span><span class="p">,</span> <span class="n">lons</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">ds</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># make sure not to overwrite original ds</span>
     <span class="n">ds</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">lons</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ds</span></div>
+    <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">sortby</span><span class="p">(</span><span class="n">x_name</span><span class="p">)</span></div>
 
 
 <span class="c1"># TRANSFORM</span>
@@ -352,6 +360,72 @@
     <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">xres</span><span class="p">,</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">yres</span></div>
+
+
+<span class="c1">## SPREAD</span>
+
+
+<div class="viewcode-block" id="spread2d"><a class="viewcode-back" href="../../_generated/hydromt.gis_utils.spread2d.html#hydromt.gis_utils.spread2d">[docs]</a><span class="k">def</span> <span class="nf">spread2d</span><span class="p">(</span>
+    <span class="n">da_obs</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
+    <span class="n">nodata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">da_mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">da_friction</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Returns values of `da_obs` spreaded to cells with `nodata` value within `da_mask`,</span>
+<span class="sd">    powered by :py:meth:`pyflwdir.gis_utils.spread2d`</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    da_obs : xarray.DataArray</span>
+<span class="sd">        Input raster with observation values and background/nodata values which are</span>
+<span class="sd">        filled by the spreading algorithm.</span>
+<span class="sd">    nodata : float, optional</span>
+<span class="sd">        Nodata or background value. Must be finite numeric value. If not given the</span>
+<span class="sd">        raster nodata value is used.</span>
+<span class="sd">    da_mask :  xarray.DataArray, optional</span>
+<span class="sd">        Mask of cells to fill with the spreading algorithm, by default None</span>
+<span class="sd">    da_friction :  xarray.DataArray, optional</span>
+<span class="sd">        Friction values used by the spreading algorithm to calcuate the friction</span>
+<span class="sd">        distance, by default None</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ds_out: xarray.Dataset</span>
+<span class="sd">        Dataset with spreaded source values, linear index of the source cell &quot;source_idx&quot;</span>
+<span class="sd">        and friction distance to the source cell &quot;source_dst&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nodata</span> <span class="o">=</span> <span class="n">da_obs</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span> <span class="k">if</span> <span class="n">nodata</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">nodata</span>
+    <span class="k">if</span> <span class="n">nodata</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">nodata</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&quot;nodata&quot; must be a finite value, not </span><span class="si">{</span><span class="n">nodata</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">msk</span><span class="p">,</span> <span class="n">frc</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">da_mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">da_obs</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">identical_grid</span><span class="p">(</span><span class="n">da_mask</span><span class="p">)</span>
+        <span class="n">msk</span> <span class="o">=</span> <span class="n">da_mask</span><span class="o">.</span><span class="n">values</span>
+    <span class="k">if</span> <span class="n">da_friction</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">da_obs</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">identical_grid</span><span class="p">(</span><span class="n">da_friction</span><span class="p">)</span>
+        <span class="n">frc</span> <span class="o">=</span> <span class="n">da_friction</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">out</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">dst</span> <span class="o">=</span> <span class="n">gis</span><span class="o">.</span><span class="n">spread2d</span><span class="p">(</span>
+        <span class="n">obs</span><span class="o">=</span><span class="n">da_obs</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="n">msk</span><span class="o">=</span><span class="n">msk</span><span class="p">,</span>
+        <span class="n">frc</span><span class="o">=</span><span class="n">frc</span><span class="p">,</span>
+        <span class="n">nodata</span><span class="o">=</span><span class="n">da_obs</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span> <span class="k">if</span> <span class="n">nodata</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">nodata</span><span class="p">,</span>
+        <span class="n">latlon</span><span class="o">=</span><span class="n">da_obs</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">is_geographic</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">da_obs</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># combine outputs and return as dataset</span>
+    <span class="n">dims</span> <span class="o">=</span> <span class="n">da_obs</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">da_obs</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">da_obs</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="n">da_obs</span><span class="o">.</span><span class="n">name</span> <span class="k">else</span> <span class="s2">&quot;source_value&quot;</span>
+    <span class="n">da_out</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">da_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">da_obs</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>  <span class="c1"># keep attrs incl nodata and unit</span>
+    <span class="n">da_src</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">src</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;source_idx&quot;</span><span class="p">)</span>
+    <span class="n">da_src</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">da_dst</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dst</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;source_dst&quot;</span><span class="p">)</span>
+    <span class="n">da_dst</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">da_dst</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>
+    <span class="n">ds_out</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">da_out</span><span class="p">,</span> <span class="n">da_src</span><span class="p">,</span> <span class="n">da_dst</span><span class="p">])</span>
+    <span class="n">ds_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">da_obs</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ds_out</span></div>
 
 
 <span class="c1">## PCRASTER</span>
