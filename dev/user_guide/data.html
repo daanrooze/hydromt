@@ -266,7 +266,7 @@ Please contact us through the issue list if you would like to add other drivers.
 <td><p>GeoTIFF, ArcASCII, VRT, etc. (see <a class="reference external" href="http://www.gdal.org/formats_list.html">GDAL formats</a>)</p></td>
 <td><p><a class="reference internal" href="../_generated/hydromt.io.open_mfraster.html#hydromt.io.open_mfraster" title="hydromt.io.open_mfraster"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_mfraster()</span></code></a></p></td>
 <td><p>Based on <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_rasterio.html#xarray.open_rasterio" title="(in xarray v0.19.1.dev6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_rasterio()</span></code></a>
-and <a class="reference external" href="https://rasterio.readthedocs.io/en/latest/api/rasterio.html#rasterio.open" title="(in rasterio v1.3dev)"><code class="xref py py-func docutils literal notranslate"><span class="pre">rasterio.open()</span></code></a></p></td>
+and <a class="reference external" href="https://rasterio.readthedocs.io/en/latest/api/rasterio.html#rasterio.open" title="(in rasterio v1.3a2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">rasterio.open()</span></code></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">raster_tindex</span></code></p></td>
 <td><p>raster tile index file (see <a class="reference external" href="https://gdal.org/programs/gdaltindex.html">gdaltindex</a>)</p></td>
@@ -613,7 +613,7 @@ For more options see the <a class="reference internal" href="../_generated/hydro
 </div>
 <p><em>Tabulated time series text file</em></p>
 <p>This data is read using the <a class="reference internal" href="../_generated/hydromt.io.open_timeseries_from_table.html#hydromt.io.open_timeseries_from_table" title="hydromt.io.open_timeseries_from_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_timeseries_from_table()</span></code></a> method. To
-read the time stamps the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html#pandas.to_datetime" title="(in pandas v1.3.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code></a> method is used.</p>
+read the time stamps the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html#pandas.to_datetime" title="(in pandas v1.3.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code></a> method is used.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">time, &lt;ID1&gt;, &lt;ID2&gt;</span>
 <span class="go">&lt;time1&gt;, &lt;value&gt;, &lt;value&gt;</span>
 <span class="go">&lt;time2&gt;, &lt;value&gt;, &lt;value&gt;</span>
@@ -759,6 +759,20 @@ for demonstration purposes.</p>
 <td></td>
 <td><p>v.2020_20u1</p></td>
 <td><p><a class="reference external" href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018?tab=metadata">Specific</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.space.dtu.dk/english/research/scientific_data_and_models/global_mean_dynamic_topography">dtu10mdt</a></p></td>
+<td><p>topography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1029/2008JC005179">Andersen and Knudsen (2009)</a></p></td>
+<td><p>2010</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.space.dtu.dk/english/research/scientific_data_and_models/global_mean_dynamic_topography">dtu10mdt_egm96</a></p></td>
+<td><p>topography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1029/2008JC005179">Andersen and Knudsen (2009)</a></p></td>
+<td><p>2010</p></td>
+<td></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">eobs_v22.0e</a></p></td>
 <td><p>meteo</p></td>
@@ -1012,434 +1026,441 @@ for demonstration purposes.</p>
 <td><p>2017</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro_v1.0</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.aviso.altimetry.fr/en/data/products/auxiliary-products/mdt.html">mdt_cnes_cls18</a></p></td>
+<td><p>topography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.5194/os-17-789-2021">Mulet et al (2021)</a></p></td>
+<td><p>18</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro_v1.0</a></p></td>
 <td><p>topography</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1029/2019WR024873">Yamazaki et al. (2019)</a></p></td>
 <td><p>1.0</p></td>
 <td><p>CC-BY-NC 4.0 or ODbL 1.0</p></td>
 </tr>
-<tr class="row-odd"><td><p>merit_hydro_index_v1.0</p></td>
+<tr class="row-even"><td><p>merit_hydro_index_v1.0</p></td>
 <td><p>topography</p></td>
 <td><p>GeoDataFrame</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5194/hess-2020-582">Eilander et al. (in review)</a></p></td>
 <td></td>
 <td><p>CC-BY-NC 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro_patch_v1.0</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro_patch_v1.0</a></p></td>
 <td><p>topography</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1029/2019WR024873">Yamazaki et al. (2019)</a></p></td>
 <td><p>1.0 Deltares patch</p></td>
 <td><p>CC-BY-NC 4.0 or ODbL 1.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://zenodo.org/record/5166932#.YVbxJ5pByUk">merit_hydro_ihu_30sec_v1.0</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://zenodo.org/record/5166932#.YVbxJ5pByUk">merit_hydro_ihu_30sec_v1.0</a></p></td>
 <td><p>topography</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.5166932">Eilander et al. (2020)</a></p></td>
 <td><p>1.0</p></td>
 <td><p>ODC-By 1.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://lpdaac.usgs.gov/products/mcd15a3hv006/">modis_mcd15a3h_v006</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://lpdaac.usgs.gov/products/mcd15a3hv006/">modis_mcd15a3h_v006</a></p></td>
 <td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5067/MODIS/MCD15A3H.006">Myneni et al (2015)</a></p></td>
 <td><p>MCD15A3H V006</p></td>
 <td><p><a class="reference external" href="https://lpdaac.usgs.gov/data/data-citation-and-policies/">Specific</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://osmdata.openstreetmap.de/data/coastlines.html">osm_coastlines_v20200109</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://osmdata.openstreetmap.de/data/coastlines.html">osm_coastlines_v20200109</a></p></td>
 <td><p>geography</p></td>
 <td><p>GeoDataFrame</p></td>
 <td></td>
 <td><p>1.0</p></td>
 <td><p>ODbL</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://osmdata.openstreetmap.de/data/coastlines.html">osm_landareas_v20200109</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://osmdata.openstreetmap.de/data/coastlines.html">osm_landareas_v20200109</a></p></td>
 <td><p>geography</p></td>
 <td><p>GeoDataFrame</p></td>
 <td></td>
 <td><p>1.0</p></td>
 <td><p>ODbL</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/insitu-glaciers-extent?tab=overview">rgi_v0.6</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/insitu-glaciers-extent?tab=overview">rgi_v0.6</a></p></td>
 <td><p>surface water</p></td>
 <td><p>GeoDataFrame</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.3189/2014JoG13J176">Pfeffer et al. (2014)</a></p></td>
 <td><p>6.0</p></td>
 <td><p>CC BY 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://zenodo.org/record/3552776#.YVbOrppByUk">rivers_lin2019_v1</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://zenodo.org/record/3552776#.YVbOrppByUk">rivers_lin2019_v1</a></p></td>
 <td><p>hydrography</p></td>
 <td><p>GeoDataFrame</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3552776">Lin et al. (2019)</a></p></td>
 <td><p>1</p></td>
 <td><p>CC-BY-NC 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://webmap.ornl.gov/ogc/dataset.jsp?ds_id=10023">simard_v2011</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://webmap.ornl.gov/ogc/dataset.jsp?ds_id=10023">simard_v2011</a></p></td>
 <td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1029/2011JG001708">Simard et al (2011)</a></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.isric.org/explore/soilgrids/faq-soilgrids-2017">soilgrids_v1.0</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.isric.org/explore/soilgrids/faq-soilgrids-2017">soilgrids_v1.0</a></p></td>
 <td><p>soil</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1371/journal.pone.0169748">Hengl et al. (2017)</a></p></td>
 <td><p>2017</p></td>
 <td><p>ODbL</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.isric.org/explore/soilgrids/faq-soilgrids">soilgrids_v2.0</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.isric.org/explore/soilgrids/faq-soilgrids">soilgrids_v2.0</a></p></td>
 <td><p>soil</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/https://doi.org/10.5194/soil-2020-65">de Sousa et al. (2020)</a></p></td>
 <td><p>2020</p></td>
 <td><p>CC BY 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2015_v2.0.2</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2015_v2.0.2</a></p></td>
 <td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3939038">Buchhorn et al (2020)</a></p></td>
 <td><p>v2.0.2</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2016_v3.0.1</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2016_v3.0.1</a></p></td>
 <td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3518026">Buchhorn et al (2020)</a></p></td>
 <td><p>v3.0.1</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2017_v3.0.1</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2017_v3.0.1</a></p></td>
 <td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3518036">Buchhorn et al (2020)</a></p></td>
 <td><p>v3.0.1</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2018_v3.0.1</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2018_v3.0.1</a></p></td>
 <td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3518038">Buchhorn et al (2020)</a></p></td>
 <td><p>v3.0.1</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2019_v3.0.1</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito_2019_v3.0.1</a></p></td>
 <td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3939050">Buchhorn et al (2020)</a></p></td>
 <td><p>v3.0.1</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://datacatalog.worldbank.org/dataset/world-bank-official-boundaries">wb_countries_v20200319</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://datacatalog.worldbank.org/dataset/world-bank-official-boundaries">wb_countries_v20200319</a></p></td>
 <td><p>socio-economic</p></td>
 <td><p>GeoDataFrame</p></td>
 <td></td>
 <td></td>
 <td><p>CC-BY 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.worldclim.org/data/worldclim21.html">worldclim_v2.0</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.worldclim.org/data/worldclim21.html">worldclim_v2.0</a></p></td>
 <td><p>meteo</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1002/joc.5086">Fick and Hijmans (2017)</a></p></td>
 <td><p>2</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://un-spider.org/links-and-resources/data-sources/world-settlement-footprint-2015-wsf-dlr-eoc">wsf_bld_2015_v1</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://un-spider.org/links-and-resources/data-sources/world-settlement-footprint-2015-wsf-dlr-eoc">wsf_bld_2015_v1</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1038/s41597-020-00580-5">Marconcini at al (2020)</a></p></td>
 <td></td>
 <td><p>CC0 1.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="http://chelsa-climate.org/downloads/">chelsa</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="http://chelsa-climate.org/downloads/">chelsa</a></p></td>
 <td><p>meteo</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1038/sdata.2017.122">Karger et al. (2017)</a></p></td>
 <td><p>1.2</p></td>
 <td><p>CC BY 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.chc.ucsb.edu/data/chirps">chirps</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.chc.ucsb.edu/data/chirps">chirps</a></p></td>
 <td><p>meteo</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1038/sdata.2015.66">Funk et al (2015)</a></p></td>
 <td><p>v2.0</p></td>
 <td><p>CC</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.chc.ucsb.edu/data/chirps">chirps_global</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.chc.ucsb.edu/data/chirps">chirps_global</a></p></td>
 <td><p>meteo</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.3133/ds832">Funk et al (2014)</a></p></td>
 <td><p>v2.0</p></td>
 <td><p>CC</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018">corine</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018">corine</a></p></td>
 <td><p>landuse &amp; landcover</p></td>
 <td><p>RasterDataset</p></td>
 <td></td>
 <td><p>v.2020_20u1</p></td>
 <td><p><a class="reference external" href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018?tab=metadata">Specific</a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">eobs</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">eobs</a></p></td>
 <td><p>meteo</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1029/2017JD028200">Cornes et al (2018)</a></p></td>
 <td><p>22.0e</p></td>
 <td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">Specific</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">eobs_orography</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">eobs_orography</a></p></td>
 <td><p>meteo</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1029/2017JD028200">Cornes et al (2018)</a></p></td>
 <td><p>22.0e</p></td>
 <td><p><a class="reference external" href="https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles">Specific</a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://doi.org/10.24381/cds.bd0915c6">era5</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://doi.org/10.24381/cds.bd0915c6">era5</a></p></td>
 <td><p>meteo</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1002/qj.3803">Hersbach et al. (2019)</a></p></td>
 <td><p>ERA5 daily data on pressure levels</p></td>
 <td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products">Specific</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://gadm.org/download_world.html">gadm</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://gadm.org/download_world.html">gadm</a></p></td>
 <td><p>geography</p></td>
 <td><p>GeoDataFrame</p></td>
 <td></td>
 <td><p>3.6</p></td>
 <td><p><a class="reference external" href="https://gadm.org/license.html">Specific</a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://doi.org/10.6084/m9.figshare.7756202.v1">gcn250</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://doi.org/10.6084/m9.figshare.7756202.v1">gcn250</a></p></td>
 <td><p>soil</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1038/s41597-019-0155-x">Jaafar et al. (2019)</a></p></td>
 <td><p>v1</p></td>
 <td><p>CC BY 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p>gdp_world</p></td>
+<tr class="row-even"><td><p>gdp_world</p></td>
 <td><p>socio economic</p></td>
 <td><p>GeoDataFrame</p></td>
 <td></td>
 <td><p>1.0</p></td>
 <td><p>CC BY-4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.bodc.ac.uk/data/open_download/gebco/gebco_2020/geotiff/">gebco</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.bodc.ac.uk/data/open_download/gebco/gebco_2020/geotiff/">gebco</a></p></td>
 <td><p>topography</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5285/a29c5465-b138-234d-e053-6c86abc040b9">Weatherall et al (2020)</a></p></td>
 <td><p>2020</p></td>
 <td><p><a class="reference external" href="https://www.gebco.net/data_and_products/gridded_bathymetry_data/#a1">Specific</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="http://due.esrin.esa.int/page_globcover.php">globcover</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="http://due.esrin.esa.int/page_globcover.php">globcover</a></p></td>
 <td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1594/PANGAEA.787668">Arino et al (2012)</a></p></td>
 <td><p>v2.3</p></td>
 <td><p>CC-BY-3.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://ghsl.jrc.ec.europa.eu/download.php?ds=pop">ghs_pop</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://ghsl.jrc.ec.europa.eu/download.php?ds=pop">ghs_pop</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.2760/062975">Florczyk et al (2019)</a></p></td>
 <td></td>
 <td><p>CC BY 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/dataset/42e8be89-54ff-464e-be7b-bf9e64da5218">ghs_smod</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/dataset/42e8be89-54ff-464e-be7b-bf9e64da5218">ghs_smod</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.2905/42E8BE89-54FF-464E-BE7B-BF9E64DA5218">Pesaresi et al (2019)</a></p></td>
 <td><p>R2019A_v2.0</p></td>
 <td><p><a class="reference external" href="https://data.jrc.ec.europa.eu/licence/com_reuse">Specific</a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_buffaloes</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_buffaloes</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.7910/DVN/5U8MWI">Gilbert at al (2018)</a></p></td>
 <td><p>GLW 3, last downloaded 2020-06-11</p></td>
 <td><p>CC 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_cattle</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_cattle</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.7910/DVN/GIVQ75">Gilbert at al (2018)</a></p></td>
 <td><p>GLW 3, last downloaded 2020-06-11</p></td>
 <td><p>CC 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_chicken</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_chicken</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.7910/DVN/SUFASB">Gilbert at al (2018)</a></p></td>
 <td><p>GLW 3, last downloaded 2020-06-11</p></td>
 <td><p>CC 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_ducks</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_ducks</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.7910/DVN/ICHCBH">Gilbert at al (2018)</a></p></td>
 <td><p>GLW 3, last downloaded 2020-06-11</p></td>
 <td><p>CC 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_goats</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_goats</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.7910/DVN/OCPH42">Gilbert at al (2018)</a></p></td>
 <td><p>GLW 3, last downloaded 2020-06-11</p></td>
 <td><p>CC 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_horses</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_horses</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.7910/DVN/7Q52MV">Gilbert at al (2018)</a></p></td>
 <td><p>GLW 3, last downloaded 2020-06-11</p></td>
 <td><p>CC 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_pigs</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_pigs</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.7910/DVN/33N0JG">Gilbert at al (2018)</a></p></td>
 <td><p>GLW 3, last downloaded 2020-06-11</p></td>
 <td><p>CC 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_sheeps</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://dataverse.harvard.edu/dataverse/glw_3">glw_sheeps</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.7910/DVN/BLWPZN">Gilbert at al (2018)</a></p></td>
 <td><p>GLW 3, last downloaded 2020-06-11</p></td>
 <td><p>CC 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.globio.info/download-grip-dataset">grip_roads</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.globio.info/download-grip-dataset">grip_roads</a></p></td>
 <td><p>road</p></td>
 <td><p>GeoDataFrame</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1088/1748-9326/aabd42">Meijer et al, 2018</a></p></td>
 <td><p>v4</p></td>
 <td><p>CC0-1.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.1297434">grwl</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.1297434">grwl</a></p></td>
 <td><p>surface water</p></td>
 <td><p>GeoDataFrame</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1126/science.aat0636">Allen and Pavelsky (2018)</a></p></td>
 <td><p>1.01</p></td>
 <td><p>CC BY 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.1297434">grwl_mask</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.1297434">grwl_mask</a></p></td>
 <td><p>hydrography</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1126/science.aat0636">Allen and Pavelsky (2018)</a></p></td>
 <td><p>1.01</p></td>
 <td><p>CC BY 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://global-surface-water.appspot.com/download">gswo</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://global-surface-water.appspot.com/download">gswo</a></p></td>
 <td><p>hydrography</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1038/nature20584">Pekel et al. (2016)</a></p></td>
 <td><p>v1_1_2019</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="http://www.dlr.de/guf">guf_bld_2012</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.dlr.de/guf">guf_bld_2012</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1016/j.isprsjprs.2017.10.012">Esch et al (2017)</a></p></td>
 <td></td>
 <td><p><a class="reference external" href="https://www.dlr.de/eoc/en/PortalData/60/Resources/dokumente/guf/DLR-GUF_LicenseAgreement-and-OrderForm.pdf">Specific</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro</a></p></td>
 <td><p>topography</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1029/2019WR024873">Yamazaki et al. (2019)</a></p></td>
 <td><p>1.0</p></td>
 <td><p>CC-BY-NC 4.0 or ODbL 1.0</p></td>
 </tr>
-<tr class="row-even"><td><p>merit_hydro_index</p></td>
+<tr class="row-odd"><td><p>merit_hydro_index</p></td>
 <td><p>topography</p></td>
 <td><p>GeoDataFrame</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5194/hess-2020-582">Eilander et al. (in review)</a></p></td>
 <td></td>
 <td><p>CC-BY-NC 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro_patch</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro_patch</a></p></td>
 <td><p>topography</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1029/2019WR024873">Yamazaki et al. (2019)</a></p></td>
 <td><p>1.0 Deltares patch</p></td>
 <td><p>CC-BY-NC 4.0 or ODbL 1.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://zenodo.org/record/5166932#.YVbxJ5pByUk">merit_hydro_ihu</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://zenodo.org/record/5166932#.YVbxJ5pByUk">merit_hydro_ihu</a></p></td>
 <td><p>topography</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.5166932">Eilander et al. (2020)</a></p></td>
 <td><p>1.0</p></td>
 <td><p>ODC-By 1.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://lpdaac.usgs.gov/products/mcd15a3hv006/">modis_lai</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://lpdaac.usgs.gov/products/mcd15a3hv006/">modis_lai</a></p></td>
 <td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5067/MODIS/MCD15A3H.006">Myneni et al (2015)</a></p></td>
 <td><p>MCD15A3H V006</p></td>
 <td><p><a class="reference external" href="https://lpdaac.usgs.gov/data/data-citation-and-policies/">Specific</a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://osmdata.openstreetmap.de/data/coastlines.html">osm_coastlines</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://osmdata.openstreetmap.de/data/coastlines.html">osm_coastlines</a></p></td>
 <td><p>geography</p></td>
 <td><p>GeoDataFrame</p></td>
 <td></td>
 <td><p>1.0</p></td>
 <td><p>ODbL</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://osmdata.openstreetmap.de/data/coastlines.html">osm_landareas</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://osmdata.openstreetmap.de/data/coastlines.html">osm_landareas</a></p></td>
 <td><p>geography</p></td>
 <td><p>GeoDataFrame</p></td>
 <td></td>
 <td><p>1.0</p></td>
 <td><p>ODbL</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/insitu-glaciers-extent?tab=overview">rgi</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/insitu-glaciers-extent?tab=overview">rgi</a></p></td>
 <td><p>surface water</p></td>
 <td><p>GeoDataFrame</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.3189/2014JoG13J176">Pfeffer et al. (2014)</a></p></td>
 <td><p>6.0</p></td>
 <td><p>CC BY 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://webmap.ornl.gov/ogc/dataset.jsp?ds_id=10023">simard</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://webmap.ornl.gov/ogc/dataset.jsp?ds_id=10023">simard</a></p></td>
 <td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1029/2011JG001708">Simard et al (2011)</a></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.isric.org/explore/soilgrids/faq-soilgrids-2017">soilgrids</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.isric.org/explore/soilgrids/faq-soilgrids-2017">soilgrids</a></p></td>
 <td><p>soil</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1371/journal.pone.0169748">Hengl et al. (2017)</a></p></td>
 <td><p>2017</p></td>
 <td><p>ODbL</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.isric.org/explore/soilgrids/faq-soilgrids">soilgrids_2020</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.isric.org/explore/soilgrids/faq-soilgrids">soilgrids_2020</a></p></td>
 <td><p>soil</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/https://doi.org/10.5194/soil-2020-65">de Sousa et al. (2020)</a></p></td>
 <td><p>2020</p></td>
 <td><p>CC BY 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://land.copernicus.eu/global/products/lc">vito</a></p></td>
 <td><p>landuse</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3939038">Buchhorn et al (2020)</a></p></td>
 <td><p>v2.0.2</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://datacatalog.worldbank.org/dataset/world-bank-official-boundaries">wb_countries</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://datacatalog.worldbank.org/dataset/world-bank-official-boundaries">wb_countries</a></p></td>
 <td><p>socio-economic</p></td>
 <td><p>GeoDataFrame</p></td>
 <td></td>
 <td></td>
 <td><p>CC-BY 4.0</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.worldclim.org/data/worldclim21.html">worldclim</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.worldclim.org/data/worldclim21.html">worldclim</a></p></td>
 <td><p>meteo</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1002/joc.5086">Fick and Hijmans (2017)</a></p></td>
 <td><p>2</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://un-spider.org/links-and-resources/data-sources/world-settlement-footprint-2015-wsf-dlr-eoc">wsf_bld_2015</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://un-spider.org/links-and-resources/data-sources/world-settlement-footprint-2015-wsf-dlr-eoc">wsf_bld_2015</a></p></td>
 <td><p>socio economic</p></td>
 <td><p>RasterDataset</p></td>
 <td><p><a class="reference external" href="https://doi.org/10.1038/s41597-020-00580-5">Marconcini at al (2020)</a></p></td>

@@ -232,6 +232,9 @@
 
         <span class="c1"># then loop over other methods</span>
         <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">opt</span><span class="p">:</span>
+            <span class="c1"># if any write_* functions are present in opt, skip the final self.write() call</span>
+            <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;write_&quot;</span><span class="p">):</span>
+                <span class="n">write</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_run_log_method</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="o">**</span><span class="n">opt</span><span class="p">[</span><span class="n">method</span><span class="p">])</span>
 
         <span class="c1"># write</span>
@@ -292,6 +295,9 @@
         <span class="c1"># loop over other methods from ini file</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_log_method</span><span class="p">(</span><span class="s2">&quot;setup_config&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">opt</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;setup_config&quot;</span><span class="p">,</span> <span class="p">{}))</span>
         <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">opt</span><span class="p">:</span>
+            <span class="c1"># if any write_* functions are present in opt, skip the final self.write() call</span>
+            <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;write_&quot;</span><span class="p">):</span>
+                <span class="n">write</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_run_log_method</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="o">**</span><span class="n">opt</span><span class="p">[</span><span class="n">method</span><span class="p">])</span>
 
         <span class="c1"># write</span>
