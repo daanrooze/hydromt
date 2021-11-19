@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> hydromt
           </a>
               <div class="version">
-                0.4.4.dev
+                0.4.5.dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -74,6 +74,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#basin-mask">Basin mask</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.get_basin_geometry.html">hydromt.workflows.basin_mask.get_basin_geometry</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.parse_region.html">hydromt.workflows.basin_mask.parse_region</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#river-bathymetry">River bathymetry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.workflows.rivers.river_width.html">hydromt.workflows.rivers.river_width</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.workflows.rivers.river_depth.html">hydromt.workflows.rivers.river_depth</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#forcing">Forcing</a><ul>
@@ -176,6 +181,23 @@
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.parse_region.html#hydromt.workflows.basin_mask.parse_region" title="hydromt.workflows.basin_mask.parse_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">workflows.basin_mask.parse_region</span></code></a>(region[, ...])</p></td>
 <td><p>Checks and returns parsed region arguments.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="river-bathymetry">
+<h2>River bathymetry<a class="headerlink" href="#river-bathymetry" title="Permalink to this headline"></a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.workflows.rivers.river_width.html#hydromt.workflows.rivers.river_width" title="hydromt.workflows.rivers.river_width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">workflows.rivers.river_width</span></code></a>(gdf_stream, ...)</p></td>
+<td><p>Return segment average river width based on a river mask raster.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.workflows.rivers.river_depth.html#hydromt.workflows.rivers.river_depth" title="hydromt.workflows.rivers.river_depth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">workflows.rivers.river_depth</span></code></a>(data, method[, ...])</p></td>
+<td><p>Derive river depth estimates based bankfull discharge.</p></td>
 </tr>
 </tbody>
 </table>

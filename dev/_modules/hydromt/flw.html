@@ -28,7 +28,7 @@
             <a href="../../index.html" class="icon icon-home"> hydromt
           </a>
               <div class="version">
-                0.4.4.dev
+                0.4.5.dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -698,6 +698,91 @@
     <span class="c1"># clip data</span>
     <span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">da_basins</span>
     <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">clip_mask</span><span class="p">(</span><span class="n">da_basins</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="floodplain_elevation"><a class="viewcode-back" href="../../_generated/hydromt.flw.floodplain_elevation.html#hydromt.flw.floodplain_elevation">[docs]</a><span class="k">def</span> <span class="nf">floodplain_elevation</span><span class="p">(</span>
+    <span class="n">ds_model</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">adjust_river_d8</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">connectivity</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Returns a binary floodplain classification and hydrologically adjusted elevation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds_model : xr.Dataset</span>
+<span class="sd">        Model dataset containing flow directions (&quot;flwdir&quot;) [-], elevation (&quot;elevtn&quot;) [m+REF]</span>
+<span class="sd">        and upstream area (&quot;uparea&quot;) [km2] variables.</span>
+<span class="sd">    connectivity: {4, 8}</span>
+<span class="sd">        D4 or D8 flow connectivity.</span>
+<span class="sd">    river_d8 : bool</span>
+<span class="sd">        If True and overall D4 connectivity, additionally condition river cells to D8.</span>
+<span class="sd">        Requires an additonal river mask (&quot;rivmsk&quot;) [-] variable in `ds_model`.</span>
+<span class="sd">    **kwargs:</span>
+<span class="sd">        arugments are passed to :py:meth:`pyflwdir.FlwdirRaster.floodplains`</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xr.Dataset</span>
+<span class="sd">        Dataset with binary floodplain classification (&#39;fldpln&#39;) [-] and</span>
+<span class="sd">        hydrologically adjusted elevation (&#39;elevtn&#39;) [m+REF]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check data variables.</span>
+    <span class="n">dvars_model</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;flwdir&quot;</span><span class="p">,</span> <span class="s2">&quot;elevtn&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">([</span><span class="n">v</span> <span class="ow">in</span> <span class="n">ds_model</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dvars_model</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;One or more variables missing from ds_model: </span><span class="si">{</span><span class="n">dvars_model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># get flow directions for entire domain and for rivers</span>
+    <span class="n">flwdir</span> <span class="o">=</span> <span class="n">flwdir_from_da</span><span class="p">(</span><span class="n">ds_model</span><span class="p">[</span><span class="s2">&quot;flwdir&quot;</span><span class="p">],</span> <span class="n">mask</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Condition elevation to D</span><span class="si">{</span><span class="n">connectivity</span><span class="si">}</span><span class="s2"> flow directions.&quot;</span><span class="p">)</span>
+    <span class="c1"># get D8 conditioned elevation</span>
+    <span class="n">nodata</span> <span class="o">=</span> <span class="n">ds_model</span><span class="p">[</span><span class="s2">&quot;elevtn&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">nodata</span>
+    <span class="n">elv</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">dem_adjust</span><span class="p">(</span><span class="n">ds_model</span><span class="p">[</span><span class="s2">&quot;elevtn&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="c1"># get D4 conditioned elevation (based on D8 conditioned!)</span>
+    <span class="k">if</span> <span class="n">connectivity</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="c1"># derive D4 flow directions with forced pits at original locations</span>
+        <span class="n">d4</span> <span class="o">=</span> <span class="n">pyflwdir</span><span class="o">.</span><span class="n">dem</span><span class="o">.</span><span class="n">fill_depressions</span><span class="p">(</span>
+            <span class="n">elevtn</span><span class="o">=</span><span class="n">elv</span><span class="p">,</span>
+            <span class="n">nodata</span><span class="o">=</span><span class="n">nodata</span><span class="p">,</span>
+            <span class="n">connectivity</span><span class="o">=</span><span class="n">connectivity</span><span class="p">,</span>
+            <span class="n">idxs_pit</span><span class="o">=</span><span class="n">flwdir</span><span class="o">.</span><span class="n">idxs_pit</span><span class="p">,</span>
+        <span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># condition the DEM to the new D4 flow dirs</span>
+        <span class="n">flwdir_d4</span> <span class="o">=</span> <span class="n">pyflwdir</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span>
+            <span class="n">d4</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;d8&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">flwdir</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span> <span class="n">latlon</span><span class="o">=</span><span class="n">flwdir</span><span class="o">.</span><span class="n">latlon</span>
+        <span class="p">)</span>
+        <span class="n">elv</span> <span class="o">=</span> <span class="n">flwdir_d4</span><span class="o">.</span><span class="n">dem_adjust</span><span class="p">(</span><span class="n">elv</span><span class="p">)</span>
+        <span class="c1"># condition river cells to D8</span>
+        <span class="k">if</span> <span class="n">adjust_river_d8</span> <span class="ow">and</span> <span class="s2">&quot;rivmsk&quot;</span> <span class="ow">in</span> <span class="n">ds_model</span><span class="p">:</span>
+            <span class="n">rivmsk</span> <span class="o">=</span> <span class="n">ds_model</span><span class="p">[</span><span class="s2">&quot;rivmsk&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="n">flwdir_river</span> <span class="o">=</span> <span class="n">flwdir_from_da</span><span class="p">(</span><span class="n">ds_model</span><span class="p">[</span><span class="s2">&quot;flwdir&quot;</span><span class="p">],</span> <span class="n">mask</span><span class="o">=</span><span class="n">rivmsk</span><span class="p">)</span>
+            <span class="n">elv</span> <span class="o">=</span> <span class="n">flwdir_river</span><span class="o">.</span><span class="n">dem_adjust</span><span class="p">(</span><span class="n">elv</span><span class="p">)</span>
+            <span class="c1"># assert np.all((elv2 - flwdir_river.downstream(elv2))&gt;=0)</span>
+        <span class="k">elif</span> <span class="n">adjust_river_d8</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Provide &quot;rivmsk&quot; variable to condition river cells in D8.&#39;</span><span class="p">)</span>
+        <span class="c1"># assert np.all((elv2 - flwdir_d4.downstream(elv2))&gt;=0)</span>
+
+    <span class="c1"># get binary floodplain map from D8 values</span>
+    <span class="n">uparea</span> <span class="o">=</span> <span class="n">ds_model</span><span class="p">[</span><span class="s2">&quot;uparea&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">if</span> <span class="s2">&quot;uparea&quot;</span> <span class="ow">in</span> <span class="n">ds_model</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">uparea</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s1">&#39;&quot;uparea&quot; variable calculated on the fly, &#39;</span>
+            <span class="s2">&quot;provide the variable for better floodplain classification.&quot;</span>
+        <span class="p">)</span>
+    <span class="n">fldpln</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">floodplains</span><span class="p">(</span><span class="n">elevtn</span><span class="o">=</span><span class="n">elv</span><span class="p">,</span> <span class="n">uparea</span><span class="o">=</span><span class="n">uparea</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># save to dataset</span>
+    <span class="n">dims</span> <span class="o">=</span> <span class="n">ds_model</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">dims</span>
+    <span class="n">ds_out</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="n">ds_model</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+    <span class="n">ds_out</span><span class="p">[</span><span class="s2">&quot;elevtn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="n">elv</span><span class="p">)</span>
+    <span class="n">ds_out</span><span class="p">[</span><span class="s2">&quot;elevtn&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="n">nodata</span><span class="p">)</span>
+    <span class="n">ds_out</span><span class="p">[</span><span class="s2">&quot;fldpln&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="n">fldpln</span><span class="p">)</span>
+    <span class="n">ds_out</span><span class="p">[</span><span class="s2">&quot;fldpln&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">ds_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">ds_model</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ds_out</span></div>
 </pre></div>
 
            </div>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hydromt.Model.res &mdash; hydromt  documentation</title>
+  <title>hydromt.workflows.rivers.river_width &mdash; hydromt  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="hydromt.Model.root" href="hydromt.Model.root.html" />
-    <link rel="prev" title="hydromt.Model.crs" href="hydromt.Model.crs.html" /> 
+    <link rel="next" title="hydromt.workflows.rivers.river_depth" href="hydromt.workflows.rivers.river_depth.html" />
+    <link rel="prev" title="hydromt.workflows.basin_mask.parse_region" href="hydromt.workflows.basin_mask.parse_region.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,16 +65,18 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../api/api_index.html">API reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../api/api_methods.html">Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/api_workflows.html">Workflows</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../api/api_models.html">Models</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../api/api_model_api.html">Model API</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="../api/api_model_api.html#attributes">Attributes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api/api_model_api.html#high-level-methods">High level methods</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api/api_model_api.html#general-methods">General methods</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api/api_workflows.html">Workflows</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api/api_workflows.html#basemaps">Basemaps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/api_workflows.html#basin-mask">Basin mask</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api/api_workflows.html#river-bathymetry">River bathymetry</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">hydromt.workflows.rivers.river_width</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.workflows.rivers.river_depth.html">hydromt.workflows.rivers.river_depth</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../api/api_workflows.html#forcing">Forcing</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../api/api_models.html">Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/api_data_adapter.html">Data Adapter</a></li>
 </ul>
 </li>
@@ -99,11 +101,10 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../api/api_index.html">API reference</a> &raquo;</li>
-          <li><a href="../api/api_models.html">Models</a> &raquo;</li>
-          <li><a href="../api/api_model_api.html">Model API</a> &raquo;</li>
-      <li>hydromt.Model.res</li>
+          <li><a href="../api/api_workflows.html">Workflows</a> &raquo;</li>
+      <li>hydromt.workflows.rivers.river_width</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_generated/hydromt.Model.res.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_generated/hydromt.workflows.rivers.river_width.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -135,12 +136,29 @@
     text-align: unset;
 }
 </style>
-<section id="hydromt-model-res">
-<h1>hydromt.Model.res<a class="headerlink" href="#hydromt-model-res" title="Permalink to this headline"></a></h1>
-<dl class="py property">
-<dt class="sig sig-object py" id="hydromt.Model.res">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">res</span></span><a class="headerlink" href="#hydromt.Model.res" title="Permalink to this definition"></a></dt>
-<dd><p>Returns coordinates of staticmaps.</p>
+<section id="hydromt-workflows-rivers-river-width">
+<h1>hydromt.workflows.rivers.river_width<a class="headerlink" href="#hydromt-workflows-rivers-river-width" title="Permalink to this headline"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hydromt.workflows.rivers.river_width">
+<span class="sig-prename descclassname"><span class="pre">hydromt.workflows.rivers.</span></span><span class="sig-name descname"><span class="pre">river_width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gdf_stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">da_rivmask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">xarray.core.dataarray.DataArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../_modules/hydromt/workflows/rivers.html#river_width"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.workflows.rivers.river_width" title="Permalink to this definition"></a></dt>
+<dd><p>Return segment average river width based on a river mask raster.
+For each segment in gdf_stream the associated area is calculated from stream mask
+and divided by the segment length to obtain the average width.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gdf_stream</strong> (<em>gpd.GeoDataFrame</em>) – River segments</p></li>
+<li><p><strong>da_rivmask</strong> (<em>xr.DataArray</em>) – Boolean river mask in projected grid.</p></li>
+<li><p><strong>nmin</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – Minimum number of cells in rivmask to calculate the width, by default 5</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>rivwth</strong> – Average width per segment in gdf_stream</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -149,8 +167,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hydromt.Model.crs.html" class="btn btn-neutral float-left" title="hydromt.Model.crs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hydromt.Model.root.html" class="btn btn-neutral float-right" title="hydromt.Model.root" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hydromt.workflows.basin_mask.parse_region.html" class="btn btn-neutral float-left" title="hydromt.workflows.basin_mask.parse_region" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hydromt.workflows.rivers.river_depth.html" class="btn btn-neutral float-right" title="hydromt.workflows.rivers.river_depth" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

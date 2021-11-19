@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hydromt.DataArray.vector.index_dim &mdash; hydromt  documentation</title>
+  <title>hydromt.flw.floodplain_elevation &mdash; hydromt  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="hydromt.DataArray.vector.time_dim" href="hydromt.DataArray.vector.time_dim.html" />
-    <link rel="prev" title="hydromt.DataArray.vector.crs" href="hydromt.DataArray.vector.crs.html" /> 
+    <link rel="next" title="hydromt.gis_utils.spread2d" href="hydromt.gis_utils.spread2d.html" />
+    <link rel="prev" title="hydromt.flw.clip_basins" href="hydromt.flw.clip_basins.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -67,16 +67,20 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../api/api_methods.html">Methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#reading-writing">Reading/writing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#raster-methods">Raster methods</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../api/api_methods.html#geospatial-timeseries-methods">Geospatial timeseries methods</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="../api/api_methods.html#id1">High level methods</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="../api/api_methods.html#id2">Attributes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api/api_methods.html#id3">General methods</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api/api_methods.html#id4">Clip</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api/api_methods.html#id5">Reproject</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api/api_methods.html#id6">Low-level methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#geospatial-timeseries-methods">Geospatial timeseries methods</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api/api_methods.html#flow-direction-methods">Flow direction methods</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.flwdir_from_da.html">hydromt.flw.flwdir_from_da</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.d8_from_dem.html">hydromt.flw.d8_from_dem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.reproject_hydrography_like.html">hydromt.flw.reproject_hydrography_like</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.upscale_flwdir.html">hydromt.flw.upscale_flwdir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.stream_map.html">hydromt.flw.stream_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.basin_map.html">hydromt.flw.basin_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">hydromt.flw.floodplain_elevation</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#flow-direction-methods">Flow direction methods</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#general-gis-methods">General GIS methods</a></li>
 </ul>
 </li>
@@ -107,9 +111,9 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../api/api_index.html">API reference</a> &raquo;</li>
           <li><a href="../api/api_methods.html">Methods</a> &raquo;</li>
-      <li>hydromt.DataArray.vector.index_dim</li>
+      <li>hydromt.flw.floodplain_elevation</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_generated/hydromt.DataArray.vector.index_dim.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_generated/hydromt.flw.floodplain_elevation.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -141,12 +145,31 @@
     text-align: unset;
 }
 </style>
-<section id="hydromt-dataarray-vector-index-dim">
-<h1>hydromt.DataArray.vector.index_dim<a class="headerlink" href="#hydromt-dataarray-vector-index-dim" title="Permalink to this headline"></a></h1>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hydromt.DataArray.vector.index_dim">
-<span class="sig-prename descclassname"><span class="pre">DataArray.vector.</span></span><span class="sig-name descname"><span class="pre">index_dim</span></span><a class="headerlink" href="#hydromt.DataArray.vector.index_dim" title="Permalink to this definition"></a></dt>
-<dd><p>Index dimension name.</p>
+<section id="hydromt-flw-floodplain-elevation">
+<h1>hydromt.flw.floodplain_elevation<a class="headerlink" href="#hydromt-flw-floodplain-elevation" title="Permalink to this headline"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hydromt.flw.floodplain_elevation">
+<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">floodplain_elevation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_model:</span> <span class="pre">xarray.core.dataset.Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjust_river_d8:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connectivity=4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.flw</span> <span class="pre">(WARNING)&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">xarray.core.dataset.Dataset</span></span></span><a class="reference internal" href="../_modules/hydromt/flw.html#floodplain_elevation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.floodplain_elevation" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a binary floodplain classification and hydrologically adjusted elevation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_model</strong> (<em>xr.Dataset</em>) – Model dataset containing flow directions (“flwdir”) [-], elevation (“elevtn”) [m+REF]
+and upstream area (“uparea”) [km2] variables.</p></li>
+<li><p><strong>connectivity</strong> (<em>{4</em><em>, </em><em>8}</em>) – D4 or D8 flow connectivity.</p></li>
+<li><p><strong>river_d8</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True and overall D4 connectivity, additionally condition river cells to D8.
+Requires an additonal river mask (“rivmsk”) [-] variable in <cite>ds_model</cite>.</p></li>
+<li><p><strong>**kwargs</strong> – arugments are passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">pyflwdir.FlwdirRaster.floodplains()</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dataset with binary floodplain classification (‘fldpln’) [-] and
+hydrologically adjusted elevation (‘elevtn’) [m+REF]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -155,8 +178,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hydromt.DataArray.vector.crs.html" class="btn btn-neutral float-left" title="hydromt.DataArray.vector.crs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hydromt.DataArray.vector.time_dim.html" class="btn btn-neutral float-right" title="hydromt.DataArray.vector.time_dim" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hydromt.flw.clip_basins.html" class="btn btn-neutral float-left" title="hydromt.flw.clip_basins" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hydromt.gis_utils.spread2d.html" class="btn btn-neutral float-right" title="hydromt.gis_utils.spread2d" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

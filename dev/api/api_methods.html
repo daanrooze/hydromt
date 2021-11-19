@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> hydromt
           </a>
               <div class="version">
-                0.4.4.dev
+                0.4.5.dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -100,6 +100,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.floodplain_elevation.html">hydromt.flw.floodplain_elevation</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#general-gis-methods">General GIS methods</a><ul>
@@ -657,6 +658,9 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 <tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.flw.clip_basins.html#hydromt.flw.clip_basins" title="hydromt.flw.clip_basins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.clip_basins</span></code></a>(ds, flwdir, xy[, flwdir_name])</p></td>
 <td><p>Clip a dataset to a subbasin.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.flw.floodplain_elevation.html#hydromt.flw.floodplain_elevation" title="hydromt.flw.floodplain_elevation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.floodplain_elevation</span></code></a>(ds_model[, ...])</p></td>
+<td><p>Returns a binary floodplain classification and hydrologically adjusted elevation.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -668,7 +672,7 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.spread2d.html#hydromt.gis_utils.spread2d" title="hydromt.gis_utils.spread2d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.spread2d</span></code></a>(da_obs[, nodata, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.spread2d.html#hydromt.gis_utils.spread2d" title="hydromt.gis_utils.spread2d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.spread2d</span></code></a>(da_obs[, da_mask, ...])</p></td>
 <td><p>Returns values of <cite>da_obs</cite> spreaded to cells with <cite>nodata</cite> value within <cite>da_mask</cite>, powered by <code class="xref py py-meth docutils literal notranslate"><span class="pre">pyflwdir.gis_utils.spread2d()</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.gis_utils.parse_crs.html#hydromt.gis_utils.parse_crs" title="hydromt.gis_utils.parse_crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.parse_crs</span></code></a>(crs[, bbox])</p></td>
