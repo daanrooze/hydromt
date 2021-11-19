@@ -141,13 +141,13 @@
 <h1>hydromt.workflows.forcing.resample_time<a class="headerlink" href="#hydromt-workflows-forcing-resample-time" title="Permalink to this headline"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hydromt.workflows.forcing.resample_time">
-<span class="sig-prename descclassname"><span class="pre">hydromt.workflows.forcing.</span></span><span class="sig-name descname"><span class="pre">resample_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">da</span></em>, <em class="sig-param"><span class="pre">freq</span></em>, <em class="sig-param"><span class="pre">label='right'</span></em>, <em class="sig-param"><span class="pre">closed='right'</span></em>, <em class="sig-param"><span class="pre">upsampling='bfill'</span></em>, <em class="sig-param"><span class="pre">downsampling='mean'</span></em>, <em class="sig-param"><span class="pre">conserve_mass=True</span></em>, <em class="sig-param"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.workflows.forcing</span> <span class="pre">(WARNING)&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/workflows/forcing.html#resample_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.workflows.forcing.resample_time" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">hydromt.workflows.forcing.</span></span><span class="sig-name descname"><span class="pre">resample_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label='right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closed='right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upsampling='bfill'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">downsampling='mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conserve_mass=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.workflows.forcing</span> <span class="pre">(WARNING)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/workflows/forcing.html#resample_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.workflows.forcing.resample_time" title="Permalink to this definition"></a></dt>
 <dd><p>Resample data to destination frequency.
 Skip if input data already at output frequency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>da</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.20.1.dev0)"><em>xarray.DataArray</em></a>) – Input data</p></li>
+<li><p><strong>da</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.20.2.dev0)"><em>xarray.DataArray</em></a>) – Input data</p></li>
 <li><p><strong>freq</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>pd.timedelta</em>) – Output frequency.</p></li>
 <li><p><strong>label</strong> (<em>{'left'</em><em>, </em><em>'right'}</em><em>, </em><em>optional</em>) – Side of each interval to use for labeling. By default ‘right’.</p></li>
 <li><p><strong>closed</strong> (<em>{'left'</em><em>, </em><em>'right'}</em><em>, </em><em>optional</em>) – Side of each interval to treat as closed. By default ‘right’.</p></li>
@@ -162,7 +162,7 @@ to input frequency.</p></li>
 <dd class="field-even"><p><strong>pet</strong> – Resampled data.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.20.1.dev0)">xarray.DataArray</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.20.2.dev0)">xarray.DataArray</a></p>
 </dd>
 </dl>
 </dd></dl>

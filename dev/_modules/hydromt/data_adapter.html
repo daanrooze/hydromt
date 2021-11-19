@@ -268,7 +268,7 @@
 <span class="sd">        .. code-block:: console</span>
 
 <span class="sd">            root: &lt;path&gt;</span>
-<span class="sd">            category: &lt;path&gt;</span>
+<span class="sd">            category: &lt;category&gt;</span>
 <span class="sd">            &lt;name&gt;:</span>
 <span class="sd">              path: &lt;path&gt;</span>
 <span class="sd">              data_type: &lt;data_type&gt;</span>
@@ -447,7 +447,7 @@
                     <span class="n">unit_add</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">unit_add</span>
                     <span class="n">source</span><span class="o">.</span><span class="n">unit_mult</span> <span class="o">=</span> <span class="p">{}</span>
                     <span class="n">source</span><span class="o">.</span><span class="n">unit_add</span> <span class="o">=</span> <span class="p">{}</span>
-                <span class="n">fn_out</span><span class="p">,</span> <span class="n">driver</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">export_data</span><span class="p">(</span>
+                <span class="n">fn_out</span><span class="p">,</span> <span class="n">driver</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span>
                     <span class="n">data_root</span><span class="o">=</span><span class="n">data_root</span><span class="p">,</span>
                     <span class="n">data_name</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
                     <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
@@ -711,11 +711,15 @@
 
     <span class="c1"># parse data</span>
     <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-    <span class="n">alias_lst</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="s2">&quot;alias&quot;</span> <span class="ow">in</span> <span class="n">source</span><span class="p">:</span>
-            <span class="n">alias_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-            <span class="k">continue</span>
+            <span class="n">alias</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;alias&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">alias</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;alias </span><span class="si">{</span><span class="n">alias</span><span class="si">}</span><span class="s2"> not found in sources.&quot;</span><span class="p">)</span>
+            <span class="c1"># use alias source but overwrite any attributes with original source</span>
+            <span class="n">source_org</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">sources</span><span class="p">[</span><span class="n">alias</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">source</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">source_org</span><span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;path&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">source</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: Missing required path argument.&quot;</span><span class="p">)</span>
         <span class="n">data_type</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;data_type&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -726,7 +730,7 @@
         <span class="n">adapter</span> <span class="o">=</span> <span class="n">ADAPTERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">data_type</span><span class="p">)</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">abs_path</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">source</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">))</span>
         <span class="n">meta</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;meta&quot;</span><span class="p">,</span> <span class="p">{})</span>
-        <span class="k">if</span> <span class="s2">&quot;category&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;category&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta</span> <span class="ow">and</span> <span class="n">category</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">meta</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">)</span>
         <span class="c1"># lower kwargs for backwards compatability</span>
         <span class="n">source</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">source</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;kwargs&quot;</span><span class="p">,</span> <span class="p">{}))</span>
@@ -734,11 +738,6 @@
             <span class="k">if</span> <span class="s2">&quot;fn&quot;</span> <span class="ow">in</span> <span class="n">opt</span><span class="p">:</span>  <span class="c1"># get absolute paths for file names</span>
                 <span class="n">source</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">opt</span><span class="p">:</span> <span class="n">abs_path</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="n">opt</span><span class="p">])})</span>
         <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">adapter</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="n">meta</span><span class="p">,</span> <span class="o">**</span><span class="n">source</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">alias</span> <span class="ow">in</span> <span class="n">alias_lst</span><span class="p">:</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">sources</span><span class="p">[</span><span class="n">alias</span><span class="p">][</span><span class="s2">&quot;alias&quot;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;alias </span><span class="si">{</span><span class="n">alias</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> not found in data catalog.&quot;</span><span class="p">)</span>
-        <span class="n">data</span><span class="p">[</span><span class="n">alias</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">data</span>
 
 
@@ -805,7 +804,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">unit_mult</span> <span class="o">=</span> <span class="n">unit_mult</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">unit_add</span> <span class="o">=</span> <span class="n">unit_add</span>
         <span class="c1"># meta data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="n">meta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">meta</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -851,11 +850,10 @@
             <span class="n">mv_inv</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rename</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
             <span class="n">vrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">mv_inv</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">date</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">vrs</span><span class="p">):</span>
-            <span class="n">root</span><span class="p">,</span> <span class="n">bname</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">),</span> <span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">):</span>
                 <span class="n">yr</span><span class="p">,</span> <span class="n">mth</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">month</span>
-            <span class="n">bname</span> <span class="o">=</span> <span class="n">bname</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">yr</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="n">mth</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">var</span><span class="p">)</span>
-            <span class="n">fns</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">bname</span><span class="p">)))</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">yr</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="n">mth</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">var</span><span class="p">)</span>
+            <span class="n">fns</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No such file found: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">fns</span><span class="p">))</span>  <span class="c1"># return unique paths</span>
@@ -935,7 +933,7 @@
         <span class="c1"># TODO: see if the units argument can be solved with unit_mult/unit_add</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">units</span></div>
 
-    <span class="k">def</span> <span class="nf">export_data</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data_root</span><span class="p">,</span>
         <span class="n">data_name</span><span class="p">,</span>
@@ -946,7 +944,7 @@
         <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Export a data slice to file.</span>
+        <span class="sd">&quot;&quot;&quot;Save a data slice to file.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -989,9 +987,10 @@
         <span class="c1"># write using various writers</span>
         <span class="k">if</span> <span class="n">driver</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;netcdf&quot;</span><span class="p">]:</span>  <span class="c1"># TODO complete list</span>
             <span class="n">fn_out</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">data_root</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_name</span><span class="si">}</span><span class="s2">.nc&quot;</span><span class="p">)</span>
-            <span class="n">dvars</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="k">else</span> <span class="n">obj</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">vars</span>
-            <span class="n">encoding</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;zlib&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dvars</span><span class="p">}</span>
-            <span class="n">obj</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">fn_out</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;encoding&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">dvars</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="k">else</span> <span class="n">obj</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">vars</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;zlib&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dvars</span><span class="p">})</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">fn_out</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">driver</span> <span class="o">==</span> <span class="s2">&quot;zarr&quot;</span><span class="p">:</span>
             <span class="n">fn_out</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">data_root</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_name</span><span class="si">}</span><span class="s2">.zarr&quot;</span><span class="p">)</span>
             <span class="n">obj</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span><span class="n">fn_out</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -999,6 +998,8 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RasterDataset: Driver </span><span class="si">{</span><span class="n">driver</span><span class="si">}</span><span class="s2"> unknown.&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">ext</span> <span class="o">=</span> <span class="n">gis_utils</span><span class="o">.</span><span class="n">GDAL_EXT_CODE_MAP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">driver</span> <span class="o">==</span> <span class="s2">&quot;GTiff&quot;</span> <span class="ow">and</span> <span class="s2">&quot;compress&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">compress</span><span class="o">=</span><span class="s2">&quot;lzw&quot;</span><span class="p">)</span>  <span class="c1"># default lzw compression</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
                 <span class="n">fn_out</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">data_root</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_name</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">ext</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">obj</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">to_raster</span><span class="p">(</span><span class="n">fn_out</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="n">driver</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1220,7 +1221,7 @@
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">export_data</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data_root</span><span class="p">,</span>
         <span class="n">data_name</span><span class="p">,</span>
@@ -1231,7 +1232,7 @@
         <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Export a data slice to file.</span>
+        <span class="sd">&quot;&quot;&quot;Save a data slice to file.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1505,7 +1506,7 @@
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">export_data</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data_root</span><span class="p">,</span>
         <span class="n">data_name</span><span class="p">,</span>
@@ -1515,7 +1516,7 @@
         <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Export a data slice to file.</span>
+        <span class="sd">&quot;&quot;&quot;Save a data slice to file.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

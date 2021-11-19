@@ -148,13 +148,13 @@
 <h1>hydromt.flw.gauge_map<a class="headerlink" href="#hydromt-flw-gauge-map" title="Permalink to this headline"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hydromt.flw.gauge_map">
-<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">gauge_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">ds</span></em>, <em class="sig-param"><span class="pre">idxs=None</span></em>, <em class="sig-param"><span class="pre">xy=None</span></em>, <em class="sig-param"><span class="pre">ids=None</span></em>, <em class="sig-param"><span class="pre">stream=None</span></em>, <em class="sig-param"><span class="pre">flwdir=None</span></em>, <em class="sig-param"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.flw</span> <span class="pre">(WARNING)&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#gauge_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.gauge_map" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">gauge_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idxs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.flw</span> <span class="pre">(WARNING)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#gauge_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.gauge_map" title="Permalink to this definition"></a></dt>
 <dd><p>Return map with unique gauge IDs. Initial gauge locations are snapped to the
 nearest downstream river defined by mask if both <cite>flwdir</cite> and <cite>mask</cite> are provided.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ds</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.20.1.dev0)"><em>xarray.Dataset</em></a>) – dataset containing flow direction data</p></li>
+<li><p><strong>ds</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.20.2.dev0)"><em>xarray.Dataset</em></a>) – dataset containing flow direction data</p></li>
 <li><p><strong>idxs</strong> (<em>1D array</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – linear indices of gauges, by default is None.</p></li>
 <li><p><strong>xy</strong> (<em>tuple of 1D array of float</em><em>, </em><em>optional</em>) – x, y coordinates of gauges, by default is None.</p></li>
 <li><p><strong>outlets</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – If True and xy and idxs are None, the basin map is derived for basin outlets
@@ -168,7 +168,7 @@ only, excluding pits at the edge of the domain of incomplete basins.</p></li>
 <dd class="field-even"><p>Map with unique gauge IDs</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.20.1.dev0)">xarray.DataArray</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.20.2.dev0)">xarray.DataArray</a></p>
 </dd>
 </dl>
 </dd></dl>

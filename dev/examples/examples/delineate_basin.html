@@ -16,7 +16,7 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -440,7 +440,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-11-04 09:21:57,599 - basin_delineation - log - INFO - HydroMT version: 0.4.4.dev
+2021-11-19 09:17:14,345 - basin_delineation - log - INFO - HydroMT version: 0.4.4.dev
 </pre></div></div>
 </div>
 </section>
@@ -474,16 +474,16 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-11-04 09:21:57,798 - basin_delineation - data_adapter - INFO - Downloading file to /home/runner/.hydromt_data/data/v0.0.5/data.tar.gz
-2021-11-04 09:21:58,487 - basin_delineation - data_adapter - DEBUG - Unpacking data from /home/runner/.hydromt_data/data/v0.0.5/data.tar.gz
-2021-11-04 09:22:00,700 - basin_delineation - data_adapter - INFO - Adding sample data v0.0.5 from artifacts
+2021-11-19 09:17:14,428 - basin_delineation - data_adapter - INFO - Downloading file to /home/runner/.hydromt_data/data/v0.0.5/data.tar.gz
+2021-11-19 09:17:14,880 - basin_delineation - data_adapter - DEBUG - Unpacking data from /home/runner/.hydromt_data/data/v0.0.5/data.tar.gz
+2021-11-19 09:17:17,333 - basin_delineation - data_adapter - INFO - Adding sample data v0.0.5 from artifacts
 {&#39;category&#39;: &#39;topography&#39;,
  &#39;paper_doi&#39;: &#39;10.1029/2019WR024873&#39;,
  &#39;paper_ref&#39;: &#39;Yamazaki et al. (2019)&#39;,
  &#39;source_license&#39;: &#39;CC-BY-NC 4.0 or ODbL 1.0&#39;,
  &#39;source_url&#39;: &#39;http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro&#39;,
  &#39;source_version&#39;: 1.0}
-2021-11-04 09:22:00,787 - basin_delineation - data_adapter - INFO - DataCatalog: Getting merit_hydro RasterDataset raster data from /home/runner/.hydromt_data/data/v0.0.5/merit_hydro/{variable}.tif
+2021-11-19 09:17:17,428 - basin_delineation - data_adapter - INFO - DataCatalog: Getting merit_hydro RasterDataset raster data from /home/runner/.hydromt_data/data/v0.0.5/merit_hydro/{variable}.tif
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -551,8 +551,8 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-11-04 09:22:05,040 - basin_delineation - basin_mask - DEBUG - Getting basin IDs at point locations.
-2021-11-04 09:22:05,119 - basin_delineation - basin_mask - INFO - basin bbox: [12.1958, 45.5850, 12.8983, 46.4167] / size: 408029
+2021-11-19 09:17:22,099 - basin_delineation - basin_mask - DEBUG - Getting basin IDs at point locations.
+2021-11-19 09:17:22,190 - basin_delineation - basin_mask - INFO - basin bbox: [12.1958, 45.5850, 12.8983, 46.4167] / size: 408029
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -619,7 +619,7 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-11-04 09:22:15,905 - basin_delineation - basin_mask - INFO - basin bbox: [12.2350, 45.7950, 12.8783, 46.4167] / size: 293449
+2021-11-19 09:17:33,171 - basin_delineation - basin_mask - INFO - basin bbox: [12.2350, 45.7950, 12.8783, 46.4167] / size: 293449
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -681,7 +681,7 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-11-04 09:22:24,051 - basin_delineation - basin_mask - INFO - basin bbox: [12.1958, 45.7192, 12.8783, 46.4167] / size: 400335
+2021-11-19 09:17:41,076 - basin_delineation - basin_mask - INFO - basin bbox: [12.1958, 45.7192, 12.8783, 46.4167] / size: 400335
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -745,7 +745,7 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-11-04 09:22:31,944 - basin_delineation - basin_mask - INFO - basin bbox: [12.5000, 45.7200, 12.7000, 46.0000] / size: 63515
+2021-11-19 09:17:48,627 - basin_delineation - basin_mask - INFO - basin bbox: [12.5000, 45.7200, 12.7000, 46.0000] / size: 63515
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">

@@ -183,6 +183,9 @@ the final self.write() call is skipped. This enables passing custom arguments to
 functions without double writting files or costumizing the order in which <a href="#id19"><span class="problematic" id="id20">write_</span></a> functions
 are called. If any <a href="#id21"><span class="problematic" id="id22">write_</span></a> function is called we assume the user manages the writing and
 a the global write method is skipped.</p></li>
+<li><p>default GTiff lwz compression with DataCatalog.export_data method</p></li>
+<li><p>rename DataAdapter.export_data to DataAdapter.to_file to avoid confusion with DataCatalog.export_data method</p></li>
+<li><p>allow “alias” with attributes in DataCatalog yml files / dictionaries</p></li>
 </ul>
 </section>
 <section id="fixed">
@@ -190,6 +193,8 @@ a the global write method is skipped.</p></li>
 <ul class="simple">
 <li><p>DataCatalog.to_yml Path objects written as normal strings</p></li>
 <li><p>Bugfix in basin_mask.get_basin_geometry when using bbox or geom arguments</p></li>
+<li><p>Bugfix DataAdapter.__init__ setting None value in meta data</p></li>
+<li><p>Bugfix DataAdapter.resolve_paths with argument in root</p></li>
 </ul>
 </section>
 <section id="deprecated">
