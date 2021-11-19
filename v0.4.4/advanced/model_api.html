@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model API &mdash; hydromt  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DataCatalog" href="data_catalog.html" />
+    <link rel="prev" title="Command Line Interface" href="../user_guide/cli.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> hydromt
+          </a>
+              <div class="version">
+                0.4.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_stories.html">User’s stories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/data.html">Data input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/models/index.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/cli.html">Command Line Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced topics</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Model API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_catalog.html">DataCatalog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References &amp; Help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/api_index.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">What’s new</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hydromt</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Model API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/advanced/model_api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="model-api">
+<h1>Model API<a class="headerlink" href="#model-api" title="Permalink to this headline"></a></h1>
+<p>The models submodule contains a basic general model API class which can easiliy be
+implemented and, if required extended, for individual models. The general model API
+contains methods to read, write and build models and ensures a common interface to
+different models. Workflows can be combined and wrapped into methods such as the
+build method of the model class.</p>
+<p>HydroMT has a general model class which has identical methods for each model.
+The most important methods are discussed here and model specific methods in each of
+subsections. A full list of all methods can be found in the reference API.</p>
+<img alt="../_images/hydromt_architecture_models.png" src="../_images/hydromt_architecture_models.png" />
+<p>Model API:</p>
+<ul>
+<li><p>Properties:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">root</span></code>: path to model root.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">config</span></code>: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> interface to the model configuration.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">staticmaps</span></code>: a <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.20.2.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> interface to all model staticmaps.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">staticgeoms</span></code>: a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> of <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a> interface to all model geometry files.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">forcing</span></code>: a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> of <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.20.2.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a> interface to all model forcing files.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">states</span></code>: a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> of <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.20.2.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a> interface to all model states files.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">results</span></code>: a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> of <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.20.2.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a> and/or <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.20.2.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> interface to all model results files.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">crs</span></code>: the model coordinate reference system.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">bounds</span></code>: the model bounding box.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">region</span></code>: the geomtery of model bounding box as <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Methods:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">build()</span></code>: method to build a complete model from scratch.</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup_component()</span></code>: method to update or setup a component once the basemaps have been setup.</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_config()</span></code> / <code class="xref py py-meth docutils literal notranslate"><span class="pre">write_config()</span></code>: parse model config to and from file.</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_config()</span></code>: get a config option</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_config()</span></code>: set a value to a config option</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_staticmaps()</span></code> / <code class="xref py py-meth docutils literal notranslate"><span class="pre">write_staticmaps()</span></code>: parse model maps to and from disk (often several files in model specific format).</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_staticmaps()</span></code>: add a map to the model staticmaps.</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_staticgeoms()</span></code> / <code class="xref py py-meth docutils literal notranslate"><span class="pre">write_staticgeoms()</span></code>: parse model geometry data to and from file.</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_staticgeoms()</span></code>: Add a geometry to the model staticgeoms.</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_forcing()</span></code> / <code class="xref py py-meth docutils literal notranslate"><span class="pre">write_forcing()</span></code>: parse model forcing to and from disk (often several files in model specific format).</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_forcing()</span></code>: add a map to the model forcing.</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_states()</span></code> / <code class="xref py py-meth docutils literal notranslate"><span class="pre">write_states()</span></code>: parse model states to and from disk (often several files in model specific format).</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_forcing()</span></code>: add a map to the model states.</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_results()</span></code>: parse model results from disk (often several files in model specific format).</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_results()</span></code>: add a map to the model states.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../user_guide/cli.html" class="btn btn-neutral float-left" title="Command Line Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_catalog.html" class="btn btn-neutral float-right" title="DataCatalog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Deltares.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
