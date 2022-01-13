@@ -179,27 +179,27 @@ The <code class="docutils literal notranslate"><span class="pre">path</span></co
 with the shown keys is highly recommended. The <code class="docutils literal notranslate"><span class="pre">rename</span></code>, <code class="docutils literal notranslate"><span class="pre">nodata</span></code>, <code class="docutils literal notranslate"><span class="pre">unit_add</span></code> and
 <code class="docutils literal notranslate"><span class="pre">unit_mult</span></code> options are set per variable (or attribute table column in case of a GeoDataFrame).
 For more information see <a class="reference internal" href="../_generated/hydromt.data_adapter.DataCatalog.from_yml.html#hydromt.data_adapter.DataCatalog.from_yml" title="hydromt.data_adapter.DataCatalog.from_yml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_yml()</span></code></a></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">my_dataset</span><span class="p">:</span>
-  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/path/to/my_dataset.extension</span>
-  <span class="nt">data_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RasterDataset/GeoDataset/GeoDataFrame</span>
-  <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">raster/raster_tindex/netcdf/zarr/vector/vector_table</span>
-  <span class="nt">crs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">EPSG/WKT</span>
-  <span class="nt">kwargs</span><span class="p">:</span>
-    <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">value</span>
-  <span class="nt">rename</span><span class="p">:</span>
-    <span class="nt">old_variable_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">new_variable_name</span>
-  <span class="nt">nodata</span><span class="p">:</span>
-    <span class="nt">new_variable_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">value</span>
-  <span class="nt">unit_add</span><span class="p">:</span>
-    <span class="nt">new_variable_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">value</span>
-  <span class="nt">unit_mult</span><span class="p">:</span>
-    <span class="nt">new_variable_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">value</span>
-  <span class="nt">meta</span><span class="p">:</span>
-    <span class="nt">source_url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">zenodo.org/my_dataset</span>
-    <span class="nt">paper_ref</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Author et al. (2020)</span>
-    <span class="nt">paper_doi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">doi</span>
-    <span class="nt">source_license</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CC-BY-3.0</span>
-    <span class="nt">category</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;category&gt;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">my_dataset</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/path/to/my_dataset.extension</span><span class="w"></span>
+<span class="w">  </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RasterDataset/GeoDataset/GeoDataFrame</span><span class="w"></span>
+<span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">raster/raster_tindex/netcdf/zarr/vector/vector_table</span><span class="w"></span>
+<span class="w">  </span><span class="nt">crs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EPSG/WKT</span><span class="w"></span>
+<span class="w">  </span><span class="nt">kwargs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span><span class="w"></span>
+<span class="w">  </span><span class="nt">rename</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">old_variable_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">new_variable_name</span><span class="w"></span>
+<span class="w">  </span><span class="nt">nodata</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">new_variable_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span><span class="w"></span>
+<span class="w">  </span><span class="nt">unit_add</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">new_variable_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span><span class="w"></span>
+<span class="w">  </span><span class="nt">unit_mult</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">new_variable_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span><span class="w"></span>
+<span class="w">  </span><span class="nt">meta</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zenodo.org/my_dataset</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Author et al. (2020)</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_doi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doi</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CC-BY-3.0</span><span class="w"></span>
+<span class="w">    </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;category&gt;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>A full list of <strong>data entry options</strong> is given below</p>
@@ -350,17 +350,17 @@ A potential third dimension is called “dim0”.
 The variable name is based on the filename, in this case “GLOBCOVER_200901_200912_300x300m”.
 The <code class="docutils literal notranslate"><span class="pre">chunks</span></code> key-word argument is passed to <a class="reference internal" href="../_generated/hydromt.io.open_mfraster.html#hydromt.io.open_mfraster" title="hydromt.io.open_mfraster"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_mfraster()</span></code></a>
 and allows lazy reading of the data.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">globcover</span><span class="p">:</span>
-  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">base/landcover/globcover/GLOBCOVER_200901_200912_300x300m.tif</span>
-  <span class="nt">data_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RasterDataset</span>
-  <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">raster</span>
-  <span class="nt">kwargs</span><span class="p">:</span>
-    <span class="nt">chunks</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">3600</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">3600</span><span class="p p-Indicator">}</span>
-  <span class="nt">meta</span><span class="p">:</span>
-    <span class="nt">source_url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://due.esrin.esa.int/page_globcover.php</span>
-    <span class="nt">paper_ref</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Arino et al (2012)</span>
-    <span class="nt">paper_doi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10.1594/PANGAEA.787668</span>
-    <span class="nt">source_license</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CC-BY-3.0</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">globcover</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">base/landcover/globcover/GLOBCOVER_200901_200912_300x300m.tif</span><span class="w"></span>
+<span class="w">  </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RasterDataset</span><span class="w"></span>
+<span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">raster</span><span class="w"></span>
+<span class="w">  </span><span class="nt">kwargs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">chunks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="nv">3600</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span><span class="w"> </span><span class="nv">3600</span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">  </span><span class="nt">meta</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://due.esrin.esa.int/page_globcover.php</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Arino et al (2012)</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_doi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.1594/PANGAEA.787668</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CC-BY-3.0</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -376,29 +376,29 @@ into a single dataset with variables flwdir, basins, etc.
 Other multiple file raster datasets (e.g. GeoTIFF files) can be read in the same way.
 VRT files are usefull for large raster datasets which are often tiled and can be combined using
 gdalbuildvrt (see <a class="reference external" href="https://gdal.org/programs/gdalbuildvrt.html">https://gdal.org/programs/gdalbuildvrt.html</a>).</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">merit_hydro</span><span class="p">:</span>
-  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">base/merit_hydro/{variable}.vrt</span>
-  <span class="nt">data_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RasterDataset</span>
-  <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">raster</span>
-  <span class="nt">crs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4326</span>
-  <span class="nt">kwargs</span><span class="p">:</span>
-    <span class="nt">chunks</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">6000</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">6000</span><span class="p p-Indicator">}</span>
-  <span class="nt">rename</span><span class="p">:</span>
-    <span class="nt">dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">flwdir</span>
-    <span class="nt">bas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">basins</span>
-    <span class="nt">upa</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">uparea</span>
-    <span class="nt">upg</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">upgrid</span>
-    <span class="nt">elv</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">elevtn</span>
-    <span class="nt">sto</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">strord</span>
-    <span class="nt">slp</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lndslp</span>
-    <span class="nt">wth</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rivwth</span>
-  <span class="nt">meta</span><span class="p">:</span>
-    <span class="nt">category</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">topography</span>
-    <span class="nt">source_version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
-    <span class="nt">paper_doi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10.1029/2019WR024873</span>
-    <span class="nt">paper_ref</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Dai Yamazaki</span>
-    <span class="nt">source_url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro</span>
-    <span class="nt">source_license</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CC-BY-NC 4.0 or ODbL 1.0</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">merit_hydro</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">base/merit_hydro/{variable}.vrt</span><span class="w"></span>
+<span class="w">  </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RasterDataset</span><span class="w"></span>
+<span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">raster</span><span class="w"></span>
+<span class="w">  </span><span class="nt">crs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4326</span><span class="w"></span>
+<span class="w">  </span><span class="nt">kwargs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">chunks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="nv">6000</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span><span class="w"> </span><span class="nv">6000</span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">  </span><span class="nt">rename</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flwdir</span><span class="w"></span>
+<span class="w">    </span><span class="nt">bas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basins</span><span class="w"></span>
+<span class="w">    </span><span class="nt">upa</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uparea</span><span class="w"></span>
+<span class="w">    </span><span class="nt">upg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">upgrid</span><span class="w"></span>
+<span class="w">    </span><span class="nt">elv</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elevtn</span><span class="w"></span>
+<span class="w">    </span><span class="nt">sto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">strord</span><span class="w"></span>
+<span class="w">    </span><span class="nt">slp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lndslp</span><span class="w"></span>
+<span class="w">    </span><span class="nt">wth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rivwth</span><span class="w"></span>
+<span class="w">  </span><span class="nt">meta</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">topography</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_doi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.1029/2019WR024873</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dai Yamazaki</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CC-BY-NC 4.0 or ODbL 1.0</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -414,21 +414,21 @@ Use gdaltindex to build an excepted tile index file (see <a class="reference ext
 The <code class="docutils literal notranslate"><span class="pre">mosaic_kwargs</span></code> are passed to <a class="reference internal" href="../_generated/hydromt.io.open_raster_from_tindex.html#hydromt.io.open_raster_from_tindex" title="hydromt.io.open_raster_from_tindex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_raster_from_tindex()</span></code></a> to
 set the resampling <code class="docutils literal notranslate"><span class="pre">method</span></code> and name of column in the tile index attribute table <code class="docutils literal notranslate"><span class="pre">tileindex</span></code>
 which contains the raster tile file names.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">grwl_mask</span><span class="p">:</span>
-  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">static_data/base/grwl/tindex.gpkg</span>
-  <span class="nt">data_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RasterDataset</span>
-  <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">raster_tindex</span>
-  <span class="nt">nodata</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
-  <span class="nt">kwargs</span><span class="p">:</span>
-    <span class="nt">chunks</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">3000</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">3000</span><span class="p p-Indicator">}</span>
-    <span class="nt">mosaic_kwargs</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">method</span><span class="p">:</span> <span class="nv">nearest</span><span class="p p-Indicator">,</span><span class="nt"> tileindex</span><span class="p">:</span> <span class="nv">location</span><span class="p p-Indicator">}</span>
-  <span class="nt">meta</span><span class="p">:</span>
-    <span class="nt">category</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">surface water</span>
-    <span class="nt">paper_doi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10.1126/science.aat0636</span>
-    <span class="nt">paper_ref</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Allen and Pavelsky (2018)</span>
-    <span class="nt">source_license</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CC BY 4.0</span>
-    <span class="nt">source_url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://doi.org/10.5281/zenodo.1297434</span>
-    <span class="nt">source_version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.01</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">grwl_mask</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">static_data/base/grwl/tindex.gpkg</span><span class="w"></span>
+<span class="w">  </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RasterDataset</span><span class="w"></span>
+<span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">raster_tindex</span><span class="w"></span>
+<span class="w">  </span><span class="nt">nodata</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">kwargs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">chunks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="nv">3000</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span><span class="w"> </span><span class="nv">3000</span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">mosaic_kwargs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="nv">nearest</span><span class="p p-Indicator">,</span><span class="nt"> tileindex</span><span class="p">:</span><span class="w"> </span><span class="nv">location</span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">  </span><span class="nt">meta</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">surface water</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_doi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.1126/science.aat0636</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Allen and Pavelsky (2018)</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CC BY 4.0</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://doi.org/10.5281/zenodo.1297434</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.01</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -456,32 +456,32 @@ The path to multiple files can be set using a sting glob or several keys,
 see description of the <code class="docutils literal notranslate"><span class="pre">path</span></code> argument in the <a class="reference internal" href="#data-yaml"><span class="std std-ref">yaml file description</span></a>.
 In this example additional renaming and unit conversion preprocessing steps are added to
 unify the data to match the hydroMT naming and unit <a class="reference internal" href="#data-convention"><span class="std std-ref">data convention</span></a>.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">era5_hourly</span><span class="p">:</span>
-  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">forcing/ERA5/org/era5_{variable}_{year}_hourly.nc</span>
-  <span class="nt">data_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RasterDataset</span>
-  <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">netcdf</span>
-  <span class="nt">crs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4326</span>
-  <span class="nt">kwargs</span><span class="p">:</span>
-    <span class="nt">chunks</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">latitude</span><span class="p">:</span> <span class="nv">125</span><span class="p p-Indicator">,</span><span class="nt"> longitude</span><span class="p">:</span> <span class="nv">120</span><span class="p p-Indicator">,</span><span class="nt"> time</span><span class="p">:</span> <span class="nv">50</span><span class="p p-Indicator">}</span>
-    <span class="nt">combine</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">by_coords</span>
-    <span class="nt">concat_dim</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">time</span>
-    <span class="nt">decode_times</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="nt">parallel</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">meta</span><span class="p">:</span>
-    <span class="nt">category</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">meteo</span>
-    <span class="nt">history</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Extracted from Copernicus Climate Data Store</span>
-    <span class="nt">paper_doi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10.1002/qj.3803</span>
-    <span class="nt">paper_ref</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Hersbach et al. (2019)</span>
-    <span class="nt">source_license</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products</span>
-    <span class="nt">source_url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://doi.org/10.24381/cds.bd0915c6</span>
-    <span class="nt">source_version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ERA5 hourly data on pressure levels</span>
-  <span class="nt">rename</span><span class="p">:</span>
-    <span class="nt">t2m</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">temp</span>
-    <span class="nt">tp</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">precip</span>
-  <span class="nt">unit_add</span><span class="p">:</span>
-    <span class="nt">temp</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">-273.15</span>
-  <span class="nt">unit_mult</span><span class="p">:</span>
-    <span class="nt">precip</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1000</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">era5_hourly</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">forcing/ERA5/org/era5_{variable}_{year}_hourly.nc</span><span class="w"></span>
+<span class="w">  </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RasterDataset</span><span class="w"></span>
+<span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netcdf</span><span class="w"></span>
+<span class="w">  </span><span class="nt">crs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4326</span><span class="w"></span>
+<span class="w">  </span><span class="nt">kwargs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">chunks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">latitude</span><span class="p">:</span><span class="w"> </span><span class="nv">125</span><span class="p p-Indicator">,</span><span class="nt"> longitude</span><span class="p">:</span><span class="w"> </span><span class="nv">120</span><span class="p p-Indicator">,</span><span class="nt"> time</span><span class="p">:</span><span class="w"> </span><span class="nv">50</span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">combine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">by_coords</span><span class="w"></span>
+<span class="w">    </span><span class="nt">concat_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time</span><span class="w"></span>
+<span class="w">    </span><span class="nt">decode_times</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">parallel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">meta</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">meteo</span><span class="w"></span>
+<span class="w">    </span><span class="nt">history</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extracted from Copernicus Climate Data Store</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_doi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.1002/qj.3803</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hersbach et al. (2019)</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://doi.org/10.24381/cds.bd0915c6</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ERA5 hourly data on pressure levels</span><span class="w"></span>
+<span class="w">  </span><span class="nt">rename</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">t2m</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">temp</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">precip</span><span class="w"></span>
+<span class="w">  </span><span class="nt">unit_add</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">temp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-273.15</span><span class="w"></span>
+<span class="w">  </span><span class="nt">unit_mult</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">precip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -492,20 +492,20 @@ For large spatial vector datasets we recommend the GeoPackage format as it inclu
 spatial index for fast filtering of the data based on spatial location. An example is
 shown below. Not that the rename, unit_mult, unit_add and nodata options refer to
 columns of the attribute table in case of a GeoDataFrame.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">GDP_world</span><span class="p">:</span>
-  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">base/emissions/GDP-countries/World_countries_GDPpcPPP.gpkg</span>
-  <span class="nt">data_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GeoDataFrame</span>
-  <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vector</span>
-  <span class="nt">kwargs</span><span class="p">:</span>
-    <span class="nt">layer</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GDP</span>
-  <span class="nt">rename</span><span class="p">:</span>
-    <span class="nt">GDP</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gdp</span>
-  <span class="nt">unit_mult</span><span class="p">:</span>
-    <span class="nt">gdp</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.001</span>
-  <span class="nt">meta</span><span class="p">:</span>
-    <span class="nt">source_version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
-    <span class="nt">source_author</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Wilfred Altena</span>
-    <span class="nt">source_info</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">data combined from World Bank and CIA World Factbook</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">GDP_world</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">base/emissions/GDP-countries/World_countries_GDPpcPPP.gpkg</span><span class="w"></span>
+<span class="w">  </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeoDataFrame</span><span class="w"></span>
+<span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vector</span><span class="w"></span>
+<span class="w">  </span><span class="nt">kwargs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">layer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GDP</span><span class="w"></span>
+<span class="w">  </span><span class="nt">rename</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">GDP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gdp</span><span class="w"></span>
+<span class="w">  </span><span class="nt">unit_mult</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">gdp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.001</span><span class="w"></span>
+<span class="w">  </span><span class="nt">meta</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Wilfred Altena</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_info</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data combined from World Bank and CIA World Factbook</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -537,13 +537,13 @@ data entry in the yaml file as shown in the example below. The internal data for
 is based on the file extension unless the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> <code class="docutils literal notranslate"><span class="pre">driver</span></code> option is set.
 See py:meth:<cite>~hydromt.io.open_vector</cite> and py:meth:<cite>~hydromt.io.open_vector_from_table</cite> for more
 options.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">stations</span><span class="p">:</span>
-  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/path/to/stations.csv</span>
-  <span class="nt">data_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GeoDataFrame</span>
-  <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vector_table</span>
-  <span class="nt">crs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4326</span>
-  <span class="nt">kwargs</span><span class="p">:</span>
-    <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">csv</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">stations</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/path/to/stations.csv</span><span class="w"></span>
+<span class="w">  </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeoDataFrame</span><span class="w"></span>
+<span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vector_table</span><span class="w"></span>
+<span class="w">  </span><span class="nt">crs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4326</span><span class="w"></span>
+<span class="w">  </span><span class="nt">kwargs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -572,22 +572,22 @@ The path to multiple files can be set using a sting glob or several keys,
 see description of the <code class="docutils literal notranslate"><span class="pre">path</span></code> argument in the <a class="reference internal" href="#data-yaml"><span class="std std-ref">yaml file description</span></a>.
 In this example additional renaming and unit conversion preprocessing steps are added to
 unify the data to match the hydroMT naming and unit <a class="reference internal" href="#data-convention"><span class="std std-ref">data convention</span></a>.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">gtsmv3_eu_era5</span><span class="p">:</span>
-  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">reanalysis-waterlevel-{year}-m{month:02d}.nc</span>
-  <span class="nt">data_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GeoDataset</span>
-  <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">netcdf</span>
-  <span class="nt">crs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4326</span>
-  <span class="nt">kwargs</span><span class="p">:</span>
-    <span class="nt">chunks</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">stations</span><span class="p">:</span> <span class="nv">100</span><span class="p p-Indicator">,</span><span class="nt"> time</span><span class="p">:</span> <span class="nv">1500</span><span class="p p-Indicator">}</span>
-    <span class="nt">combine</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">by_coords</span>
-    <span class="nt">concat_dim</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">time</span>
-    <span class="nt">decode_times</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="nt">parallel</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">meta</span><span class="p">:</span>
-    <span class="nt">paper_doi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10.24381/cds.8c59054f</span>
-    <span class="nt">paper_ref</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Copernicus Climate Change Service 2019</span>
-    <span class="nt">source_license</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products</span>
-    <span class="nt">source_url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.8c59054f?tab=overview</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">gtsmv3_eu_era5</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reanalysis-waterlevel-{year}-m{month:02d}.nc</span><span class="w"></span>
+<span class="w">  </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeoDataset</span><span class="w"></span>
+<span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netcdf</span><span class="w"></span>
+<span class="w">  </span><span class="nt">crs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4326</span><span class="w"></span>
+<span class="w">  </span><span class="nt">kwargs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">chunks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">stations</span><span class="p">:</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">,</span><span class="nt"> time</span><span class="p">:</span><span class="w"> </span><span class="nv">1500</span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">combine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">by_coords</span><span class="w"></span>
+<span class="w">    </span><span class="nt">concat_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time</span><span class="w"></span>
+<span class="w">    </span><span class="nt">decode_times</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">parallel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">meta</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_doi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.24381/cds.8c59054f</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Copernicus Climate Change Service 2019</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.8c59054f?tab=overview</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -602,18 +602,18 @@ In addition a tabulated timeseries text file can be passed to be used as a varia
 This data is added by a second file which is refered to using the <code class="docutils literal notranslate"><span class="pre">fn_data</span></code> key-word argument.
 The index of the timeseries (in the columns header) and point locations must match.
 For more options see the <a class="reference internal" href="../_generated/hydromt.io.open_geodataset.html#hydromt.io.open_geodataset" title="hydromt.io.open_geodataset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_geodataset()</span></code></a> method.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">waterlevels_txt</span><span class="p">:</span>
-  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/path/to/stations.csv</span>
-  <span class="nt">data_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GeoDataset</span>
-  <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vector</span>
-  <span class="nt">crs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4326</span>
-  <span class="nt">kwargs</span><span class="p">:</span>
-    <span class="nt">fn_data</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/path/to/stations_data.csv</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">waterlevels_txt</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/path/to/stations.csv</span><span class="w"></span>
+<span class="w">  </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeoDataset</span><span class="w"></span>
+<span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vector</span><span class="w"></span>
+<span class="w">  </span><span class="nt">crs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4326</span><span class="w"></span>
+<span class="w">  </span><span class="nt">kwargs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">fn_data</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/path/to/stations_data.csv</span><span class="w"></span>
 </pre></div>
 </div>
 <p><em>Tabulated time series text file</em></p>
 <p>This data is read using the <a class="reference internal" href="../_generated/hydromt.io.open_timeseries_from_table.html#hydromt.io.open_timeseries_from_table" title="hydromt.io.open_timeseries_from_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_timeseries_from_table()</span></code></a> method. To
-read the time stamps the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html#pandas.to_datetime" title="(in pandas v1.3.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code></a> method is used.</p>
+read the time stamps the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html#pandas.to_datetime" title="(in pandas v1.3.5)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code></a> method is used.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">time, &lt;ID1&gt;, &lt;ID2&gt;</span>
 <span class="go">&lt;time1&gt;, &lt;value&gt;, &lt;value&gt;</span>
 <span class="go">&lt;time2&gt;, &lt;value&gt;, &lt;value&gt;</span>
@@ -1221,6 +1221,20 @@ for demonstration purposes.</p>
 <td><p><a class="reference external" href="https://doi.org/10.5194/os-17-789-2021">Mulet et al (2021)</a></p></td>
 <td><p>18</p></td>
 <td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_DEM/">merit</a></p></td>
+<td><p>topography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1002/2017GL072874">Yamazaki et al. (2018)</a></p></td>
+<td><p>1.0.3</p></td>
+<td><p>CC-BY-NC 4.0 or ODbL 1.0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_DEM/">merit_v1.0.3</a></p></td>
+<td><p>topography</p></td>
+<td><p>RasterDataset</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1002/2017GL072874">Yamazaki et al. (2018)</a></p></td>
+<td><p>1.0.3</p></td>
+<td><p>CC-BY-NC 4.0 or ODbL 1.0</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">merit_hydro</a></p></td>
 <td><p>topography</p></td>
