@@ -78,7 +78,6 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#">hydromt.flw.gauge_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.floodplain_elevation.html">hydromt.flw.floodplain_elevation</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#general-gis-methods">General GIS methods</a></li>
@@ -150,27 +149,35 @@
 <h1>hydromt.flw.gauge_map<a class="headerlink" href="#hydromt-flw-gauge-map" title="Permalink to this headline"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hydromt.flw.gauge_map">
-<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">gauge_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idxs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.flw</span> <span class="pre">(WARNING)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#gauge_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.gauge_map" title="Permalink to this definition"></a></dt>
-<dd><p>Return map with unique gauge IDs. Initial gauge locations are snapped to the
-nearest downstream river defined by mask if both <cite>flwdir</cite> and <cite>mask</cite> are provided.</p>
+<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">gauge_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">ds:</span> <span class="pre">Union[xarray.core.dataset.Dataset,</span> <span class="pre">xarray.core.dataarray.DataArray],</span> <span class="pre">idxs:</span> <span class="pre">Optional[numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">xy:</span> <span class="pre">Optional[Tuple]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">ids:</span> <span class="pre">Optional[numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">stream:</span> <span class="pre">Optional[xarray.core.dataarray.DataArray]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">flwdir:</span> <span class="pre">Optional[pyflwdir.pyflwdir.FlwdirRaster]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">max_dist:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">10000.0,</span> <span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.flw</span> <span class="pre">(WARNING)&gt;</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">xarray.core.dataarray.DataArray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/hydromt/flw.html#gauge_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.gauge_map" title="Permalink to this definition"></a></dt>
+<dd><p>Return map with unique gauge IDs.</p>
+<p>Gauge locations should be provided by either x,y coordinates (<cite>xy</cite>) or
+linear indices (<cite>idxs</cite>). Gauge labels (<cite>ids</cite>) can optionally be provided,
+but are by default numbered starting at one.</p>
+<p>If <cite>flwdir</cite> and <cite>stream</cite> are provided, the gauge locations are snapped to the
+nearest downstream river defined by the boolean <cite>stream</cite> mask. Else, the gauge
+locations</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ds</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.20.2.dev0)"><em>xarray.Dataset</em></a>) – dataset containing flow direction data</p></li>
+<li><p><strong>ds</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.20.2.dev0)"><em>xarray.Dataset</em></a>) – Dataset or Dataarray with destination grid.</p></li>
 <li><p><strong>idxs</strong> (<em>1D array</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – linear indices of gauges, by default is None.</p></li>
 <li><p><strong>xy</strong> (<em>tuple of 1D array of float</em><em>, </em><em>optional</em>) – x, y coordinates of gauges, by default is None.</p></li>
-<li><p><strong>outlets</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – If True and xy and idxs are None, the basin map is derived for basin outlets
-only, excluding pits at the edge of the domain of incomplete basins.</p></li>
-<li><p><strong>ids</strong> (<em>1D array of int32</em><em>, </em><em>optional</em>) – IDs of gauges, values must be larger than zero, by default None.</p></li>
-<li><p><strong>flwdir</strong> (<em>pyflwdir.FlwdirRaster</em>) – Flow direction raster object</p></li>
+<li><p><strong>ids</strong> (<em>1D array of int32</em><em>, </em><em>optional</em>) – IDs of gauges, values must be larger than zero.
+By default None and numbered on the fly.</p></li>
+<li><p><strong>flwdir</strong> (<em>pyflwdir.FlwdirRaster</em><em>, </em><em>optional</em>) – Flow direction raster object, by default None.</p></li>
 <li><p><strong>stream</strong> (<em>2D array of bool</em><em>, </em><em>optional</em>) – Mask of stream cells used to snap gauges to, by default None</p></li>
+<li><p><strong>max_dist</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>optional</em>) – Maximum distance between original and snapped point location.
+A warning is logged if exceeded. By default 10 km.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Map with unique gauge IDs</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.20.2.dev0)">xarray.DataArray</a></p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>da_gauges</strong> (<em>xarray.DataArray</em>) – Map with unique gauge IDs</p></li>
+<li><p><strong>idxs</strong> (<em>1D array or int</em>) – linear indices of gauges</p></li>
+<li><p><strong>ids</strong> (<em>1D array of int</em>) – IDs of gauges</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>

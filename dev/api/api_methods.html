@@ -100,7 +100,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.floodplain_elevation.html">hydromt.flw.floodplain_elevation</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#general-gis-methods">General GIS methods</a><ul>
@@ -402,11 +401,11 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.set_nodata.html#hydromt.DataArray.raster.set_nodata" title="hydromt.DataArray.raster.set_nodata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.set_nodata</span></code></a>([nodata])</p></td>
 <td><p>Set the nodata value as CF compliant attribute of the DataArray.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.mask_nodata.html#hydromt.DataArray.raster.mask_nodata" title="hydromt.DataArray.raster.mask_nodata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.mask_nodata</span></code></a>()</p></td>
-<td><p>Mask nodata values with np.nan.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.mask_nodata.html#hydromt.DataArray.raster.mask_nodata" title="hydromt.DataArray.raster.mask_nodata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.mask_nodata</span></code></a>([fill_value])</p></td>
+<td><p>Mask nodata values with fill_value (default np.nan).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.interpolate_na.html#hydromt.DataArray.raster.interpolate_na" title="hydromt.DataArray.raster.interpolate_na"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.interpolate_na</span></code></a>([method])</p></td>
-<td><p>Interpolate missing data, powered by <code class="xref py py-meth docutils literal notranslate"><span class="pre">scipy.interpolate.griddata()</span></code>.</p></td>
+<td><p>Interpolate missing data</p></td>
 </tr>
 </tbody>
 </table>
@@ -656,7 +655,7 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 <td><p>Reproject flow direction and upstream area data to the <cite>da_elv</cite> crs and grid.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.flw.upscale_flwdir.html#hydromt.flw.upscale_flwdir" title="hydromt.flw.upscale_flwdir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.upscale_flwdir</span></code></a>(ds, flwdir, scale_ratio)</p></td>
-<td><p>Upscale flow direction network to lower resolution and resample other data variables in dataset to the same resolution.</p></td>
+<td><p>Upscale flow direction network to lower resolution.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.flw.stream_map.html#hydromt.flw.stream_map" title="hydromt.flw.stream_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.stream_map</span></code></a>(ds[, stream])</p></td>
 <td><p>Return a stream mask DataArray</p></td>
@@ -672,9 +671,6 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.flw.clip_basins.html#hydromt.flw.clip_basins" title="hydromt.flw.clip_basins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.clip_basins</span></code></a>(ds, flwdir, xy[, flwdir_name])</p></td>
 <td><p>Clip a dataset to a subbasin.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.flw.floodplain_elevation.html#hydromt.flw.floodplain_elevation" title="hydromt.flw.floodplain_elevation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.floodplain_elevation</span></code></a>(ds_model[, ...])</p></td>
-<td><p>Returns a binary floodplain classification and hydrologically adjusted elevation.</p></td>
 </tr>
 </tbody>
 </table>

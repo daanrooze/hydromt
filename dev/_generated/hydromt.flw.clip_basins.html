@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="hydromt.flw.floodplain_elevation" href="hydromt.flw.floodplain_elevation.html" />
+    <link rel="next" title="hydromt.gis_utils.spread2d" href="hydromt.gis_utils.spread2d.html" />
     <link rel="prev" title="hydromt.flw.outlet_map" href="hydromt.flw.outlet_map.html" /> 
 </head>
 
@@ -78,7 +78,6 @@
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">hydromt.flw.clip_basins</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.floodplain_elevation.html">hydromt.flw.floodplain_elevation</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#general-gis-methods">General GIS methods</a></li>
@@ -150,16 +149,16 @@
 <h1>hydromt.flw.clip_basins<a class="headerlink" href="#hydromt-flw-clip-basins" title="Permalink to this headline"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hydromt.flw.clip_basins">
-<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">clip_basins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'flwdir'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">stream_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#clip_basins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.clip_basins" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">clip_basins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">xarray.core.dataset.Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyflwdir.pyflwdir.FlwdirRaster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flwdir'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">xarray.core.dataset.Dataset</span></span></span><a class="reference internal" href="../_modules/hydromt/flw.html#clip_basins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.clip_basins" title="Permalink to this definition"></a></dt>
 <dd><p>Clip a dataset to a subbasin.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ds</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.20.2.dev0)"><em>xarray.Dataset</em></a>) – dataset containing flow direction data</p></li>
+<li><p><strong>ds</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.20.2.dev0)"><em>xarray.Dataset</em></a>) – Dataset to be clipped, containing flow direction (<cite>flwdir_name</cite>) data</p></li>
 <li><p><strong>flwdir</strong> (<em>pyflwdir.FlwdirRaster</em>) – Flow direction raster object</p></li>
-<li><p><strong>xy</strong> (<em>tuple of array_like of float</em>) – x, y coordinates of (sub)basin outlet locations</p></li>
-<li><p><strong>flwdir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – name of flow direction DataArray, by default ‘dir’</p></li>
-<li><p><strong>stream_kwargs</strong> (<em>key-word arguments</em>) – name of variable in ds and threshold value</p></li>
+<li><p><strong>xy</strong> (<em>tuple of array_like of float</em><em>, </em><em>optional</em>) – x, y coordinates of (sub)basin outlet locations</p></li>
+<li><p><strong>flwdir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – name of flow direction DataArray, by default ‘flwdir’</p></li>
+<li><p><strong>kwargs</strong> (<em>key-word arguments</em>) – Keyword arguments based to the <a class="reference internal" href="hydromt.flw.basin_map.html#hydromt.flw.basin_map" title="hydromt.flw.basin_map"><code class="xref py py-meth docutils literal notranslate"><span class="pre">basin_map()</span></code></a> method.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -169,6 +168,10 @@
 <dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.20.2.dev0)">xarray.Dataset</a></p>
 </dd>
 </dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="hydromt.flw.basin_map.html#hydromt.flw.basin_map" title="hydromt.flw.basin_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">basin_map</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">hydromt.RasterDataArray.clip_mask</span></code></p>
+</div>
 </dd></dl>
 
 </section>
@@ -178,7 +181,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="hydromt.flw.outlet_map.html" class="btn btn-neutral float-left" title="hydromt.flw.outlet_map" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hydromt.flw.floodplain_elevation.html" class="btn btn-neutral float-right" title="hydromt.flw.floodplain_elevation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hydromt.gis_utils.spread2d.html" class="btn btn-neutral float-right" title="hydromt.gis_utils.spread2d" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

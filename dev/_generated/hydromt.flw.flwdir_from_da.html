@@ -78,7 +78,6 @@
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.floodplain_elevation.html">hydromt.flw.floodplain_elevation</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#general-gis-methods">General GIS methods</a></li>
@@ -150,7 +149,7 @@
 <h1>hydromt.flw.flwdir_from_da<a class="headerlink" href="#hydromt-flw-flwdir-from-da" title="Permalink to this headline"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hydromt.flw.flwdir_from_da">
-<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">flwdir_from_da</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftype='infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ftype=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.flw</span> <span class="pre">(WARNING)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#flwdir_from_da"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.flwdir_from_da" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">flwdir_from_da</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da:</span> <span class="pre">xarray.core.dataarray.DataArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftype:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ftype:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask:</span> <span class="pre">Optional[Union[xarray.core.dataarray.DataArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool]]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.flw</span> <span class="pre">(WARNING)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/flw.html#flwdir_from_da"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.flwdir_from_da" title="Permalink to this definition"></a></dt>
 <dd><p>Parse dataarray to flow direction raster object. If a mask coordinate is present
 this will be passed on the the pyflwdir.from_array method.</p>
 <dl class="field-list simple">
@@ -159,7 +158,8 @@ this will be passed on the the pyflwdir.from_array method.</p>
 <li><p><strong>da</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.20.2.dev0)"><em>xarray.DataArray</em></a>) – DataArray containing flow direction raster</p></li>
 <li><p><strong>ftype</strong> (<em>{'d8'</em><em>, </em><em>'ldd'</em><em>, </em><em>'nextxy'</em><em>, </em><em>'nextidx'</em><em>, </em><em>'infer'}</em><em>, </em><em>optional</em>) – name of flow direction type, infer from data if ‘infer’, by default is ‘infer’</p></li>
 <li><p><strong>check_ftype</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – check if valid flow direction raster if ftype is not ‘infer’, by default True</p></li>
-<li><p><strong>mask</strong> (<em>xr.DataArray of bool</em><em>, </em><em>optional</em>) – Mask for gridded flow direction data, by default None.</p></li>
+<li><p><strong>mask</strong> (<em>xr.DataArray</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – Mask for gridded flow direction data, by default None.
+If True, use the mask coordinate of <cite>da</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

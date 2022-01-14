@@ -113,6 +113,7 @@
 <span class="kn">from</span> <span class="nn">affine</span> <span class="kn">import</span> <span class="n">Affine</span>
 <span class="kn">from</span> <span class="nn">rasterio.crs</span> <span class="kn">import</span> <span class="n">CRS</span>
 <span class="kn">import</span> <span class="nn">rasterio.warp</span>
+<span class="kn">import</span> <span class="nn">rasterio.fill</span>
 <span class="kn">from</span> <span class="nn">rasterio</span> <span class="kn">import</span> <span class="n">features</span>
 <span class="kn">from</span> <span class="nn">rasterio.enums</span> <span class="kn">import</span> <span class="n">Resampling</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">cKDTree</span>
@@ -775,7 +776,7 @@
 <span class="sd">        all_touched : bool, optional</span>
 <span class="sd">            If True, all pixels touched by geometries will used to define the sample.</span>
 <span class="sd">            If False, only pixels whose center is within the geometry or that are</span>
-<span class="sd">            selected by Bresenham’s line algorithm will be used. By default False.</span>
+<span class="sd">            selected by Bresenham&#39;s line algorithm will be used. By default False.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -805,7 +806,7 @@
                 <span class="n">transform</span> <span class="o">=</span> <span class="n">Affine</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
                 <span class="n">mask</span> <span class="o">=</span> <span class="n">full</span><span class="p">(</span><span class="n">ds1</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
                 <span class="n">features</span><span class="o">.</span><span class="n">rasterize</span><span class="p">(</span>
-                    <span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                    <span class="p">[(</span><span class="n">geom</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
                     <span class="n">out_shape</span><span class="o">=</span><span class="n">mask</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
                     <span class="n">fill</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                     <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
@@ -840,7 +841,7 @@
             <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
         <span class="n">geoms</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
-        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">ds</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">ds</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;values&quot;</span>
@@ -981,7 +982,7 @@
 <span class="sd">        all_touched : bool, optional</span>
 <span class="sd">            If True, all pixels touched by geometries will be burned in. If false, only</span>
 <span class="sd">            pixels whose center is within the polygon or that are selected by</span>
-<span class="sd">            Bresenham’s line algorithm will be burned in.</span>
+<span class="sd">            Bresenham&#39;s line algorithm will be burned in.</span>
 <span class="sd">        dtype : numpy dtype, optional</span>
 <span class="sd">            Used as data type for results, by default it is derived from values.</span>
 <span class="sd">        sindex : bool, optional</span>
@@ -1042,7 +1043,7 @@
 <span class="sd">        all_touched : bool, optional</span>
 <span class="sd">            If True, all pixels touched by geometries will masked. If false, only</span>
 <span class="sd">            pixels whose center is within the polygon or that are selected by</span>
-<span class="sd">            Bresenham’s line algorithm will be burned in. By default False.</span>
+<span class="sd">            Bresenham&#39;s line algorithm will be burned in. By default False.</span>
 <span class="sd">        invert : bool, optional</span>
 <span class="sd">            If True, the mask will be False where shapes overlap pixels, by default False</span>
 
@@ -1333,14 +1334,15 @@
         <span class="k">elif</span> <span class="s2">&quot;_FillValue&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;_FillValue&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">mask_nodata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Mask nodata values with np.nan.</span>
-<span class="sd">        Note this will change integer dtypes to float.</span>
+    <span class="k">def</span> <span class="nf">mask_nodata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Mask nodata values with fill_value (default np.nan).</span>
+<span class="sd">        Note that masking with np.nan will change integer dtypes to float.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">_da</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodata</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">:</span>
-            <span class="n">_da</span> <span class="o">=</span> <span class="n">_da</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">_da</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodata</span><span class="p">)</span>
-            <span class="n">_da</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodata</span> <span class="o">!=</span> <span class="n">fill_value</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">_da</span><span class="o">.</span><span class="n">notnull</span><span class="p">()</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodata</span><span class="p">)</span> <span class="k">else</span> <span class="n">_da</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodata</span>
+            <span class="n">_da</span> <span class="o">=</span> <span class="n">_da</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">)</span>
+            <span class="n">_da</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="n">fill_value</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">_da</span>
 
     <span class="k">def</span> <span class="nf">mask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">):</span>
@@ -1604,40 +1606,40 @@
         <span class="n">da_reproj</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="n">dst_nodata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">da_reproj</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">reset_spatial_dims_attrs</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_interpolate_na</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src_data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Interpolate missing data, powered by :py:meth:`scipy.interpolate.griddata`.</span>
+    <span class="k">def</span> <span class="nf">_interpolate_na</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">src_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;nearest&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns interpolated array&quot;&quot;&quot;</span>
+        <span class="n">data_isnan</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodata</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodata</span><span class="p">)</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">src_data</span><span class="p">)</span> <span class="k">if</span> <span class="n">data_isnan</span> <span class="k">else</span> <span class="n">src_data</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodata</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mask</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="ow">or</span> <span class="n">mask</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">src_data</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;rio_idw&quot;</span><span class="p">:</span>  <span class="c1"># NOTE: modifies src_data inplace</span>
+            <span class="n">interp_data</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">fill</span><span class="o">.</span><span class="n">fillnodata</span><span class="p">(</span><span class="n">src_data</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">mask</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xcoords</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ycoords</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+            <span class="n">interp_data</span> <span class="o">=</span> <span class="n">griddata</span><span class="p">(</span>
+                <span class="n">points</span><span class="o">=</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">ys</span><span class="p">[</span><span class="n">mask</span><span class="p">]),</span>
+                <span class="n">values</span><span class="o">=</span><span class="n">src_data</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span>
+                <span class="n">xi</span><span class="o">=</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">),</span>
+                <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+                <span class="n">fill_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nodata</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="c1"># required because in some cases valid values are set to nodata?!</span>
+            <span class="n">interp_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">src_data</span><span class="p">,</span> <span class="n">interp_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">interp_data</span>
+
+    <span class="k">def</span> <span class="nf">interpolate_na</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;nearest&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Interpolate missing data</span>
 
 <span class="sd">        Arguments</span>
 <span class="sd">        ----------</span>
-<span class="sd">        method: {‘linear’, ‘nearest’, ‘cubic’}, optional</span>
-<span class="sd">            The method to use for interpolation in :py:meth:`scipy.interpolate.griddata`.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        xarray.DataArray</span>
-<span class="sd">            Filled object</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">src_data_flat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">src_data</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-        <span class="n">data_isnan</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodata</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodata</span><span class="p">)</span>
-        <span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">src_data_flat</span><span class="p">)</span> <span class="k">if</span> <span class="n">data_isnan</span> <span class="k">else</span> <span class="n">src_data_flat</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodata</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">mask</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="ow">or</span> <span class="n">mask</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">src_data</span>
-        <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xcoords</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ycoords</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">griddata</span><span class="p">(</span>
-            <span class="n">points</span><span class="o">=</span><span class="p">(</span><span class="n">xs</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="n">mask</span><span class="p">],</span> <span class="n">ys</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="n">mask</span><span class="p">]),</span>
-            <span class="n">values</span><span class="o">=</span><span class="n">src_data_flat</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span>
-            <span class="n">xi</span><span class="o">=</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">),</span>
-            <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
-            <span class="n">fill_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nodata</span><span class="p">,</span>
-        <span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">interpolate_na</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Interpolate missing data, powered by :py:meth:`scipy.interpolate.griddata`.</span>
-
-<span class="sd">        Arguments</span>
-<span class="sd">        ---------</span>
-<span class="sd">        method: {‘linear’, ‘nearest’, ‘cubic’}, optional</span>
-<span class="sd">            The method to use for interpolation in `scipy.interpolate.griddata`.</span>
+<span class="sd">        method: {&#39;linear&#39;, &#39;nearest&#39;, &#39;cubic&#39;, &#39;rio_idw&#39;}, optional</span>
+<span class="sd">            {&#39;linear&#39;, &#39;nearest&#39;, &#39;cubic&#39;} use :py:meth:`scipy.interpolate.griddata`;</span>
+<span class="sd">            &#39;rio_idw&#39; applies inverse distance weighting based on :py:meth:`rasterio.fill.fillnodata`.</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Additional key-word arguments are passed to :py:meth:`rasterio.fill.fillnodata`,</span>
+<span class="sd">            only used in combination with `method=&#39;rio_idw&#39;`</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1647,13 +1649,14 @@
         <span class="n">dim0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim0</span>
         <span class="k">if</span> <span class="n">dim0</span><span class="p">:</span>
             <span class="n">interp_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">sub_xds</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">dim0</span><span class="p">):</span>
-                <span class="n">src_data</span> <span class="o">=</span> <span class="n">sub_xds</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
-                <span class="n">interp_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpolate_na</span><span class="p">(</span><span class="n">src_data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">)</span>
-                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">sub_xds</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">dim0</span><span class="p">)):</span>
+                <span class="n">interp_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpolate_na</span><span class="p">(</span>
+                    <span class="n">sub_xds</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+                <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">interp_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpolate_na</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">)</span>
+            <span class="n">interp_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpolate_na</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span>
         <span class="n">interp_array</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
             <span class="n">dims</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span>
@@ -1798,16 +1801,14 @@
             <span class="p">{</span><span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geom</span><span class="p">,</span> <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">idx</span><span class="p">}}</span>
             <span class="k">for</span> <span class="n">geom</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">feats_gen</span><span class="p">)</span>
         <span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">feats</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># return empty GeoDataFrame</span>
+            <span class="k">return</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">()</span>
         <span class="n">crs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span>
         <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">crs</span><span class="o">.</span><span class="n">to_epsg</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">crs</span> <span class="o">=</span> <span class="n">crs</span><span class="o">.</span><span class="n">to_epsg</span><span class="p">()</span>  <span class="c1"># not all CRS have an EPSG code</span>
         <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_features</span><span class="p">(</span><span class="n">feats</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
         <span class="n">gdf</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">gdf</span>
-
-    <span class="c1"># TODO port https://rasterio.readthedocs.io/en/latest/api/rasterio.features.html#rasterio.features.sieve</span>
-    <span class="c1"># def sieve(self):</span>
-    <span class="c1">#     pass</span>
 
 
 <span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataset_accessor</span><span class="p">(</span><span class="s2">&quot;raster&quot;</span><span class="p">)</span>

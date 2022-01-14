@@ -148,11 +148,16 @@
 <h1>hydromt.DataArray.raster.interpolate_na<a class="headerlink" href="#hydromt-dataarray-raster-interpolate-na" title="Permalink to this headline"></a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="hydromt.DataArray.raster.interpolate_na">
-<span class="sig-prename descclassname"><span class="pre">DataArray.raster.</span></span><span class="sig-name descname"><span class="pre">interpolate_na</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nearest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hydromt.DataArray.raster.interpolate_na" title="Permalink to this definition"></a></dt>
-<dd><p>Interpolate missing data, powered by <code class="xref py py-meth docutils literal notranslate"><span class="pre">scipy.interpolate.griddata()</span></code>.</p>
+<span class="sig-prename descclassname"><span class="pre">DataArray.raster.</span></span><span class="sig-name descname"><span class="pre">interpolate_na</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'nearest'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hydromt.DataArray.raster.interpolate_na" title="Permalink to this definition"></a></dt>
+<dd><p>Interpolate missing data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>method</strong> (<em>{‘linear’</em><em>, </em><em>‘nearest’</em><em>, </em><em>‘cubic’}</em><em>, </em><em>optional</em>) – The method to use for interpolation in <cite>scipy.interpolate.griddata</cite>.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>method</strong> (<em>{'linear'</em><em>, </em><em>'nearest'</em><em>, </em><em>'cubic'</em><em>, </em><em>'rio_idw'}</em><em>, </em><em>optional</em>) – {‘linear’, ‘nearest’, ‘cubic’} use <code class="xref py py-meth docutils literal notranslate"><span class="pre">scipy.interpolate.griddata()</span></code>;
+‘rio_idw’ applies inverse distance weighting based on <code class="xref py py-meth docutils literal notranslate"><span class="pre">rasterio.fill.fillnodata()</span></code>.</p></li>
+<li><p><strong>**kwargs</strong> – Additional key-word arguments are passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">rasterio.fill.fillnodata()</span></code>,
+only used in combination with <cite>method=’rio_idw’</cite></p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Filled object</p>
