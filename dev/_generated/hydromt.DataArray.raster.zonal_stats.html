@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hydromt.DataArray.raster.vectorize &mdash; hydromt  documentation</title>
+  <title>hydromt.DataArray.raster.zonal_stats &mdash; hydromt  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="hydromt.DataArray.raster.vector_grid" href="hydromt.DataArray.raster.vector_grid.html" />
-    <link rel="prev" title="hydromt.DataArray.raster.geometry_mask" href="hydromt.DataArray.raster.geometry_mask.html" /> 
+    <link rel="next" title="hydromt.gis_utils.axes_attrs" href="hydromt.gis_utils.axes_attrs.html" />
+    <link rel="prev" title="hydromt.DataArray.raster.sample" href="hydromt.DataArray.raster.sample.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -73,8 +73,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../api/api_methods.html#nodata-handling-and-interpolation">Nodata handling and interpolation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api/api_methods.html#clip">Clip</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api/api_methods.html#reproject">Reproject</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="../api/api_methods.html#transform">Transform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api/api_methods.html#sampling-and-zonal-stats">Sampling and zonal stats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/api_methods.html#transform">Transform</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../api/api_methods.html#sampling-and-zonal-stats">Sampling and zonal stats</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api/api_methods.html#low-level-methods">Low level methods</a></li>
 </ul>
 </li>
@@ -111,9 +111,9 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../api/api_index.html">API reference</a> &raquo;</li>
           <li><a href="../api/api_methods.html">Methods</a> &raquo;</li>
-      <li>hydromt.DataArray.raster.vectorize</li>
+      <li>hydromt.DataArray.raster.zonal_stats</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_generated/hydromt.DataArray.raster.vectorize.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_generated/hydromt.DataArray.raster.zonal_stats.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -145,21 +145,32 @@
     text-align: unset;
 }
 </style>
-<section id="hydromt-dataarray-raster-vectorize">
-<h1>hydromt.DataArray.raster.vectorize<a class="headerlink" href="#hydromt-dataarray-raster-vectorize" title="Permalink to this headline"></a></h1>
+<section id="hydromt-dataarray-raster-zonal-stats">
+<h1>hydromt.DataArray.raster.zonal_stats<a class="headerlink" href="#hydromt-dataarray-raster-zonal-stats" title="Permalink to this headline"></a></h1>
 <dl class="py method">
-<dt class="sig sig-object py" id="hydromt.DataArray.raster.vectorize">
-<span class="sig-prename descclassname"><span class="pre">DataArray.raster.</span></span><span class="sig-name descname"><span class="pre">vectorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connectivity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hydromt.DataArray.raster.vectorize" title="Permalink to this definition"></a></dt>
-<dd><p>Return geometry of grouped pixels with the same value in a DataArray object.</p>
+<dt class="sig sig-object py" id="hydromt.DataArray.raster.zonal_stats">
+<span class="sig-prename descclassname"><span class="pre">DataArray.raster.</span></span><span class="sig-name descname"><span class="pre">zonal_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_touched</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hydromt.DataArray.raster.zonal_stats" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate zonal statistics of raster samples aggregated for geometries.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>connectivity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – Use 4 or 8 pixel connectivity for grouping pixels into features, by default 8</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gdf</strong> (<a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><em>geopandas.GeoDataFrame</em></a>) – GeoDataFrame with geometries</p></li>
+<li><p><strong>stats</strong> (<em>list of str</em><em>, </em><em>callable</em>) – Statistics to compute from raster values, options include
+{‘count’, ‘min’, ‘max’, ‘sum’, ‘mean’, ‘std’, ‘median’, ‘q##’}.
+Multiple percentiles can be calculated using comma-seperated values, e.g.: ‘q10,50,90’
+Statistics ignore the nodata value and are applied along the x and y dimension.
+By default [‘mean’]</p></li>
+<li><p><strong>all_touched</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, all pixels touched by geometries will used to define the sample.
+If False, only pixels whose center is within the geometry or that are
+selected by Bresenham’s line algorithm will be used. By default False.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gdf</strong> – Geometry of grouped pixels.</p>
+<dd class="field-even"><p><strong>ojb_out</strong> – Output dataset with a variable for each combination of input variable
+and statistic.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)">geopandas.GeoDataFrame</a></p>
+<dd class="field-odd"><p>xr.Dataset</p>
 </dd>
 </dl>
 </dd></dl>
@@ -170,8 +181,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hydromt.DataArray.raster.geometry_mask.html" class="btn btn-neutral float-left" title="hydromt.DataArray.raster.geometry_mask" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hydromt.DataArray.raster.vector_grid.html" class="btn btn-neutral float-right" title="hydromt.DataArray.raster.vector_grid" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hydromt.DataArray.raster.sample.html" class="btn btn-neutral float-left" title="hydromt.DataArray.raster.sample" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hydromt.gis_utils.axes_attrs.html" class="btn btn-neutral float-right" title="hydromt.gis_utils.axes_attrs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

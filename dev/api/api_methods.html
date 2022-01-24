@@ -78,6 +78,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#clip">Clip</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#reproject">Reproject</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#transform">Transform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sampling-and-zonal-stats">Sampling and zonal stats</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#low-level-methods">Low level methods</a></li>
 </ul>
 </li>
@@ -100,6 +101,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.flw.dem_adjust.html">hydromt.flw.dem_adjust</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#general-gis-methods">General GIS methods</a><ul>
@@ -120,6 +122,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.stats.skills.nashsutcliffe.html">hydromt.stats.skills.nashsutcliffe</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.stats.skills.lognashsutcliffe.html">hydromt.stats.skills.lognashsutcliffe</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.stats.skills.pearson_correlation.html">hydromt.stats.skills.pearson_correlation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.stats.skills.spearman_rank_correlation.html">hydromt.stats.skills.spearman_rank_correlation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.stats.skills.kge.html">hydromt.stats.skills.kge</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.stats.skills.kge_2012.html">hydromt.stats.skills.kge_2012</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_generated/hydromt.stats.skills.kge_non_parametric.html">hydromt.stats.skills.kge_non_parametric</a></li>
@@ -381,11 +384,20 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.xy_to_idx.html#hydromt.DataArray.raster.xy_to_idx" title="hydromt.DataArray.raster.xy_to_idx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.xy_to_idx</span></code></a>(xs, ys[, mask, ...])</p></td>
 <td><p>Return linear index of x, y coordinates</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.rowcol.html#hydromt.DataArray.raster.rowcol" title="hydromt.DataArray.raster.rowcol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.rowcol</span></code></a>(xs, ys[, mask, ...])</p></td>
+<td><p>Return row, col indices of x, y coordinates</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.xy.html#hydromt.DataArray.raster.xy" title="hydromt.DataArray.raster.xy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.xy</span></code></a>(r, c[, mask, ...])</p></td>
+<td><p>Return x,y coordinates at cell center of row, col indices</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.flipud.html#hydromt.DataArray.raster.flipud" title="hydromt.DataArray.raster.flipud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.flipud</span></code></a>()</p></td>
 <td><p>Returns raster flipped along y-axis</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.area_grid.html#hydromt.DataArray.raster.area_grid" title="hydromt.DataArray.raster.area_grid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.area_grid</span></code></a>([dtype])</p></td>
 <td><p>Returns the grid cell area [m2].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.density_grid.html#hydromt.DataArray.raster.density_grid" title="hydromt.DataArray.raster.density_grid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.density_grid</span></code></a>()</p></td>
+<td><p>Returns the density in [unit/m2] of raster(s).</p></td>
 </tr>
 </tbody>
 </table>
@@ -475,6 +487,23 @@
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.vector_grid.html#hydromt.DataArray.raster.vector_grid" title="hydromt.DataArray.raster.vector_grid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.vector_grid</span></code></a>()</p></td>
 <td><p>Return a geopandas GeoDataFrame with a box for each grid cell.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sampling-and-zonal-stats">
+<h3>Sampling and zonal stats<a class="headerlink" href="#sampling-and-zonal-stats" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.sample.html#hydromt.DataArray.raster.sample" title="hydromt.DataArray.raster.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.sample</span></code></a>(gdf[, wdw])</p></td>
+<td><p>Sample from map at point locations with optional window around the points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.DataArray.raster.zonal_stats.html#hydromt.DataArray.raster.zonal_stats" title="hydromt.DataArray.raster.zonal_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.zonal_stats</span></code></a>(gdf, stats[, ...])</p></td>
+<td><p>Calculate zonal statistics of raster samples aggregated for geometries.</p></td>
 </tr>
 </tbody>
 </table>
@@ -672,6 +701,9 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 <tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.flw.clip_basins.html#hydromt.flw.clip_basins" title="hydromt.flw.clip_basins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.clip_basins</span></code></a>(ds, flwdir, xy[, flwdir_name])</p></td>
 <td><p>Clip a dataset to a subbasin.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.flw.dem_adjust.html#hydromt.flw.dem_adjust" title="hydromt.flw.dem_adjust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.dem_adjust</span></code></a>(da_elevtn, da_flwdir[, ...])</p></td>
+<td><p>Returns hydrologically conditioned elevation.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -736,25 +768,28 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 <tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.pearson_correlation.html#hydromt.stats.skills.pearson_correlation" title="hydromt.stats.skills.pearson_correlation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.pearson_correlation</span></code></a>(sim, obs[, dim])</p></td>
 <td><p>Returns the Pearson correlation coefficient of two time series.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.kge.html#hydromt.stats.skills.kge" title="hydromt.stats.skills.kge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.kge</span></code></a>(sim, obs[, dim])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.spearman_rank_correlation.html#hydromt.stats.skills.spearman_rank_correlation" title="hydromt.stats.skills.spearman_rank_correlation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.spearman_rank_correlation</span></code></a>(sim, obs)</p></td>
+<td><p>Returns the spearman rank correlation coefficient of two time series.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.kge.html#hydromt.stats.skills.kge" title="hydromt.stats.skills.kge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.kge</span></code></a>(sim, obs[, dim])</p></td>
 <td><p>Returns the Kling-Gupta Efficiency (KGE) of two time series</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.kge_2012.html#hydromt.stats.skills.kge_2012" title="hydromt.stats.skills.kge_2012"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.kge_2012</span></code></a>(sim, obs[, dim])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.kge_2012.html#hydromt.stats.skills.kge_2012" title="hydromt.stats.skills.kge_2012"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.kge_2012</span></code></a>(sim, obs[, dim])</p></td>
 <td><p>Returns the Kling-Gupta Efficiency (KGE, 2012) of two time series</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.kge_non_parametric.html#hydromt.stats.skills.kge_non_parametric" title="hydromt.stats.skills.kge_non_parametric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.kge_non_parametric</span></code></a>(sim, obs[, dim])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.kge_non_parametric.html#hydromt.stats.skills.kge_non_parametric" title="hydromt.stats.skills.kge_non_parametric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.kge_non_parametric</span></code></a>(sim, obs[, dim])</p></td>
 <td><p>Returns the Non Parametric Kling-Gupta Efficiency (KGE, 2018) of two time series with decomposed scores</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.kge_non_parametric_flood.html#hydromt.stats.skills.kge_non_parametric_flood" title="hydromt.stats.skills.kge_non_parametric_flood"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.kge_non_parametric_flood</span></code></a>(sim, obs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.kge_non_parametric_flood.html#hydromt.stats.skills.kge_non_parametric_flood" title="hydromt.stats.skills.kge_non_parametric_flood"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.kge_non_parametric_flood</span></code></a>(sim, obs)</p></td>
 <td><p>Returns the Non Parametric Kling-Gupta Efficiency (KGE, 2018) of two time series optimized for flood peaks using Pearson (see Pool et al., 2018)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.rsquared.html#hydromt.stats.skills.rsquared" title="hydromt.stats.skills.rsquared"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.rsquared</span></code></a>(sim, obs[, dim])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.rsquared.html#hydromt.stats.skills.rsquared" title="hydromt.stats.skills.rsquared"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.rsquared</span></code></a>(sim, obs[, dim])</p></td>
 <td><p>Returns the coefficient of determination of two time series.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.mse.html#hydromt.stats.skills.mse" title="hydromt.stats.skills.mse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.mse</span></code></a>(sim, obs[, dim])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.mse.html#hydromt.stats.skills.mse" title="hydromt.stats.skills.mse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.mse</span></code></a>(sim, obs[, dim])</p></td>
 <td><p>Returns the mean squared error (MSE) between two time series.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.rmse.html#hydromt.stats.skills.rmse" title="hydromt.stats.skills.rmse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.rmse</span></code></a>(sim, obs[, dim])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_generated/hydromt.stats.skills.rmse.html#hydromt.stats.skills.rmse" title="hydromt.stats.skills.rmse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.rmse</span></code></a>(sim, obs[, dim])</p></td>
 <td><p>Returns the root mean squared error between two time series.</p></td>
 </tr>
 </tbody>

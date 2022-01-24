@@ -78,6 +78,7 @@
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.dem_adjust.html">hydromt.flw.dem_adjust</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#general-gis-methods">General GIS methods</a></li>
@@ -162,7 +163,7 @@ elevation in the depression becomes a pit.</p>
 <li><p><strong>gdf_stream</strong> (<em>geopandas.GeoDataArray</em><em>, </em><em>optional</em>) – stream vector layer with ‘uparea’ [km2] column which is used to burn
 the river in the elevation data.</p></li>
 <li><p><strong>max_depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>optional</em>) – Maximum pour point depth. Depressions with a larger pour point
-depth are set as pit. A negative value (default) equals an infitely
+depth are set as pit. A negative value (default) equals an infinitely
 large pour point depth causing all depressions to be filled.</p></li>
 <li><p><strong>outlets</strong> (<em>{'edge'</em><em>, </em><em>'min'}</em>) – Position for basin outlet(s) at the all valid elevation edge cell (‘edge’)
 or only the minimum elevation edge cell (‘min’)</p></li>

@@ -254,7 +254,7 @@
     <span class="k">return</span> <span class="n">pearsonr</span></div>
 
 
-<span class="k">def</span> <span class="nf">spearman_rank_correlation</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">obs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="spearman_rank_correlation"><a class="viewcode-back" href="../../../_generated/hydromt.stats.skills.spearman_rank_correlation.html#hydromt.stats.skills.spearman_rank_correlation">[docs]</a><span class="k">def</span> <span class="nf">spearman_rank_correlation</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">obs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns the spearman rank correlation coefficient of</span>
 <span class="sd">    two time series.</span>
 
@@ -278,7 +278,7 @@
     <span class="p">)</span>
     <span class="n">spearmanr</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span><span class="n">_spearman_correlation</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">obs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">spearmanr</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;spearmanr_coef&quot;</span>
-    <span class="k">return</span> <span class="n">spearmanr</span>
+    <span class="k">return</span> <span class="n">spearmanr</span></div>
 
 
 <div class="viewcode-block" id="kge_non_parametric"><a class="viewcode-back" href="../../../_generated/hydromt.stats.skills.kge_non_parametric.html#hydromt.stats.skills.kge_non_parametric">[docs]</a><span class="k">def</span> <span class="nf">kge_non_parametric</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">obs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">):</span>

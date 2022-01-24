@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hydromt.flw.upscale_flwdir &mdash; hydromt  documentation</title>
+  <title>hydromt.flw.dem_adjust &mdash; hydromt  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="hydromt.flw.stream_map" href="hydromt.flw.stream_map.html" />
-    <link rel="prev" title="hydromt.flw.reproject_hydrography_like" href="hydromt.flw.reproject_hydrography_like.html" /> 
+    <link rel="next" title="hydromt.gis_utils.spread2d" href="hydromt.gis_utils.spread2d.html" />
+    <link rel="prev" title="hydromt.flw.clip_basins" href="hydromt.flw.clip_basins.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -72,13 +72,13 @@
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.flwdir_from_da.html">hydromt.flw.flwdir_from_da</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.d8_from_dem.html">hydromt.flw.d8_from_dem</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.reproject_hydrography_like.html">hydromt.flw.reproject_hydrography_like</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">hydromt.flw.upscale_flwdir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.upscale_flwdir.html">hydromt.flw.upscale_flwdir</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.stream_map.html">hydromt.flw.stream_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.basin_map.html">hydromt.flw.basin_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.gauge_map.html">hydromt.flw.gauge_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.outlet_map.html">hydromt.flw.outlet_map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hydromt.flw.clip_basins.html">hydromt.flw.clip_basins</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hydromt.flw.dem_adjust.html">hydromt.flw.dem_adjust</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">hydromt.flw.dem_adjust</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api/api_methods.html#general-gis-methods">General GIS methods</a></li>
@@ -112,9 +112,9 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../api/api_index.html">API reference</a> &raquo;</li>
           <li><a href="../api/api_methods.html">Methods</a> &raquo;</li>
-      <li>hydromt.flw.upscale_flwdir</li>
+      <li>hydromt.flw.dem_adjust</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_generated/hydromt.flw.upscale_flwdir.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_generated/hydromt.flw.dem_adjust.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -146,34 +146,52 @@
     text-align: unset;
 }
 </style>
-<section id="hydromt-flw-upscale-flwdir">
-<h1>hydromt.flw.upscale_flwdir<a class="headerlink" href="#hydromt-flw-upscale-flwdir" title="Permalink to this headline"></a></h1>
+<section id="hydromt-flw-dem-adjust">
+<h1>hydromt.flw.dem_adjust<a class="headerlink" href="#hydromt-flw-dem-adjust" title="Permalink to this headline"></a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="hydromt.flw.upscale_flwdir">
-<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">upscale_flwdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds:</span> <span class="pre">xarray.core.dataset.Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir:</span> <span class="pre">pyflwdir.pyflwdir.FlwdirRaster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_ratio:</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'com2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uparea_name:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir_name:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'flwdir'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.flw</span> <span class="pre">(WARNING)&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.10)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">xarray.core.dataarray.DataArray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pyflwdir.pyflwdir.FlwdirRaster</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/hydromt/flw.html#upscale_flwdir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.upscale_flwdir" title="Permalink to this definition"></a></dt>
-<dd><p>Upscale flow direction network to lower resolution.</p>
+<dt class="sig sig-object py" id="hydromt.flw.dem_adjust">
+<span class="sig-prename descclassname"><span class="pre">hydromt.flw.</span></span><span class="sig-name descname"><span class="pre">dem_adjust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da_elevtn:</span> <span class="pre">xarray.core.dataarray.DataArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">da_flwdir:</span> <span class="pre">xarray.core.dataarray.DataArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">da_rivmsk:</span> <span class="pre">typing.Optional[xarray.core.dataarray.DataArray]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir:</span> <span class="pre">typing.Optional[pyflwdir.pyflwdir.FlwdirRaster]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connectivity:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">river_d8:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.flw</span> <span class="pre">(WARNING)&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">xarray.core.dataarray.DataArray</span></span></span><a class="reference internal" href="../_modules/hydromt/flw.html#dem_adjust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.flw.dem_adjust" title="Permalink to this definition"></a></dt>
+<dd><p>Returns hydrologically conditioned elevation.</p>
+<p>The elevation is conditioned to D4 (<cite>connectivity=4</cite>) or D8 (<cite>connectivity=8</cite>)
+flow directions based on the algorithm described in Yamazaki et al. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+<p>The method assumes the original flow directions are in D8. Therefore, if
+<cite>connectivity=4</cite>, an intermediate D4 conditioned elevation raster is derived
+first, based on which new D4 flow directions are obtained used to condition the
+original elevation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ds</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.20.2.dev0)"><em>xarray.Dataset</em></a>) – Dataset flow direction.</p></li>
-<li><p><strong>flwdir</strong> (<em>pyflwdir.FlwdirRaster</em>) – Flow direction raster object.</p></li>
-<li><p><strong>scale_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Size of upscaled (coarse) grid cells.</p></li>
-<li><p><strong>uparea_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – Name of upstream area DataArray, by default None and derived on the fly.</p></li>
-<li><p><strong>flwdir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – Name of upscaled flow direction raster DataArray, by default “flwdir”</p></li>
-<li><p><strong>method</strong> (<em>{'com2'</em><em>, </em><em>'com'</em><em>, </em><em>'eam'</em><em>, </em><em>'dmm'}</em>) – Upscaling method for flow direction data, by default ‘com2’.</p></li>
+<li><p><strong>da_elevtn</strong> (<em>xr.DataArray</em>) – elevation [m+REF]
+D8 flow directions [-]
+binary river mask [-], optional</p></li>
+<li><p><strong>da_flwdir</strong> (<em>xr.DataArray</em>) – elevation [m+REF]
+D8 flow directions [-]
+binary river mask [-], optional</p></li>
+<li><p><strong>da_rivmsk</strong> (<em>xr.DataArray</em>) – elevation [m+REF]
+D8 flow directions [-]
+binary river mask [-], optional</p></li>
+<li><p><strong>flwdir</strong> (<em>pyflwdir.FlwdirRaster</em><em>, </em><em>optional</em>) – D8 flow direction raster object. If None it is derived on the fly from <cite>da_flwdir</cite>.</p></li>
+<li><p><strong>connectivity</strong> (<em>{4</em><em>, </em><em>8}</em>) – D4 or D8 flow connectivity.</p></li>
+<li><p><strong>river_d8</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True and <cite>connectivity==4</cite>, additionally condition river cells to D8.
+Requires <cite>da_rivmsk</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><em>da_flwdir = xarray.DataArray</em> – Upscaled D8 flow direction grid.</p></li>
-<li><p><strong>flwdir_out</strong> (<em>pyflwdir.FlwdirRaster</em>) – Upscaled pyflwdir flow direction raster object.</p></li>
-</ul>
-</p>
+<dd class="field-even"><p>Dataset with hydrologically adjusted elevation (‘elevtn’) [m+REF]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Yamazaki et al. (2012). Adjustment of a spaceborne DEM for use in floodplain hydrodynamic modeling. Journal of Hydrology, 436-437, 81–91. <a class="reference external" href="https://doi.org/10.1016/j.jhydrol.2012.02.045">https://doi.org/10.1016/j.jhydrol.2012.02.045</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyflwdir.FlwdirRaster.upscale</span></code></p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyflwdir.FlwdirRaster.dem_adjust</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">pyflwdir.FlwdirRaster.dem_dig_d4</span></code></p>
 </div>
 </dd></dl>
 
@@ -183,8 +201,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hydromt.flw.reproject_hydrography_like.html" class="btn btn-neutral float-left" title="hydromt.flw.reproject_hydrography_like" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hydromt.flw.stream_map.html" class="btn btn-neutral float-right" title="hydromt.flw.stream_map" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hydromt.flw.clip_basins.html" class="btn btn-neutral float-left" title="hydromt.flw.clip_basins" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hydromt.gis_utils.spread2d.html" class="btn btn-neutral float-right" title="hydromt.gis_utils.spread2d" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

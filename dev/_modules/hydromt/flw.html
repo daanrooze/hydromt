@@ -117,6 +117,7 @@
     <span class="s2">&quot;outlet_map&quot;</span><span class="p">,</span>
     <span class="s2">&quot;clip_basins&quot;</span><span class="p">,</span>
     <span class="s2">&quot;upscale_flwdir&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dem_adjust&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 <span class="c1">### FLWDIR METHODS ###</span>
@@ -199,7 +200,7 @@
 <span class="sd">        the river in the elevation data.</span>
 <span class="sd">    max_depth: float, optional</span>
 <span class="sd">        Maximum pour point depth. Depressions with a larger pour point</span>
-<span class="sd">        depth are set as pit. A negative value (default) equals an infitely</span>
+<span class="sd">        depth are set as pit. A negative value (default) equals an infinitely</span>
 <span class="sd">        large pour point depth causing all depressions to be filled.</span>
 <span class="sd">    outlets: {&#39;edge&#39;, &#39;min&#39;}</span>
 <span class="sd">        Position for basin outlet(s) at the all valid elevation edge cell (&#39;edge&#39;)</span>
@@ -648,7 +649,7 @@
 <span class="sd">    stream_kwargs : dict, optional</span>
 <span class="sd">        Parameter-treshold pairs to define streams. Multiple threshold will be combined</span>
 <span class="sd">        using a logical_and operation. If a stream if provided, it is combined with the</span>
-<span class="sd">        threhold based map as well.</span>
+<span class="sd">        threshhold based map as well.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -766,7 +767,7 @@
     <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">clip_mask</span><span class="p">(</span><span class="n">da_basins</span><span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">dem_adjust</span><span class="p">(</span>
+<div class="viewcode-block" id="dem_adjust"><a class="viewcode-back" href="../../_generated/hydromt.flw.dem_adjust.html#hydromt.flw.dem_adjust">[docs]</a><span class="k">def</span> <span class="nf">dem_adjust</span><span class="p">(</span>
     <span class="n">da_elevtn</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
     <span class="n">da_flwdir</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
     <span class="n">da_rivmsk</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -778,12 +779,12 @@
     <span class="sd">&quot;&quot;&quot;Returns hydrologically conditioned elevation.</span>
 
 <span class="sd">    The elevation is conditioned to D4 (`connectivity=4`) or D8 (`connectivity=8`)</span>
-<span class="sd">    flow directions.</span>
+<span class="sd">    flow directions based on the algorithm described in Yamazaki et al. [1]_</span>
 
-<span class="sd">    The method assumes the orignal flow directions are in D8. Therefore, if</span>
+<span class="sd">    The method assumes the original flow directions are in D8. Therefore, if</span>
 <span class="sd">    `connectivity=4`, an intermediate D4 conditioned elevation raster is derived</span>
 <span class="sd">    first, based on which new D4 flow directions are obtained used to condition the</span>
-<span class="sd">    original elvation.</span>
+<span class="sd">    original elevation.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -803,6 +804,11 @@
 <span class="sd">    -------</span>
 <span class="sd">    xr.Dataset</span>
 <span class="sd">        Dataset with hydrologically adjusted elevation (&#39;elevtn&#39;) [m+REF]</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Yamazaki et al. (2012). Adjustment of a spaceborne DEM for use in floodplain hydrodynamic modeling. Journal of Hydrology, 436-437, 81–91. https://doi.org/10.1016/j.jhydrol.2012.02.045</span>
+
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
@@ -849,7 +855,7 @@
     <span class="p">)</span>
     <span class="n">da_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="n">nodata</span><span class="p">)</span>
     <span class="n">da_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">da_elevtn</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">da_out</span>
+    <span class="k">return</span> <span class="n">da_out</span></div>
 </pre></div>
 
            </div>
