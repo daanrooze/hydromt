@@ -102,6 +102,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">box</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">VALID_METRICS</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
@@ -128,7 +129,7 @@
 
 <span class="sd">        * {&#39;bbox&#39;: [xmin, ymin, xmax, ymax]}</span>
 
-<span class="sd">        * {&#39;geom&#39;: (path to) geopandas.GeoDataFrame[Polygon]}</span>
+<span class="sd">        * {&#39;geom&#39;: /path/to/polygon_geometry}</span>
 
 <span class="sd">        For a region based of another models grid:</span>
 
@@ -136,7 +137,7 @@
 
 <span class="sd">        For a region based of the grid of a raster file:</span>
 
-<span class="sd">        * {&#39;grid&#39;: (path to) raster file}</span>
+<span class="sd">        * {&#39;grid&#39;: /path/to/raster}</span>
 
 <span class="sd">        Entire basin can be defined based on an ID, one or multiple point location (x, y),</span>
 <span class="sd">        or a region of interest (bounding box or geometry) for which the basin IDs are</span>
@@ -152,7 +153,7 @@
 
 <span class="sd">        * {&#39;basin&#39;: [[x1, x2, ..], [y1, y2, ..]]}</span>
 
-<span class="sd">        * {&#39;basin&#39;: (path to) geopandas.GeoDataFrame[Point]}</span>
+<span class="sd">        * {&#39;basin&#39;: /path/to/point_geometry}</span>
 
 <span class="sd">        * {&#39;basin&#39;: [xmin, ymin, xmax, ymax]}</span>
 
@@ -173,21 +174,20 @@
 
 <span class="sd">        * {&#39;subbasin&#39;: [[x1, x2, ..], [y1, y2, ..]], &#39;&lt;variable&gt;&#39;: threshold, &#39;bounds&#39;: [xmin, ymin, xmax, ymax]}</span>
 
-<span class="sd">        * {&#39;subbasin&#39;: (path to) geopandas.GeoDataFrame[Point], &#39;&lt;variable&gt;&#39;: threshold}</span>
+<span class="sd">        * {&#39;subbasin&#39;: /path/to/point_geometry, &#39;&lt;variable&gt;&#39;: threshold}</span>
 
 <span class="sd">        * {&#39;subbasin&#39;: [xmin, ymin, xmax, ymax], &#39;&lt;variable&gt;&#39;: threshold}</span>
 
-<span class="sd">        * {&#39;subbasin&#39;: (path to) geopandas.GeoDataFrame[Polygon], &#39;&lt;variable&gt;&#39;: threshold}</span>
+<span class="sd">        * {&#39;subbasin&#39;: /path/to/polygon_geometry, &#39;&lt;variable&gt;&#39;: threshold}</span>
 
-<span class="sd">        Interbasins are also defined by its outlet locations but include only the most</span>
-<span class="sd">        downstream contiguous area with the area of interest. The outlet locations</span>
-<span class="sd">        are derive from the most downstream cell(s) within a area of interest</span>
-<span class="sd">        defined by a bounding box or geometry, optionally refined by stream threshold arguments.</span>
-<span class="sd">        Common use-cases include:</span>
+<span class="sd">        Interbasins are similar to subbasins but are bounded by a bounding box or geometry</span>
+<span class="sd">        and do not include all upstream area. Common use-cases include:</span>
 
 <span class="sd">        * {&#39;interbasin&#39;: [xmin, ymin, xmax, ymax], &#39;&lt;variable&gt;&#39;: threshold}</span>
 
-<span class="sd">        * {&#39;interbasin&#39;: [xmin, ymin, xmax, ymax], &#39;outlets&#39;: true}</span>
+<span class="sd">        * {&#39;interbasin&#39;: [xmin, ymin, xmax, ymax], &#39;xy&#39;: [x, y]}</span>
+
+<span class="sd">        * {&#39;interbasin&#39;: /path/to/polygon_geometry, &#39;outlets&#39;: true}</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -201,13 +201,13 @@
     <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;basid&quot;</span><span class="p">,</span> <span class="s2">&quot;geom&quot;</span><span class="p">,</span> <span class="s2">&quot;bbox&quot;</span><span class="p">,</span> <span class="s2">&quot;xy&quot;</span><span class="p">],</span>
         <span class="s2">&quot;subbasin&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;geom&quot;</span><span class="p">,</span> <span class="s2">&quot;bbox&quot;</span><span class="p">,</span> <span class="s2">&quot;xy&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;interbasin&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;geom&quot;</span><span class="p">,</span> <span class="s2">&quot;bbox&quot;</span><span class="p">,</span> <span class="s2">&quot;xy&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;interbasin&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;geom&quot;</span><span class="p">,</span> <span class="s2">&quot;bbox&quot;</span><span class="p">,</span> <span class="s2">&quot;xy&quot;</span><span class="p">],</span>  <span class="c1"># FIXME remove interbasin &amp; xy combi?</span>
         <span class="s2">&quot;outlet&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;geom&quot;</span><span class="p">,</span> <span class="s2">&quot;bbox&quot;</span><span class="p">],</span>  <span class="c1"># deprecated!</span>
         <span class="s2">&quot;geom&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;geom&quot;</span><span class="p">],</span>
         <span class="s2">&quot;bbox&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;bbox&quot;</span><span class="p">],</span>
         <span class="s2">&quot;grid&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;RasterDataArray&quot;</span><span class="p">],</span>
     <span class="p">}</span>
-    <span class="n">kind</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">kwargs</span><span class="p">))</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">kwargs</span><span class="p">))</span>  <span class="c1"># first key of region</span>
     <span class="n">value0</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="n">ENTRYPOINTS</span><span class="p">:</span>
         <span class="n">model_class</span> <span class="o">=</span> <span class="n">model_plugins</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">ENTRYPOINTS</span><span class="p">[</span><span class="n">kind</span><span class="p">],</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">)</span>
@@ -301,7 +301,7 @@
 
 <span class="sd">    This method derives a geometry of sub-, inter- or full basin based on an input</span>
 <span class="sd">    dataset with flow-direction and optional basins ID raster data in combination</span>
-<span class="sd">    with a matching basin geometry file containing the bouding boxes of each basin.</span>
+<span class="sd">    with a matching basin geometry file containing the bounding boxes of each basin.</span>
 
 <span class="sd">    Either ``bbox``, ``geom``, ``xy`` (or ``basid`` in case of ``kind=&#39;basin&#39;``) must</span>
 <span class="sd">    be provided.</span>
@@ -316,7 +316,8 @@
 <span class="sd">    kind : {&quot;basin&quot;, &quot;subbasin&quot;, &quot;interbasin&quot;}</span>
 <span class="sd">        kind of basin description</span>
 <span class="sd">    bounds: array_like of float, optional</span>
-<span class="sd">        [xmin, ymin, xmax, ymax] coordinates of total</span>
+<span class="sd">        [xmin, ymin, xmax, ymax] coordinates of total bounding box, i.e. the data is</span>
+<span class="sd">        clipped to this domain before futher processing.</span>
 <span class="sd">    bbox : array_like of float, optional</span>
 <span class="sd">        [xmin, ymin, xmax, ymax] coordinates to infer (sub)(inter)basin(s)</span>
 <span class="sd">    geom : geopandas.GeoDataFrame, optional</span>
@@ -359,10 +360,27 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
             <span class="s1">&#39;&quot;within&quot; stream argument has been deprecated.&#39;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span>
         <span class="p">)</span>
+
+    <span class="c1"># check variables</span>
+    <span class="n">dvars</span> <span class="o">=</span> <span class="p">[</span><span class="n">flwdir_name</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">stream_kwargs</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">dvars</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_vars</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset variable </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> not in ds.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># for interbasins we can limit the domain based on either bbox / geom or bounds</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;interbasin&quot;</span> <span class="ow">and</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">bbox</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">geom</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;&quot;kind=interbasin&quot; requires either &quot;bbox&quot; or &quot;geom&quot;&#39;</span><span class="p">)</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">bbox</span> <span class="k">if</span> <span class="n">bbox</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">geom</span><span class="o">.</span><span class="n">total_bounds</span>
+    <span class="c1"># initial clip based on bounds</span>
+    <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">clip_bbox</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">buffer</span><span class="o">=</span><span class="n">buffer</span><span class="p">)</span>
     <span class="c1"># convert bbox to geom</span>
     <span class="k">if</span> <span class="n">geom</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">bbox</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">geom</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">bbox</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
 
+    <span class="c1"># check basin index</span>
+    <span class="c1"># TODO understand pfafstetter codes</span>
     <span class="n">gdf_bas</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">basin_index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">basin_index</span><span class="p">,</span> <span class="n">GeoDataFrameAdapter</span><span class="p">):</span>
@@ -388,18 +406,6 @@
         <span class="k">if</span> <span class="n">gdf_bas</span><span class="o">.</span><span class="n">crs</span> <span class="o">!=</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Basin geometries CRS does not match the input raster CRS.&quot;</span><span class="p">)</span>
             <span class="n">gdf_bas</span> <span class="o">=</span> <span class="n">gdf_bas</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
-
-    <span class="c1"># initial clip based on bounds</span>
-    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;interbasin&quot;</span> <span class="ow">and</span> <span class="n">geom</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">bounds</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">total_bounds</span>
-    <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">clip_bbox</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">buffer</span><span class="o">=</span><span class="n">buffer</span><span class="p">)</span>
-
-    <span class="c1"># check variables</span>
-    <span class="n">dvars</span> <span class="o">=</span> <span class="p">[</span><span class="n">flwdir_name</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">stream_kwargs</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">dvars</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_vars</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset variable </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> not in ds.&quot;</span><span class="p">)</span>
 
     <span class="c1">## BASINS</span>
     <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;basin&quot;</span> <span class="ow">or</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -477,15 +483,18 @@
         <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">clip_mask</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="n">basins_name</span><span class="p">])</span>
         <span class="n">bas_mask</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">basins_name</span><span class="p">]</span>
 
-    <span class="c1"># SUBBASINS</span>
+    <span class="c1"># INTER- &amp; SUBBASINS</span>
     <span class="n">xy_out</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;subbasin&quot;</span><span class="p">,</span> <span class="s2">&quot;interbasin&quot;</span><span class="p">]:</span>
         <span class="c1"># get flow directions</span>
         <span class="n">_check_size</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span>  <span class="c1"># warning for large domain</span>
-        <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">basins_name</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">:</span>  <span class="c1"># set flwdir mask based on basin map</span>
-            <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="n">ds</span><span class="p">[</span><span class="n">basins_name</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">flwdir</span> <span class="o">=</span> <span class="n">flwdir_from_da</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="n">flwdir_name</span><span class="p">],</span> <span class="n">ftype</span><span class="o">=</span><span class="n">ftype</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># if interbasin, set flwdir mask within geometry / bounding box</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;interbasin&quot;</span><span class="p">:</span>  <span class="c1"># we have checked before that geom is not None</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">geometry_mask</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">basins_name</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">:</span>  <span class="c1"># set flwdir mask based on basin map</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">basins_name</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">flwdir</span> <span class="o">=</span> <span class="n">flwdir_from_da</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="n">flwdir_name</span><span class="p">],</span> <span class="n">ftype</span><span class="o">=</span><span class="n">ftype</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
         <span class="c1"># get area of interest (aoi) mask</span>
         <span class="k">if</span> <span class="n">geom</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">aoi</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">geometry_mask</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
@@ -516,16 +525,12 @@
             <span class="n">xy</span> <span class="o">=</span> <span class="n">outmap</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">idx_to_xy</span><span class="p">(</span><span class="n">idxs_out</span><span class="p">)</span>
         <span class="c1"># get subbasin map</span>
         <span class="n">bas_mask</span><span class="p">,</span> <span class="n">xy_out</span> <span class="o">=</span> <span class="n">basin_map</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">flwdir</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="c1"># check sub/inter basin map</span>
+        <span class="c1"># is subbasin with bounds check if all upstream cells are included</span>
         <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;subbasin&quot;</span> <span class="ow">and</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">region</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
-            <span class="n">region_mask</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">geometry_mask</span><span class="p">(</span><span class="n">region</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">region_mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bas_mask</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)):</span>
+            <span class="n">geom</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">geometry_mask</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bas_mask</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)):</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;The subbasin does not include all upstream cells.&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;interbasin&quot;</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">aoi</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bas_mask</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)):</span>
-            <span class="c1"># derive interbasin (most downstream contiguous area within region)</span>
-            <span class="n">_mask</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">interbasin_mask</span><span class="p">(</span><span class="n">aoi</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="n">bas_mask</span> <span class="o">=</span> <span class="n">bas_mask</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">_mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">bas_mask</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No </span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s2"> found with given criteria.&quot;</span><span class="p">)</span>
@@ -533,8 +538,7 @@
     <span class="n">bas_mask</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
     <span class="n">bas_mask</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">set_nodata</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">w</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">bas_mask</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">clip_mask</span><span class="p">(</span><span class="n">bas_mask</span><span class="p">)</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">bounds</span>
-    <span class="n">ncells</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bas_mask</span><span class="o">.</span><span class="n">values</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;basin bbox: [</span><span class="si">{</span><span class="n">w</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">s</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">e</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">] / size: </span><span class="si">{</span><span class="n">ncells</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s2"> bbox: [</span><span class="si">{</span><span class="n">w</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">s</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">e</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 
     <span class="c1"># vectorize basins and outlets</span>
     <span class="n">basin_geom</span> <span class="o">=</span> <span class="n">bas_mask</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">vectorize</span><span class="p">()</span>

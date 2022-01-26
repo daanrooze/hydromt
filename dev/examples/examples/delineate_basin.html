@@ -54,7 +54,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#Import-packages">Import packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Read-data">Read data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Delineate basins</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Delineate-subbasins">Delineate subbasins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Delineate-sub-basins">Delineate sub-basins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Delineate-interbasins">Delineate interbasins</a></li>
 </ul>
 </li>
@@ -380,7 +380,7 @@ div.rendered_html tbody tr:hover {
 </style>
 <section id="Delineate-basins">
 <h1>Delineate basins<a class="headerlink" href="#Delineate-basins" title="Permalink to this headline"></a></h1>
-<p>The first step when building a model is to define the model domain. For hydrological models this is typically a full <strong>basin</strong> or <strong>subbasin</strong> which includes all upstream cells. For hydrodynamic models it often makes sense to use an <strong>interbasin</strong> to ensure that the same river only enters the model domain once. <em>hydroMT</em> has the <code class="docutils literal notranslate"><span class="pre">get_basin_geometry</span></code> function to do just that.</p>
+<p>The first step when building a model is to define the model domain. For hydrological models this is typically a full <strong>basin</strong> or <strong>sub-basin</strong> which includes all upstream cells. For hydrodynamic models this can also be an <strong>inter-basin</strong> which does not necessary include all upstream cells. <em>hydroMT</em> has the <code class="docutils literal notranslate"><span class="pre">get_basin_geometry</span></code> function to do just that.</p>
 <section id="Import-packages">
 <h2>Import packages<a class="headerlink" href="#Import-packages" title="Permalink to this headline"></a></h2>
 <div class="nbinput nblast docutils container">
@@ -388,9 +388,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">box</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 </pre></div>
@@ -402,7 +400,6 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for plotting</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span><span class="p">,</span> <span class="n">patheffects</span>
 <span class="kn">import</span> <span class="nn">cartopy.io.img_tiles</span> <span class="k">as</span> <span class="nn">cimgt</span>
 <span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
 
@@ -416,7 +413,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import hydromt</span>
 <span class="kn">import</span> <span class="nn">hydromt</span>
-<span class="kn">from</span> <span class="nn">hydromt.workflows.basin_mask</span> <span class="kn">import</span> <span class="n">get_basin_geometry</span>
+<span class="kn">from</span> <span class="nn">hydromt.workflows</span> <span class="kn">import</span> <span class="n">get_basin_geometry</span>
 </pre></div>
 </div>
 </div>
@@ -436,7 +433,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2022-01-24 10:40:09,368 - basin_delineation - log - INFO - HydroMT version: 0.4.5.dev
+2022-01-26 17:38:16,765 - basin_delineation - log - INFO - HydroMT version: 0.4.5.dev
 </pre></div></div>
 </div>
 </section>
@@ -468,27 +465,27 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2022-01-24 10:40:09,797 - basin_delineation - data_adapter - INFO - Downloading file to /home/runner/.hydromt_data/data/v0.0.6/data.tar.gz
-2022-01-24 10:40:13,060 - basin_delineation - data_adapter - DEBUG - Unpacking data from /home/runner/.hydromt_data/data/v0.0.6/data.tar.gz
-2022-01-24 10:40:14,100 - basin_delineation - data_adapter - INFO - Adding sample data v0.0.6 from artifacts
+2022-01-26 17:38:17,011 - basin_delineation - data_adapter - INFO - Downloading file to /home/runner/.hydromt_data/data/v0.0.6/data.tar.gz
+2022-01-26 17:38:17,333 - basin_delineation - data_adapter - DEBUG - Unpacking data from /home/runner/.hydromt_data/data/v0.0.6/data.tar.gz
+2022-01-26 17:38:18,238 - basin_delineation - data_adapter - INFO - Adding sample data v0.0.6 from artifacts
 {&#39;category&#39;: &#39;topography&#39;,
  &#39;paper_doi&#39;: &#39;10.1029/2019WR024873&#39;,
  &#39;paper_ref&#39;: &#39;Yamazaki et al. (2019)&#39;,
  &#39;source_license&#39;: &#39;CC-BY-NC 4.0 or ODbL 1.0&#39;,
  &#39;source_url&#39;: &#39;http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro&#39;,
  &#39;source_version&#39;: 1.0}
-2022-01-24 10:40:14,181 - basin_delineation - data_adapter - INFO - DataCatalog: Getting merit_hydro RasterDataset raster data from /home/runner/.hydromt_data/data/v0.0.6/merit_hydro/{variable}.tif
+2022-01-26 17:38:18,309 - basin_delineation - data_adapter - INFO - DataCatalog: Getting merit_hydro RasterDataset raster data from /home/runner/.hydromt_data/data/v0.0.6/merit_hydro/{variable}.tif
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read MERIT hydro basin index vector data</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read MERIT hydro basin index vector data. This data contains bounding box geometries of all basins globally.</span>
 <span class="c1"># Here we pass the GeoDataFrameAdapter instead of the GeoDataFrame itself</span>
-<span class="c1"># to load the relevant area within the get_basin_geometry method</span>
+<span class="c1"># a spatial subset of the data loaded within the get_basin_geometry method</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">data_catalog</span><span class="p">[</span><span class="s2">&quot;merit_hydro_index&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">meta</span><span class="p">)</span>
-<span class="n">bas_index</span> <span class="o">=</span> <span class="n">data_catalog</span><span class="p">[</span><span class="s2">&quot;merit_hydro_index&quot;</span><span class="p">]</span>
+<span class="n">basin_index</span> <span class="o">=</span> <span class="n">data_catalog</span><span class="p">[</span><span class="s2">&quot;merit_hydro_index&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -511,6 +508,17 @@ with the basin index vector data makes faster basin delineation possible.</p>
 <span class="n">flwdir</span> <span class="o">=</span> <span class="n">hydromt</span><span class="o">.</span><span class="n">flw</span><span class="o">.</span><span class="n">flwdir_from_da</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s2">&quot;flwdir&quot;</span><span class="p">],</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;d8&quot;</span><span class="p">)</span>
 <span class="n">feats</span> <span class="o">=</span> <span class="n">flwdir</span><span class="o">.</span><span class="n">streams</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="n">ds</span><span class="p">[</span><span class="s2">&quot;strord&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">)</span>
 <span class="n">gdf_riv</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_features</span><span class="p">(</span><span class="n">feats</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">gdf_bas</span><span class="p">,</span> <span class="n">gdf_out</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">cimgt</span><span class="o">.</span><span class="n">QuadtreeTiles</span><span class="p">(),</span> <span class="mi">12</span><span class="p">)</span>
+    <span class="n">gdf_bas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">gdf_riv</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">gdf_out</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span>
 </pre></div>
 </div>
 </div>
@@ -524,14 +532,14 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CLI syntax: {&#39;basin&#39;: [x, y]}</span>
+<span class="c1"># e.g.: {&#39;basin&#39;: [12.6, 45.8]}</span>
 
 <span class="n">xy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.6</span><span class="p">,</span> <span class="mf">45.8</span><span class="p">]</span>
-<span class="n">gdf_xy</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]]),</span> <span class="n">crs</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
 <span class="n">gdf_bas</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_basin_geometry</span><span class="p">(</span>
     <span class="n">ds</span><span class="p">,</span>
     <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;basin&quot;</span><span class="p">,</span>
     <span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">,</span>
-    <span class="n">basin_index</span><span class="o">=</span><span class="n">bas_index</span><span class="p">,</span>
+    <span class="n">basin_index</span><span class="o">=</span><span class="n">basin_index</span><span class="p">,</span>
     <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
@@ -542,8 +550,8 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2022-01-24 10:40:18,617 - basin_delineation - basin_mask - DEBUG - Getting basin IDs at point locations.
-2022-01-24 10:40:18,738 - basin_delineation - basin_mask - INFO - basin bbox: [12.1958, 45.5850, 12.8983, 46.4167] / size: 408029
+2022-01-26 17:38:22,151 - basin_delineation - basin_mask - DEBUG - Getting basin IDs at point locations.
+2022-01-26 17:38:22,250 - basin_delineation - basin_mask - INFO - basin bbox: [12.1958, 45.5850, 12.8983, 46.4167]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -551,14 +559,10 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot results</span>
+<span class="n">gdf_xy</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]]),</span> <span class="n">crs</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
 <span class="n">extent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gdf_bas</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">total_bounds</span><span class="p">)[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">cimgt</span><span class="o">.</span><span class="n">QuadtreeTiles</span><span class="p">(),</span> <span class="mi">12</span><span class="p">)</span>
-<span class="n">gdf_bas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-<span class="n">gdf_riv</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">gdf_xy</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">gdf_bas</span><span class="p">,</span> <span class="n">gdf_xy</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -579,24 +583,24 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 </div>
 </section>
-<section id="Delineate-subbasins">
-<h2>Delineate subbasins<a class="headerlink" href="#Delineate-subbasins" title="Permalink to this headline"></a></h2>
-<p>We need an intial bounding box to delineate the subbasin. This can be derived from the <em>merit_hydro_index</em> or user provided intitial <code class="docutils literal notranslate"><span class="pre">bounds</span></code>. The latter might be faster if delineating a small subbasin from a large basin. A warning is raised if not all contributing cells are included.</p>
+<section id="Delineate-sub-basins">
+<h2>Delineate sub-basins<a class="headerlink" href="#Delineate-sub-basins" title="Permalink to this headline"></a></h2>
+<p>We need an initial bounding box to delineate the sub-basin. This can be derived from the <em>merit_hydro_index</em> or user provided initial <code class="docutils literal notranslate"><span class="pre">bounds</span></code>. The latter might be faster if delineating a small sub-basin from a large basin. A warning is raised if not all contributing cells are included.</p>
 <p>Get a subbasin based on its outlet location <code class="docutils literal notranslate"><span class="pre">[x,y]</span></code>, snapped to a stream defined by a <code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;:&lt;threshold&gt;</span></code> pair, in this case a stream order larger or equal to 7. The <code class="docutils literal notranslate"><span class="pre">variable</span></code> should be present in the dataset <code class="docutils literal notranslate"><span class="pre">ds</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># {&#39;subbasin&#39;: [x, y], &lt;variable&gt;: &lt;threshold&gt;, &#39;bounds&#39;: [xmin, ymin, xmax, ymax]}</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CLI syntax: {&#39;subbasin&#39;: [x, y], &lt;variable&gt;: &lt;threshold&gt;, &#39;bounds&#39;: [xmin, ymin, xmax, ymax]}</span>
+<span class="c1"># e.g.: {&#39;subbasin&#39;: [12.6, 45.8], &#39;strord&#39;: 7, &#39;bounds&#39;: [12.1, 45.5, 12.9, 46.5]}</span>
 
+<span class="n">xy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.6</span><span class="p">,</span> <span class="mf">45.8</span><span class="p">]</span>
 <span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.1</span><span class="p">,</span> <span class="mf">45.5</span><span class="p">,</span> <span class="mf">12.9</span><span class="p">,</span> <span class="mf">46.5</span><span class="p">]</span>
-<span class="n">gdf_bounds</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
 <span class="n">gdf_bas</span><span class="p">,</span> <span class="n">gdf_out</span> <span class="o">=</span> <span class="n">get_basin_geometry</span><span class="p">(</span>
     <span class="n">ds</span><span class="p">,</span>
     <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;subbasin&quot;</span><span class="p">,</span>
     <span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">,</span>
     <span class="n">strord</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
-    <span class="c1">#     basin_index=bas_index,</span>
     <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
     <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
 <span class="p">)</span>
@@ -608,7 +612,7 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2022-01-24 10:40:29,258 - basin_delineation - basin_mask - INFO - basin bbox: [12.2350, 45.7950, 12.8783, 46.4167] / size: 293449
+2022-01-26 17:38:31,987 - basin_delineation - basin_mask - INFO - subbasin bbox: [12.2350, 45.7950, 12.8783, 46.4167]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -616,14 +620,10 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot results</span>
+<span class="n">gdf_bounds</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
 <span class="n">extent</span> <span class="o">=</span> <span class="n">gdf_bounds</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">total_bounds</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">cimgt</span><span class="o">.</span><span class="n">QuadtreeTiles</span><span class="p">(),</span> <span class="mi">12</span><span class="p">)</span>
-<span class="n">gdf_bas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-<span class="n">gdf_riv</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">gdf_out</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">gdf_bas</span><span class="p">,</span> <span class="n">gdf_out</span><span class="p">)</span>
 <span class="n">gdf_bounds</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -644,20 +644,21 @@ with the basin index vector data makes faster basin delineation possible.</p>
 <img alt="../../_images/examples_examples_delineate_basin_22_1.png" src="../../_images/examples_examples_delineate_basin_22_1.png" />
 </div>
 </div>
-<p>Get a subbasin based on the location where the stream flows out of a <code class="docutils literal notranslate"><span class="pre">bbox</span></code>. Here the stream defined by a <code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;:&lt;threshold&gt;</span></code> pair, in this case a stream order larger or equal to 8. The <code class="docutils literal notranslate"><span class="pre">variable</span></code> should be present in the dataset <code class="docutils literal notranslate"><span class="pre">ds</span></code>.</p>
+<p>Get a sub-basin based on the location where the stream flows out of a <code class="docutils literal notranslate"><span class="pre">bbox</span></code>. Here the stream defined by a <code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;:&lt;threshold&gt;</span></code> pair, in this case a stream order larger or equal to 8. The <code class="docutils literal notranslate"><span class="pre">variable</span></code> should be present in the dataset <code class="docutils literal notranslate"><span class="pre">ds</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># {&#39;subbasin&#39;: [xmin, ymin, xmax, ymax], &lt;variable&gt;: &lt;threshold&gt;, &#39;bounds&#39;: [xmin, ymin, xmax, ymax]}</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CLI SYNTAX: {&#39;subbasin&#39;: [xmin, ymin, xmax, ymax], &lt;variable&gt;: &lt;threshold&gt;}</span>
+<span class="c1"># e.g.: {&#39;subbasin&#39;: [12.50, 45.72, 12.7, 46], &#39;strord&#39;: 8}</span>
+
 <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.50</span><span class="p">,</span> <span class="mf">45.72</span><span class="p">,</span> <span class="mf">12.7</span><span class="p">,</span> <span class="mi">46</span><span class="p">]</span>
-<span class="n">gdf_bbox</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">bbox</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
 <span class="n">gdf_bas</span><span class="p">,</span> <span class="n">gdf_out</span> <span class="o">=</span> <span class="n">get_basin_geometry</span><span class="p">(</span>
     <span class="n">ds</span><span class="p">,</span>
     <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;subbasin&quot;</span><span class="p">,</span>
     <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
     <span class="n">strord</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
-    <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+    <span class="n">basin_index</span><span class="o">=</span><span class="n">basin_index</span><span class="p">,</span>
     <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
@@ -668,7 +669,8 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2022-01-24 10:40:37,245 - basin_delineation - basin_mask - INFO - basin bbox: [12.1958, 45.7192, 12.8783, 46.4167] / size: 400335
+2022-01-26 17:38:38,499 - basin_delineation - basin_mask - DEBUG - Getting IDs of intersecting basins.
+2022-01-26 17:38:38,886 - basin_delineation - basin_mask - INFO - subbasin bbox: [12.1958, 45.7192, 12.8783, 46.4167]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -676,16 +678,11 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot results</span>
-<span class="n">extent</span> <span class="o">=</span> <span class="n">gdf_bounds</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">total_bounds</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">cimgt</span><span class="o">.</span><span class="n">QuadtreeTiles</span><span class="p">(),</span> <span class="mi">12</span><span class="p">)</span>
-<span class="n">gdf_bas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-<span class="n">gdf_riv</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">gdf_out</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">gdf_bbox</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">bbox</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+<span class="n">extent</span> <span class="o">=</span> <span class="n">gdf_bas</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">total_bounds</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">gdf_bas</span><span class="p">,</span> <span class="n">gdf_out</span><span class="p">)</span>
 <span class="n">gdf_bbox</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-<span class="n">gdf_bounds</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -708,12 +705,15 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </section>
 <section id="Delineate-interbasins">
 <h2>Delineate interbasins<a class="headerlink" href="#Delineate-interbasins" title="Permalink to this headline"></a></h2>
-<p>Get an interbasin based on the streams within a <code class="docutils literal notranslate"><span class="pre">bbox</span></code>. The interbasin is limited to the most downstream contiguous area within the bbox that drains to the stream. Here the stream defined by a <code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;:&lt;threshold&gt;</span></code> pair, in this case a stream order larger or equal to 8. The <code class="docutils literal notranslate"><span class="pre">variable</span></code> should be present in the dataset <code class="docutils literal notranslate"><span class="pre">ds</span></code>. The <code class="docutils literal notranslate"><span class="pre">buffer</span></code> is required to check wether streams flow in and out of the bbox.</p>
+<p>Get an inter-basin based on the streams within a <code class="docutils literal notranslate"><span class="pre">bbox</span></code>. The inter-basin is limited to the most downstream contiguous area within the bbox that drains to the stream. Here the stream defined by a <code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;:&lt;threshold&gt;</span></code> pair, in this case a stream order larger or equal to 8. The <code class="docutils literal notranslate"><span class="pre">variable</span></code> should be present in the dataset <code class="docutils literal notranslate"><span class="pre">ds</span></code>. The <code class="docutils literal notranslate"><span class="pre">buffer</span></code> is required to check wether streams flow in and out of the bbox.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># {&#39;interbasin&#39;: [xmin, ymin, xmax, ymax], &lt;variable&gt;: &lt;threshold&gt;}</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CLI SYNTAX {&#39;interbasin&#39;: [xmin, ymin, xmax, ymax], &lt;variable&gt;: &lt;threshold&gt;}</span>
+<span class="c1"># e.g.: {&#39;interbasin&#39;: [12.50, 45.72, 12.7, 46], &#39;strord&#39;: 8}</span>
+
+<span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.50</span><span class="p">,</span> <span class="mf">45.72</span><span class="p">,</span> <span class="mf">12.7</span><span class="p">,</span> <span class="mi">46</span><span class="p">]</span>
 <span class="n">gdf_bas</span><span class="p">,</span> <span class="n">gdf_out</span> <span class="o">=</span> <span class="n">get_basin_geometry</span><span class="p">(</span>
     <span class="n">ds</span><span class="p">,</span>
     <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;interbasin&quot;</span><span class="p">,</span>
@@ -730,7 +730,7 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2022-01-24 10:40:44,858 - basin_delineation - basin_mask - INFO - basin bbox: [12.5000, 45.7200, 12.7000, 46.0000] / size: 63515
+2022-01-26 17:38:45,736 - basin_delineation - basin_mask - INFO - interbasin bbox: [12.5000, 45.7200, 12.7000, 46.0000]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -738,16 +738,11 @@ with the basin index vector data makes faster basin delineation possible.</p>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot results</span>
+<span class="n">gdf_bbox</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">bbox</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
 <span class="n">extent</span> <span class="o">=</span> <span class="n">gdf_bbox</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)</span><span class="o">.</span><span class="n">total_bounds</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">cimgt</span><span class="o">.</span><span class="n">QuadtreeTiles</span><span class="p">(),</span> <span class="mi">12</span><span class="p">)</span>
-<span class="n">gdf_bas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">gdf_riv</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">gdf_out</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">gdf_bas</span><span class="p">,</span> <span class="n">gdf_out</span><span class="p">)</span>
 <span class="n">gdf_bbox</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">gdf_bounds</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

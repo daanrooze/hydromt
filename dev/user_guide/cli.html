@@ -266,7 +266,7 @@ in the build method.</p>
 <h2>Region options<a class="headerlink" href="#region-options" title="Permalink to this headline"></a></h2>
 <p id="cli-region">The region of interest can be described in three ways:</p>
 <ul>
-<li><p>based on <strong>geospatial region</strong> using <em>bbox</em>, <em>geom</em>:</p>
+<li><p>based on <strong>geospatial region</strong> using a bounding box <em>bbox</em>, or geometry file <em>geom</em>:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">{'bbox':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p></li>
@@ -274,62 +274,96 @@ in the build method.</p>
 </ul>
 </div></blockquote>
 </li>
+<li><p>based on the <strong>grid</strong> of another model or raster file, e.g:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'&lt;model_name&gt;':</span> <span class="pre">'/path/to/model_root'}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'grid':</span> <span class="pre">'/path/to/raster_file'}</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
 <li><p>Based on a <strong>hydrographic region</strong> using <em>basin</em>, <em>subbasin</em>, <em>interbasin</em>:</p>
-<p>A <em>basin</em> is defined by the entire area which drain to the sea or a local depression.
-Users can supply a point location <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">y]</span></code> or an area of interest based on a
-bounding box <code class="docutils literal notranslate"><span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]</span></code> or geometry <code class="docutils literal notranslate"><span class="pre">'/path/to/geometry_file'</span></code>
-for which the intersecting basin(s) are delineated.
-Optionally, <code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;:&lt;threshold&gt;</span></code> combinations (e.g. ‘uparea’:30) can be passed to
-define streams to filter the basin selection. To filter the basins based on their
-outlet location within the area of interest use <cite>‘outlets’: true</cite>.</p>
+<p>A <em>basin</em> is defined by the entire area which drains to the sea or an inland depression.
+To delineate the basin(s) touching a region or point location, users can supply
+one (or more) point location(s) or a region defined by a bounding box or a geometry file.
+Alternatively, if the unique basin ID is known this can also be used.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[x,</span> <span class="pre">y]}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[[x1,</span> <span class="pre">x2,</span> <span class="pre">..],</span> <span class="pre">[y1,</span> <span class="pre">y2,</span> <span class="pre">..]]}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">'/path/to/geometry_file'}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[ID1]}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[ID1,</span> <span class="pre">ID2,</span> <span class="pre">..]}</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>To filter basins, variable-threshold pairs to define streams can be used in combination with
+a bounding box or geometry file, e.g.: <code class="docutils literal notranslate"><span class="pre">'uparea':30</span></code> to filter based on streams with
+a minimum drainage area of 30 km2 or <code class="docutils literal notranslate"><span class="pre">'strord':8</span></code> to filter basins based on streams
+with a minimal stream order of 8.</p>
+<blockquote>
+<div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>To only select basins with their outlet location use <code class="docutils literal notranslate"><span class="pre">'outlets':</span> <span class="pre">true</span></code> in combination with
+a bounding box or geometry file</p>
+<blockquote>
+<div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'outlets':</span> <span class="pre">true}</span></code></p></li>
 </ul>
 </div></blockquote>
-<p>A <em>subbasin</em> is based on a user supplied outlet location and defined by the area
-that drains into that outlet.
-Users can supply a the outlet point location <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">y]</span></code>, or an area of interest based
-on a bounding box <code class="docutils literal notranslate"><span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]</span></code> or geometry <code class="docutils literal notranslate"><span class="pre">'/path/to/geometry_file'</span></code>
-from which all outlet locations are used and all upstream area is delineated.
-Optionally, <code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;:&lt;threshold&gt;</span></code> combinations (e.g. ‘uparea’:30) can be passed to define streams to
-which the outlet point location are snapped or to filter outlets within the area of interest.
-To speed up the delineation process users can supply an initial bounding box of the subbasin
-(This must be larger than the area of interest!) with <code class="docutils literal notranslate"><span class="pre">'bounds':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]</span></code>
-In case not all upstream cells are included a warning is raised.</p>
+<p>A <em>subbasin</em> is defined by the area that drains into an outlet, stream or region.
+Users can supply one (or more) point outlet location(s) or a region defined by a
+bounding box or a geometry file.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[x,</span> <span class="pre">y]}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[[x1,</span> <span class="pre">x2,</span> <span class="pre">..],</span> <span class="pre">[y1,</span> <span class="pre">y2,</span> <span class="pre">..]]}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">'/path/to/geometry_file'}</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>To speed up the delineation process users can supply an estimated initial
+bounding box in combination with all the options mentioned above.
+A warning will be raised if the bounding box does not contain all upstream area.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[x,</span> <span class="pre">y],</span> <span class="pre">'bounds':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>The subbasins can further be refined based one (or more) variable-threshold pair(s)
+to define streams, as described above for basins. If used in combination with point outlet locations,
+these are snapped to the nearest stream which meets the threshold criteria.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[x,</span> <span class="pre">y],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[x,</span> <span class="pre">y],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold,</span> <span class="pre">'bounds':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold,</span> <span class="pre">'bounds':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p></li>
 </ul>
 </div></blockquote>
-<p>An <em>interbasin</em> is based on a user supplied area of interest and contains the most
-downstream contiguous area that drains to any outflow of the area of interest.
-Users can supply an area of interest based on a bounding box <code class="docutils literal notranslate"><span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]</span></code>
-or geometry <code class="docutils literal notranslate"><span class="pre">'/path/to/geometry_file'</span></code> from which all outlet locations are used.
-Optionally, <code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;:&lt;threshold&gt;</span></code> (e.g. ‘uparea’:30) combinations can be passed to define streams
-to filter outlets within the area of interest. To only use basin outlets
-within the area of interest to derive interbasins use <cite>‘outlets’: true</cite>.</p>
+<p>An <em>interbasin</em> is defined by the area that drains into an outlet or stream and
+bounded by a region and therefore does not necessarily including all upstream area.
+Users should supply a bounding region in combination with stream and/or outlet arguments.
+The bounding region is defined by a bounding box or a geometry file; streams by
+(or more) variable-threshold pair(s) and outlet by point location coordinates.
+Similar to subbasins, point locations are snapped to nearest downstream stream if
+combined with stream arguments.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">'outets':</span> <span class="pre">true}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">/path/to/geometry_file,</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold,</span> <span class="pre">'xy':</span> <span class="pre">[x,</span> <span class="pre">y]}</span></code></p></li>
 </ul>
 </div></blockquote>
-</li>
-<li><p>based on the grid of <strong>another model</strong>, e.g:</p>
+<p>To only select interbasins based on the outlet location of entire basins use <code class="docutils literal notranslate"><span class="pre">'outlets':</span> <span class="pre">true</span></code></p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">{'wflow':</span> <span class="pre">'/path/to/wflow/root'}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'outlets':</span> <span class="pre">true}</span></code></p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
-<p>For a detailed desription of the options see <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.parse_region.html#hydromt.workflows.basin_mask.parse_region" title="hydromt.workflows.basin_mask.parse_region"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_region()</span></code></a>
-and <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.get_basin_geometry.html#hydromt.workflows.basin_mask.get_basin_geometry" title="hydromt.workflows.basin_mask.get_basin_geometry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_basin_geometry()</span></code></a>.</p>
+<p>See also the <em>delineate basins</em> example and the <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.parse_region.html#hydromt.workflows.basin_mask.parse_region" title="hydromt.workflows.basin_mask.parse_region"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_region()</span></code></a>
+and <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.get_basin_geometry.html#hydromt.workflows.basin_mask.get_basin_geometry" title="hydromt.workflows.basin_mask.get_basin_geometry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_basin_geometry()</span></code></a> methods.</p>
 <img alt="../_images/region.png" src="../_images/region.png" />
 </section>
 </section>

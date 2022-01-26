@@ -174,8 +174,9 @@
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Permalink to this headline"></a></h3>
 <ul class="simple">
-<li><p>New skill socres: KGE 2012, KGE non-parametric (2018), KGE non-parametric flood (2018).</p></li>
+<li><p>New skill scores: KGE 2012, KGE non-parametric (2018), KGE non-parametric flood (2018).</p></li>
 <li><p>new rasterio inverse distance weighting method (“rio_idw”) in raster.interpolate_na</p></li>
+<li><p>general Model.setup_region method</p></li>
 </ul>
 </section>
 <section id="changed">
@@ -185,6 +186,8 @@
 <li><p>improved flw.reproject_hydrography_like and flw.dem_adjust methods</p></li>
 <li><p>file handlers of loggers are replaced in Model.set_root</p></li>
 <li><p>log.setuplog replaces old handlers if these exist to avoid duplicates.</p></li>
+<li><p>setup_basemaps method no longer required for build method</p></li>
+<li><p>improver interbasin regions in workflows.get_basin_geometry</p></li>
 </ul>
 </section>
 <section id="fixed">
@@ -220,7 +223,7 @@
 <li><p>bumped hydromt-artifacts version to v0.0.6</p></li>
 <li><p>In model API build and update functions, if any write_* are called in the ini file (opt),
 the final self.write() call is skipped. This enables passing custom arguments to the <a href="#id21"><span class="problematic" id="id22">write_</span></a>
-functions without double writting files or costumizing the order in which <a href="#id23"><span class="problematic" id="id24">write_</span></a> functions
+functions without double writing files or customizing the order in which <a href="#id23"><span class="problematic" id="id24">write_</span></a> functions
 are called. If any <a href="#id25"><span class="problematic" id="id26">write_</span></a> function is called we assume the user manages the writing and
 a the global write method is skipped.</p></li>
 <li><p>default GTiff lwz compression with DataCatalog.export_data method</p></li>
@@ -240,7 +243,7 @@ a the global write method is skipped.</p></li>
 <section id="id4">
 <h3>Deprecated<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
 <ul class="simple">
-<li><p>flw.gaugemap is replaced by flw.gauge_map for a more conistent interace of flw.*map methods</p></li>
+<li><p>flw.gaugemap is replaced by flw.gauge_map for a more consistent interface of flw.*map methods</p></li>
 <li><p>flw.basin_shape is redundant</p></li>
 </ul>
 </section>
@@ -250,7 +253,7 @@ a the global write method is skipped.</p></li>
 <section id="id5">
 <h3>Added<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
 <ul class="simple">
-<li><p>log hydromt_data.yml with write_datata_catalog (needs to be implemented in various plugins)</p></li>
+<li><p>log hydromt_data.yml with write_data_catalog (needs to be implemented in various plugins)</p></li>
 <li><p>add alias option in data catalog yml files</p></li>
 <li><p>use mamba for github actions</p></li>
 </ul>

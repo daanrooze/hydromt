@@ -108,7 +108,7 @@
 <span class="kn">import</span> <span class="nn">inspect</span>
 
 <span class="kn">from</span> <span class="nn">..data_adapter</span> <span class="kn">import</span> <span class="n">DataCatalog</span>
-<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">workflows</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Model&quot;</span><span class="p">]</span>
 
@@ -126,6 +126,8 @@
     <span class="n">_GEOMS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;&lt;general_hydromt_name&gt;&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;model_name&gt;&quot;</span><span class="p">}</span>
     <span class="n">_MAPS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;&lt;general_hydromt_name&gt;&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;model_name&gt;&quot;</span><span class="p">}</span>
     <span class="n">_FOLDERS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span>
+    <span class="c1"># tell hydroMT which methods should receive the res and region arguments</span>
+    <span class="n">_CLI_ARGS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;setup_basemaps&quot;</span><span class="p">,</span> <span class="s2">&quot;res&quot;</span><span class="p">:</span> <span class="s2">&quot;setup_basemaps&quot;</span><span class="p">}</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -162,7 +164,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set_root</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_check_get_opt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Check all opt keys and raise sensible error messages if unknonwn.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Check all opt keys and raise sensible error messages if unknown.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">opt</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">m</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;0123456789&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="kc">None</span><span class="p">)):</span>
@@ -190,10 +192,9 @@
         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Model.build"><a class="viewcode-back" href="../../../_generated/hydromt.Model.build.html#hydromt.Model.build">[docs]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Single method to setup and write a full model schematization and</span>
-<span class="sd">        configuration from scratch</span>
+        <span class="sd">&quot;&quot;&quot;Single method to build a model from scratch based on settings in `opt`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -201,13 +202,13 @@
 <span class="sd">            Description of model region. See :py:meth:`~hydromt.workflows.parse_region`</span>
 <span class="sd">            for all options.</span>
 <span class="sd">        res: float, optional</span>
-<span class="sd">            Model restolution. Use only if applicable to your model. By default None.</span>
+<span class="sd">            Model resolution. Use only if applicable to your model. By default None.</span>
 <span class="sd">        write: bool, optional</span>
 <span class="sd">            Write the complete model schematization after setting up all model components.</span>
 <span class="sd">            By default True.</span>
 <span class="sd">        opt: dict, optional</span>
-<span class="sd">            Model setup configuration. This is a nested dictionary where the first-level</span>
-<span class="sd">            keys are the names of model spedific setup methods and the second-level</span>
+<span class="sd">            Model build configuration. This is a nested dictionary where the first-level</span>
+<span class="sd">            keys are the names of model specific setup methods and the second-level</span>
 <span class="sd">            keys the arguments of the method:</span>
 
 <span class="sd">            ```{</span>
@@ -222,14 +223,24 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_get_opt</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span>
 
+        <span class="c1"># merge cli region and res arguments with opt</span>
+        <span class="c1"># insert region method if it does not exist in opt</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CLI_ARGS</span><span class="p">[</span><span class="s2">&quot;region&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">opt</span><span class="p">:</span>
+            <span class="n">opt</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_CLI_ARGS</span><span class="p">[</span><span class="s2">&quot;region&quot;</span><span class="p">]:</span> <span class="p">{},</span> <span class="o">**</span><span class="n">opt</span><span class="p">}</span>
+        <span class="c1"># update region method kwargs with region</span>
+        <span class="n">opt</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_CLI_ARGS</span><span class="p">[</span><span class="s2">&quot;region&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">)</span>
+        <span class="c1"># update res method kwargs with res (optional)</span>
+        <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CLI_ARGS</span><span class="p">[</span><span class="s2">&quot;res&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">opt</span><span class="p">:</span>
+                <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CLI_ARGS</span><span class="p">[</span><span class="s2">&quot;res&quot;</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;&quot;res&quot; argument ignored as the &quot;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">&quot; is not in the model build configuration.&#39;</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">opt</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_CLI_ARGS</span><span class="p">[</span><span class="s2">&quot;res&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">res</span><span class="o">=</span><span class="n">res</span><span class="p">)</span>
+
         <span class="c1"># run setup_config and setup_basemaps first!</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_log_method</span><span class="p">(</span><span class="s2">&quot;setup_config&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">opt</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;setup_config&quot;</span><span class="p">,</span> <span class="p">{}))</span>
-        <span class="n">kwargs</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;setup_basemaps&quot;</span><span class="p">,</span> <span class="p">{})</span>
-        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># res is optional</span>
-            <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">res</span><span class="o">=</span><span class="n">res</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_run_log_method</span><span class="p">(</span><span class="s2">&quot;setup_basemaps&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># then loop over other methods</span>
         <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">opt</span><span class="p">:</span>
@@ -243,21 +254,19 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Single method to setup and write a full model schematization and</span>
-<span class="sd">        configuration from scratch</span>
-
+        <span class="sd">&quot;&quot;&quot;Single method to update a model based the settings in `opt`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        model_out: str, path, optional</span>
-<span class="sd">            Desitation folder to write the model schematization after updating</span>
+<span class="sd">            Destination folder to write the model schematization after updating</span>
 <span class="sd">            the model. If None the updated model components are overwritten in the</span>
-<span class="sd">            current model schematization if these exist. By defualt None.</span>
+<span class="sd">            current model schematization if these exist. By default None.</span>
 <span class="sd">        write: bool, optional</span>
 <span class="sd">            Write the updated model schematization to disk. By default True.</span>
 <span class="sd">        opt: dict, optional</span>
 <span class="sd">            Model update configuration. This is a nested dictionary where the first-level</span>
-<span class="sd">            keys are the names of model spedific setup methods and the second-level</span>
+<span class="sd">            keys are the names of model specific setup methods and the second-level</span>
 <span class="sd">            keys the arguments of the method:</span>
 
 <span class="sd">            ```{</span>
@@ -282,16 +291,13 @@
 
         <span class="c1"># check if model has a region</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s1">&#39;Model region not found, setup basemaps using &quot;build&quot; method first.&#39;</span>
-            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Model region not found, setup model using `build` first.&quot;</span><span class="p">)</span>
 
         <span class="c1"># remove setup_basemaps from options and throw warning</span>
-        <span class="k">if</span> <span class="s2">&quot;setup_basemaps&quot;</span> <span class="ow">in</span> <span class="n">opt</span><span class="p">:</span>
-            <span class="n">opt</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;setup_basemaps&quot;</span><span class="p">)</span>  <span class="c1"># remove from opt</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-                <span class="s1">&#39;&quot;setup_basemaps&quot; can only be called when building a model.&#39;</span>
-            <span class="p">)</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CLI_ARGS</span><span class="p">[</span><span class="s2">&quot;region&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">opt</span><span class="p">:</span>
+            <span class="n">opt</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>  <span class="c1"># remove from opt</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s1">&quot; can only be called when building a model.&#39;</span><span class="p">)</span>
 
         <span class="c1"># loop over other methods from ini file</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_log_method</span><span class="p">(</span><span class="s2">&quot;setup_config&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">opt</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;setup_config&quot;</span><span class="p">,</span> <span class="p">{}))</span>
@@ -304,6 +310,88 @@
         <span class="c1"># write</span>
         <span class="k">if</span> <span class="n">write</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+
+    <span class="c1">## general setup methods</span>
+
+    <span class="k">def</span> <span class="nf">setup_region</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">region</span><span class="p">,</span>
+        <span class="n">hydrography_fn</span><span class="o">=</span><span class="s2">&quot;merit_hydro&quot;</span><span class="p">,</span>
+        <span class="n">basin_index_fn</span><span class="o">=</span><span class="s2">&quot;merit_hydro_index&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This component sets the `region` of interest of the model.</span>
+
+<span class="sd">        Adds model layer:</span>
+
+<span class="sd">        * **region** geom: region boundary vector</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        region : dict</span>
+<span class="sd">            Dictionary describing region of interest, e.g.:</span>
+
+<span class="sd">            * {&#39;bbox&#39;: [xmin, ymin, xmax, ymax]}</span>
+
+<span class="sd">            * {&#39;geom&#39;: &#39;path/to/polygon_geometry&#39;}</span>
+
+<span class="sd">            * {&#39;basin&#39;: [xmin, ymin, xmax, ymax]}</span>
+
+<span class="sd">            * {&#39;subbasin&#39;: [x, y], &#39;&lt;variable&gt;&#39;: threshold}</span>
+
+<span class="sd">            For a complete overview of all region options,</span>
+<span class="sd">            see :py:function:~hydromt.workflows.basin_mask.parse_region</span>
+<span class="sd">        hydrography_fn : str</span>
+<span class="sd">            Name of data source for basemap parameters.</span>
+<span class="sd">            FIXME describe data requirements</span>
+<span class="sd">        basin_index_fn : str</span>
+<span class="sd">            Name of data source with basin (bounding box) geometries associated with</span>
+<span class="sd">            the &#39;basins&#39; layer of `hydrography_fn`. Only required if the `region` is</span>
+<span class="sd">            based on a (sub)(inter)basins without a &#39;bounds&#39; argument.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        region: dict</span>
+<span class="sd">            Parsed region dictionary</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        hydromt.workflows.basin_mask.parse_region</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">kind</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="n">workflows</span><span class="o">.</span><span class="n">parse_region</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">)</span>
+        <span class="c1"># NOTE: kind=outlet is deprecated!</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;basin&quot;</span><span class="p">,</span> <span class="s2">&quot;subbasin&quot;</span><span class="p">,</span> <span class="s2">&quot;interbasin&quot;</span><span class="p">,</span> <span class="s2">&quot;outlet&quot;</span><span class="p">]:</span>
+            <span class="c1"># retrieve global hydrography data (lazy!)</span>
+            <span class="n">ds_org</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_catalog</span><span class="o">.</span><span class="n">get_rasterdataset</span><span class="p">(</span><span class="n">hydrography_fn</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;bounds&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">region</span><span class="p">:</span>
+                <span class="n">region</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">basin_index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_catalog</span><span class="p">[</span><span class="n">basin_index_fn</span><span class="p">])</span>
+            <span class="c1"># get basin geometry</span>
+            <span class="n">geom</span><span class="p">,</span> <span class="n">xy</span> <span class="o">=</span> <span class="n">workflows</span><span class="o">.</span><span class="n">get_basin_geometry</span><span class="p">(</span>
+                <span class="n">ds</span><span class="o">=</span><span class="n">ds_org</span><span class="p">,</span>
+                <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span>
+                <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">region</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">region</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">&quot;bbox&quot;</span> <span class="ow">in</span> <span class="n">region</span><span class="p">:</span>
+            <span class="n">bbox</span> <span class="o">=</span> <span class="n">region</span><span class="p">[</span><span class="s2">&quot;bbox&quot;</span><span class="p">]</span>
+            <span class="n">geom</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">bbox</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">&quot;geom&quot;</span> <span class="ow">in</span> <span class="n">region</span><span class="p">:</span>
+            <span class="n">geom</span> <span class="o">=</span> <span class="n">region</span><span class="p">[</span><span class="s2">&quot;geom&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">geom</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Model region &quot;geom&quot; has no CRS&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">&quot;grid&quot;</span> <span class="ow">in</span> <span class="n">region</span><span class="p">:</span>
+            <span class="n">geom</span> <span class="o">=</span> <span class="n">region</span><span class="p">[</span><span class="s2">&quot;grid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">box</span>
+        <span class="k">elif</span> <span class="s2">&quot;model&quot;</span> <span class="ow">in</span> <span class="n">region</span><span class="p">:</span>
+            <span class="n">geom</span> <span class="o">=</span> <span class="n">region</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">region</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;model region argument not understood: </span><span class="si">{</span><span class="n">region</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_staticgeoms</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;region&quot;</span><span class="p">)</span>
+
+        <span class="c1"># This setup method returns region so that it can be wrapped for models which require</span>
+        <span class="c1"># more information, e.g. grid RasterDataArray or xy coordinates.</span>
+        <span class="k">return</span> <span class="n">region</span>
 
     <span class="c1">## file system</span>
 
@@ -386,7 +474,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">        root: str, Path, optional</span>
 <span class="sd">            Global root for all relative paths in yml file.</span>
-<span class="sd">            If &quot;auto&quot; the data soruce paths are relative to the yml output ``path``.</span>
+<span class="sd">            If &quot;auto&quot; the data source paths are relative to the yml output ``path``.</span>
 <span class="sd">        used_only: bool</span>
 <span class="sd">            If True, export only data entries kept in used_data list.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

@@ -144,7 +144,7 @@
 <dd><p>Returns a geometry of the (sub)(inter)basin(s).</p>
 <p>This method derives a geometry of sub-, inter- or full basin based on an input
 dataset with flow-direction and optional basins ID raster data in combination
-with a matching basin geometry file containing the bouding boxes of each basin.</p>
+with a matching basin geometry file containing the bounding boxes of each basin.</p>
 <p>Either <code class="docutils literal notranslate"><span class="pre">bbox</span></code>, <code class="docutils literal notranslate"><span class="pre">geom</span></code>, <code class="docutils literal notranslate"><span class="pre">xy</span></code> (or <code class="docutils literal notranslate"><span class="pre">basid</span></code> in case of <code class="docutils literal notranslate"><span class="pre">kind='basin'</span></code>) must
 be provided.</p>
 <dl class="field-list simple">
@@ -154,7 +154,8 @@ be provided.</p>
 <li><p><strong>basin_index</strong> (<a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><em>geopandas.GeoDataFrame</em></a><em> or </em><a class="reference internal" href="hydromt.data_adapter.GeoDataFrameAdapter.html#hydromt.data_adapter.GeoDataFrameAdapter" title="hydromt.data_adapter.GeoDataFrameAdapter"><em>GeoDataFrameAdapter</em></a>) – Dataframe with basin geomtries or bounding boxes with “basid” column
 corresponding to the <code class="docutils literal notranslate"><span class="pre">ds[&lt;basins_name&gt;]</span></code> map.</p></li>
 <li><p><strong>kind</strong> (<em>{&quot;basin&quot;</em><em>, </em><em>&quot;subbasin&quot;</em><em>, </em><em>&quot;interbasin&quot;}</em>) – kind of basin description</p></li>
-<li><p><strong>bounds</strong> (<em>array_like of float</em><em>, </em><em>optional</em>) – [xmin, ymin, xmax, ymax] coordinates of total</p></li>
+<li><p><strong>bounds</strong> (<em>array_like of float</em><em>, </em><em>optional</em>) – [xmin, ymin, xmax, ymax] coordinates of total bounding box, i.e. the data is
+clipped to this domain before futher processing.</p></li>
 <li><p><strong>bbox</strong> (<em>array_like of float</em><em>, </em><em>optional</em>) – [xmin, ymin, xmax, ymax] coordinates to infer (sub)(inter)basin(s)</p></li>
 <li><p><strong>geom</strong> (<a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><em>geopandas.GeoDataFrame</em></a><em>, </em><em>optional</em>) – polygon geometry describing area of interest</p></li>
 <li><p><strong>xy</strong> (<em>tuple of array_like of float</em><em>, </em><em>optional</em>) – x, y coordinates of (sub)basin outlet locations</p></li>
