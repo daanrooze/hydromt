@@ -165,9 +165,9 @@ NOTE: this method is still experimental and might change in the future!</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ds_hydro</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.20.2.dev0)"><em>xarray.Dataset</em></a>) – Dataset with gridded flow directions named <cite>flwdir_name</cite> and upstream area
+<li><p><strong>ds_hydro</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.21.2.dev0)"><em>xarray.Dataset</em></a>) – Dataset with gridded flow directions named <cite>flwdir_name</cite> and upstream area
 named <cite>uparea_name</cite> [km2].</p></li>
-<li><p><strong>da_elv</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.20.2.dev0)"><em>xarray.DataArray</em></a>) – DataArray with elevation on destination grid.</p></li>
+<li><p><strong>da_elv</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.21.2.dev0)"><em>xarray.DataArray</em></a>) – DataArray with elevation on destination grid.</p></li>
 <li><p><strong>river_upa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>optional</em>) – Minimum upstream area threshold [km2] for inflowing rivers, by default 5 km2</p></li>
 <li><p><strong>river_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>optional</em>) – Mimimum distance from river outlet for inflowing river location, by default 1000 m.</p></li>
 <li><p><strong>uparea_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – Name of upstream area (default “uparea”) and flow direction (“flwdir”) variables
@@ -181,7 +181,7 @@ in <cite>ds_hydro</cite>.</p></li>
 <dd class="field-even"><p>Reprojected gridded dataset with flow direction and upstream area variables.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.20.2.dev0)">xarray.Dataset</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.21.2.dev0)">xarray.Dataset</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
