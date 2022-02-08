@@ -269,7 +269,7 @@
     <span class="k">return</span> <span class="n">kwarg</span>
 
 
-<span class="k">def</span> <span class="nf">_check_size</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">12e3</span> <span class="o">**</span> <span class="mi">2</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_check_size</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">12e3</span><span class="o">**</span><span class="mi">2</span><span class="p">):</span>
     <span class="c1"># warning for large domain</span>
     <span class="k">if</span> <span class="p">(</span>
         <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="o">*</span><span class="n">ds</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">threshold</span>
