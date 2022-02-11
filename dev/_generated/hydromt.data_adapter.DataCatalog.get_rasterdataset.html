@@ -148,7 +148,7 @@ with optional additional <cite>buffer</cite> and <cite>align</cite> arguments.
 To slice the data to the time period of interest, provide the <cite>time_tuple</cite> argument.
 To return only the dataset variables of interest and check their presence,
 provide the <cite>variables</cite> argument.</p>
-<p>NOTE: Unless <cite>single_var_as_array</cite> is set to False a single-varaible data source
+<p>NOTE: Unless <cite>single_var_as_array</cite> is set to False a single-variable data source
 will be returned as <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v0.21.2.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a> rather than <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.21.2.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -163,7 +163,7 @@ to the data_catalog with its based on the file basename without extension.</p></
 are returned.</p></li>
 <li><p><strong>time_tuple</strong> (<em>tuple of str</em><em>, </em><em>datetime</em><em>, </em><em>optional</em>) – Start and end date of period of interest. By default the entire time period
 of the dataset is returned.</p></li>
-<li><p><strong>single_var_as_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, return a DataArray if the dataset conists of a single variable.
+<li><p><strong>single_var_as_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, return a DataArray if the dataset consists of a single variable.
 If False, always return a Dataset. By default True.</p></li>
 </ul>
 </dd>

@@ -99,7 +99,7 @@
 
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">isdir</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">basename</span><span class="p">,</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">abspath</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">isdir</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">basename</span><span class="p">,</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">abspath</span><span class="p">,</span> <span class="n">exists</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
@@ -364,7 +364,7 @@
 <span class="sd">            yml output path.</span>
 <span class="sd">        root: str, Path, optional</span>
 <span class="sd">            Global root for all relative paths in yml file.</span>
-<span class="sd">            If &quot;auto&quot; the data soruce paths are relative to the yml output ``path``.</span>
+<span class="sd">            If &quot;auto&quot; the data source paths are relative to the yml output ``path``.</span>
 <span class="sd">        used_only: bool</span>
 <span class="sd">            If True, export only data entries kept in used_data list.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -400,9 +400,8 @@
                     <span class="n">source_dict</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span>
                         <span class="n">source_dict</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="n">root</span>
                     <span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># convert windows path to str</span>
-                <span class="n">source_dict</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">source_dict</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+            <span class="c1"># remove non serializable entries to prevent errors</span>
+            <span class="n">source_dict</span> <span class="o">=</span> <span class="n">_process_dict</span><span class="p">(</span><span class="n">source_dict</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">)</span>  <span class="c1"># TODO TEST</span>
             <span class="n">sources_out</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="n">source_dict</span><span class="p">})</span>
         <span class="k">return</span> <span class="n">sources_out</span></div>
 
@@ -503,7 +502,7 @@
 <span class="sd">        To return only the dataset variables of interest and check their presence,</span>
 <span class="sd">        provide the `variables` argument.</span>
 
-<span class="sd">        NOTE: Unless `single_var_as_array` is set to False a single-varaible data source</span>
+<span class="sd">        NOTE: Unless `single_var_as_array` is set to False a single-variable data source</span>
 <span class="sd">        will be returned as :py:class:`xarray.DataArray` rather than :py:class:`xarray.Dataset`.</span>
 
 <span class="sd">        Arguments</span>
@@ -526,7 +525,7 @@
 <span class="sd">            Start and end date of period of interest. By default the entire time period</span>
 <span class="sd">            of the dataset is returned.</span>
 <span class="sd">        single_var_as_array: bool, optional</span>
-<span class="sd">            If True, return a DataArray if the dataset conists of a single variable.</span>
+<span class="sd">            If True, return a DataArray if the dataset consists of a single variable.</span>
 <span class="sd">            If False, always return a Dataset. By default True.</span>
 
 <span class="sd">        Returns</span>
@@ -534,8 +533,8 @@
 <span class="sd">        obj: xarray.Dataset or xarray.DataArray</span>
 <span class="sd">            RasterDataset</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path_or_key</span><span class="p">)))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="n">path_or_key</span>
+        <span class="k">if</span> <span class="n">path_or_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span> <span class="ow">and</span> <span class="n">exists</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="n">path_or_key</span><span class="p">)):</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="n">path_or_key</span><span class="p">))</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">basename</span><span class="p">(</span><span class="n">path_or_key</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">RasterDatasetAdapter</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)})</span>
         <span class="k">elif</span> <span class="n">path_or_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">:</span>
@@ -589,15 +588,15 @@
 <span class="sd">        align : float, optional</span>
 <span class="sd">            Resolution to align the bounding box, by default None</span>
 <span class="sd">        variables : list of str, optional.</span>
-<span class="sd">            Names of GeoDataFrame columns to return. By default all colums are returned.</span>
+<span class="sd">            Names of GeoDataFrame columns to return. By default all columns are returned.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        gdf: geopandas.GeoDataFrame</span>
 <span class="sd">            GeoDataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">isfile</span><span class="p">(</span><span class="n">path_or_key</span><span class="p">):</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="n">path_or_key</span>
+        <span class="k">if</span> <span class="n">path_or_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span> <span class="ow">and</span> <span class="n">exists</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="n">path_or_key</span><span class="p">)):</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="n">path_or_key</span><span class="p">))</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">basename</span><span class="p">(</span><span class="n">path_or_key</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">GeoDataFrameAdapter</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)})</span>
         <span class="k">elif</span> <span class="n">path_or_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">:</span>
@@ -637,7 +636,7 @@
 <span class="sd">        To return only the dataset variables of interest and check their presence,</span>
 <span class="sd">        provide the `variables` argument.</span>
 
-<span class="sd">        NOTE: Unless `single_var_as_array` is set to False a single-varaible data source</span>
+<span class="sd">        NOTE: Unless `single_var_as_array` is set to False a single-variable data source</span>
 <span class="sd">        will be returned as xarray.DataArray rather than Dataset.</span>
 
 <span class="sd">        Arguments</span>
@@ -660,7 +659,7 @@
 <span class="sd">            Start and end date of period of interest. By default the entire time period</span>
 <span class="sd">            of the dataset is returned.</span>
 <span class="sd">        single_var_as_array: bool, optional</span>
-<span class="sd">            If True, return a DataArray if the dataset conists of a single variable.</span>
+<span class="sd">            If True, return a DataArray if the dataset consists of a single variable.</span>
 <span class="sd">            If False, always return a Dataset. By default True.</span>
 
 <span class="sd">        Returns</span>
@@ -668,8 +667,8 @@
 <span class="sd">        obj: xarray.Dataset or xarray.DataArray</span>
 <span class="sd">            GeoDataset</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">isfile</span><span class="p">(</span><span class="n">path_or_key</span><span class="p">):</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="n">path_or_key</span>
+        <span class="k">if</span> <span class="n">path_or_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span> <span class="ow">and</span> <span class="n">exists</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="n">path_or_key</span><span class="p">)):</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="n">path_or_key</span><span class="p">))</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">basename</span><span class="p">(</span><span class="n">path_or_key</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">GeoDatasetAdapter</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)})</span>
         <span class="k">elif</span> <span class="n">path_or_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">:</span>
@@ -756,6 +755,20 @@
         <span class="k">return</span> <span class="nb">all</span><span class="p">([</span><span class="n">result</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">netloc</span><span class="p">])</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span> <span class="nf">_process_dict</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Recursively change dict values to keep only python literal structures.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">_check_key</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_check_key</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">_process_dict</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">_check_key</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>  <span class="c1"># path to string</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">_check_key</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)):</span>
+            <span class="n">d</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>  <span class="c1"># remove this entry</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Removing non-serializable entry &quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">d</span>
 
 
 <span class="k">def</span> <span class="nf">abs_path</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">rel_path</span><span class="p">):</span>
@@ -871,7 +884,7 @@
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">geom</span><span class="p">,</span> <span class="n">buffer</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a view (lazy if possible) of the data with standardized field names.</span>
-<span class="sd">        If bbox of maks are given, clip data to that extent&quot;&quot;&quot;</span>
+<span class="sd">        If bbox of mask are given, clip data to that extent&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="RasterDatasetAdapter"><a class="viewcode-back" href="../../_generated/hydromt.data_adapter.RasterDatasetAdapter.html#hydromt.data_adapter.RasterDatasetAdapter">[docs]</a><span class="k">class</span> <span class="nc">RasterDatasetAdapter</span><span class="p">(</span><span class="n">DataAdapter</span><span class="p">):</span>
@@ -910,7 +923,7 @@
 <span class="sd">        driver: {&#39;raster&#39;, &#39;netcdf&#39;, &#39;zarr&#39;, &#39;raster_tindex&#39;}, optional</span>
 <span class="sd">            Driver to read files with, for &#39;raster&#39; :py:func:`~hydromt.io.open_mfraster`,</span>
 <span class="sd">            for &#39;netcdf&#39; :py:func:`xarray.open_mfdataset`, and for &#39;zarr&#39; :py:func:`xarray.open_zarr`</span>
-<span class="sd">            By default the driver is infered from the file extension and falls back to</span>
+<span class="sd">            By default the driver is inferred from the file extension and falls back to</span>
 <span class="sd">            &#39;raster&#39; if unknown.</span>
 <span class="sd">        crs: int, dict, or str, optional</span>
 <span class="sd">            Coordinate Reference System. Accepts EPSG codes (int or str); proj (str or dict)</span>
@@ -1204,7 +1217,7 @@
 <span class="sd">        driver: {&#39;vector&#39;, &#39;netcdf&#39;, &#39;zarr&#39;}, optional</span>
 <span class="sd">            Driver to read files with, for &#39;vector&#39; :py:func:`~hydromt.io.open_geodataset`,</span>
 <span class="sd">            for &#39;netcdf&#39; :py:func:`xarray.open_mfdataset`.</span>
-<span class="sd">            By default the driver is infered from the file extension and falls back to</span>
+<span class="sd">            By default the driver is inferred from the file extension and falls back to</span>
 <span class="sd">            &#39;vector&#39; if unknown.</span>
 <span class="sd">        crs: int, dict, or str, optional</span>
 <span class="sd">            Coordinate Reference System. Accepts EPSG codes (int or str); proj (str or dict)</span>
@@ -1490,7 +1503,7 @@
 <span class="sd">        driver: {&#39;vector&#39;, &#39;vector_table&#39;}, optional</span>
 <span class="sd">            Driver to read files with, for &#39;vector&#39; :py:func:`~geopandas.read_file`,</span>
 <span class="sd">            for {&#39;vector_table&#39;} :py:func:`hydromt.io.open_vector_from_table`</span>
-<span class="sd">            By default the driver is infered from the file extension and falls back to</span>
+<span class="sd">            By default the driver is inferred from the file extension and falls back to</span>
 <span class="sd">            &#39;vector&#39; if unknown.</span>
 <span class="sd">        crs: int, dict, or str, optional</span>
 <span class="sd">            Coordinate Reference System. Accepts EPSG codes (int or str); proj (str or dict)</span>
