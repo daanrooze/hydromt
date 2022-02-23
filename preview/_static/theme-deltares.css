@@ -1,0 +1,34 @@
+/* Override the default color set in the original theme */
+
+.navbar-light {
+    background: #080c80 !important;
+    /* color: #fff !important; */
+}
+
+.bg-light {
+    background-color: #080c80 !important;
+}
+
+.navbar-brand p {
+    color: #fff !important;
+}
+
+.navbar-nav>.active>.nav-link {
+    color: #fff !important;
+}
+
+.navbar-nav>:hover>.nav-link {
+    color: #fff !important;
+}
+
+.nav-link {
+    color: rgb(230, 230, 230) !important;
+}
+
+img.icon-link-image {
+    height: 2.5em !important;
+}
+
+.navbar-toggler-icon {
+    filter: invert(100%) ;
+}
