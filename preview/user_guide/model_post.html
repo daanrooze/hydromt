@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>User Guide &#8212; hydroMT  documentation</title>
+    <title>Postprocessing model results &#8212; hydroMT  documentation</title>
     
     <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -36,8 +36,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Data input" href="data.html" />
-    <link rel="prev" title="Frequently asked questions" href="../getting_started/faq.html" />
+    <link rel="next" title="Terminology and conventions" href="terminology.html" />
+    <link rel="prev" title="Clipping a model" href="model_clip.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -79,7 +79,7 @@
 </li>
 
 <li class="toctree-l1 current active nav-item">
- <a class="current reference internal nav-link" href="#">
+ <a class="reference internal nav-link" href="intro.html">
   User Guide
  </a>
 </li>
@@ -135,7 +135,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <ul class="nav bd-sidenav">
+    <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data.html">
    Data input
@@ -156,8 +156,8 @@
    Clipping a model
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="model_post.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Postprocessing model results
   </a>
  </li>
@@ -190,8 +190,13 @@
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#content">
-   Content
+  <a class="reference internal nav-link" href="#statistics">
+   Statistics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization">
+   Visualization
   </a>
  </li>
 </ul>
@@ -215,44 +220,49 @@
               
               <div>
                 
-  <section id="user-guide">
-<span id="intro-user-guide"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
-<p>HydroMT is a Python package that aims to facilitate the process of building models and analyzing model results
-by automating the process to go from raw data to model data. It is an interface between <em>data</em>, <em>user</em> and hydro
-<em>models</em>. In the user guide you can find:</p>
+  <section id="postprocessing-model-results">
+<span id="post"></span><h1>Postprocessing model results<a class="headerlink" href="#postprocessing-model-results" title="Permalink to this headline">¶</a></h1>
+<section id="statistics">
+<span id="stat"></span><h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h2>
+<p>HydroMT provides different functions to apply <a class="reference internal" href="../api/api_methods.html#statistics"><span class="std std-ref">Statistics and performance metrics</span></a> to the model
+results. The following analysis fields are addressed:</p>
 <ul class="simple">
-<li><p>how to work with data in HydroMT</p></li>
-<li><p>how to develop and process models with HydroMT</p></li>
+<li><p>Bias analysis</p></li>
+<li><p>Model efficiency analysis</p></li>
+<li><p>Correlation analysis</p></li>
+<li><p>Determination of the efficiency of two time series</p></li>
+<li><p>Determination of the determination of two time series</p></li>
+<li><p>Determination of the (root) mean squared error</p></li>
 </ul>
-<p>From the user side, HydroMT is organised in the following way:</p>
-<div class="line-block">
-<div class="line"><strong>Command Line Interface (CLI)</strong></div>
-<div class="line">The CLI is a high-level interface to HydroMT. It is used to run HydroMT methods such as <strong>build</strong>, <strong>update</strong> or <strong>clip</strong> for
-all model plugins, such as Wflow, Delwaq, SFINCS etc.</div>
+<p><strong>Example statistics function</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">from hydromt.stats import skills as skillstats</span>
+<span class="go">from hydromt_wflow import WflowModel</span>
+<span class="go">import xarray as xr</span>
+<span class="gp"># </span><span class="nb">read</span> model results
+<span class="gp"># </span>NOTE: the name of the results depends on the wflow run configuration <span class="o">(</span>toml file<span class="o">)</span>
+<span class="go">mod = WflowModel(root=r&#39;/path/to/wflow_model/root&#39;, mode=&#39;r&#39;)</span>
+<span class="go">sim = mod.results[&#39;Q_gauges_grdc&#39;]</span>
+<span class="gp"># </span><span class="nb">read</span> observations
+<span class="go">obs = xr.open_dataset(r&#39;/path/to/grdc_obs.nc&#39;)</span>
+<span class="gp"># </span>calculate skill statistic
+<span class="go">nse = skillstats.nashsutcliffe(sim, obs)</span>
+</pre></div>
 </div>
-<div class="line-block">
-<div class="line"><strong>Configuration</strong></div>
-<div class="line">The complete building or updating process of a model can be configured in a single configuration <em>.ini</em> file.
-This file describes the full pipeline of model setup components and their arguments. The components vary for the
-different model plugins and are documented for each at their respective documentation websites.</div>
+</section>
+<section id="visualization">
+<span id="plot"></span><h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Not all plugins provide a built-in plot function yet. Please check the documentation of the respective
+<a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">plugin</span></a> for more information on whether specific plot functions are available.</p>
 </div>
-<div class="line-block">
-<div class="line"><strong>Data Catalogue</strong></div>
-<div class="line">HydroMT can make use of various types of data sources such as vector data, GDAL rasters or NetCDF files.
-The path and attributes of each of these dataset are listed in a data catalogue <em>.yml</em> file. HydroMT provides
-several pre-defined data catalogues with mostly global datasets that can be used as is, but note that not all data is
-openly accessible. Local or other datasets can also be included by extending or using a user defined yaml file.</div>
-</div>
-<div class="line-block">
-<div class="line"><strong>Python Interface</strong></div>
-<div class="line">Most common functionalities can be called through the CLI. From the Python interface, however, much more
-lower level functionalities are available.</div>
-</div>
-<p>This user guide concentrates on the core functions of HydroMT. For more specific information each
-<a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">plugin</span></a> contains an additional user guide.</p>
-<section id="content">
-<h2>Content<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
+<p>Specific plugins such as the plugin for <em>SFINCS</em> offer the possibility to use HydroMT plot functions. For other plugins
+examples exist how to use existing Python packages for plotting.</p>
+<p><strong>Example plot function</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">from hydromt_sfincs import SfincsModel</span>
+<span class="go">mod = SfincsModel(root=r&#39;/path/to/sfincs_model/root&#39;, mode=&#39;r&#39;)</span>
+<span class="go">mod.plot_basemap()</span>
+</pre></div>
 </div>
 </section>
 </section>
@@ -263,17 +273,17 @@ lower level functionalities are available.</div>
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../getting_started/faq.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="model_clip.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Frequently asked questions</p>
+            <p class="prev-next-title">Clipping a model</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="data.html" title="next page">
+    <a class='right-next' id="next-link" href="terminology.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data input</p>
+        <p class="prev-next-title">Terminology and conventions</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

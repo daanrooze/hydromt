@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>User Guide &#8212; hydroMT  documentation</title>
+    <title>Updating a model &#8212; hydroMT  documentation</title>
     
     <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -36,8 +36,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Data input" href="data.html" />
-    <link rel="prev" title="Frequently asked questions" href="../getting_started/faq.html" />
+    <link rel="next" title="Clipping a model" href="model_clip.html" />
+    <link rel="prev" title="Building a model" href="model_build.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -79,7 +79,7 @@
 </li>
 
 <li class="toctree-l1 current active nav-item">
- <a class="current reference internal nav-link" href="#">
+ <a class="reference internal nav-link" href="intro.html">
   User Guide
  </a>
 </li>
@@ -135,7 +135,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <ul class="nav bd-sidenav">
+    <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data.html">
    Data input
@@ -146,8 +146,8 @@
    Building a model
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="model_update.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Updating a model
   </a>
  </li>
@@ -183,19 +183,9 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
 
 <nav id="bd-toc-nav">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#content">
-   Content
-  </a>
- </li>
-</ul>
-
+    
 </nav>
               </div>
               
@@ -215,46 +205,59 @@
               
               <div>
                 
-  <section id="user-guide">
-<span id="intro-user-guide"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
-<p>HydroMT is a Python package that aims to facilitate the process of building models and analyzing model results
-by automating the process to go from raw data to model data. It is an interface between <em>data</em>, <em>user</em> and hydro
-<em>models</em>. In the user guide you can find:</p>
-<ul class="simple">
-<li><p>how to work with data in HydroMT</p></li>
-<li><p>how to develop and process models with HydroMT</p></li>
-</ul>
-<p>From the user side, HydroMT is organised in the following way:</p>
-<div class="line-block">
-<div class="line"><strong>Command Line Interface (CLI)</strong></div>
-<div class="line">The CLI is a high-level interface to HydroMT. It is used to run HydroMT methods such as <strong>build</strong>, <strong>update</strong> or <strong>clip</strong> for
-all model plugins, such as Wflow, Delwaq, SFINCS etc.</div>
+  <section id="updating-a-model">
+<span id="cli-update"></span><h1>Updating a model<a class="headerlink" href="#updating-a-model" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">update</span></code> method can be used to update one or several model components. The model components are
+identical to the headers in the ini-files of each model. Options for a component
+can be set in the ini-file or provides via command line with the <cite>-c</cite> and <cite>–opt</cite> options if only one component
+is updated. For several, use the configuration file with the <cite>-i</cite> option.</p>
+<p>After activating the conda environment, the HydroMT <code class="docutils literal notranslate"><span class="pre">update</span></code> method can be run from the command line.
+To check its options run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt update --help</span>
+</pre></div>
 </div>
-<div class="line-block">
-<div class="line"><strong>Configuration</strong></div>
-<div class="line">The complete building or updating process of a model can be configured in a single configuration <em>.ini</em> file.
-This file describes the full pipeline of model setup components and their arguments. The components vary for the
-different model plugins and are documented for each at their respective documentation websites.</div>
+<p><strong>Example usage</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Update (overwrite) landuse-landcover maps in a wflow model</span>
+<span class="go">hydromt update wflow /path/to/model_root -c setup_lulcmaps --opt source_name=vito</span>
+
+<span class="go">Update reservoir maps based on default settings in a wflow model and write to new directory</span>
+<span class="go">hydromt update wflow /path/to/model_root -o /path/to/model_out -c setup_reservoirs</span>
+</pre></div>
 </div>
-<div class="line-block">
-<div class="line"><strong>Data Catalogue</strong></div>
-<div class="line">HydroMT can make use of various types of data sources such as vector data, GDAL rasters or NetCDF files.
-The path and attributes of each of these dataset are listed in a data catalogue <em>.yml</em> file. HydroMT provides
-several pre-defined data catalogues with mostly global datasets that can be used as is, but note that not all data is
-openly accessible. Local or other datasets can also be included by extending or using a user defined yaml file.</div>
+<p><strong>Further options</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Usage: main update [OPTIONS] MODEL MODEL_ROOT</span>
+
+<span class="go">  Update a specific component of a model. Set an output directory to copy the</span>
+<span class="go">  edited model to a new folder, otherwise maps are overwritten.</span>
+
+<span class="go">  Example usage:</span>
+<span class="go">  --------------</span>
+
+<span class="go">  Update (overwrite) landuse-landcover maps in a wflow model</span>
+<span class="go">  hydromt update wflow /path/to/model_root -c setup_lulcmaps --opt source_name=vito</span>
+
+<span class="go">  Update reservoir maps based on default settings in a wflow model and write to new directory</span>
+<span class="go">  hydromt update wflow /path/to/model_root -o /path/to/model_out -c setup_reservoirs</span>
+
+<span class="go">Options:</span>
+<span class="go">  -o, --model-out DIRECTORY  Output model folder. Maps in MODEL_ROOT are</span>
+<span class="go">                             overwritten if left empty.</span>
+<span class="go">  -c, --components TEXT      Model components from ini file to run</span>
+<span class="go">  --opt TEXT                 Component specific keyword arguments, see the</span>
+<span class="go">                             setup_&lt;component&gt; method of the specific model for</span>
+<span class="go">                             more information about the arguments.</span>
+<span class="go">  -i, --config PATH          Path to hydroMT configuration file, for the model</span>
+<span class="go">                             specific implementation.</span>
+<span class="go">  -d, --data PATH            File path to yml data sources file. See</span>
+<span class="go">                             documentation for required yml file format.</span>
+<span class="go">  --dd, --deltares-data      Parse default deltares data yml from</span>
+<span class="go">                             https://github.com/DirkEilander/hydromt-</span>
+<span class="go">                             artifacts/releases</span>
+<span class="go">  -q, --quiet                Decrease verbosity.</span>
+<span class="go">  -v, --verbose              Increase verbosity.</span>
+<span class="go">  --help                     Show this message and exit.</span>
+</pre></div>
 </div>
-<div class="line-block">
-<div class="line"><strong>Python Interface</strong></div>
-<div class="line">Most common functionalities can be called through the CLI. From the Python interface, however, much more
-lower level functionalities are available.</div>
-</div>
-<p>This user guide concentrates on the core functions of HydroMT. For more specific information each
-<a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">plugin</span></a> contains an additional user guide.</p>
-<section id="content">
-<h2>Content<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-</div>
-</section>
 </section>
 
 
@@ -263,17 +266,17 @@ lower level functionalities are available.</div>
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../getting_started/faq.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="model_build.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Frequently asked questions</p>
+            <p class="prev-next-title">Building a model</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="data.html" title="next page">
+    <a class='right-next' id="next-link" href="model_clip.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data input</p>
+        <p class="prev-next-title">Clipping a model</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

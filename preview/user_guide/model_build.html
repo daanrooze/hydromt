@@ -1,0 +1,420 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Building a model &#8212; hydroMT  documentation</title>
+    
+    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  
+    
+    <link rel="stylesheet"
+      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+    
+      
+  
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
+    
+    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Updating a model" href="model_update.html" />
+    <link rel="prev" title="Data input" href="data.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../index.html">
+<p class="title">hydroMT</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../getting_started/intro.html">
+  Getting started
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="intro.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/api_index.html">
+  API reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../dev_guide/intro.html">
+  Developer Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../plugins.html">
+  Plugins
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://deltares.nl/en/" rel="noopener" target="_blank" title="Deltares"><img src="../_static/deltares-white.svg" class="icon-link-image" alt="Deltares"/></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="data.html">
+   Data input
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Building a model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_update.html">
+   Updating a model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_clip.html">
+   Clipping a model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_post.html">
+   Postprocessing model results
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="terminology.html">
+   Terminology and conventions
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#region-options">
+   Region options
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geospatial-region">
+     Geospatial region
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid">
+     Grid
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hydrographic-region">
+     hydrographic region
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="building-a-model">
+<span id="cli-build"></span><h1>Building a model<a class="headerlink" href="#building-a-model" title="Permalink to this headline">¶</a></h1>
+<p>To build a complete model from scratch using available data the <code class="docutils literal notranslate"><span class="pre">build</span></code> command can be used.
+The interface is identical for each model, but the configuration file has different
+options (see documentation of the individual models). The mandatory <a class="reference internal" href="#cli-region"><span class="std std-ref">region</span></a>
+argument describes the region of interest. The build method will start by running the component in which
+the model grid (if applicable) is defined for the region, usually the setup_basemaps method.
+The configuration file should listing all the components that the user wants to include during the build.
+The verbosity of the log messages can be increased with <cite>-v</cite> for info and <cite>-vv</cite> for debug messages.</p>
+<p>After activating the HydroMT python environment, the HydroMT <code class="docutils literal notranslate"><span class="pre">build</span></code> method can be run from the command line.
+To check its options run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt build --help</span>
+</pre></div>
+</div>
+<p><strong>Example usage</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">To build a wflow model for a subbasin using and point coordinates snapped to cells with stream order &gt;= 4</span>
+<span class="go">hydromt build wflow /path/to/model_root &quot;{&#39;subbasin&#39;: [-7.24, 62.09], &#39;strord&#39;: 4}&quot; -i /path/to/wflow_config.ini</span>
+
+
+<span class="go">To build a sfincs model based on a bbox (for Texel)</span>
+<span class="go">hydromt build sfincs /path/to/model_root &quot;{&#39;bbox&#39;: [4.6891,52.9750,4.9576,53.1994]}&quot; -i /path/to/sfincs_config.ini</span>
+</pre></div>
+</div>
+<p><strong>Further options</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Usage: main build [OPTIONS] MODEL MODEL_ROOT REGION</span>
+
+<span class="go">  Build models from source data.</span>
+
+<span class="go">  Example usage:</span>
+<span class="go">  --------------</span>
+
+<span class="go">  To build a wflow model for a subbasin using and point coordinates snapped to cells with stream order &gt;= 4</span>
+<span class="go">  hydromt build wflow /path/to/model_root &quot;{&#39;subbasin&#39;: [-7.24, 62.09], &#39;strord&#39;: 4}&quot; -i /path/to/wflow_config.ini</span>
+
+<span class="go">  To build a wflow model based on basin ID</span>
+<span class="go">  hydromt build wflow /path/to/model_root &quot;{&#39;basin&#39;: 230001006}&quot;</span>
+
+<span class="go">  To build a sfincs model based on a bbox (for Texel)</span>
+<span class="go">  hydromt build sfincs /path/to/model_root &quot;{&#39;bbox&#39;: [4.6891,52.9750,4.9576,53.1994]}&quot;</span>
+
+<span class="go">Options:</span>
+<span class="go">  -r, --res FLOAT             Model resolution in model src.</span>
+<span class="go">  --build-base / --build-all  Deprecated!</span>
+<span class="go">  --opt TEXT                  Component specific keyword arguments, see the</span>
+<span class="go">                              setup_&lt;component&gt; method of the specific model for</span>
+<span class="go">                              more information about the arguments.</span>
+<span class="go">  -i, --config PATH           Path to hydroMT configuration file, for the model</span>
+<span class="go">                              specific implementation.</span>
+<span class="go">  -d, --data PATH             File path to yml data sources file. See</span>
+<span class="go">                              documentation for required yml file format.</span>
+<span class="go">  --dd, --deltares-data       Parse default deltares data yml from</span>
+<span class="go">                              https://github.com/DirkEilander/hydromt-</span>
+<span class="go">                              artifacts/releases</span>
+<span class="go">  -q, --quiet                 Decrease verbosity.</span>
+<span class="go">  -v, --verbose               Increase verbosity.</span>
+<span class="go">  --help                      Show this message and exit.</span>
+</pre></div>
+</div>
+<section id="region-options">
+<h2>Region options<a class="headerlink" href="#region-options" title="Permalink to this headline">¶</a></h2>
+<p id="cli-region">The region of interest can be described in three ways:</p>
+<section id="geospatial-region">
+<h3>Geospatial region<a class="headerlink" href="#geospatial-region" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Bounding box (bbox): <code class="docutils literal notranslate"><span class="pre">{'bbox':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p>
+<p>Geometry file (geom): <code class="docutils literal notranslate"><span class="pre">{'geom':</span> <span class="pre">'/path/to/geometry_file'}</span></code></p>
+</div></blockquote>
+</section>
+<section id="grid">
+<h3>Grid<a class="headerlink" href="#grid" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Another model: <code class="docutils literal notranslate"><span class="pre">{'&lt;model_name&gt;':</span> <span class="pre">'/path/to/model_root'}</span></code></p>
+<p>Raster file: <code class="docutils literal notranslate"><span class="pre">{'grid':</span> <span class="pre">'/path/to/raster_file'}</span></code></p>
+</div></blockquote>
+</section>
+<section id="hydrographic-region">
+<h3>hydrographic region<a class="headerlink" href="#hydrographic-region" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>The hydrographic region can be divided into:
+- basin
+- subbasin
+- interbasin</p>
+<p><strong>Basin</strong>: is defined by the entire area which drains to the sea or an inland depression.
+To delineate the basin(s) touching a region or point location, users can supply the following:</p>
+<ul class="simple">
+<li><p>One point location: <code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[x,</span> <span class="pre">y]}</span></code></p></li>
+<li><p>More point locations: <code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[[x1,</span> <span class="pre">x2,</span> <span class="pre">..],</span> <span class="pre">[y1,</span> <span class="pre">y2,</span> <span class="pre">..]]}</span></code></p></li>
+<li><p>Bounding box: <code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p></li>
+<li><p>Geometry file: <code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">'/path/to/geometry_file'}</span></code></p></li>
+<li><p>Single unique basin ID: <code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[ID1]}</span></code></p></li>
+<li><p>Several unique basin ID: <code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[ID1,</span> <span class="pre">ID2,</span> <span class="pre">..]}</span></code></p></li>
+</ul>
+<p>To filter basins, variable-threshold pairs to define streams can be used in combination with
+a bounding box or geometry file, e.g.: <code class="docutils literal notranslate"><span class="pre">'uparea':30</span></code> to filter based on streams with
+a minimum drainage area of 30 km2 or <code class="docutils literal notranslate"><span class="pre">'strord':8</span></code> to filter basins based on streams
+with a minimal stream order of 8.</p>
+<p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p>
+<p>To only select basins with their outlet location use <code class="docutils literal notranslate"><span class="pre">'outlets':</span> <span class="pre">true</span></code> in combination with
+a bounding box or geometry file</p>
+<p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'outlets':</span> <span class="pre">true}</span></code></p>
+<p><strong>Subbasin</strong>: is defined by the area that drains into an outlet, stream or region.
+Users can supply the following:</p>
+<ul class="simple">
+<li><p>One point location: <code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[x,</span> <span class="pre">y]}</span></code></p></li>
+<li><p>More point locations: <code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[[x1,</span> <span class="pre">x2,</span> <span class="pre">..],</span> <span class="pre">[y1,</span> <span class="pre">y2,</span> <span class="pre">..]]}</span></code></p></li>
+<li><p>Bounding box: <code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p></li>
+<li><p>Geometry file: <code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">'/path/to/geometry_file'}</span></code></p></li>
+</ul>
+<p>To speed up the delineation process users can supply an estimated initial
+bounding box in combination with all the options mentioned above.
+A warning will be raised if the bounding box does not contain all upstream area.</p>
+<p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[x,</span> <span class="pre">y],</span> <span class="pre">'bounds':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax]}</span></code></p>
+<p>The subbasins can further be refined based one (or more) variable-threshold pair(s)
+to define streams, as described above for basins. If used in combination with point outlet locations,
+these are snapped to the nearest stream which meets the threshold criteria.</p>
+<p><code class="docutils literal notranslate"><span class="pre">{'subbasin':</span> <span class="pre">[x,</span> <span class="pre">y],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p>
+<p><strong>Interbasin</strong>: is defined by the area that drains into an outlet or stream and
+bounded by a region and therefore does not necessarily including all upstream area.
+Users should supply a bounding region in combination with stream and/or outlet arguments.
+The bounding region is defined by a bounding box or a geometry file; streams by a
+(or more) variable-threshold pair(s) and outlet by point location coordinates.
+Similar to subbasins, point locations are snapped to nearest downstream stream if
+combined with stream arguments.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">/path/to/geometry_file,</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold,</span> <span class="pre">'xy':</span> <span class="pre">[x,</span> <span class="pre">y]}</span></code></p></li>
+</ul>
+<p>To only select interbasins based on the outlet location of entire basins use <code class="docutils literal notranslate"><span class="pre">'outlets':</span> <span class="pre">true</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'outlets':</span> <span class="pre">true}</span></code></p>
+</div></blockquote>
+<p>See also the <em>delineate basins</em> example and the <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.parse_region.html#hydromt.workflows.basin_mask.parse_region" title="hydromt.workflows.basin_mask.parse_region"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_region()</span></code></a>
+and <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.get_basin_geometry.html#hydromt.workflows.basin_mask.get_basin_geometry" title="hydromt.workflows.basin_mask.get_basin_geometry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_basin_geometry()</span></code></a> methods.</p>
+<img alt="../_images/region.png" src="../_images/region.png" />
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="data.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Data input</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="model_update.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Updating a model</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright Deltares.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
