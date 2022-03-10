@@ -25,9 +25,7 @@
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
     <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
@@ -36,6 +34,7 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -94,8 +93,8 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../dev_guide/intro.html">
-  Developer Guide
+ <a class="reference internal nav-link" href="../dev/intro.html">
+  Developments
  </a>
 </li>
 
@@ -139,35 +138,59 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="get_data.html">
    Working with data in hydroMT
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="existing_datacatalogs.html">
-   Using a pre-defined Data Catalog
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="prepare_data.html">
-   Preparing a Data Catalog
-  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="existing_datacatalogs.html">
+     Using a pre-defined Data Catalog
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="prepare_data.html">
+     Preparing a Data Catalog
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_conventions.html">
+     Data conventions
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="model_main.html">
    Working with models in hydroMT
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="model_build.html">
      Building a model
     </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="build_region.html">
+       Region options
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="model_update.html">
@@ -189,11 +212,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="terminology.html">
    Terminology
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="data_conventions.html">
-   Data conventions
   </a>
  </li>
 </ul>
@@ -243,7 +261,7 @@
 <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">plugin</span></a> for more information on whether the clip method is available.</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">clip</span></code> method allows to clip a subregion from a model, including all static maps,
-static geometries and forcing data. The <a class="reference internal" href="model_build.html#cli-region"><span class="std std-ref">region</span></a> argument follows the same syntax as
+static geometries and forcing data. The <a class="reference internal" href="build_region.html#cli-region"><span class="std std-ref">region</span></a> argument follows the same syntax as
 in the <a class="reference internal" href="model_build.html#cli-build"><span class="std std-ref">build method</span></a>.</p>
 <p>After activating the HydroMT python environment, the HydroMT <code class="docutils literal notranslate"><span class="pre">clip</span></code> method can be run from the command line.
 To check its options run:</p>

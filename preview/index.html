@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>hydroMT: Build and analyze models like a data-wizard! &#8212; hydroMT  documentation</title>
+    <title>HydroMT: Build and analyze models like a data-wizard! &#8212; hydroMT  documentation</title>
     
     <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -25,9 +25,7 @@
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/pydata-sphinx-theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="_static/theme-deltares.css" />
     
     <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
@@ -36,6 +34,7 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/design-tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -93,8 +92,8 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="dev_guide/intro.html">
-  Developer Guide
+ <a class="reference internal nav-link" href="dev/intro.html">
+  Developments
  </a>
 </li>
 
@@ -161,22 +160,22 @@
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-is-hydromt">
-   What is hydroMT?
+   What is HydroMT?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#why-hydromt">
-   Why hydroMT?
+   Why HydroMT?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-to-use-hydromt">
-   How to use hydroMT?
+   How to use HydroMT?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#hydromt-model-plugins">
-   hydroMT model plugins
+   HydroMT model plugins
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -211,19 +210,19 @@
               <div>
                 
   <section id="hydromt-build-and-analyze-models-like-a-data-wizard">
-<span id="readme"></span><h1>hydroMT: Build and analyze models like a data-wizard!<a class="headerlink" href="#hydromt-build-and-analyze-models-like-a-data-wizard" title="Permalink to this headline">¶</a></h1>
+<span id="readme"></span><h1>HydroMT: Build and analyze models like a data-wizard!<a class="headerlink" href="#hydromt-build-and-analyze-models-like-a-data-wizard" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://pypi.org/project/hydromt/"><img alt="PyPI" src="https://img.shields.io/pypi/v/hydromt.svg?style=flat" /></a> <a class="reference external" href="https://anaconda.org/conda-forge/hydromt"><img alt="Conda-Forge" src="https://anaconda.org/conda-forge/hydromt/badges/version.svg" /></a> <a class="reference external" href="https://deltares.github.io/hydromt/latest"><img alt="Latest developers docs" src="https://img.shields.io/badge/docs-latest-brightgreen.svg" /></a> <a class="reference external" href="https://deltares.github.io/hydromt/stable"><img alt="Stable docs last release" src="https://img.shields.io/badge/docs-stable-brightgreen.svg" /></a> <a class="reference external" href="https://codecov.io/gh/Deltares/hydromt"><img alt="Coverage" src="https://codecov.io/gh/Deltares/hydromt/branch/main/graph/badge.svg?token=ss3EgmwHhH" /></a> <a class="reference external" href="https://github.com/Deltares/hydromt/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Deltares/hydromt?style=flat" /></a> <a class="reference external" href="https://zenodo.org/badge/latestdoi/348020332"><img alt="Zenodo" src="https://zenodo.org/badge/348020332.svg" /></a> <a class="reference external" href="https://mybinder.org/v2/gh/Deltares/hydromt/main?urlpath=lab/tree/examples"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="what-is-hydromt">
-<h2>What is hydroMT?<a class="headerlink" href="#what-is-hydromt" title="Permalink to this headline">¶</a></h2>
-<p><strong>hydroMT</strong> is an open-source Python package that facilitates the process of building and
-analyzing spatial geoscientific models with a focus on water system models.
+<h2>What is HydroMT?<a class="headerlink" href="#what-is-hydromt" title="Permalink to this headline">¶</a></h2>
+<p><strong>HydroMT</strong> (Hydro Model Tools) is an open-source Python package that facilitates the process of
+building and analyzing spatial geoscientific models with a focus on water system models.
 It does so by automating the workflow to go from raw data to a complete model instance which
-is ready to run and to analyse model results once the simulation has finished.</p>
-<p>hydroMT builds on the latest packages in the scientific and geospatial python eco-system including
+is ready to run and to analyse model results once the simulation has finished.
+HydroMT builds on the latest packages in the scientific and geospatial python eco-system including
 <a class="reference external" href="https://xarray.pydata.org">xarray</a>, <a class="reference external" href="https://rasterio.readthedocs.io">rasterio</a>, <a class="reference external" href="https://corteva.github.io/rioxarray/stable/">rioxarray</a>, <a class="reference external" href="https://geopandas.org">geopandas</a>, <a class="reference external" href="https://scipy.org/">scipy</a> and <a class="reference external" href="https://deltares.github.io/pyflwdir">pyflwdir</a>.</p>
 </section>
 <section id="why-hydromt">
-<h2>Why hydroMT?<a class="headerlink" href="#why-hydromt" title="Permalink to this headline">¶</a></h2>
+<h2>Why HydroMT?<a class="headerlink" href="#why-hydromt" title="Permalink to this headline">¶</a></h2>
 <p>Setting up spatial geoscientific models typically requires many (manual) steps
 to process input data and might therefore be time consuming and hard to reproduce.
 Especially improving models based on global geospatial datasets, which are
@@ -235,16 +234,16 @@ by configuring the model building process from a single <em>ini</em> configurati
 and <strong>model and data source agnostic</strong> through a common model and data API.</p>
 </section>
 <section id="how-to-use-hydromt">
-<h2>How to use hydroMT?<a class="headerlink" href="#how-to-use-hydromt" title="Permalink to this headline">¶</a></h2>
-<p>hydroMT can be used as a <strong>command line</strong> application, which provides commands to <em>build</em>,
+<h2>How to use HydroMT?<a class="headerlink" href="#how-to-use-hydromt" title="Permalink to this headline">¶</a></h2>
+<p>HydroMT can be used as a <strong>command line</strong> application, which provides commands to <em>build</em>,
 <em>update</em> and <em>clip</em> models with a single line, or <strong>from python</strong> to exploit its rich interface.
-You can learn more about how to use hydroMT in its <a class="reference external" href="docs">online documentation</a>
-For a smooth installing experience we recommend installing hydroMT and its dependencies
+You can learn more about how to use HydroMT in its <a class="reference external" href="docs">online documentation</a>
+For a smooth installing experience we recommend installing HydroMT and its dependencies
 from conda-forge in a clean environment, see <a class="reference external" href="install_guide">installation guide</a>.</p>
 </section>
 <section id="hydromt-model-plugins">
-<h2>hydroMT model plugins<a class="headerlink" href="#hydromt-model-plugins" title="Permalink to this headline">¶</a></h2>
-<p>hydroMT is commonly used in combination with a <strong>model plugin</strong> which
+<h2>HydroMT model plugins<a class="headerlink" href="#hydromt-model-plugins" title="Permalink to this headline">¶</a></h2>
+<p>HydroMT is commonly used in combination with a <strong>model plugin</strong> which
 provides an implementation of the model API for specific model software.
 Known models for which a plugin has been developed include:</p>
 <ul class="simple">
@@ -261,8 +260,8 @@ Known models for which a plugin has been developed include:</p>
 <section id="how-to-contribute">
 <h2>How to contribute?<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h2>
 <p>If you find any issues in the code or documentation feel free to leave an issue on the <a class="reference external" href="issues">github issue tracker</a>.
-You can find information about how to contribute to the hydroMT project at our <a class="reference external" href="contributing">contributing page</a>.</p>
-<p>hydroMT seeks active contribution from the (hydro) geoscientific community.
+You can find information about how to contribute to the HydroMT project at our <a class="reference external" href="contributing">contributing page</a>.</p>
+<p>HydroMT seeks active contribution from the (hydro) geoscientific community.
 So far, it has been developed and tested with a range of <a class="reference external" href="Deltares_EN">Deltares</a> models, but
 we believe it is applicable to a much wider set of geoscientific models and are
 happy to discuss how it can be implemented for your model.</p>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Contributing &#8212; hydroMT  documentation</title>
+    <title>Developers Guide &#8212; hydroMT  documentation</title>
     
     <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -25,9 +25,7 @@
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
     <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
@@ -36,11 +34,12 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Roadmap" href="roadmap.html" />
-    <link rel="prev" title="Developer Guide" href="intro.html" />
+    <link rel="prev" title="What’s new" href="../changelog.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -95,7 +94,7 @@
 
 <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="intro.html">
-  Developer Guide
+  Developments
  </a>
 </li>
 
@@ -139,9 +138,14 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../changelog.html">
+   What’s new
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Contributing
+   Developers Guide
   </a>
  </li>
  <li class="toctree-l1">
@@ -150,8 +154,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../changelog.html">
-   What’s new
+  <a class="reference internal" href="team.html">
+   Contributors
   </a>
  </li>
 </ul>
@@ -250,9 +254,9 @@
               
               <div>
                 
-  <section id="contributing">
-<span id="id1"></span><h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to the hydroMT project. All contributions, bug reports, bug fixes,
+  <section id="developers-guide">
+<span id="contributing"></span><h1>Developers Guide<a class="headerlink" href="#developers-guide" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the HydroMT project. All contributions, bug reports, bug fixes,
 documentation improvements, enhancements, and ideas are welcome. Here’s how we work.</p>
 <section id="rights">
 <h2>Rights<a class="headerlink" href="#rights" title="Permalink to this headline">¶</a></h2>
@@ -260,8 +264,8 @@ documentation improvements, enhancements, and ideas are welcome. Here’s how we
 </section>
 <section id="issue-conventions">
 <h2>Issue Conventions<a class="headerlink" href="#issue-conventions" title="Permalink to this headline">¶</a></h2>
-<p>The hydroMT issue tracker is for actionable issues.</p>
-<p>hydroMT is a relatively new project and highly active. We have bugs, both
+<p>The HydroMT issue tracker is for actionable issues.</p>
+<p>HydroMT is a relatively new project and highly active. We have bugs, both
 known and unknown.</p>
 <p>Please search existing issues, open and closed, before creating a new one.</p>
 <p>Please provide these details as well as tracebacks and relevant logs. Short scripts and
@@ -269,7 +273,7 @@ datasets demonstrating the issue are especially helpful!</p>
 </section>
 <section id="design-principles">
 <h2>Design Principles<a class="headerlink" href="#design-principles" title="Permalink to this headline">¶</a></h2>
-<p>hydroMT contains methods to build and analyze models in the hydrology sphere. We try
+<p>HydroMT contains methods to build and analyze models in the hydrology sphere. We try
 to build a modular framework in which data can be interchanged in workflows and
 method and workflows can be reused between models. To achieve this we designed a
 GeneralDataApapter to work with any type of regural gridded data in Xarray and vector
@@ -292,9 +296,9 @@ open_raterio for gdal raster data and xarray for netcdf data.</p></li>
 GitHub account. We follow the <a class="reference external" href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/github-flow">GitHub workflow</a>
 to allow many people to work together on the project.</p>
 <p>After discussing a new proposal or implementation in the issue tracker, you can start
-working on the code. You write your code locally in a new branch hydroMT repo or in a
+working on the code. You write your code locally in a new branch HydroMT repo or in a
 branch of a fork. Once you’re done with your first iteration, you commit your code and
-push to your hydroMT repository.</p>
+push to your HydroMT repository.</p>
 <p>To create a new branch after you’ve downloaded the latest changes in the project:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git pull
 <span class="gp">$ </span>git checkout -b &lt;name-of-branch&gt;
@@ -331,12 +335,12 @@ based on pytest, but also stylistic errors.</p>
 </section>
 <section id="development-environment">
 <h2>Development Environment<a class="headerlink" href="#development-environment" title="Permalink to this headline">¶</a></h2>
-<p>Developing hydroMT requires Python &gt;= 3.6. We prefer developing with the most recent
+<p>Developing HydroMT requires Python &gt;= 3.6. We prefer developing with the most recent
 version of Python. We strongly encourage you to develop in a seperate conda environment.
-All Python dependencies required to develop hydroMT can be found in <a class="reference external" href="environment.yml">environment.yml</a>.</p>
+All Python dependencies required to develop HydroMT can be found in <a class="reference external" href="environment.yml">environment.yml</a>.</p>
 <section id="initial-setup">
 <h3>Initial Setup<a class="headerlink" href="#initial-setup" title="Permalink to this headline">¶</a></h3>
-<p>First, clone hydroMT’s <code class="docutils literal notranslate"><span class="pre">git</span></code> repo and navigate into the repository:</p>
+<p>First, clone HydroMT’s <code class="docutils literal notranslate"><span class="pre">git</span></code> repo and navigate into the repository:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git https://github.com/Deltares/hydromt.git
 <span class="gp">$ </span><span class="nb">cd</span> hydromt
 </pre></div>
@@ -354,7 +358,7 @@ file contained in the repository:</p>
 </section>
 <section id="running-the-tests">
 <h3>Running the tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline">¶</a></h3>
-<p>hydroMT’s tests live in the tests folder and generally match the main package layout.
+<p>HydroMT’s tests live in the tests folder and generally match the main package layout.
 Test should be run from the tests folder.</p>
 <p>To run the entire suite and the code coverage report:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> tests
@@ -419,11 +423,11 @@ Make sure the check below returns <em>All done!</em> before commiting your edits
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../changelog.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Developer Guide</p>
+            <p class="prev-next-title">What’s new</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="roadmap.html" title="next page">
