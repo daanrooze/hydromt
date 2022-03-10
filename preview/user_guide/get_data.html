@@ -154,25 +154,37 @@
    Preparing a Data Catalog
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="model_build.html">
-   Building a model
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="model_main.html">
+   Working with models in hydroMT
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="model_update.html">
-   Updating a model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="model_clip.html">
-   Clipping a model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="model_post.html">
-   Postprocessing model results
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="model_build.html">
+     Building a model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="model_update.html">
+     Updating a model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="model_clip.html">
+     Clipping a model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="model_post.html">
+     Postprocessing model results
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="terminology.html">
@@ -351,7 +363,7 @@ various commonly used options to read single or multiple file raster datasets in
 <span class="gp">In [7]: </span><span class="kn">from</span> <span class="nn">hydromt.log</span> <span class="kn">import</span> <span class="n">setuplog</span>
 
 <span class="gp">In [8]: </span><span class="n">logger</span> <span class="o">=</span> <span class="n">setuplog</span><span class="p">(</span><span class="s2">&quot;read raster data&quot;</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="go">2022-03-09 20:44:49,736 - read raster data - log - INFO - HydroMT version: 0.4.6.dev</span>
+<span class="go">2022-03-10 11:13:10,595 - read raster data - log - INFO - HydroMT version: 0.4.6.dev</span>
 </pre></div>
 </div>
 <p>Next, read data from the artifacts:</p>
