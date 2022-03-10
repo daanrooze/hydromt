@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Preparing a Data Catalog &#8212; hydroMT  documentation</title>
+    <title>Preparing a Data Catalog &#8212; HydroMT  documentation</title>
     
     <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -58,7 +58,7 @@
     
     
 <a class="navbar-brand" href="../index.html">
-<p class="title">hydroMT</p>
+<p class="title">HydroMT</p>
 </a>
 
     
@@ -140,7 +140,7 @@
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="get_data.html">
-   Working with data in hydroMT
+   Working with data in HydroMT
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -167,7 +167,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="model_main.html">
-   Working with models in hydroMT
+   Working with models in HydroMT
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -286,7 +286,7 @@
 <dt><strong>Steps in brief:</strong></dt><dd><ul class="simple">
 <li><p>have your (local) dataset ready in one of the <a class="reference internal" href="get_data.html#supporteddataset"><span class="std std-ref">supported data formats</span></a></p></li>
 <li><p>create your own <a class="reference internal" href="#data-yaml"><span class="std std-ref">yml file</span></a> with a reference to your prepared dataset following the HydroMT <a class="reference internal" href="data_conventions.html#data-convention"><span class="std std-ref">data conventions</span></a></p></li>
-<li><p>continue with steps described in <a class="reference internal" href="get_data.html#get-data"><span class="std std-ref">Working with data in hydroMT</span></a> under section <a class="reference internal" href="get_data.html#get-data-cli"><span class="std std-ref">command line</span></a> or <a class="reference internal" href="get_data.html#get-data-python"><span class="std std-ref">python</span></a> usage</p></li>
+<li><p>continue with steps described in <a class="reference internal" href="get_data.html#get-data"><span class="std std-ref">Working with data in HydroMT</span></a> under section <a class="reference internal" href="get_data.html#get-data-cli"><span class="std std-ref">command line</span></a> or <a class="reference internal" href="get_data.html#get-data-python"><span class="std std-ref">python</span></a> usage</p></li>
 </ul>
 </dd>
 </dl>
@@ -503,7 +503,7 @@ In case the CRS cannot be infered from the netcdf data it is defined here.
 The path to multiple files can be set using a sting glob or several keys,
 see description of the <code class="docutils literal notranslate"><span class="pre">path</span></code> argument in the <a class="reference internal" href="#data-yaml"><span class="std std-ref">yaml file description</span></a>.
 In this example additional renaming and unit conversion preprocessing steps are added to
-unify the data to match the hydroMT naming and unit <a class="reference internal" href="terminology.html#terminology"><span class="std std-ref">terminology</span></a>.</p>
+unify the data to match the HydroMT naming and unit <a class="reference internal" href="terminology.html#terminology"><span class="std std-ref">terminology</span></a>.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">era5_hourly</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">forcing/ERA5/org/era5_{variable}_{year}_hourly.nc</span><span class="w"></span>
 <span class="w">  </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RasterDataset</span><span class="w"></span>
@@ -687,7 +687,7 @@ In case the CRS cannot be infered from the netcdf data it is defined here.
 The path to multiple files can be set using a sting glob or several keys,
 see description of the <code class="docutils literal notranslate"><span class="pre">path</span></code> argument in the <a class="reference internal" href="#data-yaml"><span class="std std-ref">yaml file description</span></a>.
 In this example additional renaming and unit conversion preprocessing steps are added to
-unify the data to match the hydroMT naming and unit <a class="reference internal" href="terminology.html#terminology"><span class="std std-ref">terminology</span></a>.</p>
+unify the data to match the HydroMT naming and unit <a class="reference internal" href="terminology.html#terminology"><span class="std std-ref">terminology</span></a>.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">gtsmv3_eu_era5</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reanalysis-waterlevel-{year}-m{month:02d}.nc</span><span class="w"></span>
 <span class="w">  </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeoDataset</span><span class="w"></span>

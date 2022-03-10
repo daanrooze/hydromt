@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Working with data in hydroMT &#8212; hydroMT  documentation</title>
+    <title>Working with data in HydroMT &#8212; HydroMT  documentation</title>
     
     <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -58,7 +58,7 @@
     
     
 <a class="navbar-brand" href="../index.html">
-<p class="title">hydroMT</p>
+<p class="title">HydroMT</p>
 </a>
 
     
@@ -140,7 +140,7 @@
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
-   Working with data in hydroMT
+   Working with data in HydroMT
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -167,7 +167,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="model_main.html">
-   Working with models in hydroMT
+   Working with models in HydroMT
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -284,8 +284,8 @@
               <div>
                 
   <section id="working-with-data-in-hydromt">
-<span id="get-data"></span><h1>Working with data in hydroMT<a class="headerlink" href="#working-with-data-in-hydromt" title="Permalink to this headline">¶</a></h1>
-<p>The best way to provide data to hydroMT is by using a <strong>data catalog</strong>. The goal of this
+<span id="get-data"></span><h1>Working with data in HydroMT<a class="headerlink" href="#working-with-data-in-hydromt" title="Permalink to this headline">¶</a></h1>
+<p>The best way to provide data to HydroMT is by using a <strong>data catalog</strong>. The goal of this
 data catalog is to provide simple and standardized access to (large) datasets which are
 parsed to convenient Python objects. It supports many drivers to read different data formats and
 contains several pre-processing steps to unify the datasets. A data catalog can be build from one
@@ -299,7 +299,7 @@ as well as meta data to improve reproducibility.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If the data catalog is initiating without a reference to a user- or pre-defined data catalog, hydroMT
+<p>If the data catalog is initiating without a reference to a user- or pre-defined data catalog, HydroMT
 will default to the <em>hydromt-artifacts</em> data catalog where a small spatial subset of several datasets is
 stored for testing purposes.</p>
 </div>
@@ -313,7 +313,7 @@ stored for testing purposes.</p>
 </ul>
 <p>Internally the RasterDataset and GeoDataset are represented by <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> objects
 and GeoDataFrame by <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a>. We use drivers, typically from third-party
-packages and sometimes wrapped in hydroMT functions, to parse many different file formats to this
+packages and sometimes wrapped in HydroMT functions, to parse many different file formats to this
 standardized internal data representation.</p>
 <p>An overview of the supported data formats and associated drivers and arguments are shown in the
 <a class="reference internal" href="prepare_data.html#own-catalog"><span class="std std-ref">Preparing a Data Catalog</span></a> section.</p>
@@ -325,7 +325,7 @@ Please contact us through the issue list if you would like to add other drivers.
 </section>
 <section id="command-line-usage">
 <span id="get-data-cli"></span><h2>Command line usage<a class="headerlink" href="#command-line-usage" title="Permalink to this headline">¶</a></h2>
-<p>When using the hydroMT command line, one can link to the data catalog by specifying the
+<p>When using the HydroMT command line, one can link to the data catalog by specifying the
 name of an existing data catalog file or the path to where the yaml file is located with
 the <code class="docutils literal notranslate"><span class="pre">-d</span></code> or <code class="docutils literal notranslate"><span class="pre">--data</span></code> option. Multiple yaml files can be added by reusing the <code class="docutils literal notranslate"><span class="pre">-d</span></code> option.</p>
 <p>For example when using the build method:</p>
@@ -348,12 +348,12 @@ the <code class="docutils literal notranslate"><span class="pre">-d</span></code
 </section>
 <section id="python-usage">
 <span id="get-data-python"></span><h2>Python usage<a class="headerlink" href="#python-usage" title="Permalink to this headline">¶</a></h2>
-<p>With a <cite>DataCatalog</cite> in place <strong>hydroMT</strong> can be used to read the data with the <cite>DataCatalog.getrasterdataset</cite> method.
+<p>With a <cite>DataCatalog</cite> in place <strong>HydroMT</strong> can be used to read the data with the <cite>DataCatalog.getrasterdataset</cite> method.
 The use of a <cite>DataCatalog</cite> allows for minimal pre-processing in order to get uniform variable names and units.
 See <a class="reference external" href="https://deltares.github.io/hydromt/latest/examples/examples/read_raster_data.html#Reading-raster-data">Reading raster data examples</a> which highlights
 various commonly used options to read single or multiple file raster datasets into an <cite>xarray.Dataset</cite> or <cite>xarray.DataArray</cite> object with geospatial attributes.</p>
 <dl class="simple">
-<dt>Basic usage to read a dataset in python using the hydroMT data catalog requires two steps:</dt><dd><ul class="simple">
+<dt>Basic usage to read a dataset in python using the HydroMT data catalog requires two steps:</dt><dd><ul class="simple">
 <li><p>Initialize a DataCatalog with references to user- or pre-defined data catalog files</p></li>
 <li><p>Use one of the get_* methods to access the data.</p></li>
 </ul>
@@ -381,7 +381,7 @@ various commonly used options to read single or multiple file raster datasets in
 <span class="gp">In [7]: </span><span class="kn">from</span> <span class="nn">hydromt.log</span> <span class="kn">import</span> <span class="n">setuplog</span>
 
 <span class="gp">In [8]: </span><span class="n">logger</span> <span class="o">=</span> <span class="n">setuplog</span><span class="p">(</span><span class="s2">&quot;read raster data&quot;</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="go">2022-03-10 14:07:56,390 - read raster data - log - INFO - HydroMT version: 0.4.6.dev</span>
+<span class="go">2022-03-10 14:43:31,032 - read raster data - log - INFO - HydroMT version: 0.4.6.dev</span>
 </pre></div>
 </div>
 <p>Next, read data from the artifacts:</p>
