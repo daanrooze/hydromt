@@ -84,7 +84,7 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../api/api_index.html">
+ <a class="reference internal nav-link" href="../../api.html">
   API reference
  </a>
 </li>
@@ -258,7 +258,7 @@
 <span class="c1">## GEOM functions</span>
 
 
-<span class="k">def</span> <span class="nf">nearest_merge</span><span class="p">(</span>
+<div class="viewcode-block" id="nearest_merge"><a class="viewcode-back" href="../../_generated/hydromt.gis_utils.nearest_merge.html#hydromt.gis_utils.nearest_merge">[docs]</a><span class="k">def</span> <span class="nf">nearest_merge</span><span class="p">(</span>
     <span class="n">gdf1</span><span class="p">:</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span>
     <span class="n">gdf2</span><span class="p">:</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span>
     <span class="n">columns</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -308,10 +308,10 @@
             <span class="n">replace</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">old_vals</span><span class="o">.</span><span class="n">isnull</span><span class="p">(),</span> <span class="n">old_vals</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">))</span>
             <span class="n">new_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">replace</span><span class="p">,</span> <span class="n">new_vals</span><span class="p">,</span> <span class="n">old_vals</span><span class="p">)</span>
         <span class="n">gdf1</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">valid</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_vals</span>
-    <span class="k">return</span> <span class="n">gdf1</span>
+    <span class="k">return</span> <span class="n">gdf1</span></div>
 
 
-<span class="k">def</span> <span class="nf">nearest</span><span class="p">(</span>
+<div class="viewcode-block" id="nearest"><a class="viewcode-back" href="../../_generated/hydromt.gis_utils.nearest.html#hydromt.gis_utils.nearest">[docs]</a><span class="k">def</span> <span class="nf">nearest</span><span class="p">(</span>
     <span class="n">gdf1</span><span class="p">:</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span> <span class="n">gdf2</span><span class="p">:</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Return the index of and distance [m] to the nearest geometry</span>
@@ -355,7 +355,7 @@
         <span class="n">pnts</span> <span class="o">=</span> <span class="n">pnts</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="mi">3857</span><span class="p">)</span>  <span class="c1"># web mercator</span>
         <span class="n">gdf2_nearest</span> <span class="o">=</span> <span class="n">gdf2_nearest</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="mi">3857</span><span class="p">)</span>
     <span class="n">dst</span> <span class="o">=</span> <span class="n">gdf2_nearest</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">pnts</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
-    <span class="k">return</span> <span class="n">gdf2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">dst</span>
+    <span class="k">return</span> <span class="n">gdf2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">dst</span></div>
 
 
 <div class="viewcode-block" id="filter_gdf"><a class="viewcode-back" href="../../_generated/hydromt.gis_utils.filter_gdf.html#hydromt.gis_utils.filter_gdf">[docs]</a><span class="k">def</span> <span class="nf">filter_gdf</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">geom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">predicate</span><span class="o">=</span><span class="s2">&quot;intersects&quot;</span><span class="p">):</span>
