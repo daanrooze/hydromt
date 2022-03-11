@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>hydromt.Model.staticmaps &#8212; HydroMT  documentation</title>
+    <title>hydromt.Model.write_data_catalog &#8212; HydroMT  documentation</title>
     
     <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -38,8 +38,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="hydromt.Model.staticgeoms" href="hydromt.Model.staticgeoms.html" />
-    <link rel="prev" title="hydromt.Model.config" href="hydromt.Model.config.html" />
+    <link rel="next" title="hydromt.Model.get_config" href="hydromt.Model.get_config.html" />
+    <link rel="prev" title="hydromt.Model.setup_config" href="hydromt.Model.setup_config.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -274,59 +274,14 @@
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.region.html">
-   hydromt.Model.region
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.crs.html">
-   hydromt.Model.crs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.res.html">
-   hydromt.Model.res
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.root.html">
-   hydromt.Model.root
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.config.html">
-   hydromt.Model.config
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   hydromt.Model.staticmaps
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.staticgeoms.html">
-   hydromt.Model.staticgeoms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.forcing.html">
-   hydromt.Model.forcing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.states.html">
-   hydromt.Model.states
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.results.html">
-   hydromt.Model.results
+  <a class="reference internal" href="hydromt.Model.html">
+   hydromt.Model
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="hydromt.Model.read.html">
    hydromt.Model.read
@@ -352,13 +307,23 @@
    hydromt.Model.set_root
   </a>
  </li>
-</ul>
-<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="hydromt.Model.setup_region.html">
+   hydromt.Model.setup_region
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="hydromt.Model.setup_config.html">
    hydromt.Model.setup_config
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   hydromt.Model.write_data_catalog
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="hydromt.Model.get_config.html">
    hydromt.Model.get_config
@@ -1214,7 +1179,7 @@
                 
 
 <div class="tocsection editthispage">
-    <a href="https://github.com/Deltares/hydromt/edit/docs/docs/_generated/hydromt.Model.staticmaps.rst">
+    <a href="https://github.com/Deltares/hydromt/edit/docs/docs/_generated/hydromt.Model.write_data_catalog.rst">
         <i class="fas fa-pencil-alt"></i> Edit this page
     </a>
 </div>
@@ -1233,12 +1198,21 @@
               
               <div>
                 
-  <section id="hydromt-model-staticmaps">
-<h1>hydromt.Model.staticmaps<a class="headerlink" href="#hydromt-model-staticmaps" title="Permalink to this headline">¶</a></h1>
-<dl class="py property">
-<dt class="sig sig-object py" id="hydromt.Model.staticmaps">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">staticmaps</span></span><a class="headerlink" href="#hydromt.Model.staticmaps" title="Permalink to this definition">¶</a></dt>
-<dd><p>xarray.Dataset representation of all static parameter maps</p>
+  <section id="hydromt-model-write-data-catalog">
+<h1>hydromt.Model.write_data_catalog<a class="headerlink" href="#hydromt-model-write-data-catalog" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="hydromt.Model.write_data_catalog">
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">write_data_catalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">used_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/models/model_api.html#Model.write_data_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.Model.write_data_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the data catalog to <cite>hydromt_data.yml</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>Path</em><em>, </em><em>optional</em>) – Global root for all relative paths in yml file.
+If “auto” the data source paths are relative to the yml output <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p></li>
+<li><p><strong>used_only</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True, export only data entries kept in used_data list.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -1249,17 +1223,17 @@
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="hydromt.Model.config.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="hydromt.Model.setup_config.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">hydromt.Model.config</p>
+            <p class="prev-next-title">hydromt.Model.setup_config</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="hydromt.Model.staticgeoms.html" title="next page">
+    <a class='right-next' id="next-link" href="hydromt.Model.get_config.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">hydromt.Model.staticgeoms</p>
+        <p class="prev-next-title">hydromt.Model.get_config</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

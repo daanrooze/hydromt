@@ -182,7 +182,7 @@
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../../../_generated/hydromt.Model.html#hydromt.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;General and basic API for models in HydroMT&quot;&quot;&quot;</span>
 
     <span class="c1"># FIXME</span>
@@ -196,7 +196,7 @@
     <span class="c1"># tell hydroMT which methods should receive the res and region arguments</span>
     <span class="n">_CLI_ARGS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;setup_basemaps&quot;</span><span class="p">,</span> <span class="s2">&quot;res&quot;</span><span class="p">:</span> <span class="s2">&quot;setup_basemaps&quot;</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="Model.__init__"><a class="viewcode-back" href="../../../_generated/hydromt.Model.html#hydromt.Model.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">root</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
@@ -228,7 +228,7 @@
 
         <span class="c1"># model paths</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CONF</span> <span class="k">if</span> <span class="n">config_fn</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config_fn</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_root</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_root</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_check_get_opt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check all opt keys and raise sensible error messages if unknown.&quot;&quot;&quot;</span>
@@ -278,18 +278,16 @@
 <span class="sd">            keys are the names of model specific setup methods and the second-level</span>
 <span class="sd">            keys the arguments of the method:</span>
 
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        .. code-block:: text</span>
+<span class="sd">            .. code-block:: text</span>
 
-<span class="sd">            {</span>
-<span class="sd">                &lt;name of method1&gt;: {</span>
-<span class="sd">                    &lt;argument1&gt;: &lt;value1&gt;, &lt;argument2&gt;: &lt;value2&gt;</span>
-<span class="sd">                },</span>
-<span class="sd">                &lt;name of method2&gt;: {</span>
-<span class="sd">                    ...</span>
+<span class="sd">                {</span>
+<span class="sd">                    &lt;name of method1&gt;: {</span>
+<span class="sd">                        &lt;argument1&gt;: &lt;value1&gt;, &lt;argument2&gt;: &lt;value2&gt;</span>
+<span class="sd">                    },</span>
+<span class="sd">                    &lt;name of method2&gt;: {</span>
+<span class="sd">                        ...</span>
+<span class="sd">                    }</span>
 <span class="sd">                }</span>
-<span class="sd">            }</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_get_opt</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span>
@@ -340,14 +338,16 @@
 <span class="sd">            keys are the names of model specific setup methods and the second-level</span>
 <span class="sd">            keys the arguments of the method:</span>
 
-<span class="sd">            ```{</span>
-<span class="sd">                &lt;name of method1&gt;: {</span>
-<span class="sd">                    &lt;argument1&gt;: &lt;value1&gt;, &lt;argument2&gt;: &lt;value2&gt;</span>
+<span class="sd">            .. code-block:: text</span>
+
+<span class="sd">                {</span>
+<span class="sd">                    &lt;name of method1&gt;: {</span>
+<span class="sd">                        &lt;argument1&gt;: &lt;value1&gt;, &lt;argument2&gt;: &lt;value2&gt;</span>
+<span class="sd">                    },</span>
+<span class="sd">                    &lt;name of method2&gt;: {</span>
+<span class="sd">                        ...</span>
 <span class="sd">                    }</span>
-<span class="sd">                &lt;name of method2&gt;: {</span>
-<span class="sd">                    ...</span>
-<span class="sd">                    }</span>
-<span class="sd">            }```</span>
+<span class="sd">                }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_get_opt</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span>
 
@@ -384,7 +384,7 @@
 
     <span class="c1">## general setup methods</span>
 
-    <span class="k">def</span> <span class="nf">setup_region</span><span class="p">(</span>
+<div class="viewcode-block" id="Model.setup_region"><a class="viewcode-back" href="../../../_generated/hydromt.Model.setup_region.html#hydromt.Model.setup_region">[docs]</a>    <span class="k">def</span> <span class="nf">setup_region</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">region</span><span class="p">,</span>
         <span class="n">hydrography_fn</span><span class="o">=</span><span class="s2">&quot;merit_hydro&quot;</span><span class="p">,</span>
@@ -462,7 +462,7 @@
 
         <span class="c1"># This setup method returns region so that it can be wrapped for models which require</span>
         <span class="c1"># more information, e.g. grid RasterDataArray or xy coordinates.</span>
-        <span class="k">return</span> <span class="n">region</span>
+        <span class="k">return</span> <span class="n">region</span></div>
 
     <span class="c1">## file system</span>
 
@@ -538,7 +538,7 @@
     <span class="k">def</span> <span class="nf">_configwrite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">configwrite</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">write_data_catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">used_only</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.write_data_catalog"><a class="viewcode-back" href="../../../_generated/hydromt.Model.write_data_catalog.html#hydromt.Model.write_data_catalog">[docs]</a>    <span class="k">def</span> <span class="nf">write_data_catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">used_only</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Write the data catalog to `hydromt_data.yml`</span>
 
 <span class="sd">        Parameters</span>
@@ -550,7 +550,7 @@
 <span class="sd">            If True, export only data entries kept in used_data list.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;hydromt_data.yml&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data_catalog</span><span class="o">.</span><span class="n">to_yml</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">root</span><span class="p">,</span> <span class="n">used_only</span><span class="o">=</span><span class="n">used_only</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_catalog</span><span class="o">.</span><span class="n">to_yml</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">root</span><span class="p">,</span> <span class="n">used_only</span><span class="o">=</span><span class="n">used_only</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Model.read_config"><a class="viewcode-back" href="../../../_generated/hydromt.Model.read_config.html#hydromt.Model.read_config">[docs]</a>    <span class="k">def</span> <span class="nf">read_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Parse config from file. If no config file found a default config file is</span>
@@ -1066,7 +1066,7 @@
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dtypes</span><span class="p">]):</span>
                     <span class="n">non_compliant</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;results.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">non_compliant</span>
+        <span class="k">return</span> <span class="n">non_compliant</span></div>
 </pre></div>
 
               </div>

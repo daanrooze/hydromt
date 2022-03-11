@@ -276,53 +276,8 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="_generated/hydromt.Model.region.html">
-   hydromt.Model.region
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="_generated/hydromt.Model.crs.html">
-   hydromt.Model.crs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="_generated/hydromt.Model.res.html">
-   hydromt.Model.res
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="_generated/hydromt.Model.root.html">
-   hydromt.Model.root
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="_generated/hydromt.Model.config.html">
-   hydromt.Model.config
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="_generated/hydromt.Model.staticmaps.html">
-   hydromt.Model.staticmaps
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="_generated/hydromt.Model.staticgeoms.html">
-   hydromt.Model.staticgeoms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="_generated/hydromt.Model.forcing.html">
-   hydromt.Model.forcing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="_generated/hydromt.Model.states.html">
-   hydromt.Model.states
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="_generated/hydromt.Model.results.html">
-   hydromt.Model.results
+  <a class="reference internal" href="_generated/hydromt.Model.html">
+   hydromt.Model
   </a>
  </li>
 </ul>
@@ -352,13 +307,23 @@
    hydromt.Model.set_root
   </a>
  </li>
-</ul>
-<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="_generated/hydromt.Model.setup_region.html">
+   hydromt.Model.setup_region
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="_generated/hydromt.Model.setup_config.html">
    hydromt.Model.setup_config
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="_generated/hydromt.Model.write_data_catalog.html">
+   hydromt.Model.write_data_catalog
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="_generated/hydromt.Model.get_config.html">
    hydromt.Model.get_config
@@ -1265,8 +1230,8 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#attributes">
-       Attributes
+      <a class="reference internal nav-link" href="#class-and-attributes">
+       Class and Attributes
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
@@ -1357,12 +1322,12 @@
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
+    <a class="reference internal nav-link" href="#attributes">
      Attributes
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
+    <a class="reference internal nav-link" href="#id4">
      General methods
     </a>
    </li>
@@ -1404,27 +1369,27 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#id5">
      High level methods
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
+    <a class="reference internal nav-link" href="#id6">
      Attributes
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
+    <a class="reference internal nav-link" href="#id7">
      General methods
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
+    <a class="reference internal nav-link" href="#id8">
      Clip
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id10">
+    <a class="reference internal nav-link" href="#id9">
      Reproject
     </a>
    </li>
@@ -1655,43 +1620,16 @@
 <span id="model-api"></span><h2>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h2>
 <section id="id2">
 <h3>Model API<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<section id="attributes">
-<h4>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h4>
+<section id="class-and-attributes">
+<h4>Class and Attributes<a class="headerlink" href="#class-and-attributes" title="Permalink to this headline">¶</a></h4>
 <table class="longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.region.html#hydromt.Model.region" title="hydromt.Model.region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.region</span></code></a></p></td>
-<td><p>Returns geometry of region of the model area of interest.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.crs.html#hydromt.Model.crs" title="hydromt.Model.crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.crs</span></code></a></p></td>
-<td><p>Returns coordinate reference system embedded in staticmaps.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.res.html#hydromt.Model.res" title="hydromt.Model.res"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.res</span></code></a></p></td>
-<td><p>Returns coordinates of staticmaps.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.root.html#hydromt.Model.root" title="hydromt.Model.root"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.root</span></code></a></p></td>
-<td><p>Path to model folder.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.config.html#hydromt.Model.config" title="hydromt.Model.config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.config</span></code></a></p></td>
-<td><p>Returns parsed model configuration.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.staticmaps.html#hydromt.Model.staticmaps" title="hydromt.Model.staticmaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.staticmaps</span></code></a></p></td>
-<td><p>xarray.Dataset representation of all static parameter maps</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.staticgeoms.html#hydromt.Model.staticgeoms" title="hydromt.Model.staticgeoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.staticgeoms</span></code></a></p></td>
-<td><p>geopandas.GeoDataFrame representation of all model geometries</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.forcing.html#hydromt.Model.forcing" title="hydromt.Model.forcing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.forcing</span></code></a></p></td>
-<td><p>dict of xarray.dataarray representation of all forcing</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.states.html#hydromt.Model.states" title="hydromt.Model.states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.states</span></code></a></p></td>
-<td><p>dict xarray.dataarray representation of all states</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.results.html#hydromt.Model.results" title="hydromt.Model.results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.results</span></code></a></p></td>
-<td><p>dict xarray.dataarray representation of model results</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.html#hydromt.Model" title="hydromt.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a>([root, mode, config_fn, data_libs, logger])</p></td>
+<td><p>General and basic API for models in HydroMT</p></td>
 </tr>
 </tbody>
 </table>
@@ -1719,6 +1657,15 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_root.html#hydromt.Model.set_root" title="hydromt.Model.set_root"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_root</span></code></a>(root[, mode])</p></td>
 <td><p>Initialized the model root.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.setup_region.html#hydromt.Model.setup_region" title="hydromt.Model.setup_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.setup_region</span></code></a>(region[, hydrography_fn, ...])</p></td>
+<td><p>This component sets the <cite>region</cite> of interest of the model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.setup_config.html#hydromt.Model.setup_config" title="hydromt.Model.setup_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.setup_config</span></code></a>(**cfdict)</p></td>
+<td><p>Update config with a dictionary</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.write_data_catalog.html#hydromt.Model.write_data_catalog" title="hydromt.Model.write_data_catalog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_data_catalog</span></code></a>([root, used_only])</p></td>
+<td><p>Write the data catalog to <cite>hydromt_data.yml</cite></p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -1730,61 +1677,58 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.setup_config.html#hydromt.Model.setup_config" title="hydromt.Model.setup_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.setup_config</span></code></a>(**cfdict)</p></td>
-<td><p>Update config with a dictionary</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.get_config.html#hydromt.Model.get_config" title="hydromt.Model.get_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.get_config</span></code></a>(*args[, fallback, abs_path])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.get_config.html#hydromt.Model.get_config" title="hydromt.Model.get_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.get_config</span></code></a>(*args[, fallback, abs_path])</p></td>
 <td><p>Get a config value at key(s).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_config.html#hydromt.Model.set_config" title="hydromt.Model.set_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_config</span></code></a>(*args)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_config.html#hydromt.Model.set_config" title="hydromt.Model.set_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_config</span></code></a>(*args)</p></td>
 <td><p>Update the config dictionary at key(s) with values.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.read_config.html#hydromt.Model.read_config" title="hydromt.Model.read_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_config</span></code></a>([config_fn])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.read_config.html#hydromt.Model.read_config" title="hydromt.Model.read_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_config</span></code></a>([config_fn])</p></td>
 <td><p>Parse config from file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.write_config.html#hydromt.Model.write_config" title="hydromt.Model.write_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_config</span></code></a>([config_name, config_root])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.write_config.html#hydromt.Model.write_config" title="hydromt.Model.write_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_config</span></code></a>([config_name, config_root])</p></td>
 <td><p>Write config to &lt;root/config_fn&gt;</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_staticmaps.html#hydromt.Model.set_staticmaps" title="hydromt.Model.set_staticmaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_staticmaps</span></code></a>(data[, name])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_staticmaps.html#hydromt.Model.set_staticmaps" title="hydromt.Model.set_staticmaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_staticmaps</span></code></a>(data[, name])</p></td>
 <td><p>Add data to staticmaps.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.read_staticmaps.html#hydromt.Model.read_staticmaps" title="hydromt.Model.read_staticmaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_staticmaps</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.read_staticmaps.html#hydromt.Model.read_staticmaps" title="hydromt.Model.read_staticmaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_staticmaps</span></code></a>()</p></td>
 <td><p>Read staticmaps at &lt;root/?/&gt; and parse to xarray Dataset</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.write_staticmaps.html#hydromt.Model.write_staticmaps" title="hydromt.Model.write_staticmaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_staticmaps</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.write_staticmaps.html#hydromt.Model.write_staticmaps" title="hydromt.Model.write_staticmaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_staticmaps</span></code></a>()</p></td>
 <td><p>Write staticmaps at &lt;root/?/&gt; in model ready format</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_staticgeoms.html#hydromt.Model.set_staticgeoms" title="hydromt.Model.set_staticgeoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_staticgeoms</span></code></a>(geom, name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_staticgeoms.html#hydromt.Model.set_staticgeoms" title="hydromt.Model.set_staticgeoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_staticgeoms</span></code></a>(geom, name)</p></td>
 <td><p>Add geom to staticmaps</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.read_staticgeoms.html#hydromt.Model.read_staticgeoms" title="hydromt.Model.read_staticgeoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_staticgeoms</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.read_staticgeoms.html#hydromt.Model.read_staticgeoms" title="hydromt.Model.read_staticgeoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_staticgeoms</span></code></a>()</p></td>
 <td><p>Read staticgeoms at &lt;root/?/&gt; and parse to dict of geopandas</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.write_staticgeoms.html#hydromt.Model.write_staticgeoms" title="hydromt.Model.write_staticgeoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_staticgeoms</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.write_staticgeoms.html#hydromt.Model.write_staticgeoms" title="hydromt.Model.write_staticgeoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_staticgeoms</span></code></a>()</p></td>
 <td><p>Write staticmaps at &lt;root/?/&gt; in model ready format</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_forcing.html#hydromt.Model.set_forcing" title="hydromt.Model.set_forcing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_forcing</span></code></a>(data[, name])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_forcing.html#hydromt.Model.set_forcing" title="hydromt.Model.set_forcing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_forcing</span></code></a>(data[, name])</p></td>
 <td><p>Add data to forcing attribute which is a dictionary of xarray.DataArray.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.read_forcing.html#hydromt.Model.read_forcing" title="hydromt.Model.read_forcing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_forcing</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.read_forcing.html#hydromt.Model.read_forcing" title="hydromt.Model.read_forcing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_forcing</span></code></a>()</p></td>
 <td><p>Read forcing at &lt;root/?/&gt; and parse to dict of xr.DataArray</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.write_forcing.html#hydromt.Model.write_forcing" title="hydromt.Model.write_forcing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_forcing</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.write_forcing.html#hydromt.Model.write_forcing" title="hydromt.Model.write_forcing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_forcing</span></code></a>()</p></td>
 <td><p>write forcing at &lt;root/?/&gt; in model ready format</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_states.html#hydromt.Model.set_states" title="hydromt.Model.set_states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_states</span></code></a>(data[, name])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_states.html#hydromt.Model.set_states" title="hydromt.Model.set_states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_states</span></code></a>(data[, name])</p></td>
 <td><p>Add data to states attribute which is a dictionary of xarray.DataArray.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.read_states.html#hydromt.Model.read_states" title="hydromt.Model.read_states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_states</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.read_states.html#hydromt.Model.read_states" title="hydromt.Model.read_states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_states</span></code></a>()</p></td>
 <td><p>Read states at &lt;root/?/&gt; and parse to dict of xr.DataArray</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.write_states.html#hydromt.Model.write_states" title="hydromt.Model.write_states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_states</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.write_states.html#hydromt.Model.write_states" title="hydromt.Model.write_states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_states</span></code></a>()</p></td>
 <td><p>write states at &lt;root/?/&gt; in model ready format</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_results.html#hydromt.Model.set_results" title="hydromt.Model.set_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_results</span></code></a>(data[, name, split_dataset])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_results.html#hydromt.Model.set_results" title="hydromt.Model.set_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_results</span></code></a>(data[, name, split_dataset])</p></td>
 <td><p>Add data to results attribute which is a dictionary of xarray.DataArray and/or xarray.Dataset.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.read_results.html#hydromt.Model.read_results" title="hydromt.Model.read_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_results</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.read_results.html#hydromt.Model.read_results" title="hydromt.Model.read_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read_results</span></code></a>()</p></td>
 <td><p>Read results at &lt;root/?/&gt; and parse to dict of xr.DataArray</p></td>
 </tr>
 </tbody>
@@ -1998,8 +1942,8 @@
 </tbody>
 </table>
 </section>
-<section id="id4">
-<h3>Attributes<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
 <table class="longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -2066,8 +2010,8 @@
 </tbody>
 </table>
 </section>
-<section id="id5">
-<h3>General methods<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<section id="id4">
+<h3>General methods<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <table class="longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -2239,8 +2183,8 @@
 </section>
 <section id="geospatial-timeseries-methods">
 <h2>Geospatial timeseries methods<a class="headerlink" href="#geospatial-timeseries-methods" title="Permalink to this headline">¶</a></h2>
-<section id="id6">
-<h3>High level methods<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<section id="id5">
+<h3>High level methods<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <table class="longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -2259,8 +2203,8 @@
 </tbody>
 </table>
 </section>
-<section id="id7">
-<h3>Attributes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<section id="id6">
+<h3>Attributes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <table class="longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -2309,8 +2253,8 @@
 </tbody>
 </table>
 </section>
-<section id="id8">
-<h3>General methods<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<section id="id7">
+<h3>General methods<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <table class="longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -2329,8 +2273,8 @@
 </tbody>
 </table>
 </section>
-<section id="id9">
-<h3>Clip<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<section id="id8">
+<h3>Clip<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <table class="longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -2346,8 +2290,8 @@
 </tbody>
 </table>
 </section>
-<section id="id10">
-<h3>Reproject<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<section id="id9">
+<h3>Reproject<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <table class="longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -2488,7 +2432,7 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 </section>
 </section>
 <section id="statistics">
-<span id="id11"></span><h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h2>
 <section id="statistics-and-performance-metrics">
 <h3>Statistics and performance metrics<a class="headerlink" href="#statistics-and-performance-metrics" title="Permalink to this headline">¶</a></h3>
 <table class="longtable table autosummary">

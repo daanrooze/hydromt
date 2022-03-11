@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>hydromt.Model.config &#8212; HydroMT  documentation</title>
+    <title>hydromt.Model.setup_region &#8212; HydroMT  documentation</title>
     
     <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -38,8 +38,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="hydromt.Model.staticmaps" href="hydromt.Model.staticmaps.html" />
-    <link rel="prev" title="hydromt.Model.root" href="hydromt.Model.root.html" />
+    <link rel="next" title="hydromt.Model.setup_config" href="hydromt.Model.setup_config.html" />
+    <link rel="prev" title="hydromt.Model.set_root" href="hydromt.Model.set_root.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -274,59 +274,14 @@
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.region.html">
-   hydromt.Model.region
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.crs.html">
-   hydromt.Model.crs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.res.html">
-   hydromt.Model.res
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.root.html">
-   hydromt.Model.root
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   hydromt.Model.config
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.staticmaps.html">
-   hydromt.Model.staticmaps
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.staticgeoms.html">
-   hydromt.Model.staticgeoms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.forcing.html">
-   hydromt.Model.forcing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.states.html">
-   hydromt.Model.states
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.results.html">
-   hydromt.Model.results
+  <a class="reference internal" href="hydromt.Model.html">
+   hydromt.Model
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="hydromt.Model.read.html">
    hydromt.Model.read
@@ -352,13 +307,23 @@
    hydromt.Model.set_root
   </a>
  </li>
-</ul>
-<ul class="nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   hydromt.Model.setup_region
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="hydromt.Model.setup_config.html">
    hydromt.Model.setup_config
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hydromt.Model.write_data_catalog.html">
+   hydromt.Model.write_data_catalog
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="hydromt.Model.get_config.html">
    hydromt.Model.get_config
@@ -1214,7 +1179,7 @@
                 
 
 <div class="tocsection editthispage">
-    <a href="https://github.com/Deltares/hydromt/edit/docs/docs/_generated/hydromt.Model.config.rst">
+    <a href="https://github.com/Deltares/hydromt/edit/docs/docs/_generated/hydromt.Model.setup_region.rst">
         <i class="fas fa-pencil-alt"></i> Edit this page
     </a>
 </div>
@@ -1233,12 +1198,47 @@
               
               <div>
                 
-  <section id="hydromt-model-config">
-<h1>hydromt.Model.config<a class="headerlink" href="#hydromt-model-config" title="Permalink to this headline">¶</a></h1>
-<dl class="py property">
-<dt class="sig sig-object py" id="hydromt.Model.config">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#hydromt.Model.config" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns parsed model configuration.</p>
+  <section id="hydromt-model-setup-region">
+<h1>hydromt.Model.setup_region<a class="headerlink" href="#hydromt-model-setup-region" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="hydromt.Model.setup_region">
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">setup_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hydrography_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'merit_hydro'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basin_index_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'merit_hydro_index'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/models/model_api.html#Model.setup_region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.Model.setup_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>This component sets the <cite>region</cite> of interest of the model.</p>
+<p>Adds model layer:</p>
+<ul class="simple">
+<li><p><strong>region</strong> geom: region boundary vector</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – <p>Dictionary describing region of interest, e.g.:</p>
+<ul>
+<li><p>{‘bbox’: [xmin, ymin, xmax, ymax]}</p></li>
+<li><p>{‘geom’: ‘path/to/polygon_geometry’}</p></li>
+<li><p>{‘basin’: [xmin, ymin, xmax, ymax]}</p></li>
+<li><p>{‘subbasin’: [x, y], ‘&lt;variable&gt;’: threshold}</p></li>
+</ul>
+<p>For a complete overview of all region options,
+see :py:function:~hydromt.workflows.basin_mask.parse_region</p>
+</p></li>
+<li><p><strong>hydrography_fn</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Name of data source for basemap parameters.
+FIXME describe data requirements</p></li>
+<li><p><strong>basin_index_fn</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Name of data source with basin (bounding box) geometries associated with
+the ‘basins’ layer of <cite>hydrography_fn</cite>. Only required if the <cite>region</cite> is
+based on a (sub)(inter)basins without a ‘bounds’ argument.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>region</strong> – Parsed region dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="hydromt.workflows.basin_mask.parse_region.html#hydromt.workflows.basin_mask.parse_region" title="hydromt.workflows.basin_mask.parse_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hydromt.workflows.basin_mask.parse_region</span></code></a></p>
+</div>
 </dd></dl>
 
 </section>
@@ -1249,17 +1249,17 @@
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="hydromt.Model.root.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="hydromt.Model.set_root.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">hydromt.Model.root</p>
+            <p class="prev-next-title">hydromt.Model.set_root</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="hydromt.Model.staticmaps.html" title="next page">
+    <a class='right-next' id="next-link" href="hydromt.Model.setup_config.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">hydromt.Model.staticmaps</p>
+        <p class="prev-next-title">hydromt.Model.setup_config</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

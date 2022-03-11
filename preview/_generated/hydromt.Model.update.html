@@ -276,53 +276,8 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.region.html">
-   hydromt.Model.region
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.crs.html">
-   hydromt.Model.crs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.res.html">
-   hydromt.Model.res
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.root.html">
-   hydromt.Model.root
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.config.html">
-   hydromt.Model.config
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.staticmaps.html">
-   hydromt.Model.staticmaps
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.staticgeoms.html">
-   hydromt.Model.staticgeoms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.forcing.html">
-   hydromt.Model.forcing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.states.html">
-   hydromt.Model.states
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hydromt.Model.results.html">
-   hydromt.Model.results
+  <a class="reference internal" href="hydromt.Model.html">
+   hydromt.Model
   </a>
  </li>
 </ul>
@@ -352,13 +307,23 @@
    hydromt.Model.set_root
   </a>
  </li>
-</ul>
-<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="hydromt.Model.setup_region.html">
+   hydromt.Model.setup_region
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="hydromt.Model.setup_config.html">
    hydromt.Model.setup_config
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hydromt.Model.write_data_catalog.html">
+   hydromt.Model.write_data_catalog
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="hydromt.Model.get_config.html">
    hydromt.Model.get_config
@@ -1249,18 +1214,16 @@ current model schematization if these exist. By default None.</p></li>
 <li><p><strong>opt</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a><em>, </em><em>optional</em>) – <p>Model update configuration. This is a nested dictionary where the first-level
 keys are the names of model specific setup methods and the second-level
 keys the arguments of the method:</p>
-<dl class="simple">
-<dt><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>{</dt><dd><dl class="simple">
-<dt>&lt;name of method1&gt;: {</dt><dd><p>&lt;argument1&gt;: &lt;value1&gt;, &lt;argument2&gt;: &lt;value2&gt;
-}</p>
-</dd>
-<dt>&lt;name of method2&gt;: {</dt><dd><p>…
-}</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p>}```</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{
+    &lt;name of method1&gt;: {
+        &lt;argument1&gt;: &lt;value1&gt;, &lt;argument2&gt;: &lt;value2&gt;
+    },
+    &lt;name of method2&gt;: {
+        ...
+    }
+}
+</pre></div>
+</div>
 </p></li>
 </ul>
 </dd>
