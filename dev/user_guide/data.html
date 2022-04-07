@@ -238,7 +238,7 @@ but the user is free to define its own categories. The category attribute can al
 <li><p><strong>GeoDataFrame</strong>: static vector data</p></li>
 <li><p><strong>GeoDataset</strong> dynamic point location data</p></li>
 </ul>
-<p>Internally the RasterDataset and GeoDataset are represented by <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.21.2.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> objects
+<p>Internally the RasterDataset and GeoDataset are represented by <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> objects
 and GeoDataFrame by <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a>. We use externaly
 availabe data readers, often wrapped in hydroMT functions, to parse many different file
 formats to this standardized internal data representation. An overview of the supported
@@ -265,7 +265,7 @@ Please contact us through the issue list if you would like to add other drivers.
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">raster</span></code></p></td>
 <td><p>GeoTIFF, ArcASCII, VRT, etc. (see <a class="reference external" href="http://www.gdal.org/formats_list.html">GDAL formats</a>)</p></td>
 <td><p><a class="reference internal" href="../_generated/hydromt.io.open_mfraster.html#hydromt.io.open_mfraster" title="hydromt.io.open_mfraster"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_mfraster()</span></code></a></p></td>
-<td><p>Based on <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_rasterio.html#xarray.open_rasterio" title="(in xarray v0.21.2.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_rasterio()</span></code></a>
+<td><p>Based on <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_rasterio.html#xarray.open_rasterio" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_rasterio()</span></code></a>
 and <a class="reference external" href="https://rasterio.readthedocs.io/en/latest/api/rasterio.html#rasterio.open" title="(in rasterio v1.3a3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">rasterio.open()</span></code></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">raster_tindex</span></code></p></td>
@@ -275,7 +275,7 @@ and <a class="reference external" href="https://rasterio.readthedocs.io/en/lates
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">netcdf</span></code> or <code class="docutils literal notranslate"><span class="pre">zarr</span></code></p></td>
 <td><p>NetCDF and Zarr</p></td>
-<td><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html#xarray.open_mfdataset" title="(in xarray v0.21.2.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a>, <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_zarr.html#xarray.open_zarr" title="(in xarray v0.21.2.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_zarr()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html#xarray.open_mfdataset" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a>, <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_zarr.html#xarray.open_zarr" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_zarr()</span></code></a></p></td>
 <td><p>required y and x <a class="reference internal" href="#dimensions">dimensions</a></p></td>
 </tr>
 </tbody>
@@ -331,7 +331,7 @@ and <a class="reference external" href="https://rasterio.readthedocs.io/en/lates
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">netcdf</span></code> or <code class="docutils literal notranslate"><span class="pre">zarr</span></code></p></td>
 <td><p>NetCDF and Zarr</p></td>
-<td><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html#xarray.open_mfdataset" title="(in xarray v0.21.2.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a>, <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_zarr.html#xarray.open_zarr" title="(in xarray v0.21.2.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_zarr()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html#xarray.open_mfdataset" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a>, <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_zarr.html#xarray.open_zarr" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_zarr()</span></code></a></p></td>
 <td><p>required time and index <a class="reference internal" href="#dimensions">dimensions</a> and x- and y coordinates.</p></td>
 </tr>
 </tbody>
@@ -451,8 +451,8 @@ See list of recognized <a class="reference internal" href="#dimensions">dimensio
 </pre></div>
 </div>
 <p>To read a raster dataset from a multiple file netcdf archive the following data entry
-is used, where the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> are passed to <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html#xarray.open_mfdataset" title="(in xarray v0.21.2.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a>
-(or <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_zarr.html#xarray.open_zarr" title="(in xarray v0.21.2.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_zarr()</span></code></a> for zarr data).
+is used, where the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> are passed to <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html#xarray.open_mfdataset" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a>
+(or <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_zarr.html#xarray.open_zarr" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_zarr()</span></code></a> for zarr data).
 In case the CRS cannot be infered from the netcdf data it is defined here.
 The path to multiple files can be set using a sting glob or several keys,
 see description of the <code class="docutils literal notranslate"><span class="pre">path</span></code> argument in the <a class="reference internal" href="#data-yaml"><span class="std std-ref">yaml file description</span></a>.
@@ -567,8 +567,8 @@ on a list of recognized <a class="reference internal" href="#dimensions">dimensi
 </pre></div>
 </div>
 <p>To read a point timeseries dataset from a multiple file netcdf archive the following data entry
-is used, where the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> are passed to <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html#xarray.open_mfdataset" title="(in xarray v0.21.2.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a>
-(or <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_zarr.html#xarray.open_zarr" title="(in xarray v0.21.2.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_zarr()</span></code></a> for zarr data).
+is used, where the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> are passed to <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html#xarray.open_mfdataset" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a>
+(or <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.open_zarr.html#xarray.open_zarr" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_zarr()</span></code></a> for zarr data).
 In case the CRS cannot be infered from the netcdf data it is defined here.
 The path to multiple files can be set using a sting glob or several keys,
 see description of the <code class="docutils literal notranslate"><span class="pre">path</span></code> argument in the <a class="reference internal" href="#data-yaml"><span class="std std-ref">yaml file description</span></a>.
@@ -615,7 +615,7 @@ For more options see the <a class="reference internal" href="../_generated/hydro
 </div>
 <p><em>Tabulated time series text file</em></p>
 <p>This data is read using the <a class="reference internal" href="../_generated/hydromt.io.open_timeseries_from_table.html#hydromt.io.open_timeseries_from_table" title="hydromt.io.open_timeseries_from_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_timeseries_from_table()</span></code></a> method. To
-read the time stamps the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html#pandas.to_datetime" title="(in pandas v1.4.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code></a> method is used.</p>
+read the time stamps the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html#pandas.to_datetime" title="(in pandas v1.4.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code></a> method is used.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">time, &lt;ID1&gt;, &lt;ID2&gt;</span>
 <span class="go">&lt;time1&gt;, &lt;value&gt;, &lt;value&gt;</span>
 <span class="go">&lt;time2&gt;, &lt;value&gt;, &lt;value&gt;</span>
