@@ -789,7 +789,21 @@
     <span class="k">return</span> <span class="n">ds</span>
 
 
-<span class="n">PREPROCESSORS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;round_latlon&quot;</span><span class="p">:</span> <span class="n">round_latlon</span><span class="p">}</span>
+<span class="k">def</span> <span class="nf">to_datetimeindex</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ds</span><span class="o">.</span><span class="n">indexes</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;O&quot;</span><span class="p">:</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">indexes</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_datetimeindex</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ds</span>
+
+
+<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=~</span><span class="n">ds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">duplicated</span><span class="p">())</span>
+
+
+<span class="n">PREPROCESSORS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;round_latlon&quot;</span><span class="p">:</span> <span class="n">round_latlon</span><span class="p">,</span>
+    <span class="s2">&quot;to_datetimeindex&quot;</span><span class="p">:</span> <span class="n">to_datetimeindex</span><span class="p">,</span>
+    <span class="s2">&quot;remove_duplicates&quot;</span><span class="p">:</span> <span class="n">remove_duplicates</span><span class="p">,</span>
+<span class="p">}</span>
 
 
 <span class="k">class</span> <span class="nc">DataAdapter</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
@@ -1082,6 +1096,11 @@
             <span class="n">ds_out</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">open_mfraster</span><span class="p">(</span><span class="n">fns</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RasterDataset: Driver </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="si">}</span><span class="s2"> unknown&quot;</span><span class="p">)</span>
+
+        <span class="c1"># transpose dims to get y and x dim last</span>
+        <span class="n">x_dim</span> <span class="o">=</span> <span class="n">ds_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">x_dim</span>
+        <span class="n">y_dim</span> <span class="o">=</span> <span class="n">ds_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">y_dim</span>
+        <span class="n">ds_out</span> <span class="o">=</span> <span class="n">ds_out</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">y_dim</span><span class="p">,</span> <span class="n">x_dim</span><span class="p">)</span>
 
         <span class="c1"># rename and select vars</span>
         <span class="k">if</span> <span class="n">variables</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">ds_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">vars</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rename</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
