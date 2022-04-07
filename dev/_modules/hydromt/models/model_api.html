@@ -195,6 +195,8 @@
         <span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Single method to build a model from scratch based on settings in `opt`.</span>
+<span class="sd">        Methods will be run one by one based on the order of appearance in `opt` (ini file)..</span>
+<span class="sd">        All model methods are supported incuding setup_*, read_* and write_*</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -239,9 +241,6 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">opt</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_CLI_ARGS</span><span class="p">[</span><span class="s2">&quot;res&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">res</span><span class="o">=</span><span class="n">res</span><span class="p">)</span>
 
-        <span class="c1"># run setup_config and setup_basemaps first!</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_run_log_method</span><span class="p">(</span><span class="s2">&quot;setup_config&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">opt</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;setup_config&quot;</span><span class="p">,</span> <span class="p">{}))</span>
-
         <span class="c1"># then loop over other methods</span>
         <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">opt</span><span class="p">:</span>
             <span class="c1"># if any write_* functions are present in opt, skip the final self.write() call</span>
@@ -255,6 +254,10 @@
 
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Single method to update a model based the settings in `opt`.</span>
+<span class="sd">        Methods will be run one by one based on the order of appearance in `opt` (ini file).</span>
+<span class="sd">        All model methods are supported incuding setup_*, read_* and write_*</span>
+<span class="sd">        If a write_* option is listed in `opt` (ini file) the full writing of the model at the end</span>
+<span class="sd">        of the update process is skipped.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -300,7 +303,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s1">&quot; can only be called when building a model.&#39;</span><span class="p">)</span>
 
         <span class="c1"># loop over other methods from ini file</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_run_log_method</span><span class="p">(</span><span class="s2">&quot;setup_config&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">opt</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;setup_config&quot;</span><span class="p">,</span> <span class="p">{}))</span>
         <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">opt</span><span class="p">:</span>
             <span class="c1"># if any write_* functions are present in opt, skip the final self.write() call</span>
             <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;write_&quot;</span><span class="p">):</span>
