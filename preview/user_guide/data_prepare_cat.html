@@ -35,8 +35,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Data conventions" href="data_conventions.html" />
-    <link rel="prev" title="Using a pre-defined Data Catalog" href="data_existing_cat.html" />
+    <link rel="next" title="Using a pre-defined Data Catalog" href="data_existing_cat.html" />
+    <link rel="prev" title="Working with data in HydroMT" href="data_main.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -150,14 +150,14 @@
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="data_existing_cat.html">
-     Using a pre-defined Data Catalog
-    </a>
-   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Preparing a Data Catalog
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_existing_cat.html">
+     Using a pre-defined Data Catalog
     </a>
    </li>
    <li class="toctree-l2">
@@ -250,6 +250,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-catalog-yaml-file">
    Data catalog yaml file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#placeholders-and-alias">
+   Placeholders and alias
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -411,13 +416,13 @@ Only used if not crs can be inferred from the input data.</p></li>
 For GeoDataFrame provided nodata values are converted to nan values.</p></li>
 <li><p><strong>unit_add</strong> (optional): add or substract a value to the input data for unit conversion (e.g. -273.15 for conversion of temperature from Kelvin to Celsius).</p></li>
 <li><p><strong>unit_mult</strong> (optional): multiply the input data by a value for unit conversion (e.g. 1000 for conversion from m to mm of precipitation).</p></li>
+<li><p><strong>units</strong> (optional and for <em>RasterDataset</em> only). specify the units of the input data: supported are [m3], [m], [mm], and [m3/s].
+This option is used <em>only</em> for the forcing of the Delwaq models in order to do specific unit conversions that cannot be handled from simple
+addition or multiplication (e.g. conversion from mm water equivalent to m3/s of water which requires a multiplication by each grid cell area and not a fixed number).</p></li>
 <li><p><strong>meta</strong> (optional): additional information on the dataset organized in a sub-list.
 Good meta data includes a <em>source_url</em>, <em>source_license</em>, <em>source_version</em>, <em>paper_ref</em>, <em>paper_doi</em>, <em>category</em>, etc. These are added to the data attributes.
 Usual categories within HydroMT are <em>geography</em>, <em>topography</em>, <em>hydrography</em>, <em>meteo</em>, <em>landuse</em>, <em>ocean</em>, <em>socio-economic</em>, <em>observed data</em>
 but the user is free to define its own categories.</p></li>
-<li><p><strong>units</strong> (optional and for <em>RasterDataset</em> only). specify the units of the input data: supported are [m3], [m], [mm], and [m3/s].
-This option is used <em>only</em> for the forcing of the Delwaq models in order to do specific unit conversions that cannot be handled from simple
-addition or multiplication (e.g. conversion from mm water equivalent to m3/s of water which requires a multiplication by each grid cell area and not a fixed number).</p></li>
 </ul>
 <p>Apart from the data entries, the yaml file also has <strong>global options</strong>:</p>
 <ul class="simple">
@@ -426,6 +431,41 @@ If not  provide the folder of where the yaml fil is located will be used as root
 This is used in combination with each data source <strong>path</strong> argument to avoid repetition.</p></li>
 </ul>
 </section>
+<section id="placeholders-and-alias">
+<h2>Placeholders and alias<a class="headerlink" href="#placeholders-and-alias" title="Permalink to this headline">#</a></h2>
+<p>There are two convenience options the data catalog files to limit repetition between data sources:</p>
+<ul class="simple">
+<li><p>This <code class="docutils literal notranslate"><span class="pre">placeholder</span></code> argument can be used to generate multiple sources with a single entry in the data catalog file. If different files follow a logical
+nomenclature different data sources can be defined by iterating through all possible values of the placeholders. The placeholder names should be given in the
+source name and the path and its values listed under placeholder argument, see example below with an <em>epoch</em> and <em>epsg</em> placeholders.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">alias</span></code> argument can be used to define data source under second short name, or to avoid repeating large sections with the same meta-data.
+If an alias is provided all information from the alias source is used to read the data except for the info that is overwritten by the current data source.
+The alias source should also be provided in the same file. Note that this only works at the first level of arguments, if e.g. the rename option is used in
+the current data source it overwrites all rename entries of the alias source. In the example below <em>ghs_pop</em> is short for a specific version (epoch=2015; epsg=54009)
+of that dataset.</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ghs_pop</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghs_pop_2015_54009</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">ghs_pop_{epoch}_{epsg}</span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RasterDataset</span><span class="w"></span>
+<span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">raster</span><span class="w"></span>
+<span class="w">  </span><span class="nt">kwargs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">chunks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="nv">3600</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span><span class="w"> </span><span class="nv">3600</span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">  </span><span class="nt">placeholder</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">epoch</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2015</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2020</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">epsg</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">54009</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4326</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">meta</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">socio-economic</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_doi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.2905/0C6B9751-A71F-4062-830B-43C9F432370F</span><span class="w"></span>
+<span class="w">    </span><span class="nt">paper_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Schiavina et al (2019)</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JRC-ISPRA EC</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://data.jrc.ec.europa.eu/licence/com_reuse</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://data.jrc.ec.europa.eu/dataset/0c6b9751-a71f-4062-830b-43c9f432370f</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">R2019A_v1.0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">socio_economic/ghs/GHS_POP_E{epoch}_GLOBE_R2019A_{epsg}.tif</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 <section id="recognized-dimension-names">
 <span id="dimensions"></span><h2>Recognized dimension names<a class="headerlink" href="#recognized-dimension-names" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
@@ -433,7 +473,6 @@ This is used in combination with each data source <strong>path</strong> argument
 <li><p><strong>x</strong>: x coordinate [“x”, “longitude”, “lon”, “long”].</p></li>
 <li><p><strong>y</strong>: y-coordinate [“y”, “latitude”, “lat”].</p></li>
 </ul>
-<p>For a list of rec</p>
 </section>
 <section id="raster-data-rasterdataset">
 <span id="rasterdataset"></span><h2>Raster data (RasterDataset)<a class="headerlink" href="#raster-data-rasterdataset" title="Permalink to this headline">#</a></h2>
@@ -848,17 +887,17 @@ read the time stamps the <a class="reference external" href="https://pandas.pyda
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="data_existing_cat.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="data_main.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Using a pre-defined Data Catalog</p>
+            <p class="prev-next-title">Working with data in HydroMT</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="data_conventions.html" title="next page">
+    <a class='right-next' id="next-link" href="data_existing_cat.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data conventions</p>
+        <p class="prev-next-title">Using a pre-defined Data Catalog</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
