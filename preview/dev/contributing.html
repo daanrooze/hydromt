@@ -6,30 +6,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Developers Guide &#8212; HydroMT  documentation</title>
+    <title>Developer’s guide &#8212; HydroMT  documentation</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -38,8 +35,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Roadmap" href="roadmap.html" />
-    <link rel="prev" title="What’s new" href="../changelog.html" />
+    <link rel="next" title="Development environment" href="dev_install.html" />
+    <link rel="prev" title="Roadmap" href="roadmap.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -47,7 +44,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -82,7 +79,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../user_guide/intro.html">
-  User Guide
+  User guide
  </a>
 </li>
 
@@ -148,14 +145,19 @@
    What’s new
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Developers Guide
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="roadmap.html">
    Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Developer’s guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dev_install.html">
+   Development environment
   </a>
  </li>
  <li class="toctree-l1">
@@ -180,7 +182,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -193,34 +195,24 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#issue-conventions">
-   Issue Conventions
+   Issue conventions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#design-principles">
-   Design Principles
+   Design principles
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#git-conventions">
-   Git Conventions
+   Git conventions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#code-conventions">
-   Code Conventions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#development-environment">
-   Development Environment
+   Code conventions
   </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#initial-setup">
-     Initial Setup
-    </a>
-   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#running-the-tests">
      Running the tests
@@ -266,16 +258,16 @@
               
               <div>
                 
-  <section id="developers-guide">
-<span id="contributing"></span><h1>Developers Guide<a class="headerlink" href="#developers-guide" title="Permalink to this headline">¶</a></h1>
+  <section id="developer-s-guide">
+<span id="contributing"></span><h1>Developer’s guide<a class="headerlink" href="#developer-s-guide" title="Permalink to this headline">#</a></h1>
 <p>Welcome to the HydroMT project. All contributions, bug reports, bug fixes,
 documentation improvements, enhancements, and ideas are welcome. Here’s how we work.</p>
 <section id="rights">
-<h2>Rights<a class="headerlink" href="#rights" title="Permalink to this headline">¶</a></h2>
+<h2>Rights<a class="headerlink" href="#rights" title="Permalink to this headline">#</a></h2>
 <p>The MIT license (see LICENSE.txt) applies to all contributions.</p>
 </section>
 <section id="issue-conventions">
-<h2>Issue Conventions<a class="headerlink" href="#issue-conventions" title="Permalink to this headline">¶</a></h2>
+<h2>Issue conventions<a class="headerlink" href="#issue-conventions" title="Permalink to this headline">#</a></h2>
 <p>The HydroMT issue tracker is for actionable issues.</p>
 <p>HydroMT is a relatively new project and highly active. We have bugs, both
 known and unknown.</p>
@@ -284,7 +276,7 @@ known and unknown.</p>
 datasets demonstrating the issue are especially helpful!</p>
 </section>
 <section id="design-principles">
-<h2>Design Principles<a class="headerlink" href="#design-principles" title="Permalink to this headline">¶</a></h2>
+<h2>Design principles<a class="headerlink" href="#design-principles" title="Permalink to this headline">#</a></h2>
 <p>HydroMT contains methods to build and analyze models in the hydrology sphere. We try
 to build a modular framework in which data can be interchanged in workflows and
 method and workflows can be reused between models. To achieve this we designed a
@@ -298,7 +290,7 @@ open_raterio for gdal raster data and xarray for netcdf data.</p></li>
 </ul>
 </section>
 <section id="git-conventions">
-<h2>Git Conventions<a class="headerlink" href="#git-conventions" title="Permalink to this headline">¶</a></h2>
+<h2>Git conventions<a class="headerlink" href="#git-conventions" title="Permalink to this headline">#</a></h2>
 <p>First of all, if git is new to you, here are some great resources for learning Git:</p>
 <ul class="simple">
 <li><p>the GitHub <a class="reference external" href="https://docs.github.com/en/github/getting-started-with-github/getting-started-with-git">help pages</a>.</p></li>
@@ -338,38 +330,14 @@ developers a heads up and to provide an opportunity for valuable early feedback.
 can create a merge request online or by pushing your branch to a feature-branch.</p>
 </section>
 <section id="code-conventions">
-<h2>Code Conventions<a class="headerlink" href="#code-conventions" title="Permalink to this headline">¶</a></h2>
+<h2>Code conventions<a class="headerlink" href="#code-conventions" title="Permalink to this headline">#</a></h2>
 <p>We use <a class="reference external" href="https://black.readthedocs.io/en/stable/">black</a> for standardized code formatting.</p>
 <p>Tests are mandatory for new features. We use <a class="reference external" href="https://pytest.org">pytest</a>. All tests
 should go in the tests directory.</p>
 <p>During Continuous Integration testing, several tools will be run to check your code for
 based on pytest, but also stylistic errors.</p>
-</section>
-<section id="development-environment">
-<h2>Development Environment<a class="headerlink" href="#development-environment" title="Permalink to this headline">¶</a></h2>
-<p>Developing HydroMT requires Python &gt;= 3.6. We prefer developing with the most recent
-version of Python. We strongly encourage you to develop in a seperate conda environment.
-All Python dependencies required to develop HydroMT can be found in <a class="reference external" href="environment.yml">environment.yml</a>.</p>
-<section id="initial-setup">
-<h3>Initial Setup<a class="headerlink" href="#initial-setup" title="Permalink to this headline">¶</a></h3>
-<p>First, clone HydroMT’s <code class="docutils literal notranslate"><span class="pre">git</span></code> repo and navigate into the repository:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git https://github.com/Deltares/hydromt.git
-<span class="gp">$ </span><span class="nb">cd</span> hydromt
-</pre></div>
-</div>
-<p>Then, make and activate a new hydromt conda environment based on the environment.yml
-file contained in the repository:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda env create -f environment.yml
-<span class="gp">$ </span>conda activate hydromt
-</pre></div>
-</div>
-<p>Finally, build and install hydromt:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install -e .
-</pre></div>
-</div>
-</section>
 <section id="running-the-tests">
-<h3>Running the tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline">¶</a></h3>
+<h3>Running the tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline">#</a></h3>
 <p>HydroMT’s tests live in the tests folder and generally match the main package layout.
 Test should be run from the tests folder.</p>
 <p>To run the entire suite and the code coverage report:</p>
@@ -387,7 +355,7 @@ Test should be run from the tests folder.</p>
 </div>
 </section>
 <section id="running-code-format-checks">
-<h3>Running code format checks<a class="headerlink" href="#running-code-format-checks" title="Permalink to this headline">¶</a></h3>
+<h3>Running code format checks<a class="headerlink" href="#running-code-format-checks" title="Permalink to this headline">#</a></h3>
 <p>The code formatting will be checked based on the <a class="reference external" href="https://black.readthedocs.io/en/stable/the_black_code_style.html">black clode style</a> during ci.
 Make sure the check below returns <em>All done!</em> before commiting your edits.</p>
 <p>To check the formatting of your code:</p>
@@ -400,7 +368,7 @@ Make sure the check below returns <em>All done!</em> before commiting your edits
 </div>
 </section>
 <section id="creating-a-release">
-<h3>Creating a release<a class="headerlink" href="#creating-a-release" title="Permalink to this headline">¶</a></h3>
+<h3>Creating a release<a class="headerlink" href="#creating-a-release" title="Permalink to this headline">#</a></h3>
 <ol class="arabic simple">
 <li><p>Prepare the release by bumping the version number in the __init__.py and updating the docs/changelog.rst file</p></li>
 <li><p>First create a new release on github under <a class="reference external" href="https://github.com/Deltares/hydromt/releases">https://github.com/Deltares/hydromt/releases</a>. We use semantic versioning and describe the release based on the CHANGELOG.</p></li>
@@ -435,17 +403,17 @@ Make sure the check below returns <em>All done!</em> before commiting your edits
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../changelog.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="roadmap.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">What’s new</p>
+            <p class="prev-next-title">Roadmap</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="roadmap.html" title="next page">
+    <a class='right-next' id="next-link" href="dev_install.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Roadmap</p>
+        <p class="prev-next-title">Development environment</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -457,8 +425,9 @@ Make sure the check below returns <em>All done!</em> before commiting your edits
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
@@ -469,7 +438,7 @@ Make sure the check below returns <em>All done!</em> before commiting your edits
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
 </p>
     </div>
     

@@ -8,28 +8,25 @@
 
     <title>hydromt.workflows.basin_mask.get_basin_geometry &#8212; HydroMT  documentation</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -47,7 +44,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -82,7 +79,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../user_guide/intro.html">
-  User Guide
+  User guide
  </a>
 </li>
 
@@ -1199,10 +1196,10 @@
               <div>
                 
   <section id="hydromt-workflows-basin-mask-get-basin-geometry">
-<h1>hydromt.workflows.basin_mask.get_basin_geometry<a class="headerlink" href="#hydromt-workflows-basin-mask-get-basin-geometry" title="Permalink to this headline">¶</a></h1>
+<h1>hydromt.workflows.basin_mask.get_basin_geometry<a class="headerlink" href="#hydromt-workflows-basin-mask-get-basin-geometry" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hydromt.workflows.basin_mask.get_basin_geometry">
-<span class="sig-prename descclassname"><span class="pre">hydromt.workflows.basin_mask.</span></span><span class="sig-name descname"><span class="pre">get_basin_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basin_index=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind='basin'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geom=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basid=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outlets=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basins_name='basins'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir_name='flwdir'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftype='infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.workflows.basin_mask</span> <span class="pre">(WARNING)&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer=10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**stream_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/workflows/basin_mask.html#get_basin_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.workflows.basin_mask.get_basin_geometry" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">hydromt.workflows.basin_mask.</span></span><span class="sig-name descname"><span class="pre">get_basin_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basin_index=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind='basin'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geom=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basid=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outlets=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basins_name='basins'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flwdir_name='flwdir'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftype='infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">hydromt.workflows.basin_mask</span> <span class="pre">(WARNING)&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer=10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**stream_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/workflows/basin_mask.html#get_basin_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.workflows.basin_mask.get_basin_geometry" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a geometry of the (sub)(inter)basin(s).</p>
 <p>This method derives a geometry of sub-, inter- or full basin based on an input
 dataset with flow-direction and optional basins ID raster data in combination
@@ -1269,8 +1266,9 @@ clipped to this domain before futher processing.</p></li>
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
@@ -1281,7 +1279,7 @@ clipped to this domain before futher processing.</p></li>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
 </p>
     </div>
     

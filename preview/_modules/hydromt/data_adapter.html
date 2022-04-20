@@ -7,28 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hydromt.data_adapter &#8212; HydroMT  documentation</title>
     
-    <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/theme-deltares.css" />
     
-    <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -79,7 +76,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../user_guide/intro.html">
-  User Guide
+  User guide
  </a>
 </li>
 
@@ -184,6 +181,7 @@
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">from</span> <span class="nn">distutils.version</span> <span class="kn">import</span> <span class="n">LooseVersion</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">gis_utils</span><span class="p">,</span> <span class="n">io</span>
 
@@ -585,7 +583,7 @@
 <span class="sd">            Buffer around the `bbox` or `geom` area of interest in pixels. By default 0.</span>
 <span class="sd">        align : float, optional</span>
 <span class="sd">            Resolution to align the bounding box, by default None</span>
-<span class="sd">        variables : list of str, optional.</span>
+<span class="sd">        variables : str or list of str, optional.</span>
 <span class="sd">            Names of RasterDataset variables to return. By default all dataset variables</span>
 <span class="sd">            are returned.</span>
 <span class="sd">        time_tuple : tuple of str, datetime, optional</span>
@@ -654,7 +652,7 @@
 <span class="sd">            Buffer around the `bbox` or `geom` area of interest in meters. By default 0.</span>
 <span class="sd">        align : float, optional</span>
 <span class="sd">            Resolution to align the bounding box, by default None</span>
-<span class="sd">        variables : list of str, optional.</span>
+<span class="sd">        variables : str or list of str, optional.</span>
 <span class="sd">            Names of GeoDataFrame columns to return. By default all columns are returned.</span>
 
 <span class="sd">        Returns</span>
@@ -719,7 +717,7 @@
 <span class="sd">            Buffer around the `bbox` or `geom` area of interest in meters. By default 0.</span>
 <span class="sd">        align : float, optional</span>
 <span class="sd">            Resolution to align the bounding box, by default None</span>
-<span class="sd">        variables : list of str, optional.</span>
+<span class="sd">        variables : str or list of str, optional.</span>
 <span class="sd">            Names of GeoDataset variables to return. By default all dataset variables</span>
 <span class="sd">            are returned.</span>
 <span class="sd">        time_tuple : tuple of str, datetime, optional</span>
@@ -855,7 +853,21 @@
     <span class="k">return</span> <span class="n">ds</span>
 
 
-<span class="n">PREPROCESSORS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;round_latlon&quot;</span><span class="p">:</span> <span class="n">round_latlon</span><span class="p">}</span>
+<span class="k">def</span> <span class="nf">to_datetimeindex</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ds</span><span class="o">.</span><span class="n">indexes</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;O&quot;</span><span class="p">:</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">indexes</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_datetimeindex</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ds</span>
+
+
+<span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=~</span><span class="n">ds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">duplicated</span><span class="p">())</span>
+
+
+<span class="n">PREPROCESSORS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;round_latlon&quot;</span><span class="p">:</span> <span class="n">round_latlon</span><span class="p">,</span>
+    <span class="s2">&quot;to_datetimeindex&quot;</span><span class="p">:</span> <span class="n">to_datetimeindex</span><span class="p">,</span>
+    <span class="s2">&quot;remove_duplicates&quot;</span><span class="p">:</span> <span class="n">remove_duplicates</span><span class="p">,</span>
+<span class="p">}</span>
 
 
 <span class="k">class</span> <span class="nc">DataAdapter</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
@@ -1122,6 +1134,10 @@
 
 <span class="sd">        For a detailed description see: :py:func:`~hydromt.data_adapter.DataCatalog.get_rasterdataset`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># If variable is string, convert to list</span>
+        <span class="k">if</span> <span class="n">variables</span><span class="p">:</span>
+            <span class="n">variables</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
         <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">fns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve_paths</span><span class="p">(</span><span class="n">time_tuple</span><span class="o">=</span><span class="n">time_tuple</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="n">variables</span><span class="p">)</span>
 
@@ -1145,9 +1161,19 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RasterDataset: Driver </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="si">}</span><span class="s2"> unknown&quot;</span><span class="p">)</span>
 
+        <span class="c1"># transpose dims to get y and x dim last</span>
+        <span class="n">x_dim</span> <span class="o">=</span> <span class="n">ds_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">x_dim</span>
+        <span class="n">y_dim</span> <span class="o">=</span> <span class="n">ds_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">y_dim</span>
+        <span class="n">ds_out</span> <span class="o">=</span> <span class="n">ds_out</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">y_dim</span><span class="p">,</span> <span class="n">x_dim</span><span class="p">)</span>
+
         <span class="c1"># rename and select vars</span>
         <span class="k">if</span> <span class="n">variables</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">ds_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">vars</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rename</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">rm</span> <span class="o">=</span> <span class="p">{</span><span class="n">ds_out</span><span class="o">.</span><span class="n">raster</span><span class="o">.</span><span class="n">vars</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">variables</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+            <span class="k">if</span> <span class="n">rm</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">!=</span> <span class="n">rm</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Automatic renaming of single var array will be deprecated, rename </span><span class="si">{</span><span class="n">rm</span><span class="si">}</span><span class="s2"> in the data catalog instead.&quot;</span><span class="p">,</span>
+                    <span class="ne">DeprecationWarning</span><span class="p">,</span>
+                <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">rm</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rename</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ds_out</span><span class="p">}</span>
         <span class="n">ds_out</span> <span class="o">=</span> <span class="n">ds_out</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">rm</span><span class="p">)</span>
@@ -1392,6 +1418,10 @@
 
 <span class="sd">        For a detailed description see: :py:func:`~hydromt.data_adapter.DataCatalog.get_geodataset`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># If variable is string, convert to list</span>
+        <span class="k">if</span> <span class="n">variables</span><span class="p">:</span>
+            <span class="n">variables</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
         <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">fns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve_paths</span><span class="p">(</span><span class="n">time_tuple</span><span class="o">=</span><span class="n">time_tuple</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="n">variables</span><span class="p">)</span>
 
@@ -1681,6 +1711,10 @@
 
 <span class="sd">        For a detailed description see: :py:func:`~hydromt.data_adapter.DataCatalog.get_geodataframe`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># If variable is string, convert to list</span>
+        <span class="k">if</span> <span class="n">variables</span><span class="p">:</span>
+            <span class="n">variables</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
         <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve_paths</span><span class="p">()</span>  <span class="c1"># throw nice error if data not found</span>
 
@@ -1773,8 +1807,9 @@
       </div>
     </div>
   
-    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
@@ -1785,7 +1820,7 @@
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
 </p>
     </div>
     

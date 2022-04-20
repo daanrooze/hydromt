@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Working with data in HydroMT &#8212; HydroMT  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using a pre-defined Data Catalog" href="data_existing_cat.html" />
+    <link rel="prev" title="User guide" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../index.html">
+<p class="title">HydroMT</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../getting_started/intro.html">
+  Getting started
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="intro.html">
+  User guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api.html">
+  API reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../dev/intro.html">
+  Developments
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../plugins.html">
+  Plugins
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://deltares.nl/en/" rel="noopener" target="_blank" title="Deltares"><img src="../_static/deltares-white.svg" class="icon-link-image" alt="Deltares"/></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Table of Contents
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Working with data in HydroMT
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_existing_cat.html">
+     Using a pre-defined Data Catalog
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_prepare_cat.html">
+     Preparing a Data Catalog
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_conventions.html">
+     Data conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/read_raster_data.html">
+     Example: Reading raster data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="model_main.html">
+   Working with models in HydroMT
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="model_build.html">
+     Building a model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="model_update.html">
+     Updating a model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="model_clip.html">
+     Clipping a model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="model_region.html">
+     Region options
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/delineate_basin.html">
+     Example: Hydrographic regions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gis.html">
+   GIS methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   Statistical methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="terminology.html">
+   Terminology
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#supported-data-types">
+   Supported data types
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-usage">
+   Python usage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-line-usage">
+   Command line usage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#related-api-references">
+   Related API references
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/Deltares/hydromt/edit/docs/docs/user_guide/data_main.rst">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="working-with-data-in-hydromt">
+<span id="get-data"></span><h1>Working with data in HydroMT<a class="headerlink" href="#working-with-data-in-hydromt" title="Permalink to this headline">#</a></h1>
+<p>The best way to provide data to HydroMT is by using a <strong>data catalog</strong>. The goal of this
+data catalog is to provide simple and standardized access to (large) datasets.
+It supports many drivers to read different data formats and contains several pre-processing steps to unify the datasets.
+A data catalog can be initialized from one or more <strong>yaml file(s)</strong>, which contain all required information to read and pre-process a dataset,
+as well as meta data for reproducibility.</p>
+<p>You can <a class="reference internal" href="data_existing_cat.html#existing-catalog"><span class="std std-ref">explore and make use of pre-defined data catalogs</span></a> (primarily global data),
+<a class="reference internal" href="data_prepare_cat.html#own-catalog"><span class="std std-ref">prepare your own Data Catalog</span></a> (e.g. to include local data) or use a combination of both.</p>
+<section id="supported-data-types">
+<span id="supporteddataset"></span><h2>Supported data types<a class="headerlink" href="#supported-data-types" title="Permalink to this headline">#</a></h2>
+<p>HydroMT currently supports the following data types:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="data_prepare_cat.html#rasterdataset"><span class="std std-ref">RasterDataset</span></a>: static and dynamic raster (or gridded) data</p></li>
+<li><p><a class="reference internal" href="data_prepare_cat.html#geodataframe"><span class="std std-ref">GeoDataFrame</span></a>: static vector data</p></li>
+<li><p><a class="reference internal" href="data_prepare_cat.html#geodataset"><span class="std std-ref">GeoDataset</span></a>: dynamic point location data</p></li>
+</ul>
+<p>Internally the RasterDataset and GeoDataset are represented by <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> objects
+and GeoDataFrame by <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a>. We use drivers, typically from third-party
+packages and sometimes wrapped in HydroMT functions, to parse many different file formats to this
+standardized internal data representation.</p>
+<p>An overview of the supported data formats and associated drivers and arguments are shown in the
+<a class="reference internal" href="data_prepare_cat.html#own-catalog"><span class="std std-ref">Preparing a Data Catalog</span></a> section.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Tabulated data without a spatial component such as mapping tables are planned to be added.
+Please contact us through the issue list if you would like to add other drivers.</p>
+</div>
+</section>
+<section id="python-usage">
+<span id="get-data-python"></span><h2>Python usage<a class="headerlink" href="#python-usage" title="Permalink to this headline">#</a></h2>
+<p>To read a dataset in Python using the HydroMT requires two steps:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Initialize a <a class="reference internal" href="../_generated/hydromt.data_adapter.DataCatalog.html#hydromt.data_adapter.DataCatalog" title="hydromt.data_adapter.DataCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCatalog</span></code></a> with references to user- or pre-defined data catalog yaml files</p></li>
+<li><p>Use <a class="reference internal" href="../api.html#api-data-catalog-get"><span class="std std-ref">one of the get_* methods</span></a> to access (a temporal or spatial region of) the data.</p></li>
+</ul>
+</div></blockquote>
+<p>For example to retrieve a raster dataset:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hydromt</span>
+<span class="n">data_cat</span> <span class="o">=</span> <span class="n">hydromt</span><span class="o">.</span><span class="n">DataCatalog</span><span class="p">(</span><span class="n">data_libs</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;/path/to/data-catalog.yml&#39;</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">data_cat</span><span class="o">.</span><span class="n">get_rasterdataset</span><span class="p">(</span><span class="s1">&#39;source_name&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>  <span class="c1"># returns xarray.dataset</span>
+</pre></div>
+</div>
+<p>More detail about working with <a class="reference internal" href="../_examples/read_raster_data.html"><span class="doc">raster data</span></a>, vector data or geospatial time-series data is provided in the linked examples.</p>
+</section>
+<section id="command-line-usage">
+<span id="get-data-cli"></span><h2>Command line usage<a class="headerlink" href="#command-line-usage" title="Permalink to this headline">#</a></h2>
+<p>When using the HydroMT command line interface, one can provide data catalog by specifying the
+path to the yaml file with the <code class="docutils literal notranslate"><span class="pre">-d</span></code> or <code class="docutils literal notranslate"><span class="pre">--data</span></code> option.
+Multiple yaml files can be added by reusing the <code class="docutils literal notranslate"><span class="pre">-d</span></code> option.</p>
+<p>For example when using the build method:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt build MODEL REGION -d /path/to/data_catalog1.yml -d /path/to/data_catalog1.yml</span>
+</pre></div>
+</div>
+<p>A special exception is made for the Deltares data catalog which can be accessed with the
+<code class="docutils literal notranslate"><span class="pre">--dd</span></code> or <code class="docutils literal notranslate"><span class="pre">--deltares-data</span></code> flag (requires access to the Deltares P-drive).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt build MODEL REGION -dd</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If no yaml file is provided to the CLI build or update methods or to <a class="reference internal" href="../_generated/hydromt.data_adapter.DataCatalog.html#hydromt.data_adapter.DataCatalog" title="hydromt.data_adapter.DataCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCatalog</span></code></a>,
+HydroMT will use the data stored in the <a class="reference external" href="https://github.com/DirkEilander/hydromt-artifacts">hydromt-artifacts</a>
+which contains an extract of global data for a small region around the Piave river in Northern Italy.</p>
+</div>
+</section>
+<section id="related-api-references">
+<h2>Related API references<a class="headerlink" href="#related-api-references" title="Permalink to this headline">#</a></h2>
+<p>For related functions see:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="../api.html#api-data-catalog"><span class="std std-ref">DataCatalog API</span></a></p></li>
+<li><p><a class="reference internal" href="../api.html#api-data-catalog-get"><span class="std std-ref">get_* methods</span></a></p></li>
+<li><p><a class="reference internal" href="../api.html#open-methods"><span class="std std-ref">data reading-methods</span></a></p></li>
+</ul>
+</div></blockquote>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">User guide</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="data_existing_cat.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Using a pre-defined Data Catalog</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright Deltares.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -8,28 +8,25 @@
 
     <title>Using a pre-defined Data Catalog &#8212; HydroMT  documentation</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -38,8 +35,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Preparing a Data Catalog" href="prepare_data.html" />
-    <link rel="prev" title="Working with data in HydroMT" href="get_data.html" />
+    <link rel="next" title="Preparing a Data Catalog" href="data_prepare_cat.html" />
+    <link rel="prev" title="Working with data in HydroMT" href="data_main.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -47,7 +44,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -82,7 +79,7 @@
 
 <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="intro.html">
-  User Guide
+  User guide
  </a>
 </li>
 
@@ -144,7 +141,7 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="get_data.html">
+  <a class="reference internal" href="data_main.html">
    Working with data in HydroMT
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -159,13 +156,18 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="prepare_data.html">
+    <a class="reference internal" href="data_prepare_cat.html">
      Preparing a Data Catalog
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="data_conventions.html">
      Data conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/read_raster_data.html">
+     Example: Reading raster data
     </a>
    </li>
   </ul>
@@ -180,22 +182,10 @@
    </i>
   </label>
   <ul>
-   <li class="toctree-l2 has-children">
+   <li class="toctree-l2">
     <a class="reference internal" href="model_build.html">
      Building a model
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-    <label for="toctree-checkbox-3">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="build_region.html">
-       Region options
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="model_update.html">
@@ -208,11 +198,26 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="model_post.html">
-     Postprocessing model results
+    <a class="reference internal" href="model_region.html">
+     Region options
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/delineate_basin.html">
+     Example: Hydrographic regions
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gis.html">
+   GIS methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   Statistical methods
+  </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="terminology.html">
@@ -236,17 +241,12 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python-usage">
-   Python usage
-  </a>
- </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#pre-defined-data-catalogs">
    Pre-defined Data Catalogs
@@ -261,7 +261,7 @@
                 
 
 <div class="tocsection editthispage">
-    <a href="https://github.com/Deltares/hydromt/edit/docs/docs/user_guide/existing_datacatalogs.rst">
+    <a href="https://github.com/Deltares/hydromt/edit/docs/docs/user_guide/data_existing_cat.rst">
         <i class="fas fa-pencil-alt"></i> Edit this page
     </a>
 </div>
@@ -281,29 +281,13 @@
               <div>
                 
   <section id="using-a-pre-defined-data-catalog">
-<span id="existing-catalog"></span><h1>Using a pre-defined Data Catalog<a class="headerlink" href="#using-a-pre-defined-data-catalog" title="Permalink to this headline">¶</a></h1>
+<span id="existing-catalog"></span><h1>Using a pre-defined Data Catalog<a class="headerlink" href="#using-a-pre-defined-data-catalog" title="Permalink to this headline">#</a></h1>
 <p>The documentation contains a list of (global) datasets which can be used with various HydroMT models and workflows.
 The deltares_data catalog is only available within the Deltares network. However a selection of this data for a the
-Piave basin (north Italy) is available online and will be downloaded to ~/.hydromt_data/ if selected or when no data catalog is provided.
+Piave basin (north Italy) is available online and will be downloaded to <code class="docutils literal notranslate"><span class="pre">~/.hydromt_data/</span></code> if selected or when no data catalog is provided.
 Local or other datasets can also be included by extending the data catalog with new .yml files.</p>
-<section id="python-usage">
-<h2>Python usage<a class="headerlink" href="#python-usage" title="Permalink to this headline">¶</a></h2>
-<dl class="simple">
-<dt>Basic usage to read a dataset in python using the HydroMT data catalog requires two steps:</dt><dd><ul class="simple">
-<li><p>Initialize a DataCatalog with references to user- or pre-defined data catalog files</p></li>
-<li><p>Use one of the get_* methods to access the data.</p></li>
-</ul>
-</dd>
-</dl>
-<p>Example usage to retrieve a raster dataset</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hydromt</span>
-<span class="n">data_cat</span> <span class="o">=</span> <span class="n">hydromt</span><span class="o">.</span><span class="n">DataCatalog</span><span class="p">(</span><span class="n">data_libs</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;/path/to/data-catalog.yml&#39;</span><span class="p">)</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">data_cat</span><span class="o">.</span><span class="n">get_rasterdataset</span><span class="p">(</span><span class="s1">&#39;source_name&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>  <span class="c1"># returns xarray.dataset</span>
-</pre></div>
-</div>
-</section>
 <section id="pre-defined-data-catalogs">
-<h2>Pre-defined Data Catalogs<a class="headerlink" href="#pre-defined-data-catalogs" title="Permalink to this headline">¶</a></h2>
+<h2>Pre-defined Data Catalogs<a class="headerlink" href="#pre-defined-data-catalogs" title="Permalink to this headline">#</a></h2>
 <p>Below are drop down lists with datasets per pre-defined data catalog for use with HydroMT.
 The summary per dataset contains links to the online source and available literature.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
@@ -315,8 +299,8 @@ deltares_data<div class="sd-summary-down docutils">
 </summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">Only accessible when connected to the Deltares network.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="519ccdf4-3f13-4294-9434-38d6233133fd" name="e42b4fcd-f1c0-422b-baf8-f4f1e5c5a06c" type="radio">
-</input><label class="sd-tab-label" for="519ccdf4-3f13-4294-9434-38d6233133fd">
+<input checked="checked" id="6db65c80-5b44-4d69-b40f-469be9481ce9" name="8ccd4bae-a1bb-4e78-8e3d-30160badc615" type="radio">
+</input><label class="sd-tab-label" for="6db65c80-5b44-4d69-b40f-469be9481ce9">
 geography</label><div class="sd-tab-content docutils">
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
@@ -421,8 +405,8 @@ osm_landareas<div class="sd-summary-down docutils">
 </dl>
 </div>
 </details></div>
-<input id="c199c9cc-05df-4e14-9085-606598216345" name="e42b4fcd-f1c0-422b-baf8-f4f1e5c5a06c" type="radio">
-</input><label class="sd-tab-label" for="c199c9cc-05df-4e14-9085-606598216345">
+<input id="3bc906ca-95d2-4401-885a-859d012dc458" name="8ccd4bae-a1bb-4e78-8e3d-30160badc615" type="radio">
+</input><label class="sd-tab-label" for="3bc906ca-95d2-4401-885a-859d012dc458">
 hydrography</label><div class="sd-tab-content docutils">
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
@@ -524,43 +508,8 @@ rivers_lin2019_v1<div class="sd-summary-down docutils">
 </dl>
 </div>
 </details></div>
-<input id="957c2149-4eb8-4551-882a-0f6d4e4dfe87" name="e42b4fcd-f1c0-422b-baf8-f4f1e5c5a06c" type="radio">
-</input><label class="sd-tab-label" for="957c2149-4eb8-4551-882a-0f6d4e4dfe87">
-landuse &amp; landcover</label><div class="sd-tab-content docutils">
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-corine<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/landuse/corine/CLC2018_CLC2018_V2018_20.tif</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">raster</p>
-</dd>
-<dt class="field-even">source_author</dt>
-<dd class="field-even"><p class="sd-card-text">European Environment Agency</p>
-</dd>
-<dt class="field-odd">source_license</dt>
-<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018?tab=metadata">https://land.copernicus.eu/pan-european/corine-land-cover/clc2018?tab=metadata</a></p>
-</dd>
-<dt class="field-even">source_url</dt>
-<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018">https://land.copernicus.eu/pan-european/corine-land-cover/clc2018</a></p>
-</dd>
-<dt class="field-odd">source_version</dt>
-<dd class="field-odd"><p class="sd-card-text">v.2020_20u1</p>
-</dd>
-</dl>
-</div>
-</details></div>
-<input id="dba25907-8427-4543-8be2-db7a19f045ed" name="e42b4fcd-f1c0-422b-baf8-f4f1e5c5a06c" type="radio">
-</input><label class="sd-tab-label" for="dba25907-8427-4543-8be2-db7a19f045ed">
+<input id="290a718a-1eba-418c-be10-477ce2a0ca04" name="8ccd4bae-a1bb-4e78-8e3d-30160badc615" type="radio">
+</input><label class="sd-tab-label" for="290a718a-1eba-418c-be10-477ce2a0ca04">
 meteo</label><div class="sd-tab-content docutils">
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
@@ -940,9 +889,6 @@ era5_orography<div class="sd-summary-down docutils">
 <dt class="field-even">source_url</dt>
 <dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.bd0915c6">https://doi.org/10.24381/cds.bd0915c6</a></p>
 </dd>
-<dt class="field-odd">source_version</dt>
-<dd class="field-odd"><p class="sd-card-text">ERA5 hourly data on pressure levels</p>
-</dd>
 </dl>
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
@@ -1008,386 +954,10 @@ worldclim<div class="sd-summary-down docutils">
 </dl>
 </div>
 </details></div>
-<input id="c02863c9-81f1-41d7-b6cb-6e3df203d136" name="e42b4fcd-f1c0-422b-baf8-f4f1e5c5a06c" type="radio">
-</input><label class="sd-tab-label" for="c02863c9-81f1-41d7-b6cb-6e3df203d136">
+<input id="8f621fe4-c442-4849-a301-a76ca8627343" name="8ccd4bae-a1bb-4e78-8e3d-30160badc615" type="radio">
+</input><label class="sd-tab-label" for="8f621fe4-c442-4849-a301-a76ca8627343">
 socio-economic</label><div class="sd-tab-content docutils">
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-wb_countries<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/geography/wb/WB_countries_Admin0.geojson</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">GeoDataFrame</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">vector</p>
-</dd>
-<dt class="field-even">source_url</dt>
-<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://datacatalog.worldbank.org/dataset/world-bank-official-boundaries">https://datacatalog.worldbank.org/dataset/world-bank-official-boundaries</a></p>
-</dd>
-<dt class="field-odd">source_license</dt>
-<dd class="field-odd"><p class="sd-card-text">CC-BY 4.0</p>
-</dd>
-<dt class="field-even">author</dt>
-<dd class="field-even"><p class="sd-card-text">World Bank</p>
-</dd>
-<dt class="field-odd">timestamp</dt>
-<dd class="field-odd"><p class="sd-card-text">February 2020</p>
-</dd>
-</dl>
-</div>
-</details></div>
-<input id="5aca5f3c-3794-4ee7-9c5b-3c90df75286a" name="e42b4fcd-f1c0-422b-baf8-f4f1e5c5a06c" type="radio">
-</input><label class="sd-tab-label" for="5aca5f3c-3794-4ee7-9c5b-3c90df75286a">
-topography</label><div class="sd-tab-content docutils">
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-dtu10mdt<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/dtu10mdt/DTU10MDT_1min_float32.tif</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">raster</p>
-</dd>
-<dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.1029/2008JC005179</p>
-</dd>
-<dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Andersen and Knudsen (2009)</p>
-</dd>
-<dt class="field-even">source_url</dt>
-<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://www.space.dtu.dk/english/research/scientific_data_and_models/global_mean_dynamic_topography">https://www.space.dtu.dk/english/research/scientific_data_and_models/global_mean_dynamic_topography</a></p>
-</dd>
-<dt class="field-odd">source_version</dt>
-<dd class="field-odd"><p class="sd-card-text">2010</p>
-</dd>
-<dt class="field-even">unit</dt>
-<dd class="field-even"><p class="sd-card-text">m+EGM2008</p>
-</dd>
-</dl>
-</div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-dtu10mdt_egm96<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/dtu10mdt/DTU10MDT_1min_egm96.tif</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">raster</p>
-</dd>
-<dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.1029/2008JC005179</p>
-</dd>
-<dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Andersen and Knudsen (2009)</p>
-</dd>
-<dt class="field-even">source_url</dt>
-<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://www.space.dtu.dk/english/research/scientific_data_and_models/global_mean_dynamic_topography">https://www.space.dtu.dk/english/research/scientific_data_and_models/global_mean_dynamic_topography</a></p>
-</dd>
-<dt class="field-odd">source_version</dt>
-<dd class="field-odd"><p class="sd-card-text">2010</p>
-</dd>
-<dt class="field-even">unit</dt>
-<dd class="field-even"><p class="sd-card-text">m+EGM96</p>
-</dd>
-</dl>
-</div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-gebco<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/bathymetry/gebco/gebco.vrt</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">raster</p>
-</dd>
-<dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.5285/a29c5465-b138-234d-e053-6c86abc040b9</p>
-</dd>
-<dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Weatherall et al (2020)</p>
-</dd>
-<dt class="field-even">source_license</dt>
-<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://www.gebco.net/data_and_products/gridded_bathymetry_data/#a1">https://www.gebco.net/data_and_products/gridded_bathymetry_data/#a1</a></p>
-</dd>
-<dt class="field-odd">source_url</dt>
-<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://www.bodc.ac.uk/data/open_download/gebco/gebco_2020/geotiff/">https://www.bodc.ac.uk/data/open_download/gebco/gebco_2020/geotiff/</a></p>
-</dd>
-<dt class="field-even">source_version</dt>
-<dd class="field-even"><p class="sd-card-text">2020</p>
-</dd>
-<dt class="field-odd">unit</dt>
-<dd class="field-odd"><p class="sd-card-text">m+MSL</p>
-</dd>
-</dl>
-</div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-mdt_cnes_cls18<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/mdt_cnes_cls18/MDT_CNES_CLS18_global_filled.tif</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">raster</p>
-</dd>
-<dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.5194/os-17-789-2021</p>
-</dd>
-<dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Mulet et al (2021)</p>
-</dd>
-<dt class="field-even">source_url</dt>
-<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://www.aviso.altimetry.fr/en/data/products/auxiliary-products/mdt.html">https://www.aviso.altimetry.fr/en/data/products/auxiliary-products/mdt.html</a></p>
-</dd>
-<dt class="field-odd">source_version</dt>
-<dd class="field-odd"><p class="sd-card-text">18</p>
-</dd>
-<dt class="field-even">unit</dt>
-<dd class="field-even"><p class="sd-card-text">m+GOCO05S</p>
-</dd>
-</dl>
-</div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-merit<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/merit/merit.nc</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">netcdf</p>
-</dd>
-<dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.1002/2017GL072874</p>
-</dd>
-<dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Yamazaki et al. (2018)</p>
-</dd>
-<dt class="field-even">source_license</dt>
-<dd class="field-even"><p class="sd-card-text">CC-BY-NC 4.0 or ODbL 1.0</p>
-</dd>
-<dt class="field-odd">source_url</dt>
-<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_DEM/">http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_DEM/</a></p>
-</dd>
-<dt class="field-even">source_version</dt>
-<dd class="field-even"><p class="sd-card-text">1.0.3</p>
-</dd>
-</dl>
-</div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-merit_hydro<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/merit_hydro/<a href="#id5"><span class="problematic" id="id6">*</span></a>.vrt</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">raster</p>
-</dd>
-<dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.1029/2019WR024873</p>
-</dd>
-<dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Yamazaki et al. (2019)</p>
-</dd>
-<dt class="field-even">source_license</dt>
-<dd class="field-even"><p class="sd-card-text">CC-BY-NC 4.0 or ODbL 1.0</p>
-</dd>
-<dt class="field-odd">source_url</dt>
-<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro</a></p>
-</dd>
-<dt class="field-even">source_version</dt>
-<dd class="field-even"><p class="sd-card-text">1.0</p>
-</dd>
-</dl>
-</div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-merit_hydro_ihu<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/merit_hydro_ihu/30sec/<a href="#id7"><span class="problematic" id="id8">*</span></a>.tif</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">raster</p>
-</dd>
-<dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.5281/zenodo.5166932</p>
-</dd>
-<dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Eilander et al. (2020)</p>
-</dd>
-<dt class="field-even">source_license</dt>
-<dd class="field-even"><p class="sd-card-text">ODC-By 1.0</p>
-</dd>
-<dt class="field-odd">source_url</dt>
-<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://zenodo.org/record/5166932#.YVbxJ5pByUk">https://zenodo.org/record/5166932#.YVbxJ5pByUk</a></p>
-</dd>
-<dt class="field-even">source_version</dt>
-<dd class="field-even"><p class="sd-card-text">1.0</p>
-</dd>
-</dl>
-</div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-merit_hydro_index<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/merit_hydro/basin_index.gpkg</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">GeoDataFrame</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">vector</p>
-</dd>
-<dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.5194/hess-2020-582</p>
-</dd>
-<dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Eilander et al. (in review)</p>
-</dd>
-<dt class="field-even">source_license</dt>
-<dd class="field-even"><p class="sd-card-text">CC-BY-NC 4.0</p>
-</dd>
-</dl>
-</div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-merit_hydro_patch<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/merit_hydro/patches/<a href="#id9"><span class="problematic" id="id10">*</span></a>.vrt</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">raster</p>
-</dd>
-<dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.1029/2019WR024873</p>
-</dd>
-<dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Yamazaki et al. (2019)</p>
-</dd>
-<dt class="field-even">source_license</dt>
-<dd class="field-even"><p class="sd-card-text">CC-BY-NC 4.0 or ODbL 1.0</p>
-</dd>
-<dt class="field-odd">source_url</dt>
-<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro</a></p>
-</dd>
-<dt class="field-even">source_version</dt>
-<dd class="field-even"><p class="sd-card-text">1.0 Deltares patch</p>
-</dd>
-</dl>
-</div>
-</details></div>
-<input id="902db7d2-bc3c-4e8e-8fd4-6e954d09e41b" name="e42b4fcd-f1c0-422b-baf8-f4f1e5c5a06c" type="radio">
-</input><label class="sd-tab-label" for="902db7d2-bc3c-4e8e-8fd4-6e954d09e41b">
-other</label><div class="sd-tab-content docutils">
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-gcn250<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/landuse/gcn250/GCN250_*.tif</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">raster</p>
-</dd>
-<dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.1038/s41597-019-0155-x</p>
-</dd>
-<dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Jaafar et al. (2019)</p>
-</dd>
-<dt class="field-even">source_license</dt>
-<dd class="field-even"><p class="sd-card-text">CC BY 4.0</p>
-</dd>
-<dt class="field-odd">source_url</dt>
-<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.6084/m9.figshare.7756202.v1">https://doi.org/10.6084/m9.figshare.7756202.v1</a></p>
-</dd>
-<dt class="field-even">source_version</dt>
-<dd class="field-even"><p class="sd-card-text">v1</p>
-</dd>
-</dl>
-</div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 gdp_world<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
@@ -1554,40 +1124,6 @@ ghs_smod_2015_54009_v2016a<div class="sd-summary-down docutils">
 </dd>
 <dt class="field-even">source_version</dt>
 <dd class="field-even"><p class="sd-card-text">R2016A_v1.0</p>
-</dd>
-</dl>
-</div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-globcover<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/landuse/globcover/GLOBCOVER_L4_200901_200912_V2.3.tif</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">raster</p>
-</dd>
-<dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.1594/PANGAEA.787668</p>
-</dd>
-<dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Arino et al (2012)</p>
-</dd>
-<dt class="field-even">source_license</dt>
-<dd class="field-even"><p class="sd-card-text">CC-BY-3.0</p>
-</dd>
-<dt class="field-odd">source_url</dt>
-<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="http://due.esrin.esa.int/page_globcover.php">http://due.esrin.esa.int/page_globcover.php</a></p>
-</dd>
-<dt class="field-even">source_version</dt>
-<dd class="field-even"><p class="sd-card-text">v2.3</p>
 </dd>
 </dl>
 </div>
@@ -1889,6 +1425,825 @@ glw_sheeps<div class="sd-summary-down docutils">
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
+guf_bld_2012<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/infrastructure/guf/GUF04_DLR_v02.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.1016/j.isprsjprs.2017.10.012</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Esch et al (2017)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://www.dlr.de/eoc/en/PortalData/60/Resources/dokumente/guf/DLR-GUF_LicenseAgreement-and-OrderForm.pdf">https://www.dlr.de/eoc/en/PortalData/60/Resources/dokumente/guf/DLR-GUF_LicenseAgreement-and-OrderForm.pdf</a></p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="http://www.dlr.de/guf">http://www.dlr.de/guf</a></p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+wb_countries<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/geography/wb/WB_countries_Admin0.geojson</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">GeoDataFrame</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">vector</p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://datacatalog.worldbank.org/dataset/world-bank-official-boundaries">https://datacatalog.worldbank.org/dataset/world-bank-official-boundaries</a></p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text">CC-BY 4.0</p>
+</dd>
+<dt class="field-even">author</dt>
+<dd class="field-even"><p class="sd-card-text">World Bank</p>
+</dd>
+<dt class="field-odd">timestamp</dt>
+<dd class="field-odd"><p class="sd-card-text">February 2020</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+worldpop_2020_UNadj_constrained<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/socio_economic/worldpop/ppp_2020_UNadj_constrained.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.1371/journal.pone.0107042</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Stevens et al. (2015)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text">CC BY 4.0</p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://www.worldpop.org/doi/10.5258/SOTON/WP00684">https://www.worldpop.org/doi/10.5258/SOTON/WP00684</a></p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+worldpop_2020_constrained<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/socio_economic/worldpop/ppp_2020_constrained.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.1371/journal.pone.0107042</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Stevens et al. (2015)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text">CC BY 4.0</p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://www.worldpop.org/doi/10.5258/SOTON/WP00684">https://www.worldpop.org/doi/10.5258/SOTON/WP00684</a></p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+wsf_bld_2015<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/infrastructure/wsf/WSF2015_v1_EPSG4326.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.1038/s41597-020-00580-5</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Marconcini at al (2020)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text">CC0 1.0</p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://un-spider.org/links-and-resources/data-sources/world-settlement-footprint-2015-wsf-dlr-eoc">https://un-spider.org/links-and-resources/data-sources/world-settlement-footprint-2015-wsf-dlr-eoc</a></p>
+</dd>
+</dl>
+</div>
+</details></div>
+<input id="57a5d95f-8322-4d4b-ab6b-dd2586f7a3ef" name="8ccd4bae-a1bb-4e78-8e3d-30160badc615" type="radio">
+</input><label class="sd-tab-label" for="57a5d95f-8322-4d4b-ab6b-dd2586f7a3ef">
+topography</label><div class="sd-tab-content docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+copdem30<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/copdem/copdem.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex+%281%29.pdf/83b44c0a-244a-7ba3-b00c-b578a34e88a7?t=1604070311399">https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex+%281%29.pdf/83b44c0a-244a-7ba3-b00c-b578a34e88a7?t=1604070311399</a></p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://spacedata.copernicus.eu/web/cscda/dataset-details?articleId=394198#D4">https://spacedata.copernicus.eu/web/cscda/dataset-details?articleId=394198#D4</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">20211</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+copdem30_mask<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/copdem/copdem_mask.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex+%281%29.pdf/83b44c0a-244a-7ba3-b00c-b578a34e88a7?t=1604070311399">https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex+%281%29.pdf/83b44c0a-244a-7ba3-b00c-b578a34e88a7?t=1604070311399</a></p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://spacedata.copernicus.eu/web/cscda/dataset-details?articleId=394198#D4">https://spacedata.copernicus.eu/web/cscda/dataset-details?articleId=394198#D4</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">20211</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+copdem30_masked<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/copdem/copdem_masked.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex+%281%29.pdf/83b44c0a-244a-7ba3-b00c-b578a34e88a7?t=1604070311399">https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex+%281%29.pdf/83b44c0a-244a-7ba3-b00c-b578a34e88a7?t=1604070311399</a></p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://spacedata.copernicus.eu/web/cscda/dataset-details?articleId=394198#D4">https://spacedata.copernicus.eu/web/cscda/dataset-details?articleId=394198#D4</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">20211</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+dtu10mdt<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/dtu10mdt/DTU10MDT_1min_float32.tif</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.1029/2008JC005179</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Andersen and Knudsen (2009)</p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://www.space.dtu.dk/english/research/scientific_data_and_models/global_mean_dynamic_topography">https://www.space.dtu.dk/english/research/scientific_data_and_models/global_mean_dynamic_topography</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">2010</p>
+</dd>
+<dt class="field-even">unit</dt>
+<dd class="field-even"><p class="sd-card-text">m+EGM2008</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+dtu10mdt_egm96<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/dtu10mdt/DTU10MDT_1min_egm96.tif</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.1029/2008JC005179</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Andersen and Knudsen (2009)</p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://www.space.dtu.dk/english/research/scientific_data_and_models/global_mean_dynamic_topography">https://www.space.dtu.dk/english/research/scientific_data_and_models/global_mean_dynamic_topography</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">2010</p>
+</dd>
+<dt class="field-even">unit</dt>
+<dd class="field-even"><p class="sd-card-text">m+EGM96</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+fabdem<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/fabdem/fabdem.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">CC BY-NC-SA 4.0</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Hawker et al. (2022)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text">CC BY-NC-SA 4.0</p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://data.bris.ac.uk/data/dataset/25wfy0f9ukoge2gs7a5mqpq2j7">https://data.bris.ac.uk/data/dataset/25wfy0f9ukoge2gs7a5mqpq2j7</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">1.0</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+gebco<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/bathymetry/gebco/gebco.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.5285/a29c5465-b138-234d-e053-6c86abc040b9</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Weatherall et al (2020)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://www.gebco.net/data_and_products/gridded_bathymetry_data/#a1">https://www.gebco.net/data_and_products/gridded_bathymetry_data/#a1</a></p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://www.bodc.ac.uk/data/open_download/gebco/gebco_2020/geotiff/">https://www.bodc.ac.uk/data/open_download/gebco/gebco_2020/geotiff/</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">2020</p>
+</dd>
+<dt class="field-odd">unit</dt>
+<dd class="field-odd"><p class="sd-card-text">m+MSL</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+mdt_cnes_cls18<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/mdt_cnes_cls18/MDT_CNES_CLS18_global_filled.tif</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.5194/os-17-789-2021</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Mulet et al (2021)</p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://www.aviso.altimetry.fr/en/data/products/auxiliary-products/mdt.html">https://www.aviso.altimetry.fr/en/data/products/auxiliary-products/mdt.html</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">18</p>
+</dd>
+<dt class="field-even">unit</dt>
+<dd class="field-even"><p class="sd-card-text">m+GOCO05S</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+merit<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/merit/merit.nc</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">netcdf</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.1002/2017GL072874</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Yamazaki et al. (2018)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text">CC-BY-NC 4.0 or ODbL 1.0</p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_DEM/">http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_DEM/</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">1.0.3</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+merit_hydro<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/merit_hydro/<a href="#id5"><span class="problematic" id="id6">*</span></a>.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.1029/2019WR024873</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Yamazaki et al. (2019)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text">CC-BY-NC 4.0 or ODbL 1.0</p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">1.0</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+merit_hydro_ihu<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/merit_hydro_ihu/30sec/<a href="#id7"><span class="problematic" id="id8">*</span></a>.tif</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.5281/zenodo.5166932</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Eilander et al. (2020)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text">ODC-By 1.0</p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://zenodo.org/record/5166932#.YVbxJ5pByUk">https://zenodo.org/record/5166932#.YVbxJ5pByUk</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">1.0</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+merit_hydro_index<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/merit_hydro/basin_index.gpkg</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">GeoDataFrame</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">vector</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.5194/hess-2020-582</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Eilander et al. (in review)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text">CC-BY-NC 4.0</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+merit_hydro_patch<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/merit_hydro/patches/<a href="#id9"><span class="problematic" id="id10">*</span></a>.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.1029/2019WR024873</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Yamazaki et al. (2019)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text">CC-BY-NC 4.0 or ODbL 1.0</p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro">http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_Hydro</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">1.0 Deltares patch</p>
+</dd>
+</dl>
+</div>
+</details></div>
+<input id="2d9c13d6-b691-41ba-a3b2-055b17fb9b5f" name="8ccd4bae-a1bb-4e78-8e3d-30160badc615" type="radio">
+</input><label class="sd-tab-label" for="2d9c13d6-b691-41ba-a3b2-055b17fb9b5f">
+other</label><div class="sd-tab-content docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+corine<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/landuse/corine/CLC2018_CLC2018_V2018_20.tif</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">source_author</dt>
+<dd class="field-even"><p class="sd-card-text">European Environment Agency</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018?tab=metadata">https://land.copernicus.eu/pan-european/corine-land-cover/clc2018?tab=metadata</a></p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://land.copernicus.eu/pan-european/corine-land-cover/clc2018">https://land.copernicus.eu/pan-european/corine-land-cover/clc2018</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">v.2020_20u1</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+era5_ocean<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/ocean/era5/{variable}/era5_{variable}_{year}_hourly.nc</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">netcdf</p>
+</dd>
+<dt class="field-even">history</dt>
+<dd class="field-even"><p class="sd-card-text">Extracted from Copernicus Climate Data Store</p>
+</dd>
+<dt class="field-odd">paper_doi</dt>
+<dd class="field-odd"><p class="sd-card-text">10.1002/qj.3803</p>
+</dd>
+<dt class="field-even">paper_ref</dt>
+<dd class="field-even"><p class="sd-card-text">Hersbach et al. (2019)</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products">https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products</a></p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.bd0915c6">https://doi.org/10.24381/cds.bd0915c6</a></p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+esa_worldcover<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/landuse/esa-worldcover/esa-worldcover.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text">CC BY 4.0</p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.5281/zenodo.5571936">https://doi.org/10.5281/zenodo.5571936</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">v100</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+gcn250<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/landuse/gcn250/GCN250_*.tif</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.1038/s41597-019-0155-x</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Jaafar et al. (2019)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text">CC BY 4.0</p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.6084/m9.figshare.7756202.v1">https://doi.org/10.6084/m9.figshare.7756202.v1</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">v1</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+globcover<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/landuse/globcover/GLOBCOVER_L4_200901_200912_V2.3.tif</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.1594/PANGAEA.787668</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Arino et al (2012)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text">CC-BY-3.0</p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="http://due.esrin.esa.int/page_globcover.php">http://due.esrin.esa.int/page_globcover.php</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">v2.3</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+glofas_era5_v31<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/hydro/glofas_era5/glofas_v31_{year}.nc</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">netcdf</p>
+</dd>
+<dt class="field-even">history</dt>
+<dd class="field-even"><p class="sd-card-text">Extracted from Copernicus Climate Data Store</p>
+</dd>
+<dt class="field-odd">paper_doi</dt>
+<dd class="field-odd"><p class="sd-card-text">10.5194/essd-12-2043-2020</p>
+</dd>
+<dt class="field-even">paper_ref</dt>
+<dd class="field-even"><p class="sd-card-text">Harrigan et al. (2020)</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://cds.climate.copernicus.eu/api/v2/terms/static/cems-floods.pdf">https://cds.climate.copernicus.eu/api/v2/terms/static/cems-floods.pdf</a></p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.a4fdd6b9">https://doi.org/10.24381/cds.a4fdd6b9</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">v31</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+glofas_uparea<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/hydro/glofas_era5/glofas_v31_uparea.tif</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">history</dt>
+<dd class="field-even"><p class="sd-card-text">Extracted from Copernicus Climate Data Store</p>
+</dd>
+<dt class="field-odd">paper_doi</dt>
+<dd class="field-odd"><p class="sd-card-text">10.5194/essd-12-2043-2020</p>
+</dd>
+<dt class="field-even">paper_ref</dt>
+<dd class="field-even"><p class="sd-card-text">Harrigan et al. (2020)</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://cds.climate.copernicus.eu/api/v2/terms/static/cems-floods.pdf">https://cds.climate.copernicus.eu/api/v2/terms/static/cems-floods.pdf</a></p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.a4fdd6b9">https://doi.org/10.24381/cds.a4fdd6b9</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">v31</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
 grdc<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
@@ -1985,32 +2340,103 @@ grwl<div class="sd-summary-down docutils">
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-guf_bld_2012<div class="sd-summary-down docutils">
+gtsm_codec_reanalysis_10min_v1<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <dl class="field-list simple">
 <dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/infrastructure/guf/GUF04_DLR_v02.vrt</p>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/p:/11205028-c3s_435/01_data/01_Timeseries/timeseries2/{variable}/reanalysis_{variable}_10min_{year}_{month}_v1.nc</p>
 </dd>
 <dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+<dd class="field-even"><p class="sd-card-text">GeoDataset</p>
 </dd>
 <dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">raster</p>
+<dd class="field-odd"><p class="sd-card-text">netcdf</p>
 </dd>
 <dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.1016/j.isprsjprs.2017.10.012</p>
+<dd class="field-even"><p class="sd-card-text">10.3389/fmars.2020.00263</p>
 </dd>
 <dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Esch et al (2017)</p>
+<dd class="field-odd"><p class="sd-card-text">Muis at al (2020)</p>
 </dd>
 <dt class="field-even">source_license</dt>
-<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://www.dlr.de/eoc/en/PortalData/60/Resources/dokumente/guf/DLR-GUF_LicenseAgreement-and-OrderForm.pdf">https://www.dlr.de/eoc/en/PortalData/60/Resources/dokumente/guf/DLR-GUF_LicenseAgreement-and-OrderForm.pdf</a></p>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf">https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf</a></p>
 </dd>
 <dt class="field-odd">source_url</dt>
-<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="http://www.dlr.de/guf">http://www.dlr.de/guf</a></p>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.8c59054f">https://doi.org/10.24381/cds.8c59054f</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">v1</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+gtsm_codec_reanalysis_dailymax_v1<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/p:/11205028-c3s_435/01_data/01_Timeseries/timeseries2/{variable}/reanalysis_{variable}_dailymax_{year}_{month}_v1.nc</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">GeoDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">netcdf</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.3389/fmars.2020.00263</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Muis at al (2020)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf">https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf</a></p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.8c59054f">https://doi.org/10.24381/cds.8c59054f</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">v1</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+gtsm_codec_reanalysis_hourly_v1<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/p:/11205028-c3s_435/01_data/01_Timeseries/timeseries2/{variable}/reanalysis_{variable}_hourly_{year}_{month}_v1.nc</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">GeoDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">netcdf</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.3389/fmars.2020.00263</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Muis at al (2020)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf">https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf</a></p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.8c59054f">https://doi.org/10.24381/cds.8c59054f</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">v1</p>
 </dd>
 </dl>
 </div>
@@ -2401,40 +2827,9 @@ vito_2019_v3.0.1<div class="sd-summary-down docutils">
 </dd>
 </dl>
 </div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-wsf_bld_2015<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<dl class="field-list simple">
-<dt class="field-odd">path</dt>
-<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/infrastructure/wsf/WSF2015_v1_EPSG4326.vrt</p>
-</dd>
-<dt class="field-even">data_type</dt>
-<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
-</dd>
-<dt class="field-odd">driver</dt>
-<dd class="field-odd"><p class="sd-card-text">raster</p>
-</dd>
-<dt class="field-even">paper_doi</dt>
-<dd class="field-even"><p class="sd-card-text">10.1038/s41597-020-00580-5</p>
-</dd>
-<dt class="field-odd">paper_ref</dt>
-<dd class="field-odd"><p class="sd-card-text">Marconcini at al (2020)</p>
-</dd>
-<dt class="field-even">source_license</dt>
-<dd class="field-even"><p class="sd-card-text">CC0 1.0</p>
-</dd>
-<dt class="field-odd">source_url</dt>
-<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://un-spider.org/links-and-resources/data-sources/world-settlement-footprint-2015-wsf-dlr-eoc">https://un-spider.org/links-and-resources/data-sources/world-settlement-footprint-2015-wsf-dlr-eoc</a></p>
-</dd>
-</dl>
-</div>
 </details></div>
-<input id="e803f7c1-f51e-42d3-8725-dfb12adf3981" name="e42b4fcd-f1c0-422b-baf8-f4f1e5c5a06c" type="radio">
-</input><label class="sd-tab-label" for="e803f7c1-f51e-42d3-8725-dfb12adf3981">
+<input id="5a9c5a66-ee8d-4f55-b030-b25d7b7f9045" name="8ccd4bae-a1bb-4e78-8e3d-30160badc615" type="radio">
+</input><label class="sd-tab-label" for="5a9c5a66-ee8d-4f55-b030-b25d7b7f9045">
 all</label><div class="sd-tab-content docutils">
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
@@ -2549,6 +2944,99 @@ chirps_global<div class="sd-summary-down docutils">
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
+copdem30<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/copdem/copdem.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">topography</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex+%281%29.pdf/83b44c0a-244a-7ba3-b00c-b578a34e88a7?t=1604070311399">https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex+%281%29.pdf/83b44c0a-244a-7ba3-b00c-b578a34e88a7?t=1604070311399</a></p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://spacedata.copernicus.eu/web/cscda/dataset-details?articleId=394198#D4">https://spacedata.copernicus.eu/web/cscda/dataset-details?articleId=394198#D4</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">20211</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+copdem30_mask<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/copdem/copdem_mask.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">topography</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex+%281%29.pdf/83b44c0a-244a-7ba3-b00c-b578a34e88a7?t=1604070311399">https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex+%281%29.pdf/83b44c0a-244a-7ba3-b00c-b578a34e88a7?t=1604070311399</a></p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://spacedata.copernicus.eu/web/cscda/dataset-details?articleId=394198#D4">https://spacedata.copernicus.eu/web/cscda/dataset-details?articleId=394198#D4</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">20211</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+copdem30_masked<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/copdem/copdem_masked.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">topography</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex+%281%29.pdf/83b44c0a-244a-7ba3-b00c-b578a34e88a7?t=1604070311399">https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex+%281%29.pdf/83b44c0a-244a-7ba3-b00c-b578a34e88a7?t=1604070311399</a></p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://spacedata.copernicus.eu/web/cscda/dataset-details?articleId=394198#D4">https://spacedata.copernicus.eu/web/cscda/dataset-details?articleId=394198#D4</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">20211</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
 corine<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
@@ -2565,7 +3053,7 @@ corine<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">landuse &amp; landcover</p>
+<dd class="field-even"><p class="sd-card-text">landuse</p>
 </dd>
 <dt class="field-odd">source_author</dt>
 <dd class="field-odd"><p class="sd-card-text">European Environment Agency</p>
@@ -2922,6 +3410,43 @@ era5_hourly<div class="sd-summary-down docutils">
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
+era5_ocean<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/ocean/era5/{variable}/era5_{variable}_{year}_hourly.nc</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">netcdf</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">ocean</p>
+</dd>
+<dt class="field-odd">history</dt>
+<dd class="field-odd"><p class="sd-card-text">Extracted from Copernicus Climate Data Store</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.1002/qj.3803</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Hersbach et al. (2019)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products">https://cds.climate.copernicus.eu/cdsapp/#!/terms/licence-to-use-copernicus-products</a></p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.bd0915c6">https://doi.org/10.24381/cds.bd0915c6</a></p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
 era5_orography<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
@@ -2955,8 +3480,73 @@ era5_orography<div class="sd-summary-down docutils">
 <dt class="field-odd">source_url</dt>
 <dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.bd0915c6">https://doi.org/10.24381/cds.bd0915c6</a></p>
 </dd>
-<dt class="field-even">source_version</dt>
-<dd class="field-even"><p class="sd-card-text">ERA5 hourly data on pressure levels</p>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+esa_worldcover<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/landuse/esa-worldcover/esa-worldcover.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">landuse</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text">CC BY 4.0</p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.5281/zenodo.5571936">https://doi.org/10.5281/zenodo.5571936</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">v100</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+fabdem<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/topography/fabdem/fabdem.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">topography</p>
+</dd>
+<dt class="field-odd">paper_doi</dt>
+<dd class="field-odd"><p class="sd-card-text">CC BY-NC-SA 4.0</p>
+</dd>
+<dt class="field-even">paper_ref</dt>
+<dd class="field-even"><p class="sd-card-text">Hawker et al. (2022)</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text">CC BY-NC-SA 4.0</p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://data.bris.ac.uk/data/dataset/25wfy0f9ukoge2gs7a5mqpq2j7">https://data.bris.ac.uk/data/dataset/25wfy0f9ukoge2gs7a5mqpq2j7</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">1.0</p>
 </dd>
 </dl>
 </div>
@@ -3052,7 +3642,7 @@ gdp_world<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">vector</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">source_author</dt>
 <dd class="field-odd"><p class="sd-card-text">Wilfred Altena</p>
@@ -3126,7 +3716,7 @@ ghs_pop<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.2760/062975</p>
@@ -3160,7 +3750,7 @@ ghs_pop_2015_4326_v2019a<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.2905/0C6B9751-A71F-4062-830B-43C9F432370F</p>
@@ -3200,7 +3790,7 @@ ghs_smod<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.2905/42E8BE89-54FF-464E-BE7B-BF9E64DA5218</p>
@@ -3240,7 +3830,7 @@ ghs_smod_2015_54009_v2016a<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_ref</dt>
 <dd class="field-odd"><p class="sd-card-text">Pesaresi and Freire (2016)</p>
@@ -3298,6 +3888,86 @@ globcover<div class="sd-summary-down docutils">
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
+glofas_era5_v31<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/hydro/glofas_era5/glofas_v31_{year}.nc</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">netcdf</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">hydro</p>
+</dd>
+<dt class="field-odd">history</dt>
+<dd class="field-odd"><p class="sd-card-text">Extracted from Copernicus Climate Data Store</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.5194/essd-12-2043-2020</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Harrigan et al. (2020)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://cds.climate.copernicus.eu/api/v2/terms/static/cems-floods.pdf">https://cds.climate.copernicus.eu/api/v2/terms/static/cems-floods.pdf</a></p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.a4fdd6b9">https://doi.org/10.24381/cds.a4fdd6b9</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">v31</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+glofas_uparea<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/hydro/glofas_era5/glofas_v31_uparea.tif</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">hydro</p>
+</dd>
+<dt class="field-odd">history</dt>
+<dd class="field-odd"><p class="sd-card-text">Extracted from Copernicus Climate Data Store</p>
+</dd>
+<dt class="field-even">paper_doi</dt>
+<dd class="field-even"><p class="sd-card-text">10.5194/essd-12-2043-2020</p>
+</dd>
+<dt class="field-odd">paper_ref</dt>
+<dd class="field-odd"><p class="sd-card-text">Harrigan et al. (2020)</p>
+</dd>
+<dt class="field-even">source_license</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://cds.climate.copernicus.eu/api/v2/terms/static/cems-floods.pdf">https://cds.climate.copernicus.eu/api/v2/terms/static/cems-floods.pdf</a></p>
+</dd>
+<dt class="field-odd">source_url</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.a4fdd6b9">https://doi.org/10.24381/cds.a4fdd6b9</a></p>
+</dd>
+<dt class="field-even">source_version</dt>
+<dd class="field-even"><p class="sd-card-text">v31</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
 glw_buffaloes<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
@@ -3314,7 +3984,7 @@ glw_buffaloes<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.7910/DVN/5U8MWI</p>
@@ -3354,7 +4024,7 @@ glw_cattle<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.7910/DVN/GIVQ75</p>
@@ -3394,7 +4064,7 @@ glw_chicken<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.7910/DVN/SUFASB</p>
@@ -3434,7 +4104,7 @@ glw_ducks<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.7910/DVN/ICHCBH</p>
@@ -3474,7 +4144,7 @@ glw_goats<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.7910/DVN/OCPH42</p>
@@ -3514,7 +4184,7 @@ glw_horses<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.7910/DVN/7Q52MV</p>
@@ -3554,7 +4224,7 @@ glw_pigs<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.7910/DVN/33N0JG</p>
@@ -3594,7 +4264,7 @@ glw_sheeps<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.7910/DVN/BLWPZN</p>
@@ -3794,6 +4464,117 @@ gswo<div class="sd-summary-down docutils">
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
+gtsm_codec_reanalysis_10min_v1<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/p:/11205028-c3s_435/01_data/01_Timeseries/timeseries2/{variable}/reanalysis_{variable}_10min_{year}_{month}_v1.nc</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">GeoDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">netcdf</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">ocean</p>
+</dd>
+<dt class="field-odd">paper_doi</dt>
+<dd class="field-odd"><p class="sd-card-text">10.3389/fmars.2020.00263</p>
+</dd>
+<dt class="field-even">paper_ref</dt>
+<dd class="field-even"><p class="sd-card-text">Muis at al (2020)</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf">https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf</a></p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.8c59054f">https://doi.org/10.24381/cds.8c59054f</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">v1</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+gtsm_codec_reanalysis_dailymax_v1<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/p:/11205028-c3s_435/01_data/01_Timeseries/timeseries2/{variable}/reanalysis_{variable}_dailymax_{year}_{month}_v1.nc</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">GeoDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">netcdf</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">ocean</p>
+</dd>
+<dt class="field-odd">paper_doi</dt>
+<dd class="field-odd"><p class="sd-card-text">10.3389/fmars.2020.00263</p>
+</dd>
+<dt class="field-even">paper_ref</dt>
+<dd class="field-even"><p class="sd-card-text">Muis at al (2020)</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf">https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf</a></p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.8c59054f">https://doi.org/10.24381/cds.8c59054f</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">v1</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+gtsm_codec_reanalysis_hourly_v1<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/p:/11205028-c3s_435/01_data/01_Timeseries/timeseries2/{variable}/reanalysis_{variable}_hourly_{year}_{month}_v1.nc</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">GeoDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">netcdf</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">ocean</p>
+</dd>
+<dt class="field-odd">paper_doi</dt>
+<dd class="field-odd"><p class="sd-card-text">10.3389/fmars.2020.00263</p>
+</dd>
+<dt class="field-even">paper_ref</dt>
+<dd class="field-even"><p class="sd-card-text">Muis at al (2020)</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text"><a class="reference external" href="https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf">https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf</a></p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://doi.org/10.24381/cds.8c59054f">https://doi.org/10.24381/cds.8c59054f</a></p>
+</dd>
+<dt class="field-odd">source_version</dt>
+<dd class="field-odd"><p class="sd-card-text">v1</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
 guf_bld_2012<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
@@ -3810,7 +4591,7 @@ guf_bld_2012<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.1016/j.isprsjprs.2017.10.012</p>
@@ -4680,6 +5461,74 @@ worldclim<div class="sd-summary-down docutils">
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
+worldpop_2020_UNadj_constrained<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/socio_economic/worldpop/ppp_2020_UNadj_constrained.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
+</dd>
+<dt class="field-odd">paper_doi</dt>
+<dd class="field-odd"><p class="sd-card-text">10.1371/journal.pone.0107042</p>
+</dd>
+<dt class="field-even">paper_ref</dt>
+<dd class="field-even"><p class="sd-card-text">Stevens et al. (2015)</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text">CC BY 4.0</p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://www.worldpop.org/doi/10.5258/SOTON/WP00684">https://www.worldpop.org/doi/10.5258/SOTON/WP00684</a></p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+worldpop_2020_constrained<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="field-list simple">
+<dt class="field-odd">path</dt>
+<dd class="field-odd"><p class="sd-card-text">/home/runner/work/hydromt/hydromt/docs/p:/wflow_global/hydromt/socio_economic/worldpop/ppp_2020_constrained.vrt</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p class="sd-card-text">RasterDataset</p>
+</dd>
+<dt class="field-odd">driver</dt>
+<dd class="field-odd"><p class="sd-card-text">raster</p>
+</dd>
+<dt class="field-even">category</dt>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
+</dd>
+<dt class="field-odd">paper_doi</dt>
+<dd class="field-odd"><p class="sd-card-text">10.1371/journal.pone.0107042</p>
+</dd>
+<dt class="field-even">paper_ref</dt>
+<dd class="field-even"><p class="sd-card-text">Stevens et al. (2015)</p>
+</dd>
+<dt class="field-odd">source_license</dt>
+<dd class="field-odd"><p class="sd-card-text">CC BY 4.0</p>
+</dd>
+<dt class="field-even">source_url</dt>
+<dd class="field-even"><p class="sd-card-text"><a class="reference external" href="https://www.worldpop.org/doi/10.5258/SOTON/WP00684">https://www.worldpop.org/doi/10.5258/SOTON/WP00684</a></p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
 wsf_bld_2015<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
@@ -4696,7 +5545,7 @@ wsf_bld_2015<div class="sd-summary-down docutils">
 <dd class="field-odd"><p class="sd-card-text">raster</p>
 </dd>
 <dt class="field-even">category</dt>
-<dd class="field-even"><p class="sd-card-text">socio economic</p>
+<dd class="field-even"><p class="sd-card-text">socio-economic</p>
 </dd>
 <dt class="field-odd">paper_doi</dt>
 <dd class="field-odd"><p class="sd-card-text">10.1038/s41597-020-00580-5</p>
@@ -4724,14 +5573,14 @@ wsf_bld_2015<div class="sd-summary-down docutils">
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="get_data.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="data_main.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Working with data in HydroMT</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="prepare_data.html" title="next page">
+    <a class='right-next' id="next-link" href="data_prepare_cat.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Preparing a Data Catalog</p>
@@ -4746,8 +5595,9 @@ wsf_bld_2015<div class="sd-summary-down docutils">
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
@@ -4758,7 +5608,7 @@ wsf_bld_2015<div class="sd-summary-down docutils">
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
 </p>
     </div>
     

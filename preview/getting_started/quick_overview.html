@@ -8,28 +8,25 @@
 
     <title>Quick overview &#8212; HydroMT  documentation</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -39,7 +36,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Examples" href="examples_index.html" />
-    <link rel="prev" title="Installation" href="installation.html" />
+    <link rel="prev" title="Installation Guide" href="installation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -47,7 +44,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -82,7 +79,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../user_guide/intro.html">
-  User Guide
+  User guide
  </a>
 </li>
 
@@ -145,7 +142,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="installation.html">
-   Installation
+   Installation Guide
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -153,27 +150,10 @@
    Quick overview
   </a>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1">
   <a class="reference internal" href="examples_index.html">
    Examples
   </a>
-  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="examples/read_raster_data.html">
-     Read raster data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="examples/delineate_basin.html">
-     Delineate basins
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="user_stories.html">
@@ -207,9 +187,24 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-hydromt-model-plugin">
+   Install HydroMT &amp; model plugin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-a-model">
+   Build a model
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -237,8 +232,45 @@
               <div>
                 
   <section id="quick-overview">
-<h1>Quick overview<a class="headerlink" href="#quick-overview" title="Permalink to this headline">¶</a></h1>
-<p>dummy</p>
+<h1>Quick overview<a class="headerlink" href="#quick-overview" title="Permalink to this headline">#</a></h1>
+<p>Typically, we use HydroMT together with a plugin to build a model from scratch.
+Here, we illustrate this for the a <a class="reference external" href="https://deltares.github.io/Wflow.jl/dev">Wflow</a> rainfall-runoff model, but you can follow
+the procedure is identical for other models.</p>
+<section id="install-hydromt-model-plugin">
+<h2>Install HydroMT &amp; model plugin<a class="headerlink" href="#install-hydromt-model-plugin" title="Permalink to this headline">#</a></h2>
+<p>If you haven’t already done so, first install HydroMT and the <a class="reference external" href="https://deltares.github.io/hydromt_wflow/">HydroMT-Wflow plugin</a>
+in a new <strong>hydromt</strong> environment and activate this environment.
+For more information about the installation, please refer to the <a class="reference internal" href="installation.html#installation-guide"><span class="std std-ref">installation guide</span></a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mamba create -n hydromt -c conda-forge <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9 hydromt hydromt-wflow
+<span class="gp">$ </span>conda activate hydromt
+</pre></div>
+</div>
+<p>Next, check if the installation was successful by running the command below.
+This returns the available models for HydroMT and should at least contain wflow and wflow_sediment.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>hydromt --models
+
+<span class="go">&gt;&gt; hydroMT model plugins: wflow (vx.x.x), wflow_sediment (vx.x.x)</span>
+</pre></div>
+</div>
+</section>
+<section id="build-a-model">
+<h2>Build a model<a class="headerlink" href="#build-a-model" title="Permalink to this headline">#</a></h2>
+<p>Now you can create a model from raw data. To do so, you need to define</p>
+<ol class="arabic simple">
+<li><p>the <strong>source data</strong>: To try out HydroMT, you can make use of the publicly available <a class="reference internal" href="../user_guide/data_existing_cat.html#existing-catalog"><span class="std std-ref">HydroMT artifacts data catalog</span></a>
+which contains data for the Piave basin in Northern Italy and is the default catalog if no other one is specified.</p></li>
+<li><p>the <strong>model region</strong>: There are many options to define the <a class="reference internal" href="../user_guide/model_region.html#region"><span class="std std-ref">region</span></a>. In this example the model region is defined
+by the Piave subbasin upstream from a outlet point defined: <code class="docutils literal notranslate"><span class="pre">&quot;{'subbasin':</span> <span class="pre">[12.2051,</span> <span class="pre">45.8331],</span> <span class="pre">'strord':</span> <span class="pre">4}&quot;</span></code></p></li>
+<li><p>the <strong>model setup configuration</strong>: Finally, the model setup needs to be configured. Here, the example configuration from the HydroMT-Wflow repository
+is used. You can download the <em>ini</em> file <a class="reference external" href="https://raw.githubusercontent.com/Deltares/hydromt_wflow/main/examples/wflow_build.ini">here (right click &amp; save as)</a> and save it in the current directory.
+For information about specific options, please visit the documentation of the HydroMT plugin of your model of interest.</p></li>
+</ol>
+<p>These steps are combined into the following command which saves all Wflow model files and a <cite>hydromt.log</cite> file
+in the <cite>wflow_test</cite> folder. This Wflow model instance is ready to be run with <a class="reference external" href="https://deltares.github.io/Wflow.jl/dev">Wflow</a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>hydromt build wflow ./wflow_test <span class="s2">&quot;{&#39;subbasin&#39;: [12.2051, 45.8331], &#39;strord&#39;: 4}&quot;</span> -vv -i build_wflow.ini
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -251,7 +283,7 @@
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Installation</p>
+            <p class="prev-next-title">Installation Guide</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="examples_index.html" title="next page">
@@ -269,8 +301,9 @@
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
@@ -281,7 +314,7 @@
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
 </p>
     </div>
     

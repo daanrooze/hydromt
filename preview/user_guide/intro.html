@@ -6,30 +6,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>User Guide &#8212; HydroMT  documentation</title>
+    <title>User guide &#8212; HydroMT  documentation</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -38,7 +35,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Working with data in HydroMT" href="get_data.html" />
+    <link rel="next" title="Working with data in HydroMT" href="data_main.html" />
     <link rel="prev" title="Publications" href="../getting_started/publications.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -47,7 +44,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -82,7 +79,7 @@
 
 <li class="toctree-l1 current active nav-item">
  <a class="current reference internal nav-link" href="#">
-  User Guide
+  User guide
  </a>
 </li>
 
@@ -144,7 +141,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="get_data.html">
+  <a class="reference internal" href="data_main.html">
    Working with data in HydroMT
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -154,18 +151,23 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="existing_datacatalogs.html">
+    <a class="reference internal" href="data_existing_cat.html">
      Using a pre-defined Data Catalog
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="prepare_data.html">
+    <a class="reference internal" href="data_prepare_cat.html">
      Preparing a Data Catalog
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="data_conventions.html">
      Data conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/read_raster_data.html">
+     Example: Reading raster data
     </a>
    </li>
   </ul>
@@ -180,22 +182,10 @@
    </i>
   </label>
   <ul>
-   <li class="toctree-l2 has-children">
+   <li class="toctree-l2">
     <a class="reference internal" href="model_build.html">
      Building a model
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-    <label for="toctree-checkbox-3">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="build_region.html">
-       Region options
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="model_update.html">
@@ -208,11 +198,26 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="model_post.html">
-     Postprocessing model results
+    <a class="reference internal" href="model_region.html">
+     Region options
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/delineate_basin.html">
+     Example: Hydrographic regions
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gis.html">
+   GIS methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   Statistical methods
+  </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="terminology.html">
@@ -236,19 +241,9 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
 
 <nav id="bd-toc-nav">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#content">
-   Content
-  </a>
- </li>
-</ul>
-
+    
 </nav>
               </div>
               
@@ -276,45 +271,41 @@
               <div>
                 
   <section id="user-guide">
-<span id="intro-user-guide"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+<span id="intro-user-guide"></span><h1>User guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">#</a></h1>
 <p>HydroMT is a Python package that aims to facilitate the process of building models and analyzing model results
-by automating the process to go from raw data to model data. It is an interface between <em>data</em>, <em>user</em> and hydro
-<em>models</em>. In the user guide you can find:</p>
-<ul class="simple">
-<li><p>how to work with data in HydroMT</p></li>
-<li><p>how to develop and process models with HydroMT</p></li>
-</ul>
-<p>From the user side, HydroMT is organised in the following way:</p>
+by automating the process to go from raw data to model data. It is an interface between <em>user</em>, <em>data</em> and hydro
+<em>models</em>.</p>
+<p>From the user side, HydroMT is organized in the following way:</p>
 <div class="line-block">
-<div class="line"><strong>Command Line Interface (CLI)</strong></div>
-<div class="line">The CLI is a high-level interface to HydroMT. It is used to run HydroMT methods such as <strong>build</strong>, <strong>update</strong> or <strong>clip</strong> for
-all model plugins, such as Wflow, Delwaq, SFINCS etc.</div>
+<div class="line"><strong>Data Catalog</strong></div>
+<div class="line">HydroMT is data-agnostic through the <em>Data adapter</em> that reads a wide range of data formats
+and unifies the input data. HydroMT currently supports vector (<em>GeoDataFrame</em>), raster (<em>RasterDataset</em>)
+and time-series data (<em>GeoDataset</em>) types. Datasets are listed in and passed to HydroMT in a user defined data catalog
+<a class="reference internal" href="data_prepare_cat.html#data-yaml"><span class="std std-ref">yaml file</span></a>. HydroMT also provides several pre-defined data catalogs with mostly global datasets that can be used as is,
+but note that not all data is openly accessible.</div>
 </div>
 <div class="line-block">
 <div class="line"><strong>Configuration</strong></div>
 <div class="line">The complete building or updating process of a model can be configured in a single configuration <em>.ini</em> file.
-This file describes the full pipeline of model setup components and their arguments. The components vary for the
-different model plugins and are documented for each at their respective documentation websites.</div>
+This file describes the full pipeline of model setup components and their arguments. The components vary per
+model <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">plugin</span></a> and are documented for each at their respective documentation websites.</div>
 </div>
 <div class="line-block">
-<div class="line"><strong>Data Catalogue</strong></div>
-<div class="line">HydroMT can make use of various types of data sources such as vector data, GDAL rasters or NetCDF files.
-The path and attributes of each of these dataset are listed in a data catalogue <em>.yml</em> file. HydroMT provides
-several pre-defined data catalogues with mostly global datasets that can be used as is, but note that not all data is
-openly accessible. Local or other datasets can also be included by extending or using a user defined yaml file.</div>
+<div class="line"><strong>Command Line Interface (CLI)</strong></div>
+<div class="line">The CLI is a high-level interface to HydroMT. It is used to run HydroMT methods such as
+<a class="reference internal" href="model_build.html#cli-build"><span class="std std-ref">*build*</span></a>, <a class="reference internal" href="model_update.html#cli-update"><span class="std std-ref">*update*</span></a> or <a class="reference internal" href="model_clip.html#cli-clip"><span class="std std-ref">*clip*</span></a>.</div>
 </div>
 <div class="line-block">
 <div class="line"><strong>Python Interface</strong></div>
-<div class="line">Most common functionalities can be called through the CLI. From the Python interface, however, much more
-lower level functionalities are available.</div>
+<div class="line">Most common functionalities can be called through the CLI. From the Python interface, however, the user
+can interact directly with a model through the <a class="reference internal" href="model_main.html#model-interface"><span class="std std-ref">Model API</span></a> that provides a general interface
+to the model schematization (<em>staticgeoms</em> and <em>staticmaps</em>), model <em>forcing</em>, model <em>states</em>, model <em>results</em>
+and model configuration (<em>config</em>). Furthermore, many methods for raster and vector GIS,
+hydrography and statists are available.</div>
 </div>
-<p>This user guide concentrates on the core functions of HydroMT. For more specific information each
-<a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">plugin</span></a> contains an additional user guide.</p>
-<section id="content">
-<h2>Content<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/Architecture_model_data_input.png" src="../_images/Architecture_model_data_input.png" />
 <div class="toctree-wrapper compound">
 </div>
-</section>
 </section>
 
 
@@ -330,7 +321,7 @@ lower level functionalities are available.</div>
             <p class="prev-next-title">Publications</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="get_data.html" title="next page">
+    <a class='right-next' id="next-link" href="data_main.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Working with data in HydroMT</p>
@@ -345,8 +336,9 @@ lower level functionalities are available.</div>
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
@@ -357,7 +349,7 @@ lower level functionalities are available.</div>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
 </p>
     </div>
     

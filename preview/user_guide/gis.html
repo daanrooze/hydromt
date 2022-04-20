@@ -6,30 +6,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Postprocessing model results &#8212; HydroMT  documentation</title>
+    <title>GIS methods &#8212; HydroMT  documentation</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -38,8 +35,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Terminology" href="terminology.html" />
-    <link rel="prev" title="Clipping a model" href="model_clip.html" />
+    <link rel="next" title="Statistical methods" href="statistics.html" />
+    <link rel="prev" title="Delineate basins" href="../_examples/delineate_basin.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -47,7 +44,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -82,7 +79,7 @@
 
 <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="intro.html">
-  User Guide
+  User guide
  </a>
 </li>
 
@@ -144,7 +141,7 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="get_data.html">
+  <a class="reference internal" href="data_main.html">
    Working with data in HydroMT
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -154,12 +151,12 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="existing_datacatalogs.html">
+    <a class="reference internal" href="data_existing_cat.html">
      Using a pre-defined Data Catalog
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="prepare_data.html">
+    <a class="reference internal" href="data_prepare_cat.html">
      Preparing a Data Catalog
     </a>
    </li>
@@ -168,9 +165,14 @@
      Data conventions
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/read_raster_data.html">
+     Example: Reading raster data
+    </a>
+   </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="model_main.html">
    Working with models in HydroMT
   </a>
@@ -179,23 +181,11 @@
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
-   <li class="toctree-l2 has-children">
+  <ul>
+   <li class="toctree-l2">
     <a class="reference internal" href="model_build.html">
      Building a model
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-    <label for="toctree-checkbox-3">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="build_region.html">
-       Region options
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="model_update.html">
@@ -207,12 +197,27 @@
      Clipping a model
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Postprocessing model results
+   <li class="toctree-l2">
+    <a class="reference internal" href="model_region.html">
+     Region options
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/delineate_basin.html">
+     Example: Hydrographic regions
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   GIS methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   Statistical methods
+  </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="terminology.html">
@@ -236,20 +241,20 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#statistics">
-   Statistics
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   GIS methods
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualization">
-   Visualization
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#raster-methods">
+   Raster methods
   </a>
  </li>
 </ul>
@@ -261,7 +266,7 @@
                 
 
 <div class="tocsection editthispage">
-    <a href="https://github.com/Deltares/hydromt/edit/docs/docs/user_guide/model_post.rst">
+    <a href="https://github.com/Deltares/hydromt/edit/docs/docs/user_guide/gis.rst">
         <i class="fas fa-pencil-alt"></i> Edit this page
     </a>
 </div>
@@ -280,51 +285,11 @@
               
               <div>
                 
-  <section id="postprocessing-model-results">
-<span id="post"></span><h1>Postprocessing model results<a class="headerlink" href="#postprocessing-model-results" title="Permalink to this headline">¶</a></h1>
-<section id="statistics">
-<span id="stat"></span><h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h2>
-<p>HydroMT provides different functions to apply <a class="reference internal" href="../api.html#statistics"><span class="std std-ref">Statistics and performance metrics</span></a> to the model
-results. The following analysis fields are addressed:</p>
-<ul class="simple">
-<li><p>Bias analysis</p></li>
-<li><p>Model efficiency analysis</p></li>
-<li><p>Correlation analysis</p></li>
-<li><p>Determination of the efficiency of two time series</p></li>
-<li><p>Determination of the determination of two time series</p></li>
-<li><p>Determination of the (root) mean squared error</p></li>
-</ul>
-<p><strong>Example statistics function</strong></p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">from hydromt.stats import skills as skillstats</span>
-<span class="go">from hydromt_wflow import WflowModel</span>
-<span class="go">import xarray as xr</span>
-<span class="gp"># </span><span class="nb">read</span> model results
-<span class="gp"># </span>NOTE: the name of the results depends on the wflow run configuration <span class="o">(</span>toml file<span class="o">)</span>
-<span class="go">mod = WflowModel(root=r&#39;/path/to/wflow_model/root&#39;, mode=&#39;r&#39;)</span>
-<span class="go">sim = mod.results[&#39;Q_gauges_grdc&#39;]</span>
-<span class="gp"># </span><span class="nb">read</span> observations
-<span class="go">obs = xr.open_dataset(r&#39;/path/to/grdc_obs.nc&#39;)</span>
-<span class="gp"># </span>calculate skill statistic
-<span class="go">nse = skillstats.nashsutcliffe(sim, obs)</span>
-</pre></div>
-</div>
+  <section id="gis-methods">
+<span id="gis"></span><h1>GIS methods<a class="headerlink" href="#gis-methods" title="Permalink to this headline">#</a></h1>
 </section>
-<section id="visualization">
-<span id="plot"></span><h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Not all plugins provide a built-in plot function yet. Please check the documentation of the respective
-<a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">plugin</span></a> for more information on whether specific plot functions are available.</p>
-</div>
-<p>Specific plugins such as the plugin for <em>SFINCS</em> offer the possibility to use HydroMT plot functions. For other plugins
-examples exist how to use existing Python packages for plotting.</p>
-<p><strong>Example plot function</strong></p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">from hydromt_sfincs import SfincsModel</span>
-<span class="go">mod = SfincsModel(root=r&#39;/path/to/sfincs_model/root&#39;, mode=&#39;r&#39;)</span>
-<span class="go">mod.plot_basemap()</span>
-</pre></div>
-</div>
-</section>
+<section id="raster-methods">
+<span id="raster"></span><h1>Raster methods<a class="headerlink" href="#raster-methods" title="Permalink to this headline">#</a></h1>
 </section>
 
 
@@ -333,17 +298,17 @@ examples exist how to use existing Python packages for plotting.</p>
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="model_clip.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../_examples/delineate_basin.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Clipping a model</p>
+            <p class="prev-next-title">Delineate basins</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="terminology.html" title="next page">
+    <a class='right-next' id="next-link" href="statistics.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Terminology</p>
+        <p class="prev-next-title">Statistical methods</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -355,8 +320,9 @@ examples exist how to use existing Python packages for plotting.</p>
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
@@ -367,7 +333,7 @@ examples exist how to use existing Python packages for plotting.</p>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
 </p>
     </div>
     

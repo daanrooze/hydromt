@@ -8,28 +8,25 @@
 
     <title>Working with models in HydroMT &#8212; HydroMT  documentation</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -39,7 +36,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Building a model" href="model_build.html" />
-    <link rel="prev" title="Data conventions" href="data_conventions.html" />
+    <link rel="prev" title="Reading raster data" href="../_examples/read_raster_data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -47,7 +44,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -82,7 +79,7 @@
 
 <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="intro.html">
-  User Guide
+  User guide
  </a>
 </li>
 
@@ -144,7 +141,7 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="get_data.html">
+  <a class="reference internal" href="data_main.html">
    Working with data in HydroMT
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -154,18 +151,23 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="existing_datacatalogs.html">
+    <a class="reference internal" href="data_existing_cat.html">
      Using a pre-defined Data Catalog
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="prepare_data.html">
+    <a class="reference internal" href="data_prepare_cat.html">
      Preparing a Data Catalog
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="data_conventions.html">
      Data conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/read_raster_data.html">
+     Example: Reading raster data
     </a>
    </li>
   </ul>
@@ -180,22 +182,10 @@
    </i>
   </label>
   <ul>
-   <li class="toctree-l2 has-children">
+   <li class="toctree-l2">
     <a class="reference internal" href="model_build.html">
      Building a model
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-    <label for="toctree-checkbox-3">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="build_region.html">
-       Region options
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="model_update.html">
@@ -208,11 +198,26 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="model_post.html">
-     Postprocessing model results
+    <a class="reference internal" href="model_region.html">
+     Region options
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/delineate_basin.html">
+     Example: Hydrographic regions
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gis.html">
+   GIS methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   Statistical methods
+  </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="terminology.html">
@@ -236,12 +241,22 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#high-level-functionality">
+   High level functionality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-interface">
+   Model interface
+  </a>
+ </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#supported-models">
    Supported models
@@ -276,23 +291,26 @@
               <div>
                 
   <section id="working-with-models-in-hydromt">
-<span id="model-main"></span><h1>Working with models in HydroMT<a class="headerlink" href="#working-with-models-in-hydromt" title="Permalink to this headline">¶</a></h1>
-<p>HydroMT is commonly used in combination with a model plugin, relevant functions for setting up or adjusting models include:</p>
+<span id="model-main"></span><h1>Working with models in HydroMT<a class="headerlink" href="#working-with-models-in-hydromt" title="Permalink to this headline">#</a></h1>
+<section id="high-level-functionality">
+<h2>High level functionality<a class="headerlink" href="#high-level-functionality" title="Permalink to this headline">#</a></h2>
+<p>HydroMT has the following high-level functionality for setting up models from raw data or adjusting models:</p>
 <ul class="simple">
+<li><p><a class="reference internal" href="model_region.html#region"><span class="std std-ref">defining a model region</span></a> for <em>building</em> or <em>clipping</em> models.</p></li>
 <li><p><a class="reference internal" href="model_build.html#cli-build"><span class="std std-ref">building a model</span></a>: building a model from scratch.</p></li>
-<li><p><a class="reference internal" href="model_update.html#cli-update"><span class="std std-ref">updating a model</span></a>: updating an existing model (e.g. update datafeeds).</p></li>
+<li><p><a class="reference internal" href="model_update.html#cli-update"><span class="std std-ref">updating a model</span></a>: updating an existing model (e.g. add model components or change data source).</p></li>
 <li><p><a class="reference internal" href="model_clip.html#cli-clip"><span class="std std-ref">clipping a model</span></a>: changing the spatial domain of an existing model (e.g. select subbasins from a larger model).</p></li>
-<li><p><a class="reference internal" href="model_post.html#post"><span class="std std-ref">postprocessing model results</span></a>: generating statistics, visualizing results.</p></li>
 </ul>
+<p>The exact process of building or updating a model can be configured in a single configuration <em>.ini</em> file.
+This file describes the full pipeline of model components and their arguments. The components vary for the
+different model <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">Plugins</span></a> and are documented for each at their respective documentation websites.</p>
+</section>
+<section id="model-interface">
+<span id="id1"></span><h2>Model interface<a class="headerlink" href="#model-interface" title="Permalink to this headline">#</a></h2>
+</section>
 <section id="supported-models">
-<span id="supportedmodels"></span><h2>Supported models<a class="headerlink" href="#supported-models" title="Permalink to this headline">¶</a></h2>
-<p>HydroMT currently supports the following models:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://deltares.github.io/hydromt_wflow">hydromt_wflow</a>: A framework for distributed rainfall-runoff (wflow_sbm) sediment transport (wflow_sediment) modelling.</p></li>
-<li><p><a class="reference external" href="https://deltares.github.io/hydromt_delwaq">hydromt_delwaq</a>: A framework for water quality (D-Water Quality) and emissions (D-Emissions) modelling.</p></li>
-<li><p><a class="reference external" href="https://deltares.github.io/hydromt_sfincs">hydromt_sfincs</a>: A fast 2D hydrodynamic flood model.</p></li>
-<li><p><a class="reference external" href="https://deltares.github.io/hydromt_fiat">hydromt_fiat</a>: A flood impact model.</p></li>
-</ul>
+<h2>Supported models<a class="headerlink" href="#supported-models" title="Permalink to this headline">#</a></h2>
+<p>For a list of supported models see the <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">Plugins</span></a> page.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -304,11 +322,11 @@
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="data_conventions.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../_examples/read_raster_data.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Data conventions</p>
+            <p class="prev-next-title">Reading raster data</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="model_build.html" title="next page">
@@ -326,8 +344,9 @@
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
@@ -338,7 +357,7 @@
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
 </p>
     </div>
     

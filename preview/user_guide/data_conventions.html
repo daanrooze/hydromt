@@ -8,28 +8,25 @@
 
     <title>Data conventions &#8212; HydroMT  documentation</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -38,8 +35,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Working with models in HydroMT" href="model_main.html" />
-    <link rel="prev" title="Preparing a Data Catalog" href="prepare_data.html" />
+    <link rel="next" title="Reading raster data" href="../_examples/read_raster_data.html" />
+    <link rel="prev" title="Preparing a Data Catalog" href="data_prepare_cat.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -47,7 +44,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -82,7 +79,7 @@
 
 <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="intro.html">
-  User Guide
+  User guide
  </a>
 </li>
 
@@ -144,7 +141,7 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="get_data.html">
+  <a class="reference internal" href="data_main.html">
    Working with data in HydroMT
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -154,18 +151,23 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="existing_datacatalogs.html">
+    <a class="reference internal" href="data_existing_cat.html">
      Using a pre-defined Data Catalog
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="prepare_data.html">
+    <a class="reference internal" href="data_prepare_cat.html">
      Preparing a Data Catalog
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Data conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/read_raster_data.html">
+     Example: Reading raster data
     </a>
    </li>
   </ul>
@@ -180,22 +182,10 @@
    </i>
   </label>
   <ul>
-   <li class="toctree-l2 has-children">
+   <li class="toctree-l2">
     <a class="reference internal" href="model_build.html">
      Building a model
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-    <label for="toctree-checkbox-3">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="build_region.html">
-       Region options
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="model_update.html">
@@ -208,11 +198,26 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="model_post.html">
-     Postprocessing model results
+    <a class="reference internal" href="model_region.html">
+     Region options
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/delineate_basin.html">
+     Example: Hydrographic regions
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gis.html">
+   GIS methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   Statistical methods
+  </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="terminology.html">
@@ -236,7 +241,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -318,13 +323,17 @@
               <div>
                 
   <section id="data-conventions">
-<span id="data-convention"></span><h1>Data conventions<a class="headerlink" href="#data-conventions" title="Permalink to this headline">¶</a></h1>
-<p>This section lists the different variable naming and unit conventions of HydroMT by types. This list is still in development.
-Names and units mentioned here are mandatory in order for the input data to be processed correctly and produced the right derived data.
-It is also possible to use the rename option so that variables and model data produced by HydroMT have more explicit names.
-A list of recognized <a class="reference internal" href="prepare_data.html#dimensions"><span class="std std-ref">dimensions</span></a> is found here.</p>
+<span id="data-convention"></span><h1>Data conventions<a class="headerlink" href="#data-conventions" title="Permalink to this headline">#</a></h1>
+<p>Names and units mentioned here are mandatory in order for the input data to be processed correctly and produced the right derived data.
+It is possible to use the <code class="docutils literal notranslate"><span class="pre">rename</span></code> option in the <a class="reference internal" href="data_prepare_cat.html#data-yaml"><span class="std std-ref">data catalog yaml file</span></a> so that data variables have more correct names.
+This section lists the different variable naming and unit conventions of HydroMT by types.
+A list of recognized <a class="reference internal" href="data_prepare_cat.html#dimensions"><span class="std std-ref">dimension names</span></a> is found here.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This list is still in development.</p>
+</div>
 <section id="topography">
-<h2>Topography<a class="headerlink" href="#topography" title="Permalink to this headline">¶</a></h2>
+<h2>Topography<a class="headerlink" href="#topography" title="Permalink to this headline">#</a></h2>
 <table class="table">
 <colgroup>
 <col style="width: 24%" />
@@ -371,9 +380,9 @@ The format is inferred from the data.</p></td>
 </table>
 </section>
 <section id="surface-waters">
-<h2>Surface waters<a class="headerlink" href="#surface-waters" title="Permalink to this headline">¶</a></h2>
+<h2>Surface waters<a class="headerlink" href="#surface-waters" title="Permalink to this headline">#</a></h2>
 <section id="rivers">
-<h3>Rivers<a class="headerlink" href="#rivers" title="Permalink to this headline">¶</a></h3>
+<h3>Rivers<a class="headerlink" href="#rivers" title="Permalink to this headline">#</a></h3>
 <table class="table">
 <colgroup>
 <col style="width: 24%" />
@@ -407,7 +416,7 @@ The format is inferred from the data.</p></td>
 </table>
 </section>
 <section id="reservoirs-lakes">
-<h3>Reservoirs / lakes<a class="headerlink" href="#reservoirs-lakes" title="Permalink to this headline">¶</a></h3>
+<h3>Reservoirs / lakes<a class="headerlink" href="#reservoirs-lakes" title="Permalink to this headline">#</a></h3>
 <table class="table">
 <colgroup>
 <col style="width: 24%" />
@@ -473,7 +482,7 @@ The format is inferred from the data.</p></td>
 </table>
 </section>
 <section id="glaciers">
-<h3>Glaciers<a class="headerlink" href="#glaciers" title="Permalink to this headline">¶</a></h3>
+<h3>Glaciers<a class="headerlink" href="#glaciers" title="Permalink to this headline">#</a></h3>
 <table class="table">
 <colgroup>
 <col style="width: 24%" />
@@ -496,7 +505,7 @@ The format is inferred from the data.</p></td>
 </section>
 </section>
 <section id="landuse-and-landcover">
-<h2>Landuse and landcover<a class="headerlink" href="#landuse-and-landcover" title="Permalink to this headline">¶</a></h2>
+<h2>Landuse and landcover<a class="headerlink" href="#landuse-and-landcover" title="Permalink to this headline">#</a></h2>
 <table class="table">
 <colgroup>
 <col style="width: 24%" />
@@ -522,7 +531,7 @@ The format is inferred from the data.</p></td>
 </table>
 </section>
 <section id="soil">
-<h2>Soil<a class="headerlink" href="#soil" title="Permalink to this headline">¶</a></h2>
+<h2>Soil<a class="headerlink" href="#soil" title="Permalink to this headline">#</a></h2>
 <table class="table">
 <colgroup>
 <col style="width: 24%" />
@@ -573,7 +582,7 @@ The format is inferred from the data.</p></td>
 </table>
 </section>
 <section id="meteorology">
-<h2>Meteorology<a class="headerlink" href="#meteorology" title="Permalink to this headline">¶</a></h2>
+<h2>Meteorology<a class="headerlink" href="#meteorology" title="Permalink to this headline">#</a></h2>
 <table class="table">
 <colgroup>
 <col style="width: 24%" />
@@ -619,7 +628,7 @@ The format is inferred from the data.</p></td>
 </table>
 </section>
 <section id="hydrology">
-<h2>Hydrology<a class="headerlink" href="#hydrology" title="Permalink to this headline">¶</a></h2>
+<h2>Hydrology<a class="headerlink" href="#hydrology" title="Permalink to this headline">#</a></h2>
 <table class="table">
 <colgroup>
 <col style="width: 24%" />
@@ -674,17 +683,17 @@ evaporation, infiltration…)</p></td>
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="prepare_data.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="data_prepare_cat.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Preparing a Data Catalog</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="model_main.html" title="next page">
+    <a class='right-next' id="next-link" href="../_examples/read_raster_data.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Working with models in HydroMT</p>
+        <p class="prev-next-title">Reading raster data</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -696,8 +705,9 @@ evaporation, infiltration…)</p></td>
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
@@ -708,7 +718,7 @@ evaporation, infiltration…)</p></td>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
 </p>
     </div>
     

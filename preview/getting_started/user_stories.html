@@ -8,28 +8,25 @@
 
     <title>User’s stories &#8212; HydroMT  documentation</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -39,7 +36,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Frequently asked questions" href="faq.html" />
-    <link rel="prev" title="Delineate basins" href="examples/delineate_basin.html" />
+    <link rel="prev" title="Examples" href="examples_index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -47,7 +44,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -82,7 +79,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../user_guide/intro.html">
-  User Guide
+  User guide
  </a>
 </li>
 
@@ -145,7 +142,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="installation.html">
-   Installation
+   Installation Guide
   </a>
  </li>
  <li class="toctree-l1">
@@ -153,27 +150,10 @@
    Quick overview
   </a>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1">
   <a class="reference internal" href="examples_index.html">
    Examples
   </a>
-  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="examples/read_raster_data.html">
-     Read raster data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="examples/delineate_basin.html">
-     Delineate basins
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
@@ -207,7 +187,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -262,9 +242,9 @@
               <div>
                 
   <section id="user-s-stories">
-<span id="user-stories"></span><h1>User’s stories<a class="headerlink" href="#user-s-stories" title="Permalink to this headline">¶</a></h1>
+<span id="user-stories"></span><h1>User’s stories<a class="headerlink" href="#user-s-stories" title="Permalink to this headline">#</a></h1>
 <section id="compound-flooding-in-mozambique">
-<span id="use-case-mozambique-compound-flood"></span><h2>Compound flooding in Mozambique<a class="headerlink" href="#compound-flooding-in-mozambique" title="Permalink to this headline">¶</a></h2>
+<span id="use-case-mozambique-compound-flood"></span><h2>Compound flooding in Mozambique<a class="headerlink" href="#compound-flooding-in-mozambique" title="Permalink to this headline">#</a></h2>
 <p>An integrated flood modelling (compound flood with riverine and coastal influence) was
 developed for Mozambique based on global data with HydroMT. The wflow and SFINCS models
 were coupled offline using HydroMT to align the rivers at different resolutions and coordinate
@@ -276,7 +256,7 @@ discharge and GTSM waterlevels. Preliminary results of SFINCS flood depths (blue
 <img alt="../_images/mozambique_result_flood.png" src="../_images/mozambique_result_flood.png" />
 </section>
 <section id="water-quality-diagnostic-in-peru">
-<span id="use-case-waq-peru"></span><h2>Water quality diagnostic in Peru<a class="headerlink" href="#water-quality-diagnostic-in-peru" title="Permalink to this headline">¶</a></h2>
+<span id="use-case-waq-peru"></span><h2>Water quality diagnostic in Peru<a class="headerlink" href="#water-quality-diagnostic-in-peru" title="Permalink to this headline">#</a></h2>
 <p>Deltares BlueEarth new approach on model setup, <strong>from global to local</strong>, was applied recently
 in Peru for a nation-wide water quality diagnostic project. The wflow hydrologic and Delwaq water
 quality models were first prepared from global data and refined later using collected local data.
@@ -291,7 +271,7 @@ chemicals).</p>
 <img alt="../_images/peru_coli.png" src="../_images/peru_coli.png" />
 </section>
 <section id="national-hydrologic-models-for-indonesia">
-<span id="use-case-wflow-indonesia"></span><h2>National hydrologic models for Indonesia<a class="headerlink" href="#national-hydrologic-models-for-indonesia" title="Permalink to this headline">¶</a></h2>
+<span id="use-case-wflow-indonesia"></span><h2>National hydrologic models for Indonesia<a class="headerlink" href="#national-hydrologic-models-for-indonesia" title="Permalink to this headline">#</a></h2>
 <p>HydroMT was used to prepare the updated national hydrologic models for Indonesia during phase III of the Joint
 Cooperation Program between the Netherlands and Indonesia. As this is a large scale domain, seven models corresponding
 to the different Indonesian regions (BaliNusaTenggara, Java, Kalimantan, Maluku, Papua, Sumatra, Sulawesi) were derived
@@ -301,7 +281,7 @@ projects and to connect to existing RIBASIM models (using RIBASIM components wit
 <img alt="../_images/wflow_indonesia.png" src="../_images/wflow_indonesia.png" />
 </section>
 <section id="global-water-quality-modelling">
-<span id="use-case-waq-global"></span><h2>Global water quality modelling<a class="headerlink" href="#global-water-quality-modelling" title="Permalink to this headline">¶</a></h2>
+<span id="use-case-waq-global"></span><h2>Global water quality modelling<a class="headerlink" href="#global-water-quality-modelling" title="Permalink to this headline">#</a></h2>
 <p>Recently, Deltares has become involved in the United Nations Environment Program, which is organized as
 a consortium of relevant organizations to develop a World Water Quality Assessment (WWQA). Deltares is
 participating in this WWQA as an opportunity to contribute to mitigating the world-wide water quality crisis,
@@ -319,11 +299,11 @@ us with valuable insight in the capabilities and challenges of setting up models
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="examples/delineate_basin.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="examples_index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Delineate basins</p>
+            <p class="prev-next-title">Examples</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="faq.html" title="next page">
@@ -341,8 +321,9 @@ us with valuable insight in the capabilities and challenges of setting up models
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
@@ -353,7 +334,7 @@ us with valuable insight in the capabilities and challenges of setting up models
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
 </p>
     </div>
     

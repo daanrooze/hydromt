@@ -8,28 +8,25 @@
 
     <title>Examples &#8212; HydroMT  documentation</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -38,7 +35,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Reading raster data" href="examples/read_raster_data.html" />
+    <link rel="next" title="User’s stories" href="user_stories.html" />
     <link rel="prev" title="Quick overview" href="quick_overview.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -47,7 +44,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -82,7 +79,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../user_guide/intro.html">
-  User Guide
+  User guide
  </a>
 </li>
 
@@ -145,7 +142,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="installation.html">
-   Installation
+   Installation Guide
   </a>
  </li>
  <li class="toctree-l1">
@@ -153,27 +150,10 @@
    Quick overview
   </a>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Examples
   </a>
-  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="examples/read_raster_data.html">
-     Read raster data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="examples/delineate_basin.html">
-     Delineate basins
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="user_stories.html">
@@ -207,9 +187,19 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#list-of-examples">
+   List of examples
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -237,25 +227,44 @@
               <div>
                 
   <section id="examples">
-<span id="id1"></span><h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h1>
 <a class="reference external image-reference" href="https://mybinder.org/v2/gh/Deltares/hydromt/main?urlpath=lab/tree/examples"><img alt="https://mybinder.org/badge_logo.svg" src="https://mybinder.org/badge_logo.svg" /></a>
-<p>This folder contains several ipython notebook examples for <strong>HydroMT</strong>.</p>
-<p>To run these examples start with the <strong>binder</strong> badge above.</p>
-<p>To run these examples on your local machine create a conda e nvironment based on the
-environment.yml in the binder folder of this repository and than start jupyer notebook.
-Run the following steps the examples folder:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda env create -f ../binder/environment.yml  # install dependencies</span>
-<span class="go">conda activate hydromt</span>
-<span class="go">flit install --dep production  # install hydromt</span>
-<span class="go">jupyter notebook</span>
+<p>Several iPython notebook examples have been prepared for <strong>HydroMT</strong> which you can
+use as a HydroMT tutorial.</p>
+<p>These examples can be run online or on your local machine.
+To run these examples online press the <strong>binder</strong> badge above.</p>
+<p>To run these examples on your local machine you need a copy of the repository and an installation
+of HydroMT including some additional packages. Please refer to the online <a class="reference internal" href="installation.html#installation-guide"><span class="std std-ref">installation guide</span></a>
+for more information about installing HydroMT.</p>
+<p>First, clone the HydroMT github repository, this creates a local copy of the repository on your local machine.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git clone https://github.com/Deltares/hydromt.git
 </pre></div>
 </div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="examples/read_raster_data.html">Read raster data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/delineate_basin.html">Delineate basins</a></li>
-</ul>
+<p>Then, navigate into the cloned <code class="docutils literal notranslate"><span class="pre">hydromt</span></code> folder:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> hydromt/examples
+</pre></div>
 </div>
+<p>Create a conda environment based on the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in the binder folder and activate this environment:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda env create -f ../binder/environment.yml
+<span class="gp">$ </span>conda activate hydromt
+</pre></div>
+</div>
+<p>Install the latest HydroMT version from cloned files into the environment.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flit install --dep production
+</pre></div>
+</div>
+<p>Finally, start a jupyter notebook inside the <code class="docutils literal notranslate"><span class="pre">examples</span></code> folder and activated <code class="docutils literal notranslate"><span class="pre">hydromt</span></code> environment.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>jupyter notebook
+</pre></div>
+</div>
+<section id="list-of-examples">
+<h2>List of examples<a class="headerlink" href="#list-of-examples" title="Permalink to this headline">#</a></h2>
+<p>For a static (non-interactive) view of the examples follow one of the links below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../_examples/delineate_basin.html"><span class="doc">Delineate basins</span></a></p></li>
+<li><p><a class="reference internal" href="../_examples/read_raster_data.html"><span class="doc">Reading raster data</span></a></p></li>
+</ul>
+</section>
 </section>
 
 
@@ -271,10 +280,10 @@ Run the following steps the examples folder:</p>
             <p class="prev-next-title">Quick overview</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="examples/read_raster_data.html" title="next page">
+    <a class='right-next' id="next-link" href="user_stories.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Reading raster data</p>
+        <p class="prev-next-title">User’s stories</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -286,8 +295,9 @@ Run the following steps the examples folder:</p>
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
@@ -298,7 +308,7 @@ Run the following steps the examples folder:</p>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
 </p>
     </div>
     
