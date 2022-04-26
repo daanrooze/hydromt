@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -217,8 +217,56 @@
               <div>
                 
   <section id="frequently-asked-questions">
-<h1>Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">#</a></h1>
-<p>dummy</p>
+<span id="faq"></span><h1>Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">#</a></h1>
+<p>This page contains some FAQ / tips and tricks to work with HydroMT.</p>
+<p><strong>Q</strong>: Does HydroMT contain any model kernels/software to run model simulations?</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">HydroMT focusses on the setup and analysis of models and does not contain the model software.
+In between the setup and analysis the model software needs to be executed to create model output.</div>
+</div>
+</div></blockquote>
+<p><strong>Q</strong>: Does HydroMT contain (global) datasets which I can use to build models?</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">HydroMT does not contain any datasets. A small spatial subset for the Piava basin in northern Italy
+of some data that is often used in combination with HydroMT is made available for testing purposes.
+The data will automatically be downloaded to the “~/.hydromt_data” folder on your machine if no
+other data catalogs are provided. See also <a class="reference internal" href="../user_guide/data_main.html#get-data"><span class="std std-ref">Working with data in HydroMT</span></a> page.
+We are working on creating more data catalogs from (cload optimized analysis read) open data sources.</div>
+</div>
+</div></blockquote>
+<p><strong>Q</strong>: Can I supply my own data to HydroMT?</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Yes, absolutely! The <a class="reference internal" href="../user_guide/data_prepare_cat.html#own-catalog"><span class="std std-ref">data catalog</span></a> for just that purpose!</div>
+</div>
+</div></blockquote>
+<p><strong>Q</strong>: Can I define more than one data catalog when building / updating models?</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Yes! You can provide several datasets by repeating the <cite>-d</cite>
+<a class="reference internal" href="../user_guide/data_main.html#get-data-cli"><span class="std std-ref">option in the command line interface</span></a></div>
+</div>
+</div></blockquote>
+<p><strong>Q</strong>: Can I re-use the same model component when building / updating a model from the command line interface with an .ini configuration file.</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Yes, that is possible. You just need to start enumerating the components by adding a number to the end
+of the component name. For instance, the second time that you use the setup_config component write
+<cite>[setup_config2]</cite> in your .ini file, etc. Note that the actual numbers don’t really matter,
+the sequence in which these are in the .ini file determines the sequence in which these are called.</div>
+</div>
+</div></blockquote>
+<p><strong>Q</strong>: How can I just write a specific model data attribute of my model (i.e.: staticmaps, staticgeoms, forcing, config or states) instead of the whole model when updating?</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Each model plugin implements a combined <cite>write()</cite> method that writes the entire model and is
+called by default at the end of the build or update workflow. If you however add a write method
+(e.g. <cite>write_staticmaps</cite>, <cite>write_forcing</cite>, <cite>write_config</cite>, etc.) to the .ini file the call to the
+general write method is disabled and only the selected model data attributes are written..</div>
+</div>
+</div></blockquote>
 </section>
 
 

@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -166,8 +166,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../_examples/read_raster_data.html">
-     Example: Reading raster data
+    <a class="reference internal" href="../_examples/reading_raster_data.html">
+     Reading raster data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/reading_vector_data.html">
+     Reading vector data
     </a>
    </li>
   </ul>
@@ -209,10 +214,22 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="gis.html">
    GIS methods
   </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/working_with_raster.html">
+     Example: Working with raster data
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="statistics.html">
@@ -278,6 +295,10 @@ options (see documentation of the individual models). The mandatory <a class="re
 argument describes the region of interest. The build method will start by running the component in which
 the model grid (if applicable) is defined for the region, usually the <cite>setup_basemaps</cite> method.
 The configuration file should listing all the components that the user wants to include during the build.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The verbosity of the log messages can be increased with <cite>-v</cite> for info and <cite>-vv</cite> for debug messages.</p>
+</div>
 <p>After activating the HydroMT python environment, the HydroMT <code class="docutils literal notranslate"><span class="pre">build</span></code> method can be run from the command line.
 To check its options run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt build --help</span>
