@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="hydromt.data_adapter.DataCatalog" href="_generated/hydromt.data_adapter.DataCatalog.html" />
-    <link rel="prev" title="Terminology" href="user_guide/terminology.html" />
+    <link rel="prev" title="Statistical methods" href="user_guide/methods_stats.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -1150,6 +1150,25 @@
   </a>
  </li>
 </ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="_generated/hydromt.config.configread.html">
+   hydromt.config.configread
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="_generated/hydromt.config.configwrite.html">
+   hydromt.config.configwrite
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="_generated/hydromt.log.setuplog.html">
+   hydromt.log.setuplog
+  </a>
+ </li>
+</ul>
 
   </div>
 </nav>
@@ -1436,6 +1455,23 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#utilities">
+   Utilities
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configuration-files">
+     Configuration files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logging">
+     Logging
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
 </nav>
@@ -1488,7 +1524,7 @@
 <td><p>Returns list of data source names.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.data_adapter.DataCatalog.to_dict.html#hydromt.data_adapter.DataCatalog.to_dict" title="hydromt.data_adapter.DataCatalog.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_adapter.DataCatalog.to_dict</span></code></a>([...])</p></td>
-<td><p>Return data catalog in dictionary format</p></td>
+<td><p>Export the data catalog to a dictionary.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.data_adapter.DataCatalog.to_dataframe.html#hydromt.data_adapter.DataCatalog.to_dataframe" title="hydromt.data_adapter.DataCatalog.to_dataframe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_adapter.DataCatalog.to_dataframe</span></code></a>([...])</p></td>
 <td><p>Return data catalog summary as DataFrame</p></td>
@@ -1625,7 +1661,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.html#hydromt.Model" title="hydromt.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a>([root, mode, config_fn, data_libs, logger])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.html#hydromt.Model" title="hydromt.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a>(root, mode, config_fn, data_libs[, logger])</p></td>
 <td><p>General and basic API for models in HydroMT</p></td>
 </tr>
 </tbody>
@@ -1652,7 +1688,7 @@
 <td><p>Single method to update a model based the settings in <cite>opt</cite>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.set_root.html#hydromt.Model.set_root" title="hydromt.Model.set_root"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.set_root</span></code></a>(root[, mode])</p></td>
-<td><p>Initialized the model root.</p></td>
+<td><p>Initialize the model root.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.setup_region.html#hydromt.Model.setup_region" title="hydromt.Model.setup_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.setup_region</span></code></a>(region[, hydrography_fn, ...])</p></td>
 <td><p>This component sets the <cite>region</cite> of interest of the model.</p></td>
@@ -2481,6 +2517,40 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 </table>
 </section>
 </section>
+<section id="utilities">
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">#</a></h2>
+<section id="configuration-files">
+<h3>Configuration files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">#</a></h3>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.config.configread.html#hydromt.config.configread" title="hydromt.config.configread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">config.configread</span></code></a>(config_fn[, encoding, cf, ...])</p></td>
+<td><p>Read configuration file and parse to (nested) dictionary.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.config.configwrite.html#hydromt.config.configwrite" title="hydromt.config.configwrite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">config.configwrite</span></code></a>(config_fn, cfdict[, ...])</p></td>
+<td><p>_summary_</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="logging">
+<h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">#</a></h3>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.log.setuplog.html#hydromt.log.setuplog" title="hydromt.log.setuplog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log.setuplog</span></code></a>([name, path, log_level, fmt, ...])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
 </section>
 
 
@@ -2489,11 +2559,11 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="user_guide/terminology.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="user_guide/methods_stats.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Terminology</p>
+            <p class="prev-next-title">Statistical methods</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="_generated/hydromt.data_adapter.DataCatalog.html" title="next page">

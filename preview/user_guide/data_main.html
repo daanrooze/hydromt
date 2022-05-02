@@ -77,7 +77,7 @@
  </a>
 </li>
 
-<li class="toctree-l1 current active nav-item">
+<li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="intro.html">
   User guide
  </a>
@@ -156,8 +156,13 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="data_types.html">
+     Supported data types
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="data_existing_cat.html">
-     Using a pre-defined Data Catalog
+     Pre-defined data catalogs
     </a>
    </li>
    <li class="toctree-l2">
@@ -167,12 +172,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../_examples/reading_raster_data.html">
-     Reading raster data
+     Example: Reading raster data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../_examples/reading_vector_data.html">
-     Reading vector data
+     Example: Reading vector data
     </a>
    </li>
   </ul>
@@ -203,20 +208,20 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="model_region.html">
-     Region options
+    <a class="reference internal" href="model_config.html">
+     Preparing a model configuration
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../_examples/delineate_basin.html">
-     Example: Hydrographic regions
+    <a class="reference internal" href="model_region.html">
+     Defining a model region
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="gis.html">
-   GIS methods
+  <a class="reference internal" href="methods_main.html">
+   Methods and workflows
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -225,21 +230,21 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/delineate_basin.html">
+     Example: Delineating basins
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../_examples/working_with_raster.html">
      Example: Working with raster data
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="methods_stats.html">
+     Statistical methods
+    </a>
+   </li>
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="statistics.html">
-   Statistical methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="terminology.html">
-   Terminology
-  </a>
  </li>
 </ul>
 
@@ -265,18 +270,13 @@
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#supported-data-types">
-   Supported data types
+  <a class="reference internal nav-link" href="#from-cli">
+   From CLI
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python-usage">
-   Python usage
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#command-line-usage">
-   Command line usage
+  <a class="reference internal nav-link" href="#from-python">
+   From Python
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -321,49 +321,18 @@ A data catalog can be initialized from one or more <strong>yaml file(s)</strong>
 as well as meta data for reproducibility.</p>
 <p>You can <a class="reference internal" href="data_existing_cat.html#existing-catalog"><span class="std std-ref">explore and make use of pre-defined data catalogs</span></a> (primarily global data),
 <a class="reference internal" href="data_prepare_cat.html#own-catalog"><span class="std std-ref">prepare your own Data Catalog</span></a> (e.g. to include local data) or use a combination of both.</p>
-<section id="supported-data-types">
-<span id="supporteddataset"></span><h2>Supported data types<a class="headerlink" href="#supported-data-types" title="Permalink to this headline">#</a></h2>
-<p>HydroMT currently supports the following data types:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="data_prepare_cat.html#rasterdataset"><span class="std std-ref">RasterDataset</span></a>: static and dynamic raster (or gridded) data</p></li>
-<li><p><a class="reference internal" href="data_prepare_cat.html#geodataframe"><span class="std std-ref">GeoDataFrame</span></a>: static vector data</p></li>
-<li><p><a class="reference internal" href="data_prepare_cat.html#geodataset"><span class="std std-ref">GeoDataset</span></a>: dynamic point location data</p></li>
-</ul>
-<p>Internally the RasterDataset and GeoDataset are represented by <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> objects
-and GeoDataFrame by <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a>. We use drivers, typically from third-party
-packages and sometimes wrapped in HydroMT functions, to parse many different file formats to this
-standardized internal data representation.</p>
-<p>An overview of the supported data formats and associated drivers and arguments are shown in the
-<a class="reference internal" href="data_prepare_cat.html#own-catalog"><span class="std std-ref">Preparing a Data Catalog</span></a> section.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Tabulated data without a spatial component such as mapping tables are planned to be added.
-Please contact us through the issue list if you would like to add other drivers.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If no yaml file is provided to the CLI build or update methods or to <a class="reference internal" href="../_generated/hydromt.data_adapter.DataCatalog.html#hydromt.data_adapter.DataCatalog" title="hydromt.data_adapter.DataCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCatalog</span></code></a>,
+HydroMT will use the data stored in the <a class="reference external" href="https://github.com/DirkEilander/hydromt-artifacts">hydromt-artifacts</a>
+which contains an extract of global data for a small region around the Piave river in Northern Italy.</p>
 </div>
-</section>
-<section id="python-usage">
-<span id="get-data-python"></span><h2>Python usage<a class="headerlink" href="#python-usage" title="Permalink to this headline">#</a></h2>
-<p>To read a dataset in Python using the HydroMT requires two steps:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Initialize a <a class="reference internal" href="../_generated/hydromt.data_adapter.DataCatalog.html#hydromt.data_adapter.DataCatalog" title="hydromt.data_adapter.DataCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCatalog</span></code></a> with references to user- or pre-defined data catalog yaml files</p></li>
-<li><p>Use <a class="reference internal" href="../api.html#api-data-catalog-get"><span class="std std-ref">one of the get_* methods</span></a> to access (a temporal or spatial region of) the data.</p></li>
-</ul>
-</div></blockquote>
-<p>For example to retrieve a raster dataset:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hydromt</span>
-<span class="n">data_cat</span> <span class="o">=</span> <span class="n">hydromt</span><span class="o">.</span><span class="n">DataCatalog</span><span class="p">(</span><span class="n">data_libs</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;/path/to/data-catalog.yml&#39;</span><span class="p">)</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">data_cat</span><span class="o">.</span><span class="n">get_rasterdataset</span><span class="p">(</span><span class="s1">&#39;source_name&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>  <span class="c1"># returns xarray.dataset</span>
-</pre></div>
-</div>
-<p>More detail about working with <a class="reference external" href="../_examples/read_raster_data.ipynb">raster data</a>, vector data or geospatial time-series data is provided in the linked examples.</p>
-</section>
-<section id="command-line-usage">
-<span id="get-data-cli"></span><h2>Command line usage<a class="headerlink" href="#command-line-usage" title="Permalink to this headline">#</a></h2>
-<p>When using the HydroMT command line interface, one can provide data catalog by specifying the
+<section id="from-cli">
+<span id="get-data-cli"></span><h2>From CLI<a class="headerlink" href="#from-cli" title="Permalink to this headline">#</a></h2>
+<p>When using the HydroMT command line interface (CLI), one can provide data catalog by specifying the
 path to the yaml file with the <code class="docutils literal notranslate"><span class="pre">-d</span></code> or <code class="docutils literal notranslate"><span class="pre">--data</span></code> option.
 Multiple yaml files can be added by reusing the <code class="docutils literal notranslate"><span class="pre">-d</span></code> option.</p>
-<p>For example when using the build method:</p>
+<p>For example when using the <a class="reference internal" href="model_build.html#cli-build"><span class="std std-ref">build</span></a> CLI method:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt build MODEL REGION -d /path/to/data_catalog1.yml -d /path/to/data_catalog1.yml</span>
 </pre></div>
 </div>
@@ -372,12 +341,23 @@ Multiple yaml files can be added by reusing the <code class="docutils literal no
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt build MODEL REGION -dd</span>
 </pre></div>
 </div>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>If no yaml file is provided to the CLI build or update methods or to <a class="reference internal" href="../_generated/hydromt.data_adapter.DataCatalog.html#hydromt.data_adapter.DataCatalog" title="hydromt.data_adapter.DataCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCatalog</span></code></a>,
-HydroMT will use the data stored in the <a class="reference external" href="https://github.com/DirkEilander/hydromt-artifacts">hydromt-artifacts</a>
-which contains an extract of global data for a small region around the Piave river in Northern Italy.</p>
+</section>
+<section id="from-python">
+<span id="get-data-python"></span><h2>From Python<a class="headerlink" href="#from-python" title="Permalink to this headline">#</a></h2>
+<p>To read a dataset in Python using the HydroMT requires two steps:</p>
+<ol class="arabic simple">
+<li><p>Initialize a <a class="reference internal" href="../_generated/hydromt.data_adapter.DataCatalog.html#hydromt.data_adapter.DataCatalog" title="hydromt.data_adapter.DataCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCatalog</span></code></a> with references to user- or pre-defined data catalog yaml files</p></li>
+<li><p>Use <a class="reference internal" href="../api.html#api-data-catalog-get"><span class="std std-ref">one of the DataCatalog.get_* methods</span></a> to access (a temporal or spatial region of) the data.</p></li>
+</ol>
+<p>For example to retrieve a raster dataset use <code class="xref py py-func docutils literal notranslate"><span class="pre">DataCatalogget_rasterdataset()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hydromt</span>
+<span class="n">data_cat</span> <span class="o">=</span> <span class="n">hydromt</span><span class="o">.</span><span class="n">DataCatalog</span><span class="p">(</span><span class="n">data_libs</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;/path/to/data-catalog.yml&#39;</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">data_cat</span><span class="o">.</span><span class="n">get_rasterdataset</span><span class="p">(</span><span class="s1">&#39;source_name&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>  <span class="c1"># returns xarray.dataset</span>
+</pre></div>
 </div>
+<p>More detail about reading <a class="reference external" href="../_examples/read_raster_data.ipynb">raster data</a>,
+<a class="reference external" href="../_examples/read_vector_data.ipynb">vector data</a>,
+or geospatial time-series data is provided in the linked examples.</p>
 </section>
 <section id="related-api-references">
 <h2>Related API references<a class="headerlink" href="#related-api-references" title="Permalink to this headline">#</a></h2>
@@ -385,7 +365,7 @@ which contains an extract of global data for a small region around the Piave riv
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference internal" href="../api.html#api-data-catalog"><span class="std std-ref">DataCatalog API</span></a></p></li>
-<li><p><a class="reference internal" href="../api.html#api-data-catalog-get"><span class="std std-ref">get_* methods</span></a></p></li>
+<li><p><a class="reference internal" href="../api.html#api-data-catalog-get"><span class="std std-ref">DataCatalog.get_* methods</span></a></p></li>
 <li><p><a class="reference internal" href="../api.html#open-methods"><span class="std std-ref">data reading-methods</span></a></p></li>
 </ul>
 </div></blockquote>

@@ -156,8 +156,13 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="data_types.html">
+     Supported data types
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="data_existing_cat.html">
-     Using a pre-defined Data Catalog
+     Pre-defined data catalogs
     </a>
    </li>
    <li class="toctree-l2">
@@ -167,12 +172,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../_examples/reading_raster_data.html">
-     Reading raster data
+     Example: Reading raster data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../_examples/reading_vector_data.html">
-     Reading vector data
+     Example: Reading vector data
     </a>
    </li>
   </ul>
@@ -203,20 +208,20 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="model_region.html">
-     Region options
+    <a class="reference internal" href="model_config.html">
+     Preparing a model configuration
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../_examples/delineate_basin.html">
-     Example: Hydrographic regions
+    <a class="reference internal" href="model_region.html">
+     Defining a model region
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="gis.html">
-   GIS methods
+  <a class="reference internal" href="methods_main.html">
+   Methods and workflows
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -225,21 +230,21 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/delineate_basin.html">
+     Example: Delineating basins
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../_examples/working_with_raster.html">
      Example: Working with raster data
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="methods_stats.html">
+     Statistical methods
+    </a>
+   </li>
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="statistics.html">
-   Statistical methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="terminology.html">
-   Terminology
-  </a>
  </li>
 </ul>
 
@@ -258,9 +263,24 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   User guide
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology">
+   Terminology
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -292,35 +312,105 @@
 <p>HydroMT is a Python package that aims to facilitate the process of building models and analyzing model results
 by automating the process to go from raw data to model data. It is an interface between <em>user</em>, <em>data</em> and hydro
 <em>models</em>.</p>
-<p>From the user side, HydroMT is organized in the following way:</p>
-<div class="line-block">
-<div class="line"><strong>Data Catalog</strong></div>
-<div class="line">HydroMT is data-agnostic through the <em>Data adapter</em> that reads a wide range of data formats
-and unifies the input data. HydroMT currently supports vector (<em>GeoDataFrame</em>), raster (<em>RasterDataset</em>)
-and time-series data (<em>GeoDataset</em>) types. Datasets are listed in and passed to HydroMT in a user defined data catalog
-<a class="reference internal" href="data_prepare_cat.html#data-yaml"><span class="std std-ref">yaml file</span></a>. HydroMT also provides several pre-defined data catalogs with mostly global datasets that can be used as is,
-but note that not all data is openly accessible.</div>
-</div>
-<div class="line-block">
-<div class="line"><strong>Configuration</strong></div>
-<div class="line">The complete building or updating process of a model can be configured in a single configuration <em>.ini</em> file.
-This file describes the full pipeline of model setup components and their arguments. The components vary per
-model <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">plugin</span></a> and are documented for each at their respective documentation websites.</div>
-</div>
-<div class="line-block">
-<div class="line"><strong>Command Line Interface (CLI)</strong></div>
-<div class="line">The CLI is a high-level interface to HydroMT. It is used to run HydroMT methods such as
-<a class="reference internal" href="model_build.html#cli-build"><span class="std std-ref">build</span></a>, <a class="reference internal" href="model_update.html#cli-update"><span class="std std-ref">update</span></a> or <a class="reference internal" href="model_clip.html#cli-clip"><span class="std std-ref">clip</span></a>.</div>
-</div>
-<div class="line-block">
-<div class="line"><strong>Python Interface</strong></div>
-<div class="line">Most common functionalities can be called through the CLI. From the Python interface, however, the user
-can interact directly with a model through the <a class="reference internal" href="model_main.html#model-interface"><span class="std std-ref">Model API</span></a> that provides a general interface
-to the model schematization (<em>staticgeoms</em> and <em>staticmaps</em>), model <em>forcing</em>, model <em>states</em>, model <em>results</em>
-and model configuration (<em>config</em>). Furthermore, many methods for raster and vector GIS,
-hydrography and statists are available.</div>
-</div>
+<p>HydroMT is organized in the following way:</p>
+<ul>
+<li><p><strong>Input Data</strong></p>
+<p>HydroMT is data-agnostic through the <em>Data adapter</em> that reads a wide range of data formats
+and unifies the input data, see <a class="reference internal" href="data_main.html#get-data"><span class="std std-ref">Working with data in HydroMT</span></a>.
+Datasets are listed in and passed to HydroMT in a user defined data catalog <a class="reference internal" href="data_prepare_cat.html#data-yaml"><span class="std std-ref">.yml file</span></a>.
+HydroMT also provides several <a class="reference internal" href="data_existing_cat.html#existing-catalog"><span class="std std-ref">pre-defined data catalogs</span></a> with mostly global datasets
+that can be used as is, but note that not all data is openly accessible.</p>
+</li>
+<li><p><strong>Models</strong></p>
+<p>HydroMT defines a model-agnostic <em>Model API</em> which provides an common interface to data components of a model
+such as (static) grids, vectors, forcing, states and simulation configuration, see <a class="reference internal" href="model_main.html#model-main"><span class="std std-ref">Working with models in HydroMT</span></a>.
+Models can be <a class="reference internal" href="model_build.html#model-build"><span class="std std-ref">build from scratch</span></a> or <a class="reference internal" href="model_update.html#model-update"><span class="std std-ref">updated</span></a> based on a pipeline defined in a model configuration <a class="reference internal" href="model_config.html#model-config"><span class="std std-ref">*.ini* file</span></a>.
+The Model API for each supported model and methods to build or update that model are implemented in <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">model plugins</span></a>
+that need to be installed alongside HydroMT to work with a supported model.
+Available model methods vary per model plugin and are documented for each plugin at their respective documentation websites.</p>
+</li>
+<li><p><strong>Methods and workflow</strong></p>
+<p><a class="reference internal" href="methods_main.html#methods-workflows"><span class="std std-ref">Methods and workflows</span></a> are the engine of HydroMT. Methods provide the low-level functionality, only accessible through the Python interface,
+to do the required processing of common data types such as grid and vector data. Workflows combine several methods to go from raw input
+data to a model component. Examples of workflows include the delineation of hydrological basins (watersheds), conversion of landuse-landcover to model parameter maps, etc.</p>
+</li>
+</ul>
+<p>A user can interact with HydroMT through the following interfaces:</p>
+<ul>
+<li><p><strong>Command Line Interface (CLI)</strong></p>
+<p>The CLI is a high-level interface to HydroMT. It is used to run HydroMT methods such as
+<a class="reference internal" href="model_build.html#cli-build"><span class="std std-ref">build</span></a>, <a class="reference internal" href="model_update.html#cli-update"><span class="std std-ref">update</span></a> or <a class="reference internal" href="model_clip.html#cli-clip"><span class="std std-ref">clip</span></a>.</p>
+</li>
+<li><p><strong>Python Interface</strong></p>
+<p>While most common functionalities can be called through the CLI, the Python interface offers more flexibility for advanced users.
+It allows you to e.g. interact directly with a model through the <a class="reference internal" href="model_main.html#model-interface"><span class="std std-ref">Model API</span></a> and apply the many
+methods and workflows available for raster and vector GIS processing, hydrography processing and statistics.</p>
+</li>
+</ul>
 <img alt="../_images/Architecture_model_data_input.png" src="../_images/Architecture_model_data_input.png" />
+</section>
+<section id="terminology">
+<span id="id1"></span><h1>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">#</a></h1>
+<p>HydroMT and this documentation use a specific terminology to describe specific objects or processes.</p>
+<table class="table">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Term</p></th>
+<th class="head"><p>Explanation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Command Line Interface (CLI)</p></td>
+<td><p>high-level interface to HydroMT <em>build</em>, <em>update</em> and <em>clip</em> methods.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Config (models)</p></td>
+<td><p>The model component which contains the model kernel simulation settings. In HydroMT, it is exposed in the model config attribute as a nested dictionary.</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration (HydroMT)</p></td>
+<td><p>(.ini) file describing the complete pipeline with all methods and their arguments to <em>build</em> or <em>update</em> a model.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data catalog</p></td>
+<td><p>A set of data sources available for HydroMT. It is build up from <em>yml</em> files containing one or more data sources with
+information about how to read and optionally preprocess the data and meta-data about the data source.</p></td>
+</tr>
+<tr class="row-even"><td><p>Data source</p></td>
+<td><p>Input data. To be processed by HydroMT, data sources are listed in yml files.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Forcing</p></td>
+<td><p>The model component with (dynamic) forcing data (meteo or hydrological for example). In HydroMT, this is a dictionary of xarray DataArray that is updated
+each time a model <em>forcing</em> method is run (eg setup_precip_forcing for wflow).</p></td>
+</tr>
+<tr class="row-even"><td><p>Model</p></td>
+<td><p>A set of files describing the schematization, forcing, states, simulation configuration and results for any supported model kernel.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Model attributes</p></td>
+<td><p>Direct properties of a model, such as the model root. They can be called when using HydroMT from python.</p></td>
+</tr>
+<tr class="row-even"><td><p>Model component</p></td>
+<td><p>A model is described by HydroMT with the following components: staticmaps (regular grid data), staticgeoms (vector data), forcing, results, states, config</p></td>
+</tr>
+<tr class="row-odd"><td><p>Model plugin</p></td>
+<td><p>Model software for HydroMT can build and update models and analyze its simulation results. For example <em>wflow</em>, <em>sfincs</em> etc.</p></td>
+</tr>
+<tr class="row-even"><td><p>Model kernel</p></td>
+<td><p>The model software to execute a model simulation. This is <em>not</em> part of any HydroMT plugin.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Region</p></td>
+<td><p>Argument of the <em>build</em> and <em>clip</em> CLI methods that specifies the region of interest where the model should be prepared / which spatial subregion should be clipped.</p></td>
+</tr>
+<tr class="row-even"><td><p>Staticgeoms</p></td>
+<td><p>The model component with static vector data. In HydroMT, this is a dictionary of GeoPandas GeoDataFrame that is updated
+when certain model methods are run.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Staticmaps</p></td>
+<td><p>The model component with static gridded data such as land properties and model parameters. In HydroMT, this is a xarray DataSet that is updated
+when certain model methods are run.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="toctree-wrapper compound">
 </div>
 </section>

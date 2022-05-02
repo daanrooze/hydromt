@@ -1150,6 +1150,25 @@
   </a>
  </li>
 </ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="hydromt.config.configread.html">
+   hydromt.config.configread
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hydromt.config.configwrite.html">
+   hydromt.config.configwrite
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="hydromt.log.setuplog.html">
+   hydromt.log.setuplog
+  </a>
+ </li>
+</ul>
 
   </div>
 </nav>
@@ -1200,14 +1219,14 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="hydromt.Model.set_root">
 <span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">set_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/models/model_api.html#Model.set_root"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.Model.set_root" title="Permalink to this definition">#</a></dt>
-<dd><p>Initialized the model root.
-In read mode it checks if the root exists.
-In write mode in creates the required model folder structure</p>
+<dd><p>Initialize the model root.</p>
+<p>In read/append mode a check is done if the root exists.
+In write mode the required model folder structure is created.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>root</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – path to model root</p></li>
-<li><p><strong>mode</strong> (<em>{&quot;r&quot;</em><em>, </em><em>&quot;r+&quot;</em><em>, </em><em>&quot;w&quot;}</em><em>, </em><em>optional</em>) – read/write-only mode for model files</p></li>
+<li><p><strong>mode</strong> (<em>{&quot;r&quot;</em><em>, </em><em>&quot;r+&quot;</em><em>, </em><em>&quot;w&quot;}</em><em>, </em><em>optional</em>) – read/append/write mode for model files</p></li>
 </ul>
 </dd>
 </dl>

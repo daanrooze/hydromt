@@ -163,6 +163,7 @@
 <span class="kn">import</span> <span class="nn">enum</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">isdir</span><span class="p">,</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">abspath</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">basename</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
@@ -195,20 +196,33 @@
 
 <div class="viewcode-block" id="Model.__init__"><a class="viewcode-back" href="../../../_generated/hydromt.Model.html#hydromt.Model.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">root</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
-        <span class="n">config_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">data_libs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">root</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span>
+        <span class="n">config_fn</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data_libs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
         <span class="o">**</span><span class="n">artifact_keys</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a model</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        root : str, optional</span>
+<span class="sd">            Model root, by default None</span>
+<span class="sd">        mode : {&#39;r&#39;,&#39;r+&#39;,&#39;w&#39;}, optional</span>
+<span class="sd">            read/append/write mode, by default &quot;w&quot;</span>
+<span class="sd">        config_fn : str, optional</span>
+<span class="sd">            Model simulation configuration file, by default None.</span>
+<span class="sd">            Note that this is not the HydroMT model setup configuration file!</span>
+<span class="sd">        data_libs : List[str], optional</span>
+<span class="sd">            List of data catalog yaml files, by default None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">ENTRYPOINTS</span>  <span class="c1"># load within method to avoid circular imports</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span>
         <span class="n">ep</span> <span class="o">=</span> <span class="n">ENTRYPOINTS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_NAME</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">version</span> <span class="o">=</span> <span class="n">ep</span><span class="o">.</span><span class="n">distro</span><span class="o">.</span><span class="n">version</span> <span class="k">if</span> <span class="n">ep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
         <span class="n">dist</span> <span class="o">=</span> <span class="n">ep</span><span class="o">.</span><span class="n">distro</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="n">ep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;unknown&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initializing </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_NAME</span><span class="si">}</span><span class="s2"> model from </span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s2"> (v</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">)</span>
 
         <span class="c1"># link to data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_catalog</span> <span class="o">=</span> <span class="n">DataCatalog</span><span class="p">(</span>
@@ -225,7 +239,8 @@
 
         <span class="c1"># model paths</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CONF</span> <span class="k">if</span> <span class="n">config_fn</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config_fn</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_root</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_root</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>  <span class="c1"># also creates hydromt.log file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initializing </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_NAME</span><span class="si">}</span><span class="s2"> model from </span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s2"> (v</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_check_get_opt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check all opt keys and raise sensible error messages if unknown.&quot;&quot;&quot;</span>
@@ -241,26 +256,41 @@
         <span class="k">return</span> <span class="n">opt</span>
 
     <span class="k">def</span> <span class="nf">_run_log_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Log method paramters before running a method&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Log method parameters before running a method&quot;&quot;&quot;</span>
         <span class="n">method</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;0123456789&quot;</span><span class="p">)</span>
         <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
         <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="c1"># combine user and default options</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">signature</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">v</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;args&quot;</span><span class="p">,</span> <span class="s2">&quot;kwargs&quot;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span>
+                    <span class="n">params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">continue</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">i</span><span class="p">:</span>
+                    <span class="n">v</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="c1"># log options</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">_empty</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;missing required argument </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> for </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Model.build"><a class="viewcode-back" href="../../../_generated/hydromt.Model.build.html#hydromt.Model.build">[docs]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Single method to build a model from scratch based on settings in `opt`.</span>
-<span class="sd">        Methods will be run one by one based on the order of appearance in `opt` (ini file)..</span>
-<span class="sd">        All model methods are supported incuding setup_*, read_* and write_*</span>
+
+<span class="sd">        Methods will be run one by one based on the order of appearance in `opt` (.ini configuration file).</span>
+<span class="sd">        All model methods are supported including setup_*, read_* and write_* methods.</span>
+
+<span class="sd">        If a write_* option is listed in `opt` (ini file) the full writing of the model at the end</span>
+<span class="sd">        of the update process is skipped.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -270,12 +300,12 @@
 <span class="sd">        res: float, optional</span>
 <span class="sd">            Model resolution. Use only if applicable to your model. By default None.</span>
 <span class="sd">        write: bool, optional</span>
-<span class="sd">            Write the complete model schematization after setting up all model components.</span>
-<span class="sd">            By default True.</span>
+<span class="sd">            Write the complete model after executing all methods in opt, by default True.</span>
 <span class="sd">        opt: dict, optional</span>
-<span class="sd">            Model build configuration. This is a nested dictionary where the first-level</span>
-<span class="sd">            keys are the names of model specific setup methods and the second-level</span>
-<span class="sd">            keys the arguments of the method:</span>
+<span class="sd">            Model build configuration. The configuration can be parsed from a</span>
+<span class="sd">            .ini file using :py:meth:`~hydromt.config.configread`.</span>
+<span class="sd">            This is a nested dictionary where the first-level keys are the names of model</span>
+<span class="sd">            specific (setup) methods and the second-level contain argument-value pairs of the method.</span>
 
 <span class="sd">            .. code-block:: text</span>
 
@@ -320,8 +350,10 @@
 
 <div class="viewcode-block" id="Model.update"><a class="viewcode-back" href="../../../_generated/hydromt.Model.update.html#hydromt.Model.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Single method to update a model based the settings in `opt`.</span>
-<span class="sd">        Methods will be run one by one based on the order of appearance in `opt` (ini file).</span>
-<span class="sd">        All model methods are supported incuding setup_*, read_* and write_*</span>
+
+<span class="sd">        Methods will be run one by one based on the order of appearance in `opt` (ini configuration file).</span>
+
+<span class="sd">        All model methods are supported including setup_*, read_* and write_* methods.</span>
 <span class="sd">        If a write_* option is listed in `opt` (ini file) the full writing of the model at the end</span>
 <span class="sd">        of the update process is skipped.</span>
 
@@ -334,9 +366,10 @@
 <span class="sd">        write: bool, optional</span>
 <span class="sd">            Write the updated model schematization to disk. By default True.</span>
 <span class="sd">        opt: dict, optional</span>
-<span class="sd">            Model update configuration. This is a nested dictionary where the first-level</span>
-<span class="sd">            keys are the names of model specific setup methods and the second-level</span>
-<span class="sd">            keys the arguments of the method:</span>
+<span class="sd">            Model build configuration. The configuration can be parsed from a</span>
+<span class="sd">            .ini file using :py:meth:`~hydromt.config.configread`.</span>
+<span class="sd">            This is a nested dictionary where the first-level keys are the names of model</span>
+<span class="sd">            specific (setup) methods and the second-level contain argument-value pairs of the method.</span>
 
 <span class="sd">            .. code-block:: text</span>
 
@@ -473,16 +506,17 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span>
 
 <div class="viewcode-block" id="Model.set_root"><a class="viewcode-back" href="../../../_generated/hydromt.Model.set_root.html#hydromt.Model.set_root">[docs]</a>    <span class="k">def</span> <span class="nf">set_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialized the model root.</span>
-<span class="sd">        In read mode it checks if the root exists.</span>
-<span class="sd">        In write mode in creates the required model folder structure</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the model root.</span>
+
+<span class="sd">        In read/append mode a check is done if the root exists.</span>
+<span class="sd">        In write mode the required model folder structure is created.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        root : str, optional</span>
 <span class="sd">            path to model root</span>
 <span class="sd">        mode : {&quot;r&quot;, &quot;r+&quot;, &quot;w&quot;}, optional</span>
-<span class="sd">            read/write-only mode for model files</span>
+<span class="sd">            read/append/write mode for model files</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;r+&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mode &quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">&quot; unknown, select from &quot;r&quot;, &quot;r+&quot; or &quot;w&quot;&#39;</span><span class="p">)</span>
@@ -509,13 +543,22 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read</span> <span class="ow">and</span> <span class="n">isfile</span><span class="p">(</span><span class="n">data_fn</span><span class="p">):</span>
                 <span class="c1"># read data and mark as used</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">data_catalog</span><span class="o">.</span><span class="n">from_yml</span><span class="p">(</span><span class="n">data_fn</span><span class="p">,</span> <span class="n">mark_used</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="c1"># change output localtion of any logging file handlers</span>
+            <span class="c1"># remove old logging file handler and add new filehandler in root if it does not exist</span>
+            <span class="n">has_log_file</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">log_level</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># default, but overwritten by the level of active loggers</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">):</span>
-                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="s2">&quot;baseFilename&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dirname</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">baseFilename</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># remove handler and close file</span>
-                    <span class="n">new_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="n">basename</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">baseFilename</span><span class="p">))</span>
-                    <span class="n">log</span><span class="o">.</span><span class="n">add_filehandler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span> <span class="n">new_path</span><span class="p">,</span> <span class="n">h</span><span class="o">.</span><span class="n">level</span><span class="p">)</span>
-                    <span class="k">break</span></div>
+                <span class="n">log_level</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">level</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="s2">&quot;baseFilename&quot;</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">dirname</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">baseFilename</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span>
+                            <span class="n">i</span>
+                        <span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># remove handler and close file</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">has_log_file</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">break</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">has_log_file</span><span class="p">:</span>
+                <span class="n">new_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="s2">&quot;hydromt.log&quot;</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">add_filehandler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span> <span class="n">new_path</span><span class="p">,</span> <span class="n">log_level</span><span class="p">)</span></div>
 
     <span class="c1">## I/O</span>
 

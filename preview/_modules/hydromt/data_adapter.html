@@ -167,6 +167,7 @@
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
@@ -182,6 +183,7 @@
 <span class="kn">from</span> <span class="nn">distutils.version</span> <span class="kn">import</span> <span class="n">LooseVersion</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">Formatter</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">gis_utils</span><span class="p">,</span> <span class="n">io</span>
 
@@ -420,7 +422,7 @@
         <span class="k">if</span> <span class="n">mark_used</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_used_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span></div>
 
-<div class="viewcode-block" id="DataCatalog.to_yml"><a class="viewcode-back" href="../../_generated/hydromt.data_adapter.DataCatalog.to_yml.html#hydromt.data_adapter.DataCatalog.to_yml">[docs]</a>    <span class="k">def</span> <span class="nf">to_yml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">used_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="DataCatalog.to_yml"><a class="viewcode-back" href="../../_generated/hydromt.data_adapter.DataCatalog.to_yml.html#hydromt.data_adapter.DataCatalog.to_yml">[docs]</a>    <span class="k">def</span> <span class="nf">to_yml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">source_names</span><span class="o">=</span><span class="p">[],</span> <span class="n">used_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Write data catalog to yml format.</span>
 
 <span class="sd">        Parameters</span>
@@ -430,22 +432,36 @@
 <span class="sd">        root: str, Path, optional</span>
 <span class="sd">            Global root for all relative paths in yml file.</span>
 <span class="sd">            If &quot;auto&quot; the data source paths are relative to the yml output ``path``.</span>
+<span class="sd">        source_names: list, optional</span>
+<span class="sd">            List of source names to export; ignored if `used_only=True`</span>
 <span class="sd">        used_only: bool</span>
-<span class="sd">            If True, export only data entries kept in used_data list.</span>
+<span class="sd">            If True, export only data entries kept in used_data list, by default False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">source_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_used_data</span> <span class="k">if</span> <span class="n">used_only</span> <span class="k">else</span> <span class="n">source_names</span>
+        <span class="n">yml_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">root</span> <span class="o">==</span> <span class="s2">&quot;auto&quot;</span><span class="p">:</span>
-            <span class="c1"># set paths relative to yml file</span>
-            <span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-            <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">root</span><span class="p">)</span>
-            <span class="n">d</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># remove absolute root path</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">source_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_used_data</span> <span class="k">if</span> <span class="n">used_only</span> <span class="k">else</span> <span class="p">[]</span>
-            <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">root</span><span class="p">,</span> <span class="n">source_names</span><span class="o">=</span><span class="n">source_names</span><span class="p">)</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="n">yml_dir</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">root</span><span class="p">,</span> <span class="n">source_names</span><span class="o">=</span><span class="n">source_names</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="o">==</span> <span class="n">yml_dir</span><span class="p">:</span>
+            <span class="n">d</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># remove root if it equals the yml_dir</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DataCatalog.to_dict"><a class="viewcode-back" href="../../_generated/hydromt.data_adapter.DataCatalog.to_dict.html#hydromt.data_adapter.DataCatalog.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_names</span><span class="o">=</span><span class="p">[],</span> <span class="n">root</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return data catalog in dictionary format&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Export the data catalog to a dictionary.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        source_names : list, optional</span>
+<span class="sd">            List of source names to export</span>
+<span class="sd">        root : str, Path, optional</span>
+<span class="sd">            Global root for all relative paths in yml file.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            data catalog dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sources_out</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
@@ -493,6 +509,8 @@
 <span class="sd">        time_tuple : tuple of str, datetime, optional</span>
 <span class="sd">            Start and end date of period of interest. By default the entire time period</span>
 <span class="sd">            of the dataset is returned.</span>
+<span class="sd">        source_names: list, optional</span>
+<span class="sd">            List of source names to export</span>
 <span class="sd">        unit_conversion: boolean, optional</span>
 <span class="sd">            If False skip unit conversion when parsing data from file, by default True.</span>
 
@@ -931,30 +949,52 @@
         <span class="k">return</span> <span class="n">source</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">pprint</span><span class="o">.</span><span class="n">pformat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">resolve_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_tuple</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns list of paths. Resolve {year}, {month} and {variable} keywords</span>
-<span class="sd">        in self.path based &#39;time_tuple&#39; and &#39;variables&#39; arguments&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">resolve_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_tuple</span><span class="p">:</span> <span class="n">Tuple</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">variables</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Resolve {year}, {month} and {variable} keywords</span>
+<span class="sd">        in self.path based on &#39;time_tuple&#39; and &#39;variables&#39; arguments</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        time_tuple : tuple of str, optional</span>
+<span class="sd">            Start and end data in string format understood by :py:func:`pandas.to_timedelta`, by default None</span>
+<span class="sd">        variables : list of str, optional</span>
+<span class="sd">            List of variable names, by default None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        List:</span>
+<span class="sd">            list of filenames matching the path pattern given date range and variables</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">yr</span><span class="p">,</span> <span class="n">mth</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span>
         <span class="n">vrs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">]</span>
         <span class="n">dates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span>
         <span class="n">fns</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">time_tuple</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;{year&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">known_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;variable&quot;</span><span class="p">]</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Formatter</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="c1"># double unknown keys to escape these when formatting</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">known_keys</span><span class="p">]:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;{&quot;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span><span class="p">,</span> <span class="s2">&quot;{{&quot;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s2">&quot;}}&quot;</span><span class="p">)</span>
+        <span class="c1"># resolve dates: month &amp; year keys</span>
+        <span class="k">if</span> <span class="n">time_tuple</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;year&quot;</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
             <span class="n">dt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unit_add</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
             <span class="n">trange</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">))</span> <span class="o">-</span> <span class="n">dt</span>
-            <span class="n">freq</span> <span class="o">=</span> <span class="s2">&quot;m&quot;</span> <span class="k">if</span> <span class="s2">&quot;{month&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;a&quot;</span>
+            <span class="n">freq</span> <span class="o">=</span> <span class="s2">&quot;m&quot;</span> <span class="k">if</span> <span class="s2">&quot;month&quot;</span> <span class="ow">in</span> <span class="n">keys</span> <span class="k">else</span> <span class="s2">&quot;a&quot;</span>
             <span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">period_range</span><span class="p">(</span><span class="o">*</span><span class="n">trange</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">variables</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;{variable&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">):</span>
+        <span class="c1"># resolve variables</span>
+        <span class="k">if</span> <span class="n">variables</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;variable&quot;</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
             <span class="n">mv_inv</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rename</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
             <span class="n">vrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">mv_inv</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">date</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">vrs</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">):</span>
                 <span class="n">yr</span><span class="p">,</span> <span class="n">mth</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">month</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">yr</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="n">mth</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">var</span><span class="p">)</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">yr</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="n">mth</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">var</span><span class="p">)</span>
+            <span class="c1"># FIXME: glob won&#39;t work with other than local file systems; use fsspec instead</span>
             <span class="n">fns</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No such file found: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>

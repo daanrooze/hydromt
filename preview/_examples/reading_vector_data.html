@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Reading vector data &#8212; HydroMT  documentation</title>
+    <title>Example: Reading vector data &#8212; HydroMT  documentation</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -38,7 +38,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Working with models in HydroMT" href="../user_guide/model_main.html" />
-    <link rel="prev" title="Reading raster data" href="reading_raster_data.html" />
+    <link rel="prev" title="Example: Reading raster data" href="reading_raster_data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -79,7 +79,7 @@
  </a>
 </li>
 
-<li class="toctree-l1 current active nav-item">
+<li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../user_guide/intro.html">
   User guide
  </a>
@@ -158,8 +158,13 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../user_guide/data_types.html">
+     Supported data types
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../user_guide/data_existing_cat.html">
-     Using a pre-defined Data Catalog
+     Pre-defined data catalogs
     </a>
    </li>
    <li class="toctree-l2">
@@ -169,12 +174,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="reading_raster_data.html">
-     Reading raster data
+     Example: Reading raster data
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Reading vector data
+     Example: Reading vector data
     </a>
    </li>
   </ul>
@@ -205,20 +210,20 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../user_guide/model_region.html">
-     Region options
+    <a class="reference internal" href="../user_guide/model_config.html">
+     Preparing a model configuration
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="delineate_basin.html">
-     Example: Hydrographic regions
+    <a class="reference internal" href="../user_guide/model_region.html">
+     Defining a model region
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../user_guide/gis.html">
-   GIS methods
+  <a class="reference internal" href="../user_guide/methods_main.html">
+   Methods and workflows
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -227,21 +232,21 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="delineate_basin.html">
+     Example: Delineating basins
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="working_with_raster.html">
      Example: Working with raster data
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../user_guide/methods_stats.html">
+     Statistical methods
+    </a>
+   </li>
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../user_guide/statistics.html">
-   Statistical methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../user_guide/terminology.html">
-   Terminology
-  </a>
  </li>
 </ul>
 
@@ -268,7 +273,7 @@
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Reading vector data
+   Example: Reading vector data
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -572,9 +577,15 @@ div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
-<section id="Reading-vector-data">
-<h1>Reading vector data<a class="headerlink" href="#Reading-vector-data" title="Permalink to this headline">#</a></h1>
-<p>This example illustrates the how to read raster data using the HydroMT DataCatalog with the <code class="docutils literal notranslate"><span class="pre">raster</span></code>, <code class="docutils literal notranslate"><span class="pre">netcdf</span></code> and <code class="docutils literal notranslate"><span class="pre">raster_tindex</span></code> drivers.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<div>
+    For an interactive online version click here:
+    <a href="https://mybinder.org/v2/gh/Deltares/hydromt/main?urlpath=lab/tree/examples/reading_vector_data.ipynb" target="_blank" rel="noopener noreferrer"><img alt="Binder badge" src="https://mybinder.org/badge_logo.svg"></a>
+</div></div>
+<section id="Example:-Reading-vector-data">
+<h1>Example: Reading vector data<a class="headerlink" href="#Example:-Reading-vector-data" title="Permalink to this headline">#</a></h1>
+<p>This example illustrates the how to read raster data using the HydroMT <a class="reference internal" href="../_generated/hydromt.data_adapter.DataCatalog.html"><span class="doc">DataCatalog</span></a> with the <code class="docutils literal notranslate"><span class="pre">vector</span></code> or <code class="docutils literal notranslate"><span class="pre">vector_table</span></code> drivers.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -584,7 +595,8 @@ div.rendered_html tbody tr:hover {
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">hydromt</span>
 <span class="kn">from</span> <span class="nn">hydromt.log</span> <span class="kn">import</span> <span class="n">setuplog</span>
-<span class="n">logger</span> <span class="o">=</span> <span class="n">setuplog</span><span class="p">(</span><span class="s2">&quot;read raster data&quot;</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">setuplog</span><span class="p">(</span><span class="s2">&quot;read vector data&quot;</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -593,7 +605,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2022-04-26 12:55:19,921 - read raster data - log - INFO - HydroMT version: 0.4.6.dev
+2022-05-02 11:30:03,832 - read vector data - log - INFO - HydroMT version: 0.4.6.dev
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -611,19 +623,22 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2022-04-26 12:55:19,931 - read raster data - data_adapter - INFO - Adding sample data v0.0.6 from artifacts
+2022-05-02 11:30:03,843 - read vector data - data_adapter - INFO - Adding sample data v0.0.6 from artifacts
 </pre></div></div>
 </div>
 </section>
 <section id="vector-driver">
 <h1><code class="docutils literal notranslate"><span class="pre">vector</span></code> driver<a class="headerlink" href="#vector-driver" title="Permalink to this headline">#</a></h1>
-<p>To read vector data and parse it into a <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code> object we use the <code class="docutils literal notranslate"><span class="pre">geopandas.open_file</span></code> method, see the <a class="reference external" href="https://geopandas.org/en/stable/docs/user_guide/io.html#reading-spatial-data">geopandas documentation</a> for details. Geopandas supports many file formats, see below. For large datasets we recommend using data formats which contain a spatial index, such as ‘GeoPackage (GPKG)’ or ‘FlatGeoBuf’ to speed up reading spatial subsets of the data.</p>
+<p>To read vector data and parse it into a <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html">geopandas.GeoDataFrame</a> object we use the <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.read_file.html">geopandas.read_file</a> method, see the <a class="reference external" href="https://geopandas.org/en/stable/docs/user_guide/io.html#reading-spatial-data">geopandas documentation</a> for details. Geopandas supports many file formats, see below. For large datasets we recommend using data
+formats which contain a spatial index, such as ‘GeoPackage (GPKG)’ or ‘FlatGeoBuf’ to speed up reading spatial subsets of the data.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># supported file formats</span>
-<span class="kn">import</span> <span class="nn">fiona</span><span class="p">;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">fiona</span><span class="o">.</span><span class="n">supported_drivers</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="kn">import</span> <span class="nn">fiona</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">fiona</span><span class="o">.</span><span class="n">supported_drivers</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
@@ -641,7 +656,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># inspect data source entry in data catalog yaml file</span>
-<span class="n">data_catalog</span><span class="p">[</span><span class="s1">&#39;gadm_level3&#39;</span><span class="p">]</span>
+<span class="n">data_catalog</span><span class="p">[</span><span class="s2">&quot;gadm_level3&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -651,24 +666,26 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;category&#39;: &#39;geography&#39;,
- &#39;data_type&#39;: &#39;GeoDataFrame&#39;,
- &#39;driver&#39;: &#39;vector&#39;,
- &#39;notes&#39;: &#39;last downloaded 2020-10-19; license required for commercial use&#39;,
- &#39;path&#39;: &#39;/home/runner/.hydromt_data/data/v0.0.6/gadm_level3.gpkg&#39;,
- &#39;source_author&#39;: &#39;gadm&#39;,
- &#39;source_license&#39;: &#39;https://gadm.org/license.html&#39;,
- &#39;source_url&#39;: &#39;https://gadm.org/download_world.html&#39;,
- &#39;source_version&#39;: 1.0}
+crs: 4326
+data_type: GeoDataFrame
+driver: vector
+meta:
+  category: geography
+  notes: last downloaded 2020-10-19; license required for commercial use
+  source_author: gadm
+  source_license: https://gadm.org/license.html
+  source_url: https://gadm.org/download_world.html
+  source_version: 1.0
+path: /home/runner/.hydromt_data/data/v0.0.6/gadm_level3.gpkg
 </pre></div></div>
 </div>
-<p>We can load any GeoDataFrame using the <code class="docutils literal notranslate"><span class="pre">get_geodataframe()</span></code> method of the DataCatalog. Note that if we don’t provide any arguments it returns the full dataset with nine data variables and for the full spatial domain. Only the data coordinates are actually read, the data variables are still lazy dask arrays.</p>
+<p>We can load any GeoDataFrame using the <a class="reference internal" href="../_generated/hydromt.data_adapter.DataCatalog.get_geodataframe.html"><span class="doc">get_geodataframe()</span></a> method of the DataCatalog. Note that if we don’t provide any arguments it returns the full dataset with nine data variables and for the full spatial domain. Only the data coordinates are actually read, the data variables are still lazy dask arrays.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span> <span class="o">=</span> <span class="n">data_catalog</span><span class="o">.</span><span class="n">get_geodataframe</span><span class="p">(</span><span class="s1">&#39;gadm_level3&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;number of rows: </span><span class="si">{</span><span class="n">gdf</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span> <span class="o">=</span> <span class="n">data_catalog</span><span class="o">.</span><span class="n">get_geodataframe</span><span class="p">(</span><span class="s2">&quot;gadm_level3&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;number of rows: </span><span class="si">{</span><span class="n">gdf</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -678,8 +695,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2022-04-26 12:55:20,018 - read raster data - data_adapter - INFO - DataCatalog: Getting gadm_level3 GeoDataFrame vector data from /home/runner/.hydromt_data/data/v0.0.6/gadm_level3.gpkg
-2022-04-26 12:55:20,018 - read raster data - data_adapter - INFO - GeoDataFrame: Read vector data.
+2022-05-02 11:30:03,945 - read vector data - data_adapter - INFO - DataCatalog: Getting gadm_level3 GeoDataFrame vector data from /home/runner/.hydromt_data/data/v0.0.6/gadm_level3.gpkg
+2022-05-02 11:30:03,946 - read vector data - data_adapter - INFO - GeoDataFrame: Read vector data.
 number of rows: 509
 </pre></div></div>
 </div>
@@ -835,8 +852,10 @@ number of rows: 509
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_subset</span> <span class="o">=</span> <span class="n">data_catalog</span><span class="o">.</span><span class="n">get_geodataframe</span><span class="p">(</span><span class="s1">&#39;gadm_level3&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">gdf</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">total_bounds</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GID_0&#39;</span><span class="p">,</span> <span class="s1">&#39;NAME_3&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;number of rows: </span><span class="si">{</span><span class="n">gdf_subset</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_subset</span> <span class="o">=</span> <span class="n">data_catalog</span><span class="o">.</span><span class="n">get_geodataframe</span><span class="p">(</span>
+    <span class="s2">&quot;gadm_level3&quot;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">gdf</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">total_bounds</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GID_0&quot;</span><span class="p">,</span> <span class="s2">&quot;NAME_3&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;number of rows: </span><span class="si">{</span><span class="n">gdf_subset</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">gdf_subset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -846,8 +865,8 @@ number of rows: 509
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2022-04-26 12:55:20,099 - read raster data - data_adapter - INFO - DataCatalog: Getting gadm_level3 GeoDataFrame vector data from /home/runner/.hydromt_data/data/v0.0.6/gadm_level3.gpkg
-2022-04-26 12:55:20,103 - read raster data - data_adapter - INFO - GeoDataFrame: Read vector data and clip to bbox (epsg:4326) [11.557, 46.096, 11.851, 46.477].
+2022-05-02 11:30:04,036 - read vector data - data_adapter - INFO - DataCatalog: Getting gadm_level3 GeoDataFrame vector data from /home/runner/.hydromt_data/data/v0.0.6/gadm_level3.gpkg
+2022-05-02 11:30:04,042 - read vector data - data_adapter - INFO - GeoDataFrame: Read vector data and clip to bbox (epsg:4326) [11.557, 46.096, 11.851, 46.477].
 number of rows: 28
 </pre></div></div>
 </div>
@@ -917,7 +936,7 @@ number of rows: 28
 </section>
 <section id="vector_table-driver">
 <h1><code class="docutils literal notranslate"><span class="pre">vector_table</span></code> driver<a class="headerlink" href="#vector_table-driver" title="Permalink to this headline">#</a></h1>
-<p>To read <em>point</em> vector data from a table (csv, xls or xlsx) and parse it into a <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code> object we use the <code class="docutils literal notranslate"><span class="pre">hydromt.open_vector_from_table</span></code> method.</p>
+<p>To read <em>point</em> vector data from a table (csv, xls or xlsx) we use the <a class="reference internal" href="../_generated/hydromt.io.open_vector_from_table.html"><span class="doc">open_vector_from_table</span></a> method.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -925,9 +944,13 @@ number of rows: 28
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create example point CSV data with funny `x` coordinate name and additional column</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">fn</span> <span class="o">=</span> <span class="s1">&#39;tmpdir/xy.csv&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x_centroid&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">gdf_subset</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">gdf_subset</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf_subset</span><span class="p">[</span><span class="s1">&#39;NAME_3&#39;</span><span class="p">]</span>
+
+<span class="n">fn</span> <span class="o">=</span> <span class="s2">&quot;tmpdir/xy.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x_centroid&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">],</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">gdf_subset</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">gdf_subset</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf_subset</span><span class="p">[</span><span class="s2">&quot;NAME_3&quot;</span><span class="p">]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>  <span class="c1"># write to file</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -1003,16 +1026,16 @@ number of rows: 28
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create data source entry for the data catalog for the new csv data</span>
 <span class="c1"># NOTE that we add specify the name of the x coordinate with the `x_dim` argument, while the y coordinate is understood by HydroMT.</span>
 <span class="n">data_source</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;GADM_level3_centroids&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="n">fn</span><span class="p">,</span>
-        <span class="s1">&#39;data_type&#39;</span><span class="p">:</span> <span class="s1">&#39;GeoDataFrame&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;driver&#39;</span><span class="p">:</span> <span class="s1">&#39;vector_table&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;crs&#39;</span><span class="p">:</span> <span class="mi">4326</span><span class="p">,</span>
-        <span class="s1">&#39;kwargs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x_dim&#39;</span><span class="p">:</span> <span class="s1">&#39;x_centroid&#39;</span><span class="p">}</span>
+    <span class="s2">&quot;GADM_level3_centroids&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">fn</span><span class="p">,</span>
+        <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;GeoDataFrame&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;driver&quot;</span><span class="p">:</span> <span class="s2">&quot;vector_table&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;crs&quot;</span><span class="p">:</span> <span class="mi">4326</span><span class="p">,</span>
+        <span class="s2">&quot;kwargs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;x_dim&quot;</span><span class="p">:</span> <span class="s2">&quot;x_centroid&quot;</span><span class="p">},</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="n">data_catalog</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data_source</span><span class="p">)</span>
-<span class="n">data_catalog</span><span class="p">[</span><span class="s1">&#39;GADM_level3_centroids&#39;</span><span class="p">]</span>
+<span class="n">data_catalog</span><span class="p">[</span><span class="s2">&quot;GADM_level3_centroids&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1022,9 +1045,12 @@ number of rows: 28
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;data_type&#39;: &#39;GeoDataFrame&#39;,
- &#39;driver&#39;: &#39;vector_table&#39;,
- &#39;path&#39;: &#39;/home/runner/work/hydromt/hydromt/docs/_examples/tmpdir/xy.csv&#39;}
+crs: 4326
+data_type: GeoDataFrame
+driver: vector_table
+kwargs:
+  x_dim: x_centroid
+path: /home/runner/work/hydromt/hydromt/docs/_examples/tmpdir/xy.csv
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1032,8 +1058,8 @@ number of rows: 28
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we can then read the data back as a GeoDataFrame</span>
-<span class="n">gdf_centroid</span> <span class="o">=</span> <span class="n">data_catalog</span><span class="o">.</span><span class="n">get_geodataframe</span><span class="p">(</span><span class="s1">&#39;GADM_level3_centroids&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;CRS: </span><span class="si">{</span><span class="n">gdf_centroid</span><span class="o">.</span><span class="n">crs</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">gdf_centroid</span> <span class="o">=</span> <span class="n">data_catalog</span><span class="o">.</span><span class="n">get_geodataframe</span><span class="p">(</span><span class="s2">&quot;GADM_level3_centroids&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CRS: </span><span class="si">{</span><span class="n">gdf_centroid</span><span class="o">.</span><span class="n">crs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">gdf_centroid</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1043,8 +1069,8 @@ number of rows: 28
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2022-04-26 12:55:20,359 - read raster data - data_adapter - INFO - DataCatalog: Getting GADM_level3_centroids GeoDataFrame vector_table data from /home/runner/work/hydromt/hydromt/docs/_examples/tmpdir/xy.csv
-2022-04-26 12:55:20,361 - read raster data - data_adapter - INFO - GeoDataFrame: Read vector_table data.
+2022-05-02 11:30:04,328 - read vector data - data_adapter - INFO - DataCatalog: Getting GADM_level3_centroids GeoDataFrame vector_table data from /home/runner/work/hydromt/hydromt/docs/_examples/tmpdir/xy.csv
+2022-05-02 11:30:04,330 - read vector data - data_adapter - INFO - GeoDataFrame: Read vector_table data.
 CRS: epsg:4326
 </pre></div></div>
 </div>
@@ -1108,7 +1134,7 @@ CRS: epsg:4326
 </section>
 <section id="Visualize-vector-data">
 <h1>Visualize vector data<a class="headerlink" href="#Visualize-vector-data" title="Permalink to this headline">#</a></h1>
-<p>The data can be visualized with the <code class="docutils literal notranslate"><span class="pre">.plot()</span></code> geopandas method. In an interactive environment you can also try the <code class="docutils literal notranslate"><span class="pre">.explore()</span></code> method</p>
+<p>The data can be visualized with the <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.plot.html">.plot()</a> geopandas method. In an interactive environment you can also try the <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explore.html">.explore()</a> method</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
@@ -1118,8 +1144,8 @@ CRS: epsg:4326
 <span class="c1"># m</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">gdf_subset</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-<span class="n">gdf_centroid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">gdf_subset</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">gdf_centroid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1151,7 +1177,7 @@ CRS: epsg:4326
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Reading raster data</p>
+            <p class="prev-next-title">Example: Reading raster data</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../user_guide/model_main.html" title="next page">

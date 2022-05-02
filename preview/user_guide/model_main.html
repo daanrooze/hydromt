@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Building a model" href="model_build.html" />
-    <link rel="prev" title="Reading vector data" href="../_examples/reading_vector_data.html" />
+    <link rel="prev" title="Example: Reading vector data" href="../_examples/reading_vector_data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -77,7 +77,7 @@
  </a>
 </li>
 
-<li class="toctree-l1 current active nav-item">
+<li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="intro.html">
   User guide
  </a>
@@ -156,8 +156,13 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="data_types.html">
+     Supported data types
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="data_existing_cat.html">
-     Using a pre-defined Data Catalog
+     Pre-defined data catalogs
     </a>
    </li>
    <li class="toctree-l2">
@@ -167,12 +172,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../_examples/reading_raster_data.html">
-     Reading raster data
+     Example: Reading raster data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../_examples/reading_vector_data.html">
-     Reading vector data
+     Example: Reading vector data
     </a>
    </li>
   </ul>
@@ -203,20 +208,20 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="model_region.html">
-     Region options
+    <a class="reference internal" href="model_config.html">
+     Preparing a model configuration
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../_examples/delineate_basin.html">
-     Example: Hydrographic regions
+    <a class="reference internal" href="model_region.html">
+     Defining a model region
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="gis.html">
-   GIS methods
+  <a class="reference internal" href="methods_main.html">
+   Methods and workflows
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -225,21 +230,21 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/delineate_basin.html">
+     Example: Delineating basins
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../_examples/working_with_raster.html">
      Example: Working with raster data
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="methods_stats.html">
+     Statistical methods
+    </a>
+   </li>
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="statistics.html">
-   Statistical methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="terminology.html">
-   Terminology
-  </a>
  </li>
 </ul>
 
@@ -270,8 +275,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-interface">
-   Model interface
+  <a class="reference internal nav-link" href="#model-data-components">
+   Model data components
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -313,18 +318,19 @@
 <h2>High level functionality<a class="headerlink" href="#high-level-functionality" title="Permalink to this headline">#</a></h2>
 <p>HydroMT has the following high-level functionality for setting up models from raw data or adjusting models:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="model_region.html#region"><span class="std std-ref">defining a model region</span></a> for <em>building</em> or <em>clipping</em> models.</p></li>
-<li><p><a class="reference internal" href="model_build.html#cli-build"><span class="std std-ref">building a model</span></a>: building a model from scratch.</p></li>
-<li><p><a class="reference internal" href="model_update.html#cli-update"><span class="std std-ref">updating a model</span></a>: updating an existing model (e.g. add model components or change data source).</p></li>
-<li><p><a class="reference internal" href="model_clip.html#cli-clip"><span class="std std-ref">clipping a model</span></a>: changing the spatial domain of an existing model (e.g. select subbasins from a larger model).</p></li>
+<li><p><a class="reference internal" href="model_build.html#model-build"><span class="std std-ref">building a model</span></a>: building a model from scratch.</p></li>
+<li><p><a class="reference internal" href="model_update.html#model-update"><span class="std std-ref">updating a model</span></a>: adding or changing model components of an existing model.</p></li>
+<li><p><a class="reference internal" href="model_clip.html#model-clip"><span class="std std-ref">clipping a model</span></a>: changing the spatial domain of an existing model (e.g. select subbasins from a larger model).</p></li>
 </ul>
+<p>The building and clipping methods required the user to provide a <a class="reference internal" href="model_region.html#region"><span class="std std-ref">Defining a model region</span></a> of interest. HydroMT provides
+several options to define a region based on a geospatial or hydrographic regions.</p>
 <p>The exact process of building or updating a model can be configured in a single configuration <em>.ini</em> file.
-This file describes the full pipeline of model components and their arguments. The components vary for the
+This file describes the full pipeline of model methods and their arguments. The methods vary for the
 different model <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">Plugins</span></a> and are documented for each at their respective documentation websites.</p>
 </section>
-<section id="model-interface">
-<span id="id1"></span><h2>Model interface<a class="headerlink" href="#model-interface" title="Permalink to this headline">#</a></h2>
-<p>#TODO</p>
+<section id="model-data-components">
+<span id="model-interface"></span><h2>Model data components<a class="headerlink" href="#model-data-components" title="Permalink to this headline">#</a></h2>
+<p>#TODO create table with model components (staticmaps, staticgeoms, config, forcing, states, etc.)</p>
 </section>
 <section id="supported-models">
 <h2>Supported models<a class="headerlink" href="#supported-models" title="Permalink to this headline">#</a></h2>
@@ -344,7 +350,7 @@ different model <a class="reference internal" href="../plugins.html#plugins"><sp
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Reading vector data</p>
+            <p class="prev-next-title">Example: Reading vector data</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="model_build.html" title="next page">

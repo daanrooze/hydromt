@@ -35,7 +35,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Region options" href="model_region.html" />
+    <link rel="next" title="Preparing a model configuration" href="model_config.html" />
     <link rel="prev" title="Updating a model" href="model_update.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -77,7 +77,7 @@
  </a>
 </li>
 
-<li class="toctree-l1 current active nav-item">
+<li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="intro.html">
   User guide
  </a>
@@ -156,8 +156,13 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="data_types.html">
+     Supported data types
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="data_existing_cat.html">
-     Using a pre-defined Data Catalog
+     Pre-defined data catalogs
     </a>
    </li>
    <li class="toctree-l2">
@@ -167,12 +172,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../_examples/reading_raster_data.html">
-     Reading raster data
+     Example: Reading raster data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../_examples/reading_vector_data.html">
-     Reading vector data
+     Example: Reading vector data
     </a>
    </li>
   </ul>
@@ -203,20 +208,20 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="model_region.html">
-     Region options
+    <a class="reference internal" href="model_config.html">
+     Preparing a model configuration
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../_examples/delineate_basin.html">
-     Example: Hydrographic regions
+    <a class="reference internal" href="model_region.html">
+     Defining a model region
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="gis.html">
-   GIS methods
+  <a class="reference internal" href="methods_main.html">
+   Methods and workflows
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -225,21 +230,21 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/delineate_basin.html">
+     Example: Delineating basins
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../_examples/working_with_raster.html">
      Example: Working with raster data
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="methods_stats.html">
+     Statistical methods
+    </a>
+   </li>
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="statistics.html">
-   Statistical methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="terminology.html">
-   Terminology
-  </a>
  </li>
 </ul>
 
@@ -258,9 +263,24 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#from-cli">
+   From CLI
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#from-python">
+   From Python
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -288,33 +308,36 @@
               <div>
                 
   <section id="clipping-a-model">
-<span id="cli-clip"></span><h1>Clipping a model<a class="headerlink" href="#clipping-a-model" title="Permalink to this headline">#</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This method is not implemented for all plugins. Please check the documentation of the respective
+<span id="model-clip"></span><h1>Clipping a model<a class="headerlink" href="#clipping-a-model" title="Permalink to this headline">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">clip</span></code> method allows to clip a subregion from a existing model, including all static maps,
+static geometries and forcing data.</p>
+<p><strong>Steps in brief:</strong></p>
+<ol class="arabic simple">
+<li><p>You have an <strong>existing model</strong> schematization ready</p></li>
+<li><p>Define your <strong>model subregion</strong>, see the overview of <a class="reference internal" href="model_region.html#region"><span class="std std-ref">region options</span></a>.</p></li>
+<li><p><strong>Clip</strong> you model using the CLI or Python interface</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is not yet implemented for all plugins. Please check the documentation of the respective
 <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">plugin</span></a> for more information on whether the clip method is available.</p>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">clip</span></code> method allows to clip a subregion from a model, including all static maps,
-static geometries and forcing data. The <a class="reference internal" href="model_region.html#region"><span class="std std-ref">region</span></a> argument follows the same syntax as
-in the <a class="reference internal" href="model_build.html#cli-build"><span class="std std-ref">build method</span></a>.</p>
-<p>After activating the HydroMT python environment, the HydroMT <code class="docutils literal notranslate"><span class="pre">clip</span></code> method can be run from the command line.
-To check its options run:</p>
+<section id="from-cli">
+<span id="cli-clip"></span><h2>From CLI<a class="headerlink" href="#from-cli" title="Permalink to this headline">#</a></h2>
+<p><strong>Example usage</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">hydromt</span> <span class="pre">clip</span></code> command line intrefce (CLI) method can be run from the command line after the right conda environment is activated.</p>
+<p>The following example clips a <code class="docutils literal notranslate"><span class="pre">subbasin</span></code> region (based on its outflow location) from an existing Wflow model
+at <cite>/path/to/model_root</cite> and saves the output to <cite>/path/to/model_destination</cite>. The subbasin is defined based
+on an outflow location snapped to a stream order 4 river which based on a map called wflow_streamorder
+of the Wflow model.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt clip wflow /path/to/model_root /path/to/model_destination &quot;{&#39;subbasin&#39;: [-7.24, 62.09], &#39;wflow_streamorder&#39;: 4}&quot;</span>
+</pre></div>
+</div>
+<p><strong>Overview of options</strong></p>
+<p>To check all options do:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt clip --help</span>
 </pre></div>
 </div>
-<p><strong>Example usage</strong></p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Example usage to clip a wflow model for a subbasin derived from point coordinates</span>
-<span class="go">snapped to cells with stream order &gt;= 4</span>
-<span class="go">hydromt clip wflow /path/to/model_root /path/to/model_destination &quot;{&#39;subbasin&#39;: [-7.24, 62.09], &#39;wflow_streamorder&#39;: 4}&quot;</span>
-
-<span class="go">Example usage basin based on ID from model_root basins map</span>
-<span class="go">hydromt clip wflow /path/to/model_root /path/to/model_destination &quot;{&#39;basin&#39;: 1}&quot;</span>
-
-<span class="go">Example usage basins whose outlets are inside a geometry</span>
-<span class="go">hydromt clip wflow /path/to/model_root /path/to/model_destination &quot;{&#39;outlet&#39;: &#39;geometry.geojson&#39;}&quot;</span>
-</pre></div>
-</div>
-<p><strong>Further options</strong></p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Usage: main clip [OPTIONS] MODEL MODEL_ROOT MODEL_DESTINATION REGION</span>
 
 <span class="go">  Create a new model based on clipped region of an existing model. If the</span>
@@ -341,6 +364,23 @@ To check its options run:</p>
 </pre></div>
 </div>
 </section>
+<section id="from-python">
+<span id="python-clip"></span><h2>From Python<a class="headerlink" href="#from-python" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A general clip method for the Model class is currently not yet available and the Python signature of the might change in the future.</p>
+</div>
+<p><strong>Example usage</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hydromt_wflow</span> <span class="kn">import</span> <span class="n">WflowModel</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">WflowModel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/path/to/model_root&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>  <span class="c1"># initialize model with default logger in read mode</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">clip_staticmaps</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;subbasin&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">7.24</span><span class="p">,</span> <span class="mf">62.09</span><span class="p">],</span> <span class="s1">&#39;wflow_streamorder&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">clip_forcing</span><span class="p">()</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">set_root</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;path/to/model_destination&#39;</span><span class="p">)</span>  <span class="c1"># change root to output directory</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
 
 
               </div>
@@ -355,10 +395,10 @@ To check its options run:</p>
             <p class="prev-next-title">Updating a model</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="model_region.html" title="next page">
+    <a class='right-next' id="next-link" href="model_config.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Region options</p>
+        <p class="prev-next-title">Preparing a model configuration</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

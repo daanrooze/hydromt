@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Region options &#8212; HydroMT  documentation</title>
+    <title>Defining a model region &#8212; HydroMT  documentation</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -35,8 +35,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Delineate basins" href="../_examples/delineate_basin.html" />
-    <link rel="prev" title="Clipping a model" href="model_clip.html" />
+    <link rel="next" title="Methods and workflows" href="methods_main.html" />
+    <link rel="prev" title="Preparing a model configuration" href="model_config.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -77,7 +77,7 @@
  </a>
 </li>
 
-<li class="toctree-l1 current active nav-item">
+<li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="intro.html">
   User guide
  </a>
@@ -156,8 +156,13 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="data_types.html">
+     Supported data types
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="data_existing_cat.html">
-     Using a pre-defined Data Catalog
+     Pre-defined data catalogs
     </a>
    </li>
    <li class="toctree-l2">
@@ -167,12 +172,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../_examples/reading_raster_data.html">
-     Reading raster data
+     Example: Reading raster data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../_examples/reading_vector_data.html">
-     Reading vector data
+     Example: Reading vector data
     </a>
    </li>
   </ul>
@@ -202,21 +207,21 @@
      Clipping a model
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Region options
+   <li class="toctree-l2">
+    <a class="reference internal" href="model_config.html">
+     Preparing a model configuration
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../_examples/delineate_basin.html">
-     Example: Hydrographic regions
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Defining a model region
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="gis.html">
-   GIS methods
+  <a class="reference internal" href="methods_main.html">
+   Methods and workflows
   </a>
   <input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -225,21 +230,21 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../_examples/delineate_basin.html">
+     Example: Delineating basins
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../_examples/working_with_raster.html">
      Example: Working with raster data
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="methods_stats.html">
+     Statistical methods
+    </a>
+   </li>
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="statistics.html">
-   Statistical methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="terminology.html">
-   Terminology
-  </a>
  </li>
 </ul>
 
@@ -302,9 +307,11 @@
               
               <div>
                 
-  <section id="region-options">
-<span id="region"></span><h1>Region options<a class="headerlink" href="#region-options" title="Permalink to this headline">#</a></h1>
-<p>A user can define the region of interest based on general geospatial or hydrographic area using one of the following options:</p>
+  <section id="defining-a-model-region">
+<span id="region"></span><h1>Defining a model region<a class="headerlink" href="#defining-a-model-region" title="Permalink to this headline">#</a></h1>
+<p>To setup a model for a specific region, you can define use several geospatial or hydrographic region definitions which are explained in this chapter.
+The syntax is interpreted using the <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.parse_region.html#hydromt.workflows.basin_mask.parse_region" title="hydromt.workflows.basin_mask.parse_region"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_region()</span></code></a> method.
+For hydrographic regions see also the <a class="reference internal" href="../_examples/delineate_basin.html"><span class="doc">delineate basins</span></a> example and <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.get_basin_geometry.html#hydromt.workflows.basin_mask.get_basin_geometry" title="hydromt.workflows.basin_mask.get_basin_geometry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_basin_geometry()</span></code></a> method.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>All x and y coordinates in the <em>point</em> and <em>bbox</em> are in the EPSG:4326 (WGS84) coordinate reference system.</p>
@@ -388,8 +395,6 @@ combined with stream arguments.</p>
 <p>To only select interbasins based on the outlet location of entire basins use <code class="docutils literal notranslate"><span class="pre">'outlets':</span> <span class="pre">true</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'outlets':</span> <span class="pre">true}</span></code></p>
 </div></blockquote>
-<p>See also the <a class="reference internal" href="../_examples/delineate_basin.html"><span class="doc">hydrographic regions</span></a> example and the
-<a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.parse_region.html#hydromt.workflows.basin_mask.parse_region" title="hydromt.workflows.basin_mask.parse_region"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_region()</span></code></a> and <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.get_basin_geometry.html#hydromt.workflows.basin_mask.get_basin_geometry" title="hydromt.workflows.basin_mask.get_basin_geometry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_basin_geometry()</span></code></a> methods.</p>
 <img alt="../_images/region.png" src="../_images/region.png" />
 </section>
 </section>
@@ -400,17 +405,17 @@ combined with stream arguments.</p>
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="model_clip.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="model_config.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Clipping a model</p>
+            <p class="prev-next-title">Preparing a model configuration</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../_examples/delineate_basin.html" title="next page">
+    <a class='right-next' id="next-link" href="methods_main.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Delineate basins</p>
+        <p class="prev-next-title">Methods and workflows</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

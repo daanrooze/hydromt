@@ -1150,6 +1150,25 @@
   </a>
  </li>
 </ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="hydromt.config.configread.html">
+   hydromt.config.configread
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hydromt.config.configwrite.html">
+   hydromt.config.configwrite
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="hydromt.log.setuplog.html">
+   hydromt.log.setuplog
+  </a>
+ </li>
+</ul>
 
   </div>
 </nav>
@@ -1199,7 +1218,7 @@
 <h1>hydromt.data_adapter.DataCatalog.to_yml<a class="headerlink" href="#hydromt-data-adapter-datacatalog-to-yml" title="Permalink to this headline">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="hydromt.data_adapter.DataCatalog.to_yml">
-<span class="sig-prename descclassname"><span class="pre">DataCatalog.</span></span><span class="sig-name descname"><span class="pre">to_yml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">used_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/data_adapter.html#DataCatalog.to_yml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.data_adapter.DataCatalog.to_yml" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DataCatalog.</span></span><span class="sig-name descname"><span class="pre">to_yml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">used_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydromt/data_adapter.html#DataCatalog.to_yml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hydromt.data_adapter.DataCatalog.to_yml" title="Permalink to this definition">#</a></dt>
 <dd><p>Write data catalog to yml format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1207,7 +1226,8 @@
 <li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>Path</em>) – yml output path.</p></li>
 <li><p><strong>root</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>Path</em><em>, </em><em>optional</em>) – Global root for all relative paths in yml file.
 If “auto” the data source paths are relative to the yml output <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p></li>
-<li><p><strong>used_only</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True, export only data entries kept in used_data list.</p></li>
+<li><p><strong>source_names</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>, </em><em>optional</em>) – List of source names to export; ignored if <cite>used_only=True</cite></p></li>
+<li><p><strong>used_only</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True, export only data entries kept in used_data list, by default False.</p></li>
 </ul>
 </dd>
 </dl>
