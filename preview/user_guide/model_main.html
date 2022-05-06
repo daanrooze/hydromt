@@ -330,7 +330,57 @@ different model <a class="reference internal" href="../plugins.html#plugins"><sp
 </section>
 <section id="model-data-components">
 <span id="model-interface"></span><h2>Model data components<a class="headerlink" href="#model-data-components" title="Permalink to this headline">#</a></h2>
-<p>#TODO create table with model components (staticmaps, staticgeoms, config, forcing, states, etc.)</p>
+<p>A model is described by HydroMT with the following components:</p>
+<table class="colwidths-given table">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 56%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Explanation</p></th>
+<th class="head"><p>API</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Staticmaps</p></td>
+<td><p>Static gridded data</p></td>
+<td><p><a class="reference internal" href="../_generated/hydromt.Model.set_staticmaps.html#hydromt.Model.set_staticmaps" title="hydromt.Model.set_staticmaps"><code class="xref py py-attr docutils literal notranslate"><span class="pre">set_staticmaps</span></code></a>
+<a class="reference internal" href="../_generated/hydromt.Model.read_staticmaps.html#hydromt.Model.read_staticmaps" title="hydromt.Model.read_staticmaps"><code class="xref py py-attr docutils literal notranslate"><span class="pre">read_staticmaps</span></code></a>
+<a class="reference internal" href="../_generated/hydromt.Model.write_staticmaps.html#hydromt.Model.write_staticmaps" title="hydromt.Model.write_staticmaps"><code class="xref py py-attr docutils literal notranslate"><span class="pre">write_staticmaps</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Staticgeoms</p></td>
+<td><p>Static vector data</p></td>
+<td><p><a class="reference internal" href="../_generated/hydromt.Model.set_staticgeoms.html#hydromt.Model.set_staticgeoms" title="hydromt.Model.set_staticgeoms"><code class="xref py py-attr docutils literal notranslate"><span class="pre">set_staticgeoms</span></code></a>
+<a class="reference internal" href="../_generated/hydromt.Model.read_staticgeoms.html#hydromt.Model.read_staticgeoms" title="hydromt.Model.read_staticgeoms"><code class="xref py py-attr docutils literal notranslate"><span class="pre">read_staticgeoms</span></code></a>
+<a class="reference internal" href="../_generated/hydromt.Model.write_staticgeoms.html#hydromt.Model.write_staticgeoms" title="hydromt.Model.write_staticgeoms"><code class="xref py py-attr docutils literal notranslate"><span class="pre">write_staticgeoms</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Forcing</p></td>
+<td><p>(Dynamic) forcing data (meteo or hydrological for example)</p></td>
+<td><p><a class="reference internal" href="../_generated/hydromt.Model.set_forcing.html#hydromt.Model.set_forcing" title="hydromt.Model.set_forcing"><code class="xref py py-attr docutils literal notranslate"><span class="pre">set_forcing</span></code></a>
+<a class="reference internal" href="../_generated/hydromt.Model.read_forcing.html#hydromt.Model.read_forcing" title="hydromt.Model.read_forcing"><code class="xref py py-attr docutils literal notranslate"><span class="pre">read_forcing</span></code></a>
+<a class="reference internal" href="../_generated/hydromt.Model.write_forcing.html#hydromt.Model.write_forcing" title="hydromt.Model.write_forcing"><code class="xref py py-attr docutils literal notranslate"><span class="pre">write_forcing</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Results</p></td>
+<td><p>Model output</p></td>
+<td><p><a class="reference internal" href="../_generated/hydromt.Model.set_results.html#hydromt.Model.set_results" title="hydromt.Model.set_results"><code class="xref py py-attr docutils literal notranslate"><span class="pre">set_results</span></code></a>
+<a class="reference internal" href="../_generated/hydromt.Model.read_results.html#hydromt.Model.read_results" title="hydromt.Model.read_results"><code class="xref py py-attr docutils literal notranslate"><span class="pre">read_results</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p>States</p></td>
+<td><p>Initial model conditions</p></td>
+<td><p><a class="reference internal" href="../_generated/hydromt.Model.set_states.html#hydromt.Model.set_states" title="hydromt.Model.set_states"><code class="xref py py-attr docutils literal notranslate"><span class="pre">set_states</span></code></a>
+<a class="reference internal" href="../_generated/hydromt.Model.read_states.html#hydromt.Model.read_states" title="hydromt.Model.read_states"><code class="xref py py-attr docutils literal notranslate"><span class="pre">read_states</span></code></a>
+<a class="reference internal" href="../_generated/hydromt.Model.write_states.html#hydromt.Model.write_states" title="hydromt.Model.write_states"><code class="xref py py-attr docutils literal notranslate"><span class="pre">write_states</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Config</p></td>
+<td><p>Settings to build or update a model</p></td>
+<td><p><a class="reference internal" href="../_generated/hydromt.Model.set_config.html#hydromt.Model.set_config" title="hydromt.Model.set_config"><code class="xref py py-attr docutils literal notranslate"><span class="pre">set_config</span></code></a>
+<a class="reference internal" href="../_generated/hydromt.Model.read_config.html#hydromt.Model.read_config" title="hydromt.Model.read_config"><code class="xref py py-attr docutils literal notranslate"><span class="pre">read_config</span></code></a>
+<a class="reference internal" href="../_generated/hydromt.Model.write_config.html#hydromt.Model.write_config" title="hydromt.Model.write_config"><code class="xref py py-attr docutils literal notranslate"><span class="pre">write_config</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="supported-models">
 <h2>Supported models<a class="headerlink" href="#supported-models" title="Permalink to this headline">#</a></h2>
