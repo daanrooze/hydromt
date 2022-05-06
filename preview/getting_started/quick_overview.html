@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Examples" href="examples_index.html" />
-    <link rel="prev" title="Installation Guide" href="installation.html" />
+    <link rel="prev" title="Installation guide" href="installation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -142,7 +142,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="installation.html">
-   Installation Guide
+   Installation guide
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -232,16 +232,15 @@
               <div>
                 
   <section id="quick-overview">
-<h1>Quick overview<a class="headerlink" href="#quick-overview" title="Permalink to this headline">#</a></h1>
+<span id="id1"></span><h1>Quick overview<a class="headerlink" href="#quick-overview" title="Permalink to this headline">#</a></h1>
 <p>Typically, we use HydroMT together with a plugin to build a model from scratch.
-Here, we illustrate this for the a <a class="reference external" href="https://deltares.github.io/Wflow.jl/dev">Wflow</a> rainfall-runoff model, but you can follow
-the procedure is identical for other models.</p>
+Here, we illustrate this for the <a class="reference external" href="https://deltares.github.io/Wflow.jl/dev">Wflow</a> rainfall-runoff model, but the procedure is identical for other models.</p>
 <section id="install-hydromt-model-plugin">
 <h2>Install HydroMT &amp; model plugin<a class="headerlink" href="#install-hydromt-model-plugin" title="Permalink to this headline">#</a></h2>
 <p>If you haven’t already done so, first install HydroMT and the <a class="reference external" href="https://deltares.github.io/hydromt_wflow/">HydroMT-Wflow plugin</a>
 in a new <strong>hydromt</strong> environment and activate this environment.
 For more information about the installation, please refer to the <a class="reference internal" href="installation.html#installation-guide"><span class="std std-ref">installation guide</span></a>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mamba create -n hydromt -c conda-forge <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9 hydromt hydromt-wflow
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mamba create -n hydromt -c conda-forge <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9 hydromt hydromt_wflow
 <span class="gp">$ </span>conda activate hydromt
 </pre></div>
 </div>
@@ -260,7 +259,7 @@ This returns the available models for HydroMT and should at least contain wflow 
 <li><p>the <strong>source data</strong>: To try out HydroMT, you can make use of the publicly available <a class="reference internal" href="../user_guide/data_existing_cat.html#existing-catalog"><span class="std std-ref">HydroMT artifacts data catalog</span></a>
 which contains data for the Piave basin in Northern Italy and is the default catalog if no other one is specified.</p></li>
 <li><p>the <strong>model region</strong>: There are many options to define the <a class="reference internal" href="../user_guide/model_region.html#region"><span class="std std-ref">region</span></a>. In this example the model region is defined
-by the Piave subbasin upstream from a outlet point defined: <code class="docutils literal notranslate"><span class="pre">&quot;{'subbasin':</span> <span class="pre">[12.2051,</span> <span class="pre">45.8331],</span> <span class="pre">'strord':</span> <span class="pre">4}&quot;</span></code></p></li>
+by the Piave subbasin upstream from an outlet point defined: <code class="docutils literal notranslate"><span class="pre">&quot;{'subbasin':</span> <span class="pre">[12.2051,</span> <span class="pre">45.8331],</span> <span class="pre">'strord':</span> <span class="pre">4}&quot;</span></code></p></li>
 <li><p>the <strong>model setup configuration</strong>: Finally, the model setup needs to be configured. Here, the example configuration from the HydroMT-Wflow repository
 is used. You can download the <em>ini</em> file <a class="reference external" href="https://raw.githubusercontent.com/Deltares/hydromt_wflow/main/examples/wflow_build.ini">here (right click &amp; save as)</a> and save it in the current directory.
 For information about specific options, please visit the documentation of the HydroMT plugin of your model of interest.</p></li>
@@ -283,7 +282,7 @@ in the <cite>wflow_test</cite> folder. This Wflow model instance is ready to be 
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Installation Guide</p>
+            <p class="prev-next-title">Installation guide</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="examples_index.html" title="next page">

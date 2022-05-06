@@ -320,7 +320,7 @@ It supports many drivers to read different data formats and contains several pre
 A data catalog can be initialized from one or more <strong>yaml file(s)</strong>, which contain all required information to read and pre-process a dataset,
 as well as meta data for reproducibility.</p>
 <p>You can <a class="reference internal" href="data_existing_cat.html#existing-catalog"><span class="std std-ref">explore and make use of pre-defined data catalogs</span></a> (primarily global data),
-<a class="reference internal" href="data_prepare_cat.html#own-catalog"><span class="std std-ref">prepare your own Data Catalog</span></a> (e.g. to include local data) or use a combination of both.</p>
+<a class="reference internal" href="data_prepare_cat.html#own-catalog"><span class="std std-ref">prepare your own data catalog</span></a> (e.g. to include local data) or use a combination of both.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>If no yaml file is provided to the CLI build or update methods or to <a class="reference internal" href="../_generated/hydromt.data_adapter.DataCatalog.html#hydromt.data_adapter.DataCatalog" title="hydromt.data_adapter.DataCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCatalog</span></code></a>,
@@ -329,7 +329,7 @@ which contains an extract of global data for a small region around the Piave riv
 </div>
 <section id="from-cli">
 <span id="get-data-cli"></span><h2>From CLI<a class="headerlink" href="#from-cli" title="Permalink to this headline">#</a></h2>
-<p>When using the HydroMT command line interface (CLI), one can provide data catalog by specifying the
+<p>When using the HydroMT command line interface (CLI), one can provide a data catalog by specifying the
 path to the yaml file with the <code class="docutils literal notranslate"><span class="pre">-d</span></code> or <code class="docutils literal notranslate"><span class="pre">--data</span></code> option.
 Multiple yaml files can be added by reusing the <code class="docutils literal notranslate"><span class="pre">-d</span></code> option.</p>
 <p>For example when using the <a class="reference internal" href="model_build.html#cli-build"><span class="std std-ref">build</span></a> CLI method:</p>
@@ -355,7 +355,7 @@ Multiple yaml files can be added by reusing the <code class="docutils literal no
 <span class="n">ds</span> <span class="o">=</span> <span class="n">data_cat</span><span class="o">.</span><span class="n">get_rasterdataset</span><span class="p">(</span><span class="s1">&#39;source_name&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>  <span class="c1"># returns xarray.dataset</span>
 </pre></div>
 </div>
-<p>More detail about reading <a class="reference external" href="../_examples/read_raster_data.ipynb">raster data</a>,
+<p>More details about reading <a class="reference external" href="../_examples/read_raster_data.ipynb">raster data</a>,
 <a class="reference external" href="../_examples/read_vector_data.ipynb">vector data</a>,
 or geospatial time-series data is provided in the linked examples.</p>
 </section>

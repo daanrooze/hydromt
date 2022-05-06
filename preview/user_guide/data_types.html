@@ -379,7 +379,7 @@
 <li><p><a class="reference internal" href="#geodataset"><span class="std std-ref">GeoDataset</span></a>: dynamic point location data</p></li>
 </ul>
 <p>Internally the RasterDataset and GeoDataset are represented by <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> objects
-and GeoDataFrame by <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a>. We use drivers, typically from third-party
+and the GeoDataFrame by <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a>. We use drivers, typically from third-party
 packages and sometimes wrapped in HydroMT functions, to parse many different file formats to this
 standardized internal data representation.</p>
 <div class="admonition note">
@@ -632,7 +632,7 @@ in x, y values in the different netcdf files of the same data source.</p></li>
 <p>Spatial vector data is parsed to a <strong>GeoDataFrame</strong> using the <strong>vector</strong> driver.
 For large spatial vector datasets we recommend the GeoPackage format as it includes a
 spatial index for fast filtering of the data based on spatial location. An example is
-shown below. Not that the rename, <code class="docutils literal notranslate"><span class="pre">unit_mult</span></code>, <code class="docutils literal notranslate"><span class="pre">unit_add</span></code> and <code class="docutils literal notranslate"><span class="pre">nodata</span></code> options refer to
+shown below. Note that the rename, <code class="docutils literal notranslate"><span class="pre">unit_mult</span></code>, <code class="docutils literal notranslate"><span class="pre">unit_add</span></code> and <code class="docutils literal notranslate"><span class="pre">nodata</span></code> options refer to
 columns of the attribute table in case of a GeoDataFrame.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">GDP_world</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">base/emissions/GDP-countries/World_countries_GDPpcPPP.gpkg</span><span class="w"></span>

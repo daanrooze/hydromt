@@ -379,7 +379,7 @@ but the user is free to define its own categories.</p></li>
 <p>Apart from the data entries, the yaml file also has <strong>global options</strong>:</p>
 <ul class="simple">
 <li><p><strong>root</strong> (optional): root folder for all the data sources in the yaml file.
-If not  provide the folder of where the yaml fil is located will be used as root.
+If not provided the folder of where the yaml fil is located will be used as root.
 This is used in combination with each data source <strong>path</strong> argument to avoid repetition.</p></li>
 </ul>
 </section>
@@ -390,7 +390,7 @@ This is used in combination with each data source <strong>path</strong> argument
 <li><p>The <code class="docutils literal notranslate"><span class="pre">placeholder</span></code> argument can be used to generate multiple sources with a single entry in the data catalog file. If different files follow a logical
 nomenclature, multiple data sources can be defined by iterating through all possible combinations of the placeholders. The placeholder names should be given in the
 source name and the path and its values listed under the placeholder argument, see example below with an <em>epoch</em> and <em>epsg</em> placeholders.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">alias</span></code> argument can be used to define a data source under second short name, or to avoid repeating large sections with the same meta-data.
+<li><p>The <code class="docutils literal notranslate"><span class="pre">alias</span></code> argument can be used to define a data source under a second short name, or to avoid repeating large sections with the same meta-data.
 If an alias is provided all information from the alias source is used to read the data except for the info that is overwritten by the current data source.
 The alias source should also be provided in the same file. Note that this only works at the first level of arguments, if e.g. the rename option is used in
 the current data source it overwrites all rename entries of the alias data source. In the example below <em>ghs_pop</em> is short for a specific version (epoch=2015; epsg=54009)
