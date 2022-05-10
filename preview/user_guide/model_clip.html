@@ -309,13 +309,13 @@
                 
   <section id="clipping-a-model">
 <span id="model-clip"></span><h1>Clipping a model<a class="headerlink" href="#clipping-a-model" title="Permalink to this headline">#</a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">clip</span></code> method allows to clip a subregion from a existing model, including all static maps,
+<p>The <code class="docutils literal notranslate"><span class="pre">clip</span></code> method allows to clip a subregion from an existing model, including all static maps,
 static geometries and forcing data.</p>
 <p><strong>Steps in brief:</strong></p>
 <ol class="arabic simple">
 <li><p>You have an <strong>existing model</strong> schematization ready</p></li>
 <li><p>Define your <strong>model subregion</strong>, see the overview of <a class="reference internal" href="model_region.html#region"><span class="std std-ref">region options</span></a>.</p></li>
-<li><p><strong>Clip</strong> you model using the CLI or Python interface</p></li>
+<li><p><strong>Clip</strong> your model using the CLI or Python interface</p></li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -328,7 +328,7 @@ static geometries and forcing data.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">hydromt</span> <span class="pre">clip</span></code> command line intrefce (CLI) method can be run from the command line after the right conda environment is activated.</p>
 <p>The following example clips a <code class="docutils literal notranslate"><span class="pre">subbasin</span></code> region (based on its outflow location) from an existing Wflow model
 at <cite>/path/to/model_root</cite> and saves the output to <cite>/path/to/model_destination</cite>. The subbasin is defined based
-on an outflow location snapped to a stream order 4 river which based on a map called wflow_streamorder
+on an outflow location snapped to a stream order 4 river which is based on a map called wflow_streamorder
 of the Wflow model.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt clip wflow /path/to/model_root /path/to/model_destination &quot;{&#39;subbasin&#39;: [-7.24, 62.09], &#39;wflow_streamorder&#39;: 4}&quot;</span>
 </pre></div>

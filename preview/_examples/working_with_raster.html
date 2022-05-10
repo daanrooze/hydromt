@@ -618,7 +618,7 @@ GDAL driver. Currently the key difference between both packages, besides the nam
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.collections.QuadMesh at 0x7f23690f9190&gt;
+&lt;matplotlib.collections.QuadMesh at 0x7f879a761790&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -705,7 +705,7 @@ Affine(0.0024999999900981278, 0.0, 11.600416643117885,
 <section id="Reproject-(warp)-raster-data">
 <h2>Reproject (warp) raster data<a class="headerlink" href="#Reproject-(warp)-raster-data" title="Permalink to this headline">#</a></h2>
 <p>A common preprocessing step to generate model data is to make sure all data is in the same CRS. The <a class="reference internal" href="../_generated/hydromt.DataArray.raster.reproject.html"><span class="doc">.raster.reproject()</span></a> are build on <strong>rasterio</strong> and <strong>GDAL</strong> and make this really easy for you.</p>
-<p>In this example we demonstrate how to reproject a population count grid. This grid should not be reprojected directly to other resolutions in order to conserve the total number op people. Therefore we first derive the population density using <a class="reference internal" href="../_generated/hydromt.DataArray.raster.density_grid.html"><span class="doc">.raster.density_grid()</span></a> which can be reprojected and combined with the project grid cell area using <a class="reference internal" href="../_generated/hydromt.DataArray.raster.density_grid.html"><span class="doc">.raster.area_grid()</span></a> to calculate
+<p>In this example we demonstrate how to reproject a population count grid. This grid should not be reprojected directly to other resolutions in order to conserve the total number of people. Therefore, we first derive the population density using <a class="reference internal" href="../_generated/hydromt.DataArray.raster.density_grid.html"><span class="doc">.raster.density_grid()</span></a> which can be reprojected and combined with the project grid cell area using <a class="reference internal" href="../_generated/hydromt.DataArray.raster.density_grid.html"><span class="doc">.raster.area_grid()</span></a> to calculate
 the final population count. Using this approach we only make a small error which we correct to preserve the total count.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -744,7 +744,7 @@ Error: 0.467%
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.collections.QuadMesh at 0x7f236847ed90&gt;
+&lt;matplotlib.collections.QuadMesh at 0x7f8798ae63a0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -907,7 +907,7 @@ build using voronoi triangulation. Then, values are calculated for each grid cel
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.collections.QuadMesh at 0x7f2350aaa1f0&gt;
+&lt;matplotlib.collections.QuadMesh at 0x7f8781fbe970&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -932,7 +932,7 @@ build using voronoi triangulation. Then, values are calculated for each grid cel
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.collections.QuadMesh at 0x7f235047fb20&gt;
+&lt;matplotlib.collections.QuadMesh at 0x7f8781984d00&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -986,7 +986,7 @@ resolution MDT: 0.12500
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.collections.QuadMesh at 0x7f235024d4c0&gt;
+&lt;matplotlib.collections.QuadMesh at 0x7f8781784df0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1023,7 +1023,7 @@ resolution reprojected GEBCO: 0.00083
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.collections.QuadMesh at 0x7f235020c310&gt;
+&lt;matplotlib.collections.QuadMesh at 0x7f8781695910&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1036,7 +1036,7 @@ resolution reprojected GEBCO: 0.00083
 </section>
 <section id="Write-raster-to-file">
 <h2>Write raster to file<a class="headerlink" href="#Write-raster-to-file" title="Permalink to this headline">#</a></h2>
-<p>To write a dataset to a raster file the <a class="reference internal" href="../_generated/hydromt.DataArray.raster.to_raster.html"><span class="doc">.raster.to_raster()</span></a> can be used. By default a the file is written in GeoTiff format. Each band is written as a layer of the raster file. A xarray.Dataset with multiple variables can be written to multiple files in a single folder, each with the name of the variable as basename with <a class="reference internal" href="../_generated/hydromt.Dataset.raster.to_mapstack.html"><span class="doc">.raster.to_mapstack()</span></a>.</p>
+<p>To write a dataset to a raster file the <a class="reference internal" href="../_generated/hydromt.DataArray.raster.to_raster.html"><span class="doc">.raster.to_raster()</span></a> can be used. By default the file is written in GeoTiff format. Each band is written as a layer of the raster file. A xarray.Dataset with multiple variables can be written to multiple files in a single folder, each with the name of the variable as basename with <a class="reference internal" href="../_generated/hydromt.Dataset.raster.to_mapstack.html"><span class="doc">.raster.to_mapstack()</span></a>.</p>
 <p>Here, we use the merged DEM output of the previous example to write to file. To ensure the CRS and nodata metadata are written we first update these attributes of the data based on the original DEM data.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:

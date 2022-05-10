@@ -317,14 +317,14 @@ by automating the process to go from raw data to model data. It is an interface 
 <li><p><strong>Input Data</strong></p>
 <p>HydroMT is data-agnostic through the <em>Data adapter</em> that reads a wide range of data formats
 and unifies the input data, see <a class="reference internal" href="data_main.html#get-data"><span class="std std-ref">Working with data in HydroMT</span></a>.
-Datasets are listed in and passed to HydroMT in a user defined data catalog <a class="reference internal" href="data_prepare_cat.html#data-yaml"><span class="std std-ref">.yml file</span></a>.
+Datasets are listed and passed to HydroMT in a user defined data catalog <a class="reference internal" href="data_prepare_cat.html#data-yaml"><span class="std std-ref">.yml file</span></a>.
 HydroMT also provides several <a class="reference internal" href="data_existing_cat.html#existing-catalog"><span class="std std-ref">pre-defined data catalogs</span></a> with mostly global datasets
 that can be used as is, but note that not all data is openly accessible.</p>
 </li>
 <li><p><strong>Models</strong></p>
-<p>HydroMT defines a model-agnostic <em>Model API</em> which provides an common interface to data components of a model
+<p>HydroMT defines a model-agnostic <em>Model API</em> which provides a common interface to data components of a model
 such as (static) grids, vectors, forcing, states and simulation configuration, see <a class="reference internal" href="model_main.html#model-main"><span class="std std-ref">Working with models in HydroMT</span></a>.
-Models can be <a class="reference internal" href="model_build.html#model-build"><span class="std std-ref">build from scratch</span></a> or <a class="reference internal" href="model_update.html#model-update"><span class="std std-ref">updated</span></a> based on a pipeline defined in a model configuration <a class="reference internal" href="model_config.html#model-config"><span class="std std-ref">*.ini* file</span></a>.
+Models can be <a class="reference internal" href="model_build.html#model-build"><span class="std std-ref">built from scratch</span></a> or <a class="reference internal" href="model_update.html#model-update"><span class="std std-ref">updated</span></a> based on a pipeline defined in a model configuration <a class="reference internal" href="model_config.html#model-config"><span class="std std-ref">*.ini* file</span></a>.
 The Model API for each supported model and methods to build or update that model are implemented in <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">model plugins</span></a>
 that need to be installed alongside HydroMT to work with a supported model.
 Available model methods vary per model plugin and are documented for each plugin at their respective documentation websites.</p>

@@ -308,9 +308,9 @@
 in the configuration <a class="reference external" href="https://en.wikipedia.org/wiki/INI_file">.ini file</a></p>
 <p><strong>Steps in brief:</strong></p>
 <ol class="arabic simple">
-<li><p>Start with a template of the <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">HydroMT model plugin</span></a> which you want build / update a model. Templates can be found in the online documentation of each model plugin.</p></li>
+<li><p>Start with a template of the <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">HydroMT model plugin</span></a> with which you want to build / update a model. Templates can be found in the online documentation of each model plugin.</p></li>
 <li><p>Edit / add / remove sections (i.e. methods) based on which components you want to build or adapt. The arguments of specific methods can be found in the API chapter in the online documentation of each model plugin.</p></li>
-<li><p>Save the configuration file and use in combination with the HydroMT <a class="reference internal" href="model_build.html#model-build"><span class="std std-ref">build</span></a> and <a class="reference internal" href="model_update.html#model-update"><span class="std std-ref">update</span></a> methods.</p></li>
+<li><p>Save the configuration file and use it in combination with the HydroMT <a class="reference internal" href="model_build.html#model-build"><span class="std std-ref">build</span></a> and <a class="reference internal" href="model_update.html#model-update"><span class="std std-ref">update</span></a> methods.</p></li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -326,12 +326,12 @@ executes all methods in order as provided in the .ini file. As such the .ini fil
 define a <strong>reproducible</strong> model.</p>
 <p>HydroMT configuration file specifications and conventions:</p>
 <ul class="simple">
-<li><p>HydroMT will execute each method (i.e. section) in the order it is provided in the ini file.</p></li>
+<li><p>HydroMT will execute each method (i.e. section) in the order it is provided in the .ini file.</p></li>
 <li><p>Methods can be re-used by enumerating the methods by adding a number to the end (without underscore or space!).
 Although this is not enforced in the code, by convention we start enumerating the second call of each method with a number 2, the third call with a number 3 etc.</p></li>
 <li><p>Arguments ending with <code class="docutils literal notranslate"><span class="pre">_fn</span></code> (short for filename) are by convention used to set a data source from the data catalog based on its source name, see <a class="reference internal" href="data_main.html#get-data"><span class="std std-ref">Working with data in HydroMT</span></a>.</p></li>
 </ul>
-<p>An example ini file is shown below. Note that this ini file does not apply to any supported model plugin.</p>
+<p>An example .ini file is shown below. Note that this .ini file does not apply to any supported model plugin.</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[setup_basemaps]</span><span class="w"></span>
 <span class="na">topography_fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">merit   # source name of topography data</span><span class="w"></span>
 <span class="na">crs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">4326              # CRS EPSG code</span><span class="w"></span>

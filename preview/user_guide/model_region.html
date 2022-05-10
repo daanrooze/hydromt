@@ -309,7 +309,7 @@
                 
   <section id="defining-a-model-region">
 <span id="region"></span><h1>Defining a model region<a class="headerlink" href="#defining-a-model-region" title="Permalink to this headline">#</a></h1>
-<p>To setup a model for a specific region, you can define use several geospatial or hydrographic region definitions which are explained in this chapter.
+<p>To setup a model for a specific region, you can use several geospatial or hydrographic region definitions which are explained in this chapter.
 The syntax is interpreted using the <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.parse_region.html#hydromt.workflows.basin_mask.parse_region" title="hydromt.workflows.basin_mask.parse_region"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_region()</span></code></a> method.
 For hydrographic regions see also the <a class="reference internal" href="../_examples/delineate_basin.html"><span class="doc">delineate basins</span></a> example and <a class="reference internal" href="../_generated/hydromt.workflows.basin_mask.get_basin_geometry.html#hydromt.workflows.basin_mask.get_basin_geometry" title="hydromt.workflows.basin_mask.get_basin_geometry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_basin_geometry()</span></code></a> method.</p>
 <div class="admonition note">
@@ -392,7 +392,7 @@ combined with stream arguments.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">/path/to/geometry_file,</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold,</span> <span class="pre">'xy':</span> <span class="pre">[x,</span> <span class="pre">y]}</span></code></p></li>
 </ul>
-<p>To only select interbasins based on the outlet location of entire basins use <code class="docutils literal notranslate"><span class="pre">'outlets':</span> <span class="pre">true</span></code></p>
+<p>To only select interbasins based on the outlet location of the entire basins use <code class="docutils literal notranslate"><span class="pre">'outlets':</span> <span class="pre">true</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">{'interbasin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'outlets':</span> <span class="pre">true}</span></code></p>
 </div></blockquote>
 <img alt="../_images/region.png" src="../_images/region.png" />
