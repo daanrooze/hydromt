@@ -245,28 +245,21 @@
 use as a HydroMT tutorial.</p>
 <p>These examples can be run online or on your local machine.
 To run these examples online press the <strong>binder</strong> badge above.</p>
-<p>To run these examples on your local machine you need a copy of the repository and an installation
-of HydroMT including some additional packages. Please refer to the online <a class="reference internal" href="installation.html#installation-guide"><span class="std std-ref">installation guide</span></a>
-for more information about installing HydroMT.</p>
-<p>First, clone the HydroMT github repository, this creates a local copy of the repository on your local machine.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git clone https://github.com/Deltares/hydromt.git
-</pre></div>
-</div>
-<p>Then, navigate into the cloned <code class="docutils literal notranslate"><span class="pre">hydromt</span></code> folder:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> hydromt/examples
-</pre></div>
-</div>
-<p>Create a conda environment based on the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in the binder folder and activate this environment:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda env create -f ../binder/environment.yml
+<p>To run these examples on your local machine you need a copy of the repository and
+an installation of HydroMT including some additional packages. The most reliable
+way to do this installation is by creating a new environment as described below.</p>
+<p>First, download and extract the <a class="reference external" href="https://github.com/Deltares/hydromt/archive/refs/heads/main.zip">zipped HydroMT github repository</a></p>
+<p>Then, navigate into the extracted <code class="docutils literal notranslate"><span class="pre">hydromt</span></code> folder and execute the following lines from the command line.</p>
+<p>Next, create a conda environment based on the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in the binder folder,
+activate this environment and install the HydroMT version from downloaded files.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda env create -f binder/environment.yml
 <span class="gp">$ </span>conda activate hydromt
-</pre></div>
-</div>
-<p>Install the latest HydroMT version from cloned files into the environment.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flit install --dep production
+<span class="gp">$ </span>flit install --dep production
 </pre></div>
 </div>
 <p>Finally, start a jupyter notebook inside the <code class="docutils literal notranslate"><span class="pre">examples</span></code> folder and activated <code class="docutils literal notranslate"><span class="pre">hydromt</span></code> environment.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>jupyter notebook
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> examples
+<span class="gp">$ </span>jupyter notebook
 </pre></div>
 </div>
 <section id="list-of-examples">

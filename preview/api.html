@@ -322,6 +322,38 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="_generated/hydromt.Model.config.html">
+   hydromt.Model.config
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="_generated/hydromt.Model.staticmaps.html">
+   hydromt.Model.staticmaps
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="_generated/hydromt.Model.staticgeoms.html">
+   hydromt.Model.staticgeoms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="_generated/hydromt.Model.forcing.html">
+   hydromt.Model.forcing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="_generated/hydromt.Model.states.html">
+   hydromt.Model.states
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="_generated/hydromt.Model.results.html">
+   hydromt.Model.results
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="_generated/hydromt.Model.get_config.html">
    hydromt.Model.get_config
   </a>
@@ -1219,18 +1251,18 @@
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rasterdatasetadapter">
-     RasterDatasetAdapter
+    <a class="reference internal nav-link" href="#rasterdataset">
+     RasterDataset
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#geodatasetadapter">
-     GeoDatasetAdapter
+    <a class="reference internal nav-link" href="#geodataset">
+     GeoDataset
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#geodataframeadapter">
-     GeoDataFrameAdapter
+    <a class="reference internal nav-link" href="#geodataframe">
+     GeoDataFrame
     </a>
    </li>
   </ul>
@@ -1253,6 +1285,11 @@
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#high-level-methods">
        High level methods
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-components">
+       Model components
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
@@ -1579,8 +1616,8 @@
 </table>
 </section>
 </section>
-<section id="rasterdatasetadapter">
-<h3>RasterDatasetAdapter<a class="headerlink" href="#rasterdatasetadapter" title="Permalink to this headline">#</a></h3>
+<section id="rasterdataset">
+<h3>RasterDataset<a class="headerlink" href="#rasterdataset" title="Permalink to this headline">#</a></h3>
 <table class="autosummary longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -1602,8 +1639,8 @@
 </tbody>
 </table>
 </section>
-<section id="geodatasetadapter">
-<h3>GeoDatasetAdapter<a class="headerlink" href="#geodatasetadapter" title="Permalink to this headline">#</a></h3>
+<section id="geodataset">
+<h3>GeoDataset<a class="headerlink" href="#geodataset" title="Permalink to this headline">#</a></h3>
 <table class="autosummary longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -1625,8 +1662,8 @@
 </tbody>
 </table>
 </section>
-<section id="geodataframeadapter">
-<h3>GeoDataFrameAdapter<a class="headerlink" href="#geodataframeadapter" title="Permalink to this headline">#</a></h3>
+<section id="geodataframe">
+<h3>GeoDataFrame<a class="headerlink" href="#geodataframe" title="Permalink to this headline">#</a></h3>
 <table class="autosummary longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -1698,6 +1735,35 @@
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.write_data_catalog.html#hydromt.Model.write_data_catalog" title="hydromt.Model.write_data_catalog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.write_data_catalog</span></code></a>([root, used_only])</p></td>
 <td><p>Write the data catalog to <cite>hydromt_data.yml</cite></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="model-components">
+<h4>Model components<a class="headerlink" href="#model-components" title="Permalink to this headline">#</a></h4>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.config.html#hydromt.Model.config" title="hydromt.Model.config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.config</span></code></a></p></td>
+<td><p>Returns parsed model configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.staticmaps.html#hydromt.Model.staticmaps" title="hydromt.Model.staticmaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.staticmaps</span></code></a></p></td>
+<td><p>xarray.Dataset representation of all static parameter maps</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.staticgeoms.html#hydromt.Model.staticgeoms" title="hydromt.Model.staticgeoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.staticgeoms</span></code></a></p></td>
+<td><p>geopandas.GeoDataFrame representation of all model geometries</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.forcing.html#hydromt.Model.forcing" title="hydromt.Model.forcing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.forcing</span></code></a></p></td>
+<td><p>dict of xarray.dataarray representation of all forcing</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.states.html#hydromt.Model.states" title="hydromt.Model.states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.states</span></code></a></p></td>
+<td><p>dict xarray.dataarray representation of all states</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/hydromt.Model.results.html#hydromt.Model.results" title="hydromt.Model.results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.results</span></code></a></p></td>
+<td><p>dict xarray.dataarray representation of model results</p></td>
 </tr>
 </tbody>
 </table>

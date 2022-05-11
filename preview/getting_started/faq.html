@@ -187,9 +187,24 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-models-in-hydromt">
+   Working with models in HydroMT
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-data-in-hydromt">
+   Working with data in HydroMT
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -219,6 +234,8 @@
   <section id="frequently-asked-questions">
 <span id="faq"></span><h1>Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">#</a></h1>
 <p>This page contains some FAQ / tips and tricks to work with HydroMT.</p>
+<section id="working-with-models-in-hydromt">
+<h2>Working with models in HydroMT<a class="headerlink" href="#working-with-models-in-hydromt" title="Permalink to this headline">#</a></h2>
 <blockquote>
 <div><div class="line-block">
 <div class="line"><strong>Q</strong>: Does HydroMT contain any model kernels/software to run model simulations?</div>
@@ -226,6 +243,35 @@
 </div></blockquote>
 <p>HydroMT focusses on the setup of models and analysis of model simulations, but does not contain the model software itself.
 In between the setup and analysis the model software needs to be executed to run a model simulation.</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>Q</strong>: Can I re-use the same method when building / updating a model from the command line interface with an .ini configuration file.</div>
+</div>
+</div></blockquote>
+<p>Yes, that is possible. You just need to start enumerating the methods by adding a number to the end
+of the method name. For instance, the second time that you use the setup_config method write
+<cite>[setup_config2]</cite> in your .ini file, etc. Note that the actual numbers don’t really matter,
+the sequence in which these are in the .ini file determines the sequence in which these are called.</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>Q</strong>: How can I just write specific <a class="reference internal" href="../user_guide/model_main.html#model-interface"><span class="std std-ref">model data component</span></a>
+(i.e.: staticmaps, staticgeoms, forcing, config or states) instead of the all model data when updating?</div>
+</div>
+</div></blockquote>
+<p>Each model plugin implements a combined <cite>write()</cite> method that writes the entire model and is
+called by default at the end of a build or update. If you however add a write method
+(e.g. <cite>write_staticmaps</cite>, <cite>write_forcing</cite>, <cite>write_config</cite>, etc.) to the .ini file the call to the
+general write method is disabled and only the selected model data attributes are written.</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>Q</strong>: Can I define more than one data catalog when building / updating models?</div>
+</div>
+</div></blockquote>
+<p>Yes! You can provide several datasets by repeating the <cite>-d</cite>
+<a class="reference internal" href="../user_guide/data_main.html#get-data-cli"><span class="std std-ref">option in the command line interface</span></a></p>
+</section>
+<section id="working-with-data-in-hydromt">
+<h2>Working with data in HydroMT<a class="headerlink" href="#working-with-data-in-hydromt" title="Permalink to this headline">#</a></h2>
 <blockquote>
 <div><div class="line-block">
 <div class="line"><strong>Q</strong>: Does HydroMT contain (global) datasets which can be used to build/update models?</div>
@@ -241,32 +287,8 @@ We are working on creating more data catalogs from (cloud optimized analysis rea
 <div class="line"><strong>Q</strong>: Can I supply my own data to HydroMT?</div>
 </div>
 </div></blockquote>
-<p>Yes, absolutely! The <a class="reference internal" href="../user_guide/data_prepare_cat.html#own-catalog"><span class="std std-ref">data catalog</span></a> for just that purpose!</p>
-<blockquote>
-<div><div class="line-block">
-<div class="line"><strong>Q</strong>: Can I define more than one data catalog when building / updating models?</div>
-</div>
-</div></blockquote>
-<p>Yes! You can provide several datasets by repeating the <cite>-d</cite>
-<a class="reference internal" href="../user_guide/data_main.html#get-data-cli"><span class="std std-ref">option in the command line interface</span></a></p>
-<blockquote>
-<div><div class="line-block">
-<div class="line"><strong>Q</strong>: Can I re-use the same method when building / updating a model from the command line interface with an .ini configuration file.</div>
-</div>
-</div></blockquote>
-<p>Yes, that is possible. You just need to start enumerating the methods by adding a number to the end
-of the method name. For instance, the second time that you use the setup_config method write
-<cite>[setup_config2]</cite> in your .ini file, etc. Note that the actual numbers don’t really matter,
-the sequence in which these are in the .ini file determines the sequence in which these are called.</p>
-<blockquote>
-<div><div class="line-block">
-<div class="line"><strong>Q</strong>: How can I just write specific model data component (i.e.: staticmaps, staticgeoms, forcing, config or states) instead of the all model data when updating?</div>
-</div>
-</div></blockquote>
-<p>Each model plugin implements a combined <cite>write()</cite> method that writes the entire model and is
-called by default at the end of a build or update. If you however add a write method
-(e.g. <cite>write_staticmaps</cite>, <cite>write_forcing</cite>, <cite>write_config</cite>, etc.) to the .ini file the call to the
-general write method is disabled and only the selected model data attributes are written.</p>
+<p>Yes, absolutely! Checkout the <a class="reference internal" href="../user_guide/data_prepare_cat.html#own-catalog"><span class="std std-ref">Preparing a data catalog</span></a> page in the user guide.</p>
+</section>
 </section>
 
 

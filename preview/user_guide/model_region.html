@@ -77,7 +77,7 @@
  </a>
 </li>
 
-<li class="toctree-l1 nav-item">
+<li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="intro.html">
   User guide
  </a>
@@ -347,7 +347,8 @@ To delineate the basin(s) touching a region or point location, users can supply 
 <p>To filter basins, variable-threshold pairs to define streams can be used in combination with
 a bounding box or geometry file, e.g.: <code class="docutils literal notranslate"><span class="pre">'uparea':30</span></code> to filter based on streams with
 a minimum drainage area of 30 km2 or <code class="docutils literal notranslate"><span class="pre">'strord':8</span></code> to filter basins based on streams
-with a minimal stream order of 8.</p>
+with a minimal stream order of 8. The variables should be available in the dataset on which
+the delineation is based, e.g. Hydro MERIT.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">{'basin':</span> <span class="pre">[xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax],</span> <span class="pre">'&lt;variable&gt;':</span> <span class="pre">threshold}</span></code></p></li>
 </ul>

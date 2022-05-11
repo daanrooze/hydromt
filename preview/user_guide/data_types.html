@@ -77,7 +77,7 @@
  </a>
 </li>
 
-<li class="toctree-l1 nav-item">
+<li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="intro.html">
   User guide
  </a>
@@ -618,7 +618,7 @@ in x, y values in the different netcdf files of the same data source.</p></li>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vector</span></code></p></td>
 <td><p>ESRI Shapefile, GeoPackage, GeoJSON, etc.</p></td>
 <td><p><a class="reference internal" href="../_generated/hydromt.io.open_vector.html#hydromt.io.open_vector" title="hydromt.io.open_vector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_vector()</span></code></a></p></td>
-<td><p>Point, Line and Polygon geometries. Uses <code class="xref py py-meth docutils literal notranslate"><span class="pre">geopandas.read_file()</span></code></p></td>
+<td><p>Point, Line and Polygon geometries. Uses <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.read_file.html#geopandas.read_file" title="(in GeoPandas v0.10.2+0.g04d377f.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">geopandas.read_file()</span></code></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vector_table</span></code></p></td>
 <td><p>CSV, XY, and EXCEL.</p></td>
@@ -654,8 +654,8 @@ columns of the attribute table in case of a GeoDataFrame.</p>
 <span id="textdelimited-vector"></span><h2>Point vector from text delimited data<a class="headerlink" href="#point-vector-from-text-delimited-data" title="Permalink to this headline">#</a></h2>
 <p>Tabulated point vector data files can be parsed to a <strong>GeoDataFrame</strong> with the <strong>vector_table</strong>
 driver. This driver reads CSV (or similar delimited text files), EXCEL and XY
-(white-space delimited text file without headers) files. See this list of <a class="reference internal" href="#dimensions">dimensions</a>
-name for recognized x and y column names.</p>
+(white-space delimited text file without headers) files. See this list of <a class="reference internal" href="#dimensions"><span class="std std-ref">dimension names</span></a>
+for recognized x and y column names.</p>
 <p>A typical CSV point vector file is given below. A similar setup with headers
 can be used to read other text delimited files or excel files.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">index, x, y, col1, col2</span>
@@ -791,7 +791,7 @@ For more options see the <a class="reference internal" href="../_generated/hydro
 </pre></div>
 </div>
 <p><em>Tabulated time series text file</em></p>
-<p>This data is read using the <code class="xref py py-meth docutils literal notranslate"><span class="pre">open_time-series_from_table()</span></code> method. To
+<p>This data is read using the <a class="reference internal" href="../_generated/hydromt.io.open_timeseries_from_table.html#hydromt.io.open_timeseries_from_table" title="hydromt.io.open_timeseries_from_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open_timeseries_from_table()</span></code></a> method. To
 read the time stamps the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html#pandas.to_datetime" title="(in pandas v1.4.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code></a> method is used.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">time, &lt;ID1&gt;, &lt;ID2&gt;</span>
 <span class="go">&lt;time1&gt;, &lt;value&gt;, &lt;value&gt;</span>

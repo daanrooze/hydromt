@@ -77,7 +77,7 @@
  </a>
 </li>
 
-<li class="toctree-l1 nav-item">
+<li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="intro.html">
   User guide
  </a>
@@ -311,11 +311,11 @@
 <span id="model-update"></span><h1>Updating a model<a class="headerlink" href="#updating-a-model" title="Permalink to this headline">#</a></h1>
 <p>To add or change one or more components of an existing model the <code class="docutils literal notranslate"><span class="pre">update</span></code> method can be used.
 The update method works identical for all <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">HydroMT model plugins</span></a>,
-but the model methods (i.e. sections and options in the .ini configuration file) are different for each model.</p>
+but the model methods (i.e. sections and options in the <a class="reference internal" href="model_config.html#model-config"><span class="std std-ref">.ini configuration file</span></a>) are different for each model.</p>
 <p><strong>Steps in brief:</strong></p>
 <ol class="arabic simple">
 <li><p>You have an <strong>existing model</strong> schematization. This model does not have to be complete.</p></li>
-<li><p>Prepare or use an existing <strong>data catalog</strong> with all the required data sources, see <a class="reference internal" href="data_main.html#get-data"><span class="std std-ref">working with data</span></a></p></li>
+<li><p>Prepare or use a pre-defined <strong>data catalog</strong> with all the required data sources, see <a class="reference internal" href="data_main.html#get-data"><span class="std std-ref">working with data</span></a></p></li>
 <li><p>Prepare a <strong>model configuration</strong> with the methods that you want to use to add or change components of your model: see <a class="reference internal" href="model_config.html#model-config"><span class="std std-ref">model configuration</span></a>.</p></li>
 <li><p><strong>Update</strong> your model using the CLI or Python interface</p></li>
 </ol>
@@ -333,22 +333,23 @@ should thus be added to the .ini file to keep the model data and config consiste
 <p>By default, the model is updated in place, overwriting the existing model schematization.
 To save a copy of the model provide a new output model root directory with the <code class="docutils literal notranslate"><span class="pre">-o</span></code> option.</p>
 <p>By default, all model methods in the .ini configuration file provided with <code class="docutils literal notranslate"><span class="pre">-i</span></code> will be updated.
-To update only certain methods, <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">&lt;method&gt;</span></code> option can be used to select methods, optionally in combination with a longer .ini file.
-Besides the ini file, options can be set from the CLI with <code class="docutils literal notranslate"><span class="pre">--opt</span> <span class="pre">&lt;method.argument=value&gt;</span></code>.
+To update only certain methods, the <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">&lt;method&gt;</span></code> option can be used to select methods
+in combination with <a class="reference internal" href="model_config.html#model-config"><span class="std std-ref">.ini file</span></a>.
+Besides the ini file, method arguments can be set from the CLI with <code class="docutils literal notranslate"><span class="pre">--opt</span> <span class="pre">&lt;method.argument=value&gt;</span></code>.
 If used in combination with an .ini file, it will overwrite the same arguments in the .ini file.
 Both <code class="docutils literal notranslate"><span class="pre">-c</span></code> and <code class="docutils literal notranslate"><span class="pre">-opt</span></code> can be used repeatedly in a single update.</p>
 <p><strong>Example usage</strong></p>
 <p>In the following example a Wflow model at <code class="docutils literal notranslate"><span class="pre">/path/to/model</span></code> is updated and the results are written to a new directory <code class="docutils literal notranslate"><span class="pre">/path/to/model_out</span></code>.
 The pipeline with methods which are updated are outlined in the <code class="docutils literal notranslate"><span class="pre">wflow_config.ini</span></code> configuration file and used data sources
-in the <code class="docutils literal notranslate"><span class="pre">data_catalog.yml</span></code> catalog file.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt update wflow /path/to/model_root -o /path/to/model_out -i /path/to/wflow_config.ini -d /path/to/data_catalog.yml -v</span>
+in the <code class="docutils literal notranslate"><span class="pre">data_catalog.yaml</span></code> catalog file.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt update wflow /path/to/model_root -o /path/to/model_out -i /path/to/wflow_config.ini -d /path/to/data_catalog.yaml -v</span>
 </pre></div>
 </div>
 <p>The following example updates (overwrites!) the landuse-landcover based staticmaps in a Wflow model with the <code class="docutils literal notranslate"><span class="pre">setup_lulcmaps</span></code> method
 based on a the different landuse-landcover dataset according to <code class="docutils literal notranslate"><span class="pre">setup_lulcmaps.lulc_fn=vito</span></code>.
-The <code class="docutils literal notranslate"><span class="pre">vito</span></code> dataset must be defined in the <code class="docutils literal notranslate"><span class="pre">data_catalog.yml</span></code> catalog file.
+The <code class="docutils literal notranslate"><span class="pre">vito</span></code> dataset must be defined in the <code class="docutils literal notranslate"><span class="pre">data_catalog.yaml</span></code> catalog file.
 Note that no .ini file is used here but instead the methods and options are defined in the update command.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt update wflow /path/to/model_root -c setup_lulcmaps -c write_staticmaps --opt setup_lulcmaps.lulc_fn=vito -d /path/to/data_catalog.yml -v</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hydromt update wflow /path/to/model_root -c setup_lulcmaps -c write_staticmaps --opt setup_lulcmaps.lulc_fn=vito -d /path/to/data_catalog.yaml -v</span>
 </pre></div>
 </div>
 <p><strong>Overview of options</strong></p>
@@ -365,10 +366,10 @@ Note that no .ini file is used here but instead the methods and options are defi
 <span class="go">  --------------</span>
 
 <span class="go">  Update (overwrite!) landuse-landcover based maps in a Wflow model</span>
-<span class="go">  hydromt update wflow /path/to/model_root -c setup_lulcmaps --opt lulc_fn=vito -d /path/to/data_catalog.yml -v</span>
+<span class="go">  hydromt update wflow /path/to/model_root -c setup_lulcmaps --opt lulc_fn=vito -d /path/to/data_catalog.yaml -v</span>
 
 <span class="go">  Update Wflow model components outlined in an .ini configuration file and write the model to a directory</span>
-<span class="go">  hydromt update wflow /path/to/model_root -o /path/to/model_out -i /path/to/wflow_config.ini -d /path/to/data_catalog.yml -v</span>
+<span class="go">  hydromt update wflow /path/to/model_root -o /path/to/model_out -i /path/to/wflow_config.ini -d /path/to/data_catalog.yaml -v</span>
 
 <span class="go">Options:</span>
 <span class="go">  -o, --model-out DIRECTORY  Output model folder. Maps in MODEL_ROOT are</span>
@@ -401,7 +402,7 @@ Note that compared to building a model, the model should be initialized in read 
 or append (if you update the model data in place) mode.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hydromt_wflow</span> <span class="kn">import</span> <span class="n">WflowModel</span>
 <span class="kn">from</span> <span class="nn">hydromt.config</span> <span class="kn">import</span> <span class="n">configread</span>
-<span class="n">data_libs</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;/path/to/data_catalog.yml&#39;</span><span class="p">]</span>
+<span class="n">data_libs</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;/path/to/data_catalog.yaml&#39;</span><span class="p">]</span>
 <span class="n">opt</span><span class="o">=</span><span class="n">configread</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/path/to/wflow_config.ini&#39;</span><span class="p">)</span>  <span class="c1"># parse .ini configuration</span>
 <span class="n">mod</span> <span class="o">=</span> <span class="n">WflowModel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/path/to/model_root&#39;</span><span class="p">,</span> <span class="n">data_libs</span><span class="o">=</span><span class="n">data_libs</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>  <span class="c1"># initialize model with default logger in read mode</span>
 <span class="n">mod</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">model_out</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;/path/to/model_out&#39;</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="n">opt</span><span class="p">)</span>
@@ -411,7 +412,7 @@ or append (if you update the model data in place) mode.</p>
 Note that this will however not log the used methods and arguments making your model harder to reproduce. To change the model root before writing
 the updated model use the <a class="reference internal" href="../_generated/hydromt.Model.set_root.html#hydromt.Model.set_root" title="hydromt.Model.set_root"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_root()</span></code></a> method (not shown in this example).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hydromt_wflow</span> <span class="kn">import</span> <span class="n">WflowModel</span>
-<span class="n">data_libs</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;/path/to/data_catalog.yml&#39;</span><span class="p">]</span>  <span class="c1"># this catalog contains the &#39;vito&#39; data source</span>
+<span class="n">data_libs</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;/path/to/data_catalog.yaml&#39;</span><span class="p">]</span>  <span class="c1"># this catalog contains the &#39;vito&#39; data source</span>
 <span class="n">mod</span> <span class="o">=</span> <span class="n">WflowModel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/path/to/model_root&#39;</span><span class="p">,</span> <span class="n">data_libs</span><span class="o">=</span><span class="n">data_libs</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r+&#39;</span><span class="p">)</span>  <span class="c1"># initialize model with default logger in append mode</span>
 <span class="n">mod</span><span class="o">.</span><span class="n">setup_lulcmaps</span><span class="p">(</span><span class="n">lulc_fn</span><span class="o">=</span><span class="s1">&#39;vito&#39;</span><span class="p">)</span>
 <span class="n">mod</span><span class="o">.</span><span class="n">write_staticmaps</span><span class="p">()</span>  <span class="c1"># write static maps component with updated lulc maps</span>

@@ -199,14 +199,36 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#design-principles">
-   Design principles
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#git-conventions">
    Git conventions
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hydromt-design-conventions">
+   HydroMT design conventions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general">
+     General
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data">
+     Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-class">
+     Model Class
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#workflows">
+     Workflows
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#code-conventions">
@@ -214,21 +236,43 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#naming">
+     Naming
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#type-hinting">
+     Type hinting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#docstrings">
+     Docstrings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-format">
+     Code format
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-and-ci">
+   Test and CI
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#running-the-tests">
      Running the tests
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#running-code-format-checks">
-     Running code format checks
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#creating-a-release">
-     Creating a release
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-release">
+   Creating a release
+  </a>
  </li>
 </ul>
 
@@ -260,35 +304,20 @@
                 
   <section id="developer-s-guide">
 <span id="contributing"></span><h1>Developer’s guide<a class="headerlink" href="#developer-s-guide" title="Permalink to this headline">#</a></h1>
-<p># TODO review/update the Developer’s guide based on latest insights. Extent on the code conventions section.</p>
 <p>Welcome to the HydroMT project. All contributions, bug reports, bug fixes,
 documentation improvements, enhancements, and ideas are welcome. Here’s how we work.</p>
 <section id="rights">
 <h2>Rights<a class="headerlink" href="#rights" title="Permalink to this headline">#</a></h2>
-<p>The MIT license (see LICENSE.txt) applies to all contributions.</p>
+<p>The MIT <a class="reference external" href="https://github.com/Deltares/hydromt/blob/docs/LICENSE">license</a> applies to all contributions.</p>
 </section>
 <section id="issue-conventions">
 <h2>Issue conventions<a class="headerlink" href="#issue-conventions" title="Permalink to this headline">#</a></h2>
-<p>The HydroMT issue tracker is for actionable issues.</p>
-<p>HydroMT is a relatively new project and highly active. We have bugs, both
-known and unknown.</p>
-<p>Please search existing issues, open and closed, before creating a new one.</p>
-<p>Please provide these details as well as tracebacks and relevant logs. Short scripts and
-datasets demonstrating the issue are especially helpful!</p>
-</section>
-<section id="design-principles">
-<h2>Design principles<a class="headerlink" href="#design-principles" title="Permalink to this headline">#</a></h2>
-<p>HydroMT contains methods to build and analyze models in the hydrology sphere. We try
-to build a modular framework in which data can be interchanged in workflows and
-method and workflows can be reused between models. To achieve this we designed a
-GeneralDataApapter to work with any type of regural gridded data in Xarray and vector
-data in geopandas. An abstract class for models is designed to create a uniform API for
-different models.</p>
-<ul class="simple">
-<li><p>I/O from the filesystem is achieved trough geopandas for vector data, methods in
-open_raterio for gdal raster data and xarray for netcdf data.</p></li>
-<li><p>Flow direction data is parsed to the pyflwdir.FlwdirRaster object.</p></li>
-</ul>
+<p>HydroMT is a relatively new project and highly active. We have bugs, both known and unknown.</p>
+<p>The HydroMT <a class="reference external" href="https://github.com/Deltares/hydromt/issues">issue tracker</a> is the place to share any bugs or feature requests you might have.
+Please search existing issues, open and closed, before creating a new one.</p>
+<p>For bugs, please provide tracebacks and relevant log files to clarify the issue.
+<a class="reference external" href="https://stackoverflow.com/help/minimal-reproducible-example">Minimal reproducible examples</a>,
+are especially helpful!</p>
 </section>
 <section id="git-conventions">
 <h2>Git conventions<a class="headerlink" href="#git-conventions" title="Permalink to this headline">#</a></h2>
@@ -326,17 +355,133 @@ of branch need to be added.</p>
 </pre></div>
 </div>
 <p>When your changes are ready for review, you can merge them into the main codebase with a
-merge request. We recommend creating a merge request as early as possible to give other
+pull request. We recommend creating a pull request as early as possible to give other
 developers a heads up and to provide an opportunity for valuable early feedback. You
-can create a merge request online or by pushing your branch to a feature-branch.</p>
+can create a pull request online or by pushing your branch to a feature-branch.</p>
+</section>
+<section id="hydromt-design-conventions">
+<h2>HydroMT design conventions<a class="headerlink" href="#hydromt-design-conventions" title="Permalink to this headline">#</a></h2>
+<section id="general">
+<h3>General<a class="headerlink" href="#general" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>We use <a class="reference internal" href="../user_guide/data_conventions.html#data-convention"><span class="std std-ref">naming and unit conventions</span></a> for frequently used variables to assure consistency within HydroMT</p></li>
+</ul>
+</section>
+<section id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Currently, <a class="reference internal" href="../user_guide/data_types.html#data-types"><span class="std std-ref">these data types</span></a> are supported, but this list can be extended based on demand.</p></li>
+<li><p>Input data is defined in the <a class="reference internal" href="../user_guide/data_prepare_cat.html#data-yaml"><span class="std std-ref">data catalog</span></a> and parsed by HydroMT to the associated
+Python data type through the DataAdapter class. The goal of this class is to unify the internal representation
+of the data (its data type, variables names and units) through minimal preprocessing. When accessing data
+from the data catalog with any <code class="docutils literal notranslate"><span class="pre">DataCatalog.get_&lt;data_type&gt;</span></code> method, it is passed through the adapter to
+ensure a consistent representation of data within HydroMT. The <cite>get_*</cite> methods take additional arguments to
+define a spatial or temporal subset of the dataset.</p></li>
+</ul>
+</section>
+<section id="model-class">
+<h3>Model Class<a class="headerlink" href="#model-class" title="Permalink to this headline">#</a></h3>
+<p>The HydroMT <a class="reference internal" href="../api.html#model-api"><span class="std std-ref">Model class</span></a> consists of several methods and attributes with specific design/naming conventions.
+To implement HydroMT for a specific model kernel/software, a child class named <cite>&lt;Name&gt;Model</cite> (e.g. SfincsModel for Sfincs)
+should be created with model-specific data readers, writers and setup methods.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../user_guide/model_main.html#model-interface"><span class="std std-ref">Model data components</span></a> are data attributes which together define a model instance and
+are identical for all models. Each component represents a specific model component and is parsed to a specific
+Python data object that should adhere to certain specifications. For instance, the <code class="docutils literal notranslate"><span class="pre">staticmaps</span></code> component represent
+all static regular grids of a model in a <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> object.</p></li>
+<li><p>Most model components have an associated <cite>write_&lt;component&gt;</cite> and <cite>read_&lt;component&gt;</cite> method to read/write with model
+specific data formats and parse to / from the model component. These methods may have additional optional arguments
+(i.e. with default values), but no required arguments. The results component does not have write method.</p></li>
+<li><p>To build a model we specify <code class="docutils literal notranslate"><span class="pre">setup_*</span></code> methods which transform raw input data to a specific model variable, for instance
+the <cite>setup_soilmaps</cite> method in HydroMT-Wflow to transform soil properties to associated Wflow parameter maps which are part
+of the <cite>staticmaps</cite> component.</p></li>
+<li><p>All public model methods may only contain arguments which require one of the following basic python types:
+string, numeric integer and float, boolean, None, list and dict types. This is requirement makes it possible to
+expose these methods and their arguments via a <a class="reference internal" href="../user_guide/model_config.html#model-config"><span class="std std-ref">model config .ini file</span></a>.</p></li>
+<li><p>Data is exposed to each model method through the <code class="docutils literal notranslate"><span class="pre">Model.data_catalog</span></code> attribute which is an instance of the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">hydromt.DataCatalog</span></code>. Data of <a class="reference internal" href="../user_guide/data_types.html#data-types"><span class="std std-ref">supported data types</span></a> is provided to model methods
+by arguments which end with <code class="docutils literal notranslate"><span class="pre">_fn</span></code> (short for filename) which refer to a source in the data catalog
+based on the source name or a file based on the (relative) path to the file. Within a model method the data is read
+by calling any <code class="docutils literal notranslate"><span class="pre">DataCatalog.get_&lt;data_type&gt;</span></code> method which work for both source and file names.</p></li>
+<li><p>The Model class currently contains three high-level methods (<a class="reference internal" href="../_generated/hydromt.Model.build.html#hydromt.Model.build" title="hydromt.Model.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">build()</span></code></a>,
+<a class="reference internal" href="../_generated/hydromt.Model.update.html#hydromt.Model.update" title="hydromt.Model.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">update()</span></code></a> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">clip()</span></code> which are common for all model plugins and
+exposed through the CLI. This list of methods might be extended going forward.</p></li>
+<li><p>The <cite>region</cite> and <cite>res (resolution)</cite> arguments used in the command line <a class="reference internal" href="../user_guide/model_build.html#model-build"><span class="std std-ref">build</span></a>
+and <a class="reference internal" href="../user_guide/model_clip.html#model-clip"><span class="std std-ref">clip</span></a> methods are passed to the model method(s) referred in the internal <cite>_CLI_ARGS</cite> model constant, which
+in by default, as coded in the Model class, is the <cite>setup_basemaps</cite> method for both arguments. This is typically
+the first model method which should be called when building a model.</p></li>
+<li><p>A Model child class implementation for a specific model kernel can be exposed to HydroMT as a plugin by specifying a
+<code class="docutils literal notranslate"><span class="pre">hydromt.models</span></code> <a class="reference external" href="https://packaging.python.org/en/latest/specifications/entry-points/">entry-point</a> in the pyproject.toml file of a package.
+See e.g. the <a class="reference external" href="https://github.com/Deltares/hydromt_wflow/blob/docs/pyproject.toml">HydroMT-Wflow pyproject.toml</a></p></li>
+<li><p>We highly recommend writing integration tests which build/update/clip example model instances and check these with previously build instances.</p></li>
+</ul>
+</section>
+<section id="workflows">
+<h3>Workflows<a class="headerlink" href="#workflows" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Workflows define (partial) transformations of data from input data to model data. And should, if possible, be kept
+generic to be shared between model plugins.</p></li>
+<li><p>The input data is passed to the workflow by python data objects consistent with its associated data types
+(e.g. <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> for regular rasters) and not read by the workflow itself.</p></li>
+<li><p>Unit tests should (see below) be written for workflows to ensure these (keep) work(ing) as intended.</p></li>
+</ul>
+</section>
 </section>
 <section id="code-conventions">
 <h2>Code conventions<a class="headerlink" href="#code-conventions" title="Permalink to this headline">#</a></h2>
-<p>We use <a class="reference external" href="https://black.readthedocs.io/en/stable/">black</a> for standardized code formatting.</p>
-<p>Tests are mandatory for new features. We use <a class="reference external" href="https://pytest.org">pytest</a>. All tests
-should go in the tests directory.</p>
-<p>During Continuous Integration testing, several tools will be run to check your code for
-based on pytest, but also stylistic errors.</p>
+<section id="naming">
+<h3>Naming<a class="headerlink" href="#naming" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Avoid using names that are too general or too wordy. Strike a good balance between the two.</p></li>
+<li><p>Folder and script names are always lowercase and preferably single words (no underscores)</p></li>
+<li><p>Python classes are written with CamelCase</p></li>
+<li><p>Methods are written with lowercase and might use underscores for readability.
+Specific names are used for methods of the Model class and any child classes, see above.</p></li>
+<li><p>Names of (global) constants should be all upper case.</p></li>
+<li><p>Internal (non-public) constants and methods start with an underscore.</p></li>
+</ul>
+</section>
+<section id="type-hinting">
+<h3>Type hinting<a class="headerlink" href="#type-hinting" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>We use <a class="reference external" href="https://docs.python.org/3/library/typing.html">type hinting</a> for arguments and returns of all methods and classes
+Check this <a class="reference external" href="https://stackoverflow.com/questions/32557920/what-are-type-hints-in-python-3-5">stack overflow post</a> for more
+background about what typing is and how it can be used. In HydroMT we use it specifically to inform external libraries to
+about the type arguments of any HydroMT model method. This is work in progress.</p></li>
+</ul>
+</section>
+<section id="docstrings">
+<h3>Docstrings<a class="headerlink" href="#docstrings" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>We use the <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpy docstring format</a>.
+You can easily create these docstring once method arguments have type hints (see above) with
+the VSCode <a class="reference external" href="https://github.com/NilsJPWerner/autoDocstring">autoDocstring pluging</a>.</p></li>
+</ul>
+</section>
+<section id="code-format">
+<h3>Code format<a class="headerlink" href="#code-format" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>We use the <a class="reference external" href="https://black.readthedocs.io/en/stable/the_black_code_style.html">black code style</a>
+for standardized code formatting.</p></li>
+<li><p>Make sure the check below returns <em>All done!</em> before commiting your edits.</p></li>
+</ul>
+<p>To check the formatting of your code:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>black --check .
+</pre></div>
+</div>
+<p>To automatically reformat your code:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>black .
+</pre></div>
+</div>
+</section>
+</section>
+<section id="test-and-ci">
+<h2>Test and CI<a class="headerlink" href="#test-and-ci" title="Permalink to this headline">#</a></h2>
+<p>. We use <a class="reference external" href="https://pytest.org">pytest</a> for testing and <a class="reference external" href="https://docs.github.com/en/actions">github actions</a> for CI.
+- Unit tests are mandatory for new methods and workflows and integration tests are highly recommended for various
+- All tests should be contained in the tests directory in functions named <cite>test_*</cite>.
+- We use <a class="reference external" href="https://app.codecov.io/gh/Deltares/hydromt">CodeCov</a> to monitor the coverage of the tests and aim for high (&gt;90%) coverage. This is work in progress.
+- Checkout this <a class="reference external" href="https://levelup.gitconnected.com/a-comprehensive-guide-to-pytest-3676f05df5a0">comprehensive guide to pytests</a> for more info and tips.</p>
 <section id="running-the-tests">
 <h3>Running the tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline">#</a></h3>
 <p>HydroMT’s tests live in the tests folder and generally match the main package layout.
@@ -355,21 +500,9 @@ Test should be run from the tests folder.</p>
 </pre></div>
 </div>
 </section>
-<section id="running-code-format-checks">
-<h3>Running code format checks<a class="headerlink" href="#running-code-format-checks" title="Permalink to this headline">#</a></h3>
-<p>The code formatting will be checked based on the <a class="reference external" href="https://black.readthedocs.io/en/stable/the_black_code_style.html">black clode style</a> during ci.
-Make sure the check below returns <em>All done!</em> before commiting your edits.</p>
-<p>To check the formatting of your code:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>black --check .
-</pre></div>
-</div>
-<p>To automatically reformat your code:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>black .
-</pre></div>
-</div>
 </section>
 <section id="creating-a-release">
-<h3>Creating a release<a class="headerlink" href="#creating-a-release" title="Permalink to this headline">#</a></h3>
+<h2>Creating a release<a class="headerlink" href="#creating-a-release" title="Permalink to this headline">#</a></h2>
 <ol class="arabic simple">
 <li><p>Prepare the release by bumping the version number in the __init__.py and updating the docs/changelog.rst file</p></li>
 <li><p>First create a new release on github under <a class="reference external" href="https://github.com/Deltares/hydromt/releases">https://github.com/Deltares/hydromt/releases</a>. We use semantic versioning and describe the release based on the CHANGELOG.</p></li>
@@ -394,7 +527,6 @@ Make sure the check below returns <em>All done!</em> before commiting your edits
 <ol class="arabic simple" start="6">
 <li><p>Bump the version number in __init__.py to the next release number with “.dev” postfix and push commit</p></li>
 </ol>
-</section>
 </section>
 </section>
 

@@ -225,14 +225,19 @@
 <span id="dev-env"></span><h1>Developer’s environment<a class="headerlink" href="#developer-s-environment" title="Permalink to this headline">#</a></h1>
 <p>Developing HydroMT requires Python &gt;= 3.6. We prefer developing with the most recent
 version of Python. We strongly encourage you to develop in a separate conda environment.
-All Python dependencies required to develop HydroMT can be found in <a class="reference external" href="environment.yml">envs/hydromt-dev.yml</a>.</p>
+All Python dependencies required to develop HydroMT can be found in
+<a class="reference external" href="https://github.com/Deltares/hydromt/blob/main/envs/hydromt-dev.yml">envs/hydromt-dev.yml</a>.</p>
 <section id="developer-installation-guide">
 <span id="dev-install"></span><h2>Developer installation guide<a class="headerlink" href="#developer-installation-guide" title="Permalink to this headline">#</a></h2>
 <p>First, clone the HydroMT <code class="docutils literal notranslate"><span class="pre">git</span></code> repo using <a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">ssh</a> from
 <a class="reference external" href="https://github.com/Deltares/hydromt.git">github</a>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git clone git@github.com:Deltares/hydromt_delwaq.git
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git clone git@github.com:Deltares/hydromt.git
 <span class="gp">$ </span><span class="nb">cd</span> hydromt
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the commands below you can exchange <cite>conda</cite> for <cite>mamba</cite>, see <a class="reference internal" href="../getting_started/installation.html#installation-guide"><span class="std std-ref">installation guide</span></a> for the difference between both.</p>
 </div>
 <p>Then, navigate into the the code folder (where the envs folder and pyproject.toml are located):
 Make and activate a new <code class="docutils literal notranslate"><span class="pre">hydromt-dev</span></code> conda environment based on the envs/hydromt-dev.yml

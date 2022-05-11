@@ -233,14 +233,14 @@
                 
   <section id="quick-overview">
 <span id="id1"></span><h1>Quick overview<a class="headerlink" href="#quick-overview" title="Permalink to this headline">#</a></h1>
-<p>Typically, we use HydroMT together with a plugin to build a model from scratch.
+<p>Typically, we use HydroMT together with a <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">plugin</span></a> to build a model from scratch.
 Here, we illustrate this for the <a class="reference external" href="https://deltares.github.io/Wflow.jl/dev">Wflow</a> rainfall-runoff model, but the procedure is identical for other models.</p>
 <section id="install-hydromt-model-plugin">
 <h2>Install HydroMT &amp; model plugin<a class="headerlink" href="#install-hydromt-model-plugin" title="Permalink to this headline">#</a></h2>
 <p>If you haven’t already done so, first install HydroMT and the <a class="reference external" href="https://deltares.github.io/hydromt_wflow/">HydroMT-Wflow plugin</a>
 in a new <strong>hydromt</strong> environment and activate this environment.
 For more information about the installation, please refer to the <a class="reference internal" href="installation.html#installation-guide"><span class="std std-ref">installation guide</span></a>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mamba create -n hydromt -c conda-forge <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9 hydromt hydromt_wflow
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda create -n hydromt -c conda-forge <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9 hydromt hydromt_wflow
 <span class="gp">$ </span>conda activate hydromt
 </pre></div>
 </div>
@@ -262,10 +262,10 @@ which contains data for the Piave basin in Northern Italy and is the default cat
 by the Piave subbasin upstream from an outlet point defined: <code class="docutils literal notranslate"><span class="pre">&quot;{'subbasin':</span> <span class="pre">[12.2051,</span> <span class="pre">45.8331],</span> <span class="pre">'strord':</span> <span class="pre">4}&quot;</span></code></p></li>
 <li><p>the <strong>model setup configuration</strong>: Finally, the model setup needs to be configured. Here, the example configuration from the HydroMT-Wflow repository
 is used. You can download the <em>ini</em> file <a class="reference external" href="https://raw.githubusercontent.com/Deltares/hydromt_wflow/main/examples/wflow_build.ini">here (right click &amp; save as)</a> and save it in the current directory.
-For information about specific options, please visit the documentation of the HydroMT plugin of your model of interest.</p></li>
+For information about specific options, please visit the documentation of the HydroMT <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">plugin</span></a> of your model of interest.</p></li>
 </ol>
 <p>These steps are combined into the following command which saves all Wflow model files and a <cite>hydromt.log</cite> file
-in the <cite>wflow_test</cite> folder. This Wflow model instance is ready to be run with <a class="reference external" href="https://deltares.github.io/Wflow.jl/dev">Wflow</a>.</p>
+in the <cite>wflow_test</cite> folder. This Wflow model instance is ready to be <a class="reference external" href="https://deltares.github.io/Wflow.jl/dev/user_guide/step4_running/">run with Wflow</a>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>hydromt build wflow ./wflow_test <span class="s2">&quot;{&#39;subbasin&#39;: [12.2051, 45.8331], &#39;strord&#39;: 4}&quot;</span> -vv -i build_wflow.ini
 </pre></div>
 </div>
