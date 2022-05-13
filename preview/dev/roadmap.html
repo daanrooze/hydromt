@@ -218,6 +218,11 @@
      Integration with other scientific python packages
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plugins-in-development">
+     Plugins in development
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -269,6 +274,7 @@ We will work towards making these download and (if any) the preprocessing of the
 At the same time we will look for alternative open and analysis ready hosts of these data, such as through the pangeo data initiative.</p>
 <p>Furthermore, we will add a new data type for (non spatial) tabular data
 To be able to intake more data formats we will support the intake python module, see discussion in <a class="reference external" href="https://github.com/Deltares/hydromt/issues/113">https://github.com/Deltares/hydromt/issues/113</a></p>
+<p><em>Note: You can find the Deltares data catalog in the</em> <a class="reference external" href="https://github.com/DirkEilander/hydromt-artifacts">hydromt artifacts repository</a> <em>. In this catalog, all links to directly download the data are listed under the “source_url” meta attribute.</em></p>
 </section>
 <section id="dashboard-web-interface">
 <h3>Dashboard / web interface<a class="headerlink" href="#dashboard-web-interface" title="Permalink to this headline">#</a></h3>
@@ -278,6 +284,16 @@ To be able to intake more data formats we will support the intake python module,
 <h3>Integration with other scientific python packages<a class="headerlink" href="#integration-with-other-scientific-python-packages" title="Permalink to this headline">#</a></h3>
 <p>For raster data we aim to replace all duplicate functionality from our raster accessor for xarray Dataset objects with rioxarray and contribute
 with new solutions to that package where those fit the rioxarray scope.</p>
+</section>
+<section id="plugins-in-development">
+<h3>Plugins in development<a class="headerlink" href="#plugins-in-development" title="Permalink to this headline">#</a></h3>
+<p>New plugins are currently in preparation for:</p>
+<ul class="simple">
+<li><p>Delft3D-FM: a flexible mesh hydrodynamic model.</p></li>
+<li><p>RIBASIM: water allocation model.</p></li>
+<li><p>iMOD: groundwater model.</p></li>
+</ul>
+<p>If you wish to add new model plugins, please check out the Developer’s guide.</p>
 </section>
 </section>
 </section>
