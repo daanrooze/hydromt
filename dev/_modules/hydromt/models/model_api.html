@@ -1,96 +1,160 @@
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hydromt.models.model_api &mdash; hydromt  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="../../../_static/js/theme.js"></script>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hydromt.models.model_api &#8212; HydroMT  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme-deltares.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
-</head>
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> hydromt
-          </a>
-              <div class="version">
-                0.4.6.dev
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../user_stories.html">User’s stories</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/terminology.html">Terminology</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/data.html">Data input</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/models/index.html">Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/cli.html">Command Line Interface</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Advanced topics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/model_api.html">Model API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/data_catalog.html">DataCatalog</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">References &amp; Help</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../api/api_index.html">API reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../roadmap.html">Roadmap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">What’s new</a></li>
-</ul>
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
 
-        </div>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../../index.html">
+<p class="title">HydroMT</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../getting_started/intro.html">
+  Getting started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../user_guide/intro.html">
+  User guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../api.html">
+  API reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../dev/intro.html">
+  Developments
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../plugins.html">
+  Plugins
+ </a>
+</li>
+
+    
+</ul>
       </div>
-    </nav>
+      
+    </div>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">hydromt</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content style-external-links">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>hydromt.models.model_api</li>
-      <li class="wy-breadcrumbs-aside">
-      </li>
-  </ul>
-  <hr/>
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://deltares.nl/en/" rel="noopener" target="_blank" title="Deltares"><img src="../../../_static/deltares-white.svg" class="icon-link-image" alt="Deltares"/></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
   <h1>Source code for hydromt.models.model_api</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;General and basic API for models in HydroMT&quot;&quot;&quot;</span>
@@ -99,6 +163,7 @@
 <span class="kn">import</span> <span class="nn">enum</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">isdir</span><span class="p">,</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">abspath</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">basename</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
@@ -115,7 +180,7 @@
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../../../_generated/hydromt.Model.html#hydromt.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;General and basic API for models in HydroMT&quot;&quot;&quot;</span>
 
     <span class="c1"># FIXME</span>
@@ -129,22 +194,35 @@
     <span class="c1"># tell hydroMT which methods should receive the res and region arguments</span>
     <span class="n">_CLI_ARGS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;setup_basemaps&quot;</span><span class="p">,</span> <span class="s2">&quot;res&quot;</span><span class="p">:</span> <span class="s2">&quot;setup_basemaps&quot;</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="Model.__init__"><a class="viewcode-back" href="../../../_generated/hydromt.Model.html#hydromt.Model.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">root</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
-        <span class="n">config_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">data_libs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">root</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span>
+        <span class="n">config_fn</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data_libs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
         <span class="o">**</span><span class="n">artifact_keys</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a model</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        root : str, optional</span>
+<span class="sd">            Model root, by default None</span>
+<span class="sd">        mode : {&#39;r&#39;,&#39;r+&#39;,&#39;w&#39;}, optional</span>
+<span class="sd">            read/append/write mode, by default &quot;w&quot;</span>
+<span class="sd">        config_fn : str, optional</span>
+<span class="sd">            Model simulation configuration file, by default None.</span>
+<span class="sd">            Note that this is not the HydroMT model setup configuration file!</span>
+<span class="sd">        data_libs : List[str], optional</span>
+<span class="sd">            List of data catalog yaml files, by default None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">ENTRYPOINTS</span>  <span class="c1"># load within method to avoid circular imports</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span>
         <span class="n">ep</span> <span class="o">=</span> <span class="n">ENTRYPOINTS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_NAME</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">version</span> <span class="o">=</span> <span class="n">ep</span><span class="o">.</span><span class="n">distro</span><span class="o">.</span><span class="n">version</span> <span class="k">if</span> <span class="n">ep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
         <span class="n">dist</span> <span class="o">=</span> <span class="n">ep</span><span class="o">.</span><span class="n">distro</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="n">ep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;unknown&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initializing </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_NAME</span><span class="si">}</span><span class="s2"> model from </span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s2"> (v</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">)</span>
 
         <span class="c1"># link to data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_catalog</span> <span class="o">=</span> <span class="n">DataCatalog</span><span class="p">(</span>
@@ -161,7 +239,8 @@
 
         <span class="c1"># model paths</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CONF</span> <span class="k">if</span> <span class="n">config_fn</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config_fn</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_root</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_root</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>  <span class="c1"># also creates hydromt.log file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initializing </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_NAME</span><span class="si">}</span><span class="s2"> model from </span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s2"> (v</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_check_get_opt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check all opt keys and raise sensible error messages if unknown.&quot;&quot;&quot;</span>
@@ -177,26 +256,41 @@
         <span class="k">return</span> <span class="n">opt</span>
 
     <span class="k">def</span> <span class="nf">_run_log_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Log method paramters before running a method&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Log method parameters before running a method&quot;&quot;&quot;</span>
         <span class="n">method</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;0123456789&quot;</span><span class="p">)</span>
         <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
         <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="c1"># combine user and default options</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">signature</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">v</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;args&quot;</span><span class="p">,</span> <span class="s2">&quot;kwargs&quot;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span>
+                    <span class="n">params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">continue</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">i</span><span class="p">:</span>
+                    <span class="n">v</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="c1"># log options</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">_empty</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;missing required argument </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> for </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Model.build"><a class="viewcode-back" href="../../../_generated/hydromt.Model.build.html#hydromt.Model.build">[docs]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Single method to build a model from scratch based on settings in `opt`.</span>
-<span class="sd">        Methods will be run one by one based on the order of appearance in `opt` (ini file)..</span>
-<span class="sd">        All model methods are supported incuding setup_*, read_* and write_*</span>
+
+<span class="sd">        Methods will be run one by one based on the order of appearance in `opt` (.ini configuration file).</span>
+<span class="sd">        All model methods are supported including setup_*, read_* and write_* methods.</span>
+
+<span class="sd">        If a write_* option is listed in `opt` (ini file) the full writing of the model at the end</span>
+<span class="sd">        of the update process is skipped.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -206,22 +300,24 @@
 <span class="sd">        res: float, optional</span>
 <span class="sd">            Model resolution. Use only if applicable to your model. By default None.</span>
 <span class="sd">        write: bool, optional</span>
-<span class="sd">            Write the complete model schematization after setting up all model components.</span>
-<span class="sd">            By default True.</span>
+<span class="sd">            Write the complete model after executing all methods in opt, by default True.</span>
 <span class="sd">        opt: dict, optional</span>
-<span class="sd">            Model build configuration. This is a nested dictionary where the first-level</span>
-<span class="sd">            keys are the names of model specific setup methods and the second-level</span>
-<span class="sd">            keys the arguments of the method:</span>
+<span class="sd">            Model build configuration. The configuration can be parsed from a</span>
+<span class="sd">            .ini file using :py:meth:`~hydromt.config.configread`.</span>
+<span class="sd">            This is a nested dictionary where the first-level keys are the names of model</span>
+<span class="sd">            specific (setup) methods and the second-level contain argument-value pairs of the method.</span>
 
-<span class="sd">            ```{</span>
-<span class="sd">                &lt;name of method1&gt;: {</span>
-<span class="sd">                    &lt;argument1&gt;: &lt;value1&gt;, &lt;argument2&gt;: &lt;value2&gt;</span>
-<span class="sd">                    }</span>
-<span class="sd">                &lt;name of method2&gt;: {</span>
-<span class="sd">                    ...</span>
+<span class="sd">            .. code-block:: text</span>
+
+<span class="sd">                {</span>
+<span class="sd">                    &lt;name of method1&gt;: {</span>
+<span class="sd">                        &lt;argument1&gt;: &lt;value1&gt;, &lt;argument2&gt;: &lt;value2&gt;</span>
+<span class="sd">                    },</span>
+<span class="sd">                    &lt;name of method2&gt;: {</span>
+<span class="sd">                        ...</span>
 <span class="sd">                    }</span>
 <span class="sd">                }</span>
-<span class="sd">            }```</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_get_opt</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span>
 
@@ -252,10 +348,12 @@
         <span class="k">if</span> <span class="n">write</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">()</span></div>
 
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.update"><a class="viewcode-back" href="../../../_generated/hydromt.Model.update.html#hydromt.Model.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Single method to update a model based the settings in `opt`.</span>
-<span class="sd">        Methods will be run one by one based on the order of appearance in `opt` (ini file).</span>
-<span class="sd">        All model methods are supported incuding setup_*, read_* and write_*</span>
+
+<span class="sd">        Methods will be run one by one based on the order of appearance in `opt` (ini configuration file).</span>
+
+<span class="sd">        All model methods are supported including setup_*, read_* and write_* methods.</span>
 <span class="sd">        If a write_* option is listed in `opt` (ini file) the full writing of the model at the end</span>
 <span class="sd">        of the update process is skipped.</span>
 
@@ -268,18 +366,21 @@
 <span class="sd">        write: bool, optional</span>
 <span class="sd">            Write the updated model schematization to disk. By default True.</span>
 <span class="sd">        opt: dict, optional</span>
-<span class="sd">            Model update configuration. This is a nested dictionary where the first-level</span>
-<span class="sd">            keys are the names of model specific setup methods and the second-level</span>
-<span class="sd">            keys the arguments of the method:</span>
+<span class="sd">            Model build configuration. The configuration can be parsed from a</span>
+<span class="sd">            .ini file using :py:meth:`~hydromt.config.configread`.</span>
+<span class="sd">            This is a nested dictionary where the first-level keys are the names of model</span>
+<span class="sd">            specific (setup) methods and the second-level contain argument-value pairs of the method.</span>
 
-<span class="sd">            ```{</span>
-<span class="sd">                &lt;name of method1&gt;: {</span>
-<span class="sd">                    &lt;argument1&gt;: &lt;value1&gt;, &lt;argument2&gt;: &lt;value2&gt;</span>
+<span class="sd">            .. code-block:: text</span>
+
+<span class="sd">                {</span>
+<span class="sd">                    &lt;name of method1&gt;: {</span>
+<span class="sd">                        &lt;argument1&gt;: &lt;value1&gt;, &lt;argument2&gt;: &lt;value2&gt;</span>
+<span class="sd">                    },</span>
+<span class="sd">                    &lt;name of method2&gt;: {</span>
+<span class="sd">                        ...</span>
 <span class="sd">                    }</span>
-<span class="sd">                &lt;name of method2&gt;: {</span>
-<span class="sd">                    ...</span>
-<span class="sd">                    }</span>
-<span class="sd">            }```</span>
+<span class="sd">                }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_get_opt</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span>
 
@@ -311,11 +412,11 @@
 
         <span class="c1"># write</span>
         <span class="k">if</span> <span class="n">write</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">()</span></div>
 
     <span class="c1">## general setup methods</span>
 
-    <span class="k">def</span> <span class="nf">setup_region</span><span class="p">(</span>
+<div class="viewcode-block" id="Model.setup_region"><a class="viewcode-back" href="../../../_generated/hydromt.Model.setup_region.html#hydromt.Model.setup_region">[docs]</a>    <span class="k">def</span> <span class="nf">setup_region</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">region</span><span class="p">,</span>
         <span class="n">hydrography_fn</span><span class="o">=</span><span class="s2">&quot;merit_hydro&quot;</span><span class="p">,</span>
@@ -393,7 +494,7 @@
 
         <span class="c1"># This setup method returns region so that it can be wrapped for models which require</span>
         <span class="c1"># more information, e.g. grid RasterDataArray or xy coordinates.</span>
-        <span class="k">return</span> <span class="n">region</span>
+        <span class="k">return</span> <span class="n">region</span></div>
 
     <span class="c1">## file system</span>
 
@@ -405,16 +506,17 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span>
 
 <div class="viewcode-block" id="Model.set_root"><a class="viewcode-back" href="../../../_generated/hydromt.Model.set_root.html#hydromt.Model.set_root">[docs]</a>    <span class="k">def</span> <span class="nf">set_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialized the model root.</span>
-<span class="sd">        In read mode it checks if the root exists.</span>
-<span class="sd">        In write mode in creates the required model folder structure</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the model root.</span>
+
+<span class="sd">        In read/append mode a check is done if the root exists.</span>
+<span class="sd">        In write mode the required model folder structure is created.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        root : str, optional</span>
 <span class="sd">            path to model root</span>
 <span class="sd">        mode : {&quot;r&quot;, &quot;r+&quot;, &quot;w&quot;}, optional</span>
-<span class="sd">            read/write-only mode for model files</span>
+<span class="sd">            read/append/write mode for model files</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;r+&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mode &quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">&quot; unknown, select from &quot;r&quot;, &quot;r+&quot; or &quot;w&quot;&#39;</span><span class="p">)</span>
@@ -441,13 +543,22 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read</span> <span class="ow">and</span> <span class="n">isfile</span><span class="p">(</span><span class="n">data_fn</span><span class="p">):</span>
                 <span class="c1"># read data and mark as used</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">data_catalog</span><span class="o">.</span><span class="n">from_yml</span><span class="p">(</span><span class="n">data_fn</span><span class="p">,</span> <span class="n">mark_used</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="c1"># change output localtion of any logging file handlers</span>
+            <span class="c1"># remove old logging file handler and add new filehandler in root if it does not exist</span>
+            <span class="n">has_log_file</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">log_level</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># default, but overwritten by the level of active loggers</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">):</span>
-                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="s2">&quot;baseFilename&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dirname</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">baseFilename</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># remove handler and close file</span>
-                    <span class="n">new_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="n">basename</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">baseFilename</span><span class="p">))</span>
-                    <span class="n">log</span><span class="o">.</span><span class="n">add_filehandler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span> <span class="n">new_path</span><span class="p">,</span> <span class="n">h</span><span class="o">.</span><span class="n">level</span><span class="p">)</span>
-                    <span class="k">break</span></div>
+                <span class="n">log_level</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">level</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="s2">&quot;baseFilename&quot;</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">dirname</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">baseFilename</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span>
+                            <span class="n">i</span>
+                        <span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># remove handler and close file</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">has_log_file</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">break</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">has_log_file</span><span class="p">:</span>
+                <span class="n">new_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">,</span> <span class="s2">&quot;hydromt.log&quot;</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">add_filehandler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span> <span class="n">new_path</span><span class="p">,</span> <span class="n">log_level</span><span class="p">)</span></div>
 
     <span class="c1">## I/O</span>
 
@@ -469,7 +580,7 @@
     <span class="k">def</span> <span class="nf">_configwrite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">configwrite</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">write_data_catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">used_only</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.write_data_catalog"><a class="viewcode-back" href="../../../_generated/hydromt.Model.write_data_catalog.html#hydromt.Model.write_data_catalog">[docs]</a>    <span class="k">def</span> <span class="nf">write_data_catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">used_only</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Write the data catalog to `hydromt_data.yml`</span>
 
 <span class="sd">        Parameters</span>
@@ -481,7 +592,7 @@
 <span class="sd">            If True, export only data entries kept in used_data list.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;hydromt_data.yml&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data_catalog</span><span class="o">.</span><span class="n">to_yml</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">root</span><span class="p">,</span> <span class="n">used_only</span><span class="o">=</span><span class="n">used_only</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_catalog</span><span class="o">.</span><span class="n">to_yml</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">root</span><span class="p">,</span> <span class="n">used_only</span><span class="o">=</span><span class="n">used_only</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Model.read_config"><a class="viewcode-back" href="../../../_generated/hydromt.Model.read_config.html#hydromt.Model.read_config">[docs]</a>    <span class="k">def</span> <span class="nf">read_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Parse config from file. If no config file found a default config file is</span>
@@ -997,34 +1108,40 @@
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dtypes</span><span class="p">]):</span>
                     <span class="n">non_compliant</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;results.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">non_compliant</span>
+        <span class="k">return</span> <span class="n">non_compliant</span></div>
 </pre></div>
 
-           </div>
-          </div>
-          <footer>
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright Deltares.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
-        </div>
       </div>
-    </section>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright Deltares.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
   </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
-</body>
+</footer>
+  </body>
 </html>
