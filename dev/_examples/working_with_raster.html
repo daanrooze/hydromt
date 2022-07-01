@@ -4,15 +4,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Example: Working with raster data &#8212; HydroMT  documentation</title>
-    
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
 
-    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
   <link rel="stylesheet"
     href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
@@ -23,13 +27,14 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-deltares.css" />
-    
+
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/design-tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -39,32 +44,40 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Statistical methods" href="../user_guide/methods_stats.html" />
     <link rel="prev" title="Example: Delineating basins" href="delineate_basin.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en">
-    
-
-    <!-- Google Analytics -->
-    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
 
     
-    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
 
   <div id="navbar-start">
     
     
-<a class="navbar-brand" href="../index.html">
-<p class="title">HydroMT</p>
-</a>
+  
 
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">HydroMT  documentation</p>
+  
+</a>
     
   </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="fas fa-bars"></span>
   </button>
 
   
@@ -112,6 +125,14 @@
     <div id="navbar-end">
       
       <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
           <a class="nav-link" href="https://deltares.nl/en/" rel="noopener" target="_blank" title="Deltares"><img src="../_static/deltares-white.svg" class="icon-link-image" alt="Deltares"/></a>
@@ -125,13 +146,13 @@
     </nav>
     
 
-    <div class="container-xl">
-      <div class="row">
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
           
-            
-            <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">
-              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
@@ -252,19 +273,20 @@
 
   </div>
 </nav>
-              </div>
-              <div class="sidebar-end-items">
-              </div>
-            </div>
-            
-          
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
 
           
-          <div class="d-none d-xl-block col-xl-2 bd-toc">
-            
-              
-              <div class="toc-item">
-                
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
 <div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
@@ -304,10 +326,10 @@
 </ul>
 
 </nav>
-              </div>
-              
-              <div class="toc-item">
-                
+    </div>
+    
+    <div class="toc-item">
+      
 
 <div class="tocsection editthispage">
     <a href="https://github.com/Deltares/hydromt/edit/docs/docs/_examples/working_with_raster.ipynb">
@@ -315,19 +337,17 @@
     </a>
 </div>
 
-              </div>
-              
-            
-          </div>
-          
+    </div>
+    
+  
+</div>
+
 
           
           
-            
-          
-          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+          <div class="bd-content col-12 col-md-9 col-xl-7">
               
-              <div>
+              <article class="bd-article" role="main">
                 
   
 <style>
@@ -544,6 +564,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -552,10 +573,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -567,12 +592,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -584,7 +612,7 @@ div.rendered_html tbody tr:hover {
     <a href="https://mybinder.org/v2/gh/Deltares/hydromt/main?urlpath=lab/tree/examples/working_with_raster.ipynb" target="_blank" rel="noopener noreferrer"><img alt="Binder badge" src="https://mybinder.org/badge_logo.svg"></a>
 </div></div>
 <section id="Example:-Working-with-raster-data">
-<h1>Example: Working with raster data<a class="headerlink" href="#Example:-Working-with-raster-data" title="Permalink to this headline">#</a></h1>
+<h1>Example: Working with raster data<a class="headerlink" href="#Example:-Working-with-raster-data" title="Permalink to this heading">#</a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -600,7 +628,7 @@ div.rendered_html tbody tr:hover {
 <p>Note that this implementation is based on a very earlier version of <a class="reference external" href="https://corteva.github.io/rioxarray/stable/">rioxarray</a> and in fact we are using some of rioxarray functionality and working towards replacing our duplicated functionality with that of rioxarray and will try to contribute new functionality to rioxarray. The original reason for the raster data accessor was that we needed some changes in the internals of the writing methods for PCRaster data which is not fully supported by its
 GDAL driver. Currently the key difference between both packages, besides the naming of the accessor and some methods, are in new methods that have been added over time by both packages and the way that the raster attribute data is stored. In HydroMT this attribute data is always stored in the <code class="docutils literal notranslate"><span class="pre">spatial_ref</span></code> coordinate of the DataArray/Dataset whereas rioxarray uses additional attributes of the RasterDataset class.</p>
 <section id="Geospatial-attributes">
-<h2>Geospatial attributes<a class="headerlink" href="#Geospatial-attributes" title="Permalink to this headline">#</a></h2>
+<h2>Geospatial attributes<a class="headerlink" href="#Geospatial-attributes" title="Permalink to this heading">#</a></h2>
 <p>Using the <a class="reference internal" href="../api.html#raster-methods"><span class="std std-ref">raster</span></a> accessor we can get (and set) many geospatial properties of regular raster datasets.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -618,7 +646,7 @@ GDAL driver. Currently the key difference between both packages, besides the nam
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.collections.QuadMesh at 0x7fea16f15040&gt;
+&lt;matplotlib.collections.QuadMesh at 0x7fae52cfd7f0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -703,7 +731,7 @@ Affine(0.0024999999900981278, 0.0, 11.600416643117885,
 </div>
 </section>
 <section id="Reproject-(warp)-raster-data">
-<h2>Reproject (warp) raster data<a class="headerlink" href="#Reproject-(warp)-raster-data" title="Permalink to this headline">#</a></h2>
+<h2>Reproject (warp) raster data<a class="headerlink" href="#Reproject-(warp)-raster-data" title="Permalink to this heading">#</a></h2>
 <p>A common preprocessing step to generate model data is to make sure all data is in the same CRS. The <a class="reference internal" href="../_generated/hydromt.DataArray.raster.reproject.html"><span class="doc">.raster.reproject()</span></a> are build on <strong>rasterio</strong> and <strong>GDAL</strong> and make this really easy for you.</p>
 <p>In this example we demonstrate how to reproject a population count grid. This grid should not be reprojected directly to other resolutions in order to conserve the total number of people. Therefore, we first derive the population density using <a class="reference internal" href="../_generated/hydromt.DataArray.raster.density_grid.html"><span class="doc">.raster.density_grid()</span></a> which can be reprojected and combined with the project grid cell area using <a class="reference internal" href="../_generated/hydromt.DataArray.raster.area_grid.html"><span class="doc">.raster.area_grid()</span></a> to calculate the
 final population count. Using this approach we only make a small error which we correct to preserve the total count.</p>
@@ -735,7 +763,7 @@ final population count. Using this approach we only make a small error which we 
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Destination CRS: EPSG:32633
-Error: 0.467%
+Error: 0.033%
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -744,7 +772,7 @@ Error: 0.467%
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.collections.QuadMesh at 0x7fea143e18e0&gt;
+&lt;matplotlib.collections.QuadMesh at 0x7fae52b1c130&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -756,7 +784,7 @@ Error: 0.467%
 </div>
 </section>
 <section id="Zonal-statistics">
-<h2>Zonal statistics<a class="headerlink" href="#Zonal-statistics" title="Permalink to this headline">#</a></h2>
+<h2>Zonal statistics<a class="headerlink" href="#Zonal-statistics" title="Permalink to this heading">#</a></h2>
 <p>For many lumped models, zonal statistics are required to derive model parameters. The <a class="reference internal" href="../_generated/hydromt.DataArray.raster.zonal_stats.html"><span class="doc">.raster.zonal_stats()</span></a> method implements a range of statistics, but also allows for user defined statistics passed as a callable. Here we provide an example to get the population count per admin 3 level. HydroMT takes care that the vector data is reprojected to the raster data CRS if necessary.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -887,7 +915,7 @@ Error: 0.467%
 </div>
 </section>
 <section id="Interpolate-nodata-values">
-<h2>Interpolate nodata values<a class="headerlink" href="#Interpolate-nodata-values" title="Permalink to this headline">#</a></h2>
+<h2>Interpolate nodata values<a class="headerlink" href="#Interpolate-nodata-values" title="Permalink to this heading">#</a></h2>
 <p>To create a continuos grid with values gaps in the data can be filled trough interpolation. HydroMT has the <a class="reference internal" href="../_generated/hydromt.DataArray.raster.interpolate_na.html"><span class="doc">.raster.interpolate_na()</span></a> method with several interpolation options available. For the nearest, linear and cubic interpolation the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.griddata.html">scipy.interpolate.griddata()</a> method is used. First, a mesh of all valid values surrounding the data gaps is
 build using voronoi triangulation. Then, values are calculated for each grid cell with a nodata value. Note that nearest method also extrapolates, while the other methods only interpolate gaps. A final method is based on <a class="reference external" href="https://rasterio.readthedocs.io/en/latest/api/rasterio.fill.html">rasterio.fill.fillnodata()</a> method.</p>
 <div class="nbinput docutils container">
@@ -907,7 +935,7 @@ build using voronoi triangulation. Then, values are calculated for each grid cel
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.collections.QuadMesh at 0x7fe9ff18bd00&gt;
+&lt;matplotlib.collections.QuadMesh at 0x7fae36f68a30&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -932,7 +960,7 @@ build using voronoi triangulation. Then, values are calculated for each grid cel
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.collections.QuadMesh at 0x7fe9fe21cfa0&gt;
+&lt;matplotlib.collections.QuadMesh at 0x7fae369e15b0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -944,7 +972,7 @@ build using voronoi triangulation. Then, values are calculated for each grid cel
 </div>
 </section>
 <section id="Reproject-and-merge">
-<h2>Reproject and merge<a class="headerlink" href="#Reproject-and-merge" title="Permalink to this headline">#</a></h2>
+<h2>Reproject and merge<a class="headerlink" href="#Reproject-and-merge" title="Permalink to this heading">#</a></h2>
 <p>This example shows how to use the <a class="reference internal" href="../_generated/hydromt.DataArray.raster.reproject_like.html"><span class="doc">.raster.reproject_like()</span></a> method to align different datasets such that these are at identical grids and can be merged.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
@@ -986,7 +1014,7 @@ resolution MDT: 0.12500
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.collections.QuadMesh at 0x7fe9fdf85280&gt;
+&lt;matplotlib.collections.QuadMesh at 0x7fae368392b0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1023,7 +1051,7 @@ resolution reprojected GEBCO: 0.00083
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.collections.QuadMesh at 0x7fe9fdfdb460&gt;
+&lt;matplotlib.collections.QuadMesh at 0x7fae366d0cd0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1035,7 +1063,7 @@ resolution reprojected GEBCO: 0.00083
 </div>
 </section>
 <section id="Write-raster-to-file">
-<h2>Write raster to file<a class="headerlink" href="#Write-raster-to-file" title="Permalink to this headline">#</a></h2>
+<h2>Write raster to file<a class="headerlink" href="#Write-raster-to-file" title="Permalink to this heading">#</a></h2>
 <p>To write a dataset to a raster file the <a class="reference internal" href="../_generated/hydromt.DataArray.raster.to_raster.html"><span class="doc">.raster.to_raster()</span></a> can be used. By default the file is written in GeoTiff format. Each band is written as a layer of the raster file. A xarray.Dataset with multiple variables can be written to multiple files in a single folder, each with the name of the variable as basename with <a class="reference internal" href="../_generated/hydromt.Dataset.raster.to_mapstack.html"><span class="doc">.raster.to_mapstack()</span></a>.</p>
 <p>Here, we use the merged DEM output of the previous example to write to file. To ensure the CRS and nodata metadata are written we first update these attributes of the data based on the original DEM data.</p>
 <div class="nbinput nblast docutils container">
@@ -1104,51 +1132,55 @@ Band 1 Block=960x1 Type=Float64, ColorInterp=Gray
 </section>
 
 
-              </div>
+              </article>
               
-              
-              <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="delineate_basin.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Example: Delineating basins</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="../user_guide/methods_stats.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Statistical methods</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-              
-          </main>
-          
 
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="delineate_basin.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Example: Delineating basins</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../user_guide/methods_stats.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Statistical methods</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+              </footer>
+              
+          </div>
+          
       </div>
     </div>
+
+  
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-<footer class="footer mt-5 mt-md-0">
-  <div class="container">
-    
-    <div class="footer-item">
-      <p class="copyright">
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
     &copy; Copyright Deltares.<br>
 </p>
-    </div>
-    
-    <div class="footer-item">
-      <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
-</p>
-    </div>
-    
   </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br>
+</p>
+  </div>
+  
+</div>
 </footer>
   </body>
 </html>

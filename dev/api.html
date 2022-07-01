@@ -4,15 +4,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>API reference &#8212; HydroMT  documentation</title>
-    
-  <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
 
-    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
   <link rel="stylesheet"
     href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
@@ -23,13 +27,14 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     <link rel="stylesheet" type="text/css" href="_static/theme-deltares.css" />
-    
+
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/design-tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -37,32 +42,40 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="hydromt.data_adapter.DataCatalog" href="_generated/hydromt.data_adapter.DataCatalog.html" />
     <link rel="prev" title="Statistical methods" href="user_guide/methods_stats.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en">
-    
-
-    <!-- Google Analytics -->
-    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
 
     
-    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
 
   <div id="navbar-start">
     
     
-<a class="navbar-brand" href="index.html">
-<p class="title">HydroMT</p>
-</a>
+  
 
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">HydroMT  documentation</p>
+  
+</a>
     
   </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="fas fa-bars"></span>
   </button>
 
   
@@ -110,6 +123,14 @@
     <div id="navbar-end">
       
       <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
           <a class="nav-link" href="https://deltares.nl/en/" rel="noopener" target="_blank" title="Deltares"><img src="_static/deltares-white.svg" class="icon-link-image" alt="Deltares"/></a>
@@ -123,13 +144,13 @@
     </nav>
     
 
-    <div class="container-xl">
-      <div class="row">
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
           
-            
-            <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">
-              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
@@ -1204,19 +1225,20 @@
 
   </div>
 </nav>
-              </div>
-              <div class="sidebar-end-items">
-              </div>
-            </div>
-            
-          
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
 
           
-          <div class="d-none d-xl-block col-xl-2 bd-toc">
-            
-              
-              <div class="toc-item">
-                
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
 <div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
@@ -1512,10 +1534,10 @@
 </ul>
 
 </nav>
-              </div>
-              
-              <div class="toc-item">
-                
+    </div>
+    
+    <div class="toc-item">
+      
 
 <div class="tocsection editthispage">
     <a href="https://github.com/Deltares/hydromt/edit/docs/docs/api.rst">
@@ -1523,33 +1545,27 @@
     </a>
 </div>
 
-              </div>
-              
-            
-          </div>
-          
+    </div>
+    
+  
+</div>
+
 
           
           
-            
-          
-          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+          <div class="bd-content col-12 col-md-9 col-xl-7">
               
-              <div>
+              <article class="bd-article" role="main">
                 
   <section id="api-reference">
-<span id="id1"></span><h1>API reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">#</a></h1>
+<span id="id1"></span><h1>API reference<a class="headerlink" href="#api-reference" title="Permalink to this heading">#</a></h1>
 <section id="data">
-<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h2>
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
 <section id="data-catalog">
-<span id="api-data-catalog"></span><h3>Data catalog<a class="headerlink" href="#data-catalog" title="Permalink to this headline">#</a></h3>
+<span id="api-data-catalog"></span><h3>Data catalog<a class="headerlink" href="#data-catalog" title="Permalink to this heading">#</a></h3>
 <section id="general">
-<h4>General<a class="headerlink" href="#general" title="Permalink to this headline">#</a></h4>
+<h4>General<a class="headerlink" href="#general" title="Permalink to this heading">#</a></h4>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.data_adapter.DataCatalog.html#hydromt.data_adapter.DataCatalog" title="hydromt.data_adapter.DataCatalog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_adapter.DataCatalog</span></code></a>([data_libs, logger])</p></td>
 <td><p>Catalog of DataAdapter sources to easily read from different files and keep track of files which have been accessed.</p></td>
@@ -1573,12 +1589,8 @@
 </table>
 </section>
 <section id="add-data-sources">
-<h4>Add data sources<a class="headerlink" href="#add-data-sources" title="Permalink to this headline">#</a></h4>
+<h4>Add data sources<a class="headerlink" href="#add-data-sources" title="Permalink to this heading">#</a></h4>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.data_adapter.DataCatalog.from_artifacts.html#hydromt.data_adapter.DataCatalog.from_artifacts" title="hydromt.data_adapter.DataCatalog.from_artifacts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_adapter.DataCatalog.from_artifacts</span></code></a>([...])</p></td>
 <td><p>Read a catalog file from <a class="reference external" href="https://github.com/DirkEilander/hydromt-artifacts">https://github.com/DirkEilander/hydromt-artifacts</a> releases.</p></td>
@@ -1596,12 +1608,8 @@
 </table>
 </section>
 <section id="get-data">
-<span id="api-data-catalog-get"></span><h4>Get data<a class="headerlink" href="#get-data" title="Permalink to this headline">#</a></h4>
+<span id="api-data-catalog-get"></span><h4>Get data<a class="headerlink" href="#get-data" title="Permalink to this heading">#</a></h4>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.data_adapter.DataCatalog.get_rasterdataset.html#hydromt.data_adapter.DataCatalog.get_rasterdataset" title="hydromt.data_adapter.DataCatalog.get_rasterdataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_adapter.DataCatalog.get_rasterdataset</span></code></a>(...)</p></td>
 <td><p>Returns a clipped, sliced and unified RasterDataset from the data catalog.</p></td>
@@ -1617,12 +1625,8 @@
 </section>
 </section>
 <section id="rasterdataset">
-<h3>RasterDataset<a class="headerlink" href="#rasterdataset" title="Permalink to this headline">#</a></h3>
+<h3>RasterDataset<a class="headerlink" href="#rasterdataset" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.data_adapter.RasterDatasetAdapter.html#hydromt.data_adapter.RasterDatasetAdapter" title="hydromt.data_adapter.RasterDatasetAdapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_adapter.RasterDatasetAdapter</span></code></a>(path[, ...])</p></td>
 <td><p>Initiates data adapter for geospatial raster data.</p></td>
@@ -1640,12 +1644,8 @@
 </table>
 </section>
 <section id="geodataset">
-<h3>GeoDataset<a class="headerlink" href="#geodataset" title="Permalink to this headline">#</a></h3>
+<h3>GeoDataset<a class="headerlink" href="#geodataset" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.data_adapter.GeoDatasetAdapter.html#hydromt.data_adapter.GeoDatasetAdapter" title="hydromt.data_adapter.GeoDatasetAdapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_adapter.GeoDatasetAdapter</span></code></a>(path[, ...])</p></td>
 <td><p>Initiates data adapter for geospatial timeseries data.</p></td>
@@ -1663,12 +1663,8 @@
 </table>
 </section>
 <section id="geodataframe">
-<h3>GeoDataFrame<a class="headerlink" href="#geodataframe" title="Permalink to this headline">#</a></h3>
+<h3>GeoDataFrame<a class="headerlink" href="#geodataframe" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.data_adapter.GeoDataFrameAdapter.html#hydromt.data_adapter.GeoDataFrameAdapter" title="hydromt.data_adapter.GeoDataFrameAdapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_adapter.GeoDataFrameAdapter</span></code></a>(path[, ...])</p></td>
 <td><p>Initiates data adapter for geospatial vector data.</p></td>
@@ -1687,16 +1683,12 @@
 </section>
 </section>
 <section id="models">
-<span id="model-api"></span><h2>Models<a class="headerlink" href="#models" title="Permalink to this headline">#</a></h2>
+<span id="model-api"></span><h2>Models<a class="headerlink" href="#models" title="Permalink to this heading">#</a></h2>
 <section id="id2">
-<h3>Model API<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h3>Model API<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <section id="class-and-attributes">
-<h4>Class and attributes<a class="headerlink" href="#class-and-attributes" title="Permalink to this headline">#</a></h4>
+<h4>Class and attributes<a class="headerlink" href="#class-and-attributes" title="Permalink to this heading">#</a></h4>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.html#hydromt.Model" title="hydromt.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a>(root, mode, config_fn, data_libs[, logger])</p></td>
 <td><p>General and basic API for models in HydroMT</p></td>
@@ -1705,12 +1697,8 @@
 </table>
 </section>
 <section id="high-level-methods">
-<h4>High level methods<a class="headerlink" href="#high-level-methods" title="Permalink to this headline">#</a></h4>
+<h4>High level methods<a class="headerlink" href="#high-level-methods" title="Permalink to this heading">#</a></h4>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.read.html#hydromt.Model.read" title="hydromt.Model.read"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.read</span></code></a>()</p></td>
 <td><p>Method to read the complete model schematization and configuration from file.</p></td>
@@ -1740,12 +1728,8 @@
 </table>
 </section>
 <section id="model-components">
-<h4>Model components<a class="headerlink" href="#model-components" title="Permalink to this headline">#</a></h4>
+<h4>Model components<a class="headerlink" href="#model-components" title="Permalink to this heading">#</a></h4>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.config.html#hydromt.Model.config" title="hydromt.Model.config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.config</span></code></a></p></td>
 <td><p>Returns parsed model configuration.</p></td>
@@ -1769,12 +1753,8 @@
 </table>
 </section>
 <section id="general-methods">
-<h4>General methods<a class="headerlink" href="#general-methods" title="Permalink to this headline">#</a></h4>
+<h4>General methods<a class="headerlink" href="#general-methods" title="Permalink to this heading">#</a></h4>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.Model.get_config.html#hydromt.Model.get_config" title="hydromt.Model.get_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.get_config</span></code></a>(*args[, fallback, abs_path])</p></td>
 <td><p>Get a config value at key(s).</p></td>
@@ -1836,14 +1816,10 @@
 </section>
 </section>
 <section id="workflows">
-<h2>Workflows<a class="headerlink" href="#workflows" title="Permalink to this headline">#</a></h2>
+<h2>Workflows<a class="headerlink" href="#workflows" title="Permalink to this heading">#</a></h2>
 <section id="basin-mask">
-<h3>Basin mask<a class="headerlink" href="#basin-mask" title="Permalink to this headline">#</a></h3>
+<h3>Basin mask<a class="headerlink" href="#basin-mask" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.workflows.basin_mask.get_basin_geometry.html#hydromt.workflows.basin_mask.get_basin_geometry" title="hydromt.workflows.basin_mask.get_basin_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">workflows.basin_mask.get_basin_geometry</span></code></a>(ds)</p></td>
 <td><p>Returns a geometry of the (sub)(inter)basin(s).</p></td>
@@ -1855,12 +1831,8 @@
 </table>
 </section>
 <section id="river-bathymetry">
-<h3>River bathymetry<a class="headerlink" href="#river-bathymetry" title="Permalink to this headline">#</a></h3>
+<h3>River bathymetry<a class="headerlink" href="#river-bathymetry" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.workflows.rivers.river_width.html#hydromt.workflows.rivers.river_width" title="hydromt.workflows.rivers.river_width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">workflows.rivers.river_width</span></code></a>(gdf_stream, ...)</p></td>
 <td><p>Return segment average river width based on a river mask raster.</p></td>
@@ -1872,14 +1844,10 @@
 </table>
 </section>
 <section id="forcing">
-<h3>Forcing<a class="headerlink" href="#forcing" title="Permalink to this headline">#</a></h3>
+<h3>Forcing<a class="headerlink" href="#forcing" title="Permalink to this heading">#</a></h3>
 <section id="data-handling">
-<h4>Data handling<a class="headerlink" href="#data-handling" title="Permalink to this headline">#</a></h4>
+<h4>Data handling<a class="headerlink" href="#data-handling" title="Permalink to this heading">#</a></h4>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.workflows.forcing.precip.html#hydromt.workflows.forcing.precip" title="hydromt.workflows.forcing.precip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">workflows.forcing.precip</span></code></a>(precip, da_like[, ...])</p></td>
 <td><p>Lazy reprojection of precipitation to model grid and resampling of time dimension to frequency.</p></td>
@@ -1897,12 +1865,8 @@
 </table>
 </section>
 <section id="correction-methods">
-<h4>Correction methods<a class="headerlink" href="#correction-methods" title="Permalink to this headline">#</a></h4>
+<h4>Correction methods<a class="headerlink" href="#correction-methods" title="Permalink to this heading">#</a></h4>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.workflows.forcing.press_correction.html#hydromt.workflows.forcing.press_correction" title="hydromt.workflows.forcing.press_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">workflows.forcing.press_correction</span></code></a>(dem_model)</p></td>
 <td><p>Pressure correction based on elevation lapse_rate.</p></td>
@@ -1914,12 +1878,8 @@
 </table>
 </section>
 <section id="time-resampling-methods">
-<h4>Time resampling methods<a class="headerlink" href="#time-resampling-methods" title="Permalink to this headline">#</a></h4>
+<h4>Time resampling methods<a class="headerlink" href="#time-resampling-methods" title="Permalink to this heading">#</a></h4>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.workflows.forcing.resample_time.html#hydromt.workflows.forcing.resample_time" title="hydromt.workflows.forcing.resample_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">workflows.forcing.resample_time</span></code></a>(da, freq[, ...])</p></td>
 <td><p>Resample data to destination frequency.</p></td>
@@ -1931,13 +1891,9 @@
 </table>
 </section>
 <section id="computation-methods">
-<h4>Computation methods<a class="headerlink" href="#computation-methods" title="Permalink to this headline">#</a></h4>
+<h4>Computation methods<a class="headerlink" href="#computation-methods" title="Permalink to this heading">#</a></h4>
 <p><strong>PET</strong></p>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.workflows.forcing.pet_debruin.html#hydromt.workflows.forcing.pet_debruin" title="hydromt.workflows.forcing.pet_debruin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">workflows.forcing.pet_debruin</span></code></a>(temp, press, ...)</p></td>
 <td><p>Determines De Bruin (2016) reference evapotranspiration.</p></td>
@@ -1951,14 +1907,10 @@
 </section>
 </section>
 <section id="reading-writing-methods">
-<h2>Reading/writing methods<a class="headerlink" href="#reading-writing-methods" title="Permalink to this headline">#</a></h2>
+<h2>Reading/writing methods<a class="headerlink" href="#reading-writing-methods" title="Permalink to this heading">#</a></h2>
 <section id="reading-methods">
-<span id="open-methods"></span><h3>Reading methods<a class="headerlink" href="#reading-methods" title="Permalink to this headline">#</a></h3>
+<span id="open-methods"></span><h3>Reading methods<a class="headerlink" href="#reading-methods" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.io.open_raster.html#hydromt.io.open_raster" title="hydromt.io.open_raster"><code class="xref py py-obj docutils literal notranslate"><span class="pre">io.open_raster</span></code></a>(filename[, mask_nodata, ...])</p></td>
 <td><p>Open a gdal-readable file with rasterio based on <code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.open_rasterio()</span></code> and parse geospatial attributes.</p></td>
@@ -1985,12 +1937,8 @@
 </table>
 </section>
 <section id="raster-writing-methods">
-<h3>Raster writing methods<a class="headerlink" href="#raster-writing-methods" title="Permalink to this headline">#</a></h3>
+<h3>Raster writing methods<a class="headerlink" href="#raster-writing-methods" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.raster.to_raster.html#hydromt.DataArray.raster.to_raster" title="hydromt.DataArray.raster.to_raster"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.to_raster</span></code></a>(raster_path[, ...])</p></td>
 <td><p>Write DataArray object to a gdal-writable raster file.</p></td>
@@ -2003,14 +1951,10 @@
 </section>
 </section>
 <section id="raster-methods">
-<h2>Raster methods<a class="headerlink" href="#raster-methods" title="Permalink to this headline">#</a></h2>
+<h2>Raster methods<a class="headerlink" href="#raster-methods" title="Permalink to this heading">#</a></h2>
 <section id="id3">
-<h3>High level methods<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<h3>High level methods<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.merge.merge.html#hydromt.merge.merge" title="hydromt.merge.merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge.merge</span></code></a>(data_arrays[, dst_crs, ...])</p></td>
 <td><p>Merge multiple tiles to a single DataArray, if mismatching grid CRS or resolution, tiles are reprojected to match the output DataArray grid.</p></td>
@@ -2027,10 +1971,6 @@
 </tbody>
 </table>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.raster.from_numpy.html#hydromt.DataArray.raster.from_numpy" title="hydromt.DataArray.raster.from_numpy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.from_numpy</span></code></a>(data, transform)</p></td>
 <td><p>Transform a 2D/3D numpy array into a DataArray with geospatial attributes.</p></td>
@@ -2042,12 +1982,8 @@
 </table>
 </section>
 <section id="attributes">
-<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">#</a></h3>
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.raster.attrs.html#hydromt.DataArray.raster.attrs" title="hydromt.DataArray.raster.attrs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.attrs</span></code></a></p></td>
 <td><p>Return dictionary of spatial attributes</p></td>
@@ -2110,12 +2046,8 @@
 </table>
 </section>
 <section id="id4">
-<h3>General methods<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<h3>General methods<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.raster.set_crs.html#hydromt.DataArray.raster.set_crs" title="hydromt.DataArray.raster.set_crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.set_crs</span></code></a>([input_crs])</p></td>
 <td><p>Set the Coordinate Reference System.</p></td>
@@ -2157,12 +2089,8 @@
 </table>
 </section>
 <section id="nodata-handling-and-interpolation">
-<h3>Nodata handling and interpolation<a class="headerlink" href="#nodata-handling-and-interpolation" title="Permalink to this headline">#</a></h3>
+<h3>Nodata handling and interpolation<a class="headerlink" href="#nodata-handling-and-interpolation" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.raster.set_nodata.html#hydromt.DataArray.raster.set_nodata" title="hydromt.DataArray.raster.set_nodata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.set_nodata</span></code></a>([nodata])</p></td>
 <td><p>Set the nodata value as CF compliant attribute of the DataArray.</p></td>
@@ -2177,12 +2105,8 @@
 </table>
 </section>
 <section id="clip">
-<h3>Clip<a class="headerlink" href="#clip" title="Permalink to this headline">#</a></h3>
+<h3>Clip<a class="headerlink" href="#clip" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.raster.clip_bbox.html#hydromt.DataArray.raster.clip_bbox" title="hydromt.DataArray.raster.clip_bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.clip_bbox</span></code></a>(bbox[, align, buffer])</p></td>
 <td><p>Clip object based on a bounding box.</p></td>
@@ -2197,12 +2121,8 @@
 </table>
 </section>
 <section id="reproject">
-<h3>Reproject<a class="headerlink" href="#reproject" title="Permalink to this headline">#</a></h3>
+<h3>Reproject<a class="headerlink" href="#reproject" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.raster.reproject.html#hydromt.DataArray.raster.reproject" title="hydromt.DataArray.raster.reproject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.reproject</span></code></a>([dst_crs, ...])</p></td>
 <td><p>Reproject a DataArray with geospatial coordinates, powered by <code class="xref py py-meth docutils literal notranslate"><span class="pre">rasterio.warp.reproject()</span></code>.</p></td>
@@ -2223,12 +2143,8 @@
 </table>
 </section>
 <section id="transform">
-<h3>Transform<a class="headerlink" href="#transform" title="Permalink to this headline">#</a></h3>
+<h3>Transform<a class="headerlink" href="#transform" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.raster.rasterize.html#hydromt.DataArray.raster.rasterize" title="hydromt.DataArray.raster.rasterize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.rasterize</span></code></a>(gdf[, col_name, ...])</p></td>
 <td><p>Return an object with input geometry values burned in.</p></td>
@@ -2246,12 +2162,8 @@
 </table>
 </section>
 <section id="sampling-and-zonal-stats">
-<h3>Sampling and zonal stats<a class="headerlink" href="#sampling-and-zonal-stats" title="Permalink to this headline">#</a></h3>
+<h3>Sampling and zonal stats<a class="headerlink" href="#sampling-and-zonal-stats" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.raster.sample.html#hydromt.DataArray.raster.sample" title="hydromt.DataArray.raster.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.raster.sample</span></code></a>(gdf[, wdw])</p></td>
 <td><p>Sample from map at point locations with optional window around the points.</p></td>
@@ -2263,12 +2175,8 @@
 </table>
 </section>
 <section id="low-level-methods">
-<h3>Low level methods<a class="headerlink" href="#low-level-methods" title="Permalink to this headline">#</a></h3>
+<h3>Low level methods<a class="headerlink" href="#low-level-methods" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.gis_utils.axes_attrs.html#hydromt.gis_utils.axes_attrs" title="hydromt.gis_utils.axes_attrs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.axes_attrs</span></code></a>(crs)</p></td>
 <td><p>Provide CF-compliant variable names and metadata for axes</p></td>
@@ -2281,14 +2189,10 @@
 </section>
 </section>
 <section id="geospatial-timeseries-methods">
-<h2>Geospatial timeseries methods<a class="headerlink" href="#geospatial-timeseries-methods" title="Permalink to this headline">#</a></h2>
+<h2>Geospatial timeseries methods<a class="headerlink" href="#geospatial-timeseries-methods" title="Permalink to this heading">#</a></h2>
 <section id="id5">
-<h3>High level methods<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<h3>High level methods<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.vector.from_gdf.html#hydromt.DataArray.vector.from_gdf" title="hydromt.DataArray.vector.from_gdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.vector.from_gdf</span></code></a>(gdf, array_like[, ...])</p></td>
 <td><p>Parse GeoDataFrame object with point geometries to DataArray with geospatial attributes and merge with <code class="docutils literal notranslate"><span class="pre">array_like</span></code> data.</p></td>
@@ -2303,12 +2207,8 @@
 </table>
 </section>
 <section id="id6">
-<h3>Attributes<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<h3>Attributes<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.vector.attrs.html#hydromt.DataArray.vector.attrs" title="hydromt.DataArray.vector.attrs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.vector.attrs</span></code></a></p></td>
 <td><p>Return dictionary of spatial attributes</p></td>
@@ -2353,12 +2253,8 @@
 </table>
 </section>
 <section id="id7">
-<h3>General methods<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<h3>General methods<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.vector.set_crs.html#hydromt.DataArray.vector.set_crs" title="hydromt.DataArray.vector.set_crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.vector.set_crs</span></code></a>([input_crs])</p></td>
 <td><p>Set the Coordinate Reference System.</p></td>
@@ -2373,12 +2269,8 @@
 </table>
 </section>
 <section id="id8">
-<h3>Clip<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<h3>Clip<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.vector.clip_bbox.html#hydromt.DataArray.vector.clip_bbox" title="hydromt.DataArray.vector.clip_bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.vector.clip_bbox</span></code></a>(bbox[, buffer, ...])</p></td>
 <td><p>Select point locations to bounding box.</p></td>
@@ -2390,12 +2282,8 @@
 </table>
 </section>
 <section id="id9">
-<h3>Reproject<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<h3>Reproject<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.DataArray.vector.to_crs.html#hydromt.DataArray.vector.to_crs" title="hydromt.DataArray.vector.to_crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArray.vector.to_crs</span></code></a>(dst_crs)</p></td>
 <td><p>Transform spatial coordinates to a new coordinate reference system.</p></td>
@@ -2405,14 +2293,10 @@
 </section>
 </section>
 <section id="flow-direction-methods">
-<h2>Flow direction methods<a class="headerlink" href="#flow-direction-methods" title="Permalink to this headline">#</a></h2>
+<h2>Flow direction methods<a class="headerlink" href="#flow-direction-methods" title="Permalink to this heading">#</a></h2>
 <p>These methods are based on the pyflwdir library. For more flow direction based methods
 visit the <a class="reference external" href="https://deltares.github.io/pyflwdir/latest/">pyflwdir docs.</a></p>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.flw.flwdir_from_da.html#hydromt.flw.flwdir_from_da" title="hydromt.flw.flwdir_from_da"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flw.flwdir_from_da</span></code></a>(da[, ftype, check_ftype, ...])</p></td>
 <td><p>Parse dataarray to flow direction raster object.</p></td>
@@ -2448,14 +2332,10 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 </table>
 </section>
 <section id="general-gis-methods">
-<h2>General GIS methods<a class="headerlink" href="#general-gis-methods" title="Permalink to this headline">#</a></h2>
+<h2>General GIS methods<a class="headerlink" href="#general-gis-methods" title="Permalink to this heading">#</a></h2>
 <section id="raster">
-<h3>Raster<a class="headerlink" href="#raster" title="Permalink to this headline">#</a></h3>
+<h3>Raster<a class="headerlink" href="#raster" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.gis_utils.spread2d.html#hydromt.gis_utils.spread2d" title="hydromt.gis_utils.spread2d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.spread2d</span></code></a>(da_obs[, da_mask, ...])</p></td>
 <td><p>Returns values of <cite>da_obs</cite> spreaded to cells with <cite>nodata</cite> value within <cite>da_mask</cite>, powered by <code class="xref py py-meth docutils literal notranslate"><span class="pre">pyflwdir.gis_utils.spread2d()</span></code></p></td>
@@ -2473,12 +2353,8 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 </table>
 </section>
 <section id="crs-and-transform">
-<h3>CRS and transform<a class="headerlink" href="#crs-and-transform" title="Permalink to this headline">#</a></h3>
+<h3>CRS and transform<a class="headerlink" href="#crs-and-transform" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.gis_utils.parse_crs.html#hydromt.gis_utils.parse_crs" title="hydromt.gis_utils.parse_crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.parse_crs</span></code></a>(crs[, bbox])</p></td>
 <td><p></p></td>
@@ -2493,12 +2369,8 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 </table>
 </section>
 <section id="vector">
-<h3>Vector<a class="headerlink" href="#vector" title="Permalink to this headline">#</a></h3>
+<h3>Vector<a class="headerlink" href="#vector" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.gis_utils.filter_gdf.html#hydromt.gis_utils.filter_gdf" title="hydromt.gis_utils.filter_gdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.filter_gdf</span></code></a>(gdf[, geom, bbox, ...])</p></td>
 <td><p>Filter GeoDataFrame geometries based on geometry mask or bounding box.</p></td>
@@ -2513,12 +2385,8 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 </table>
 </section>
 <section id="pcraster-i-o">
-<h3>PCRaster I/O<a class="headerlink" href="#pcraster-i-o" title="Permalink to this headline">#</a></h3>
+<h3>PCRaster I/O<a class="headerlink" href="#pcraster-i-o" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.gis_utils.write_map.html#hydromt.gis_utils.write_map" title="hydromt.gis_utils.write_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gis_utils.write_map</span></code></a>(data, raster_path, ...)</p></td>
 <td><p>Write pcraster map files using pcr.report functionality.</p></td>
@@ -2531,14 +2399,10 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 </section>
 </section>
 <section id="statistics">
-<span id="id10"></span><h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">#</a></h2>
+<span id="id10"></span><h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this heading">#</a></h2>
 <section id="statistics-and-performance-metrics">
-<h3>Statistics and performance metrics<a class="headerlink" href="#statistics-and-performance-metrics" title="Permalink to this headline">#</a></h3>
+<h3>Statistics and performance metrics<a class="headerlink" href="#statistics-and-performance-metrics" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.stats.skills.bias.html#hydromt.stats.skills.bias" title="hydromt.stats.skills.bias"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.skills.bias</span></code></a>(sim, obs[, dim])</p></td>
 <td><p>Returns the bias between two time series.</p></td>
@@ -2584,14 +2448,10 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 </section>
 </section>
 <section id="utilities">
-<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">#</a></h2>
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this heading">#</a></h2>
 <section id="configuration-files">
-<h3>Configuration files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">#</a></h3>
+<h3>Configuration files<a class="headerlink" href="#configuration-files" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.config.configread.html#hydromt.config.configread" title="hydromt.config.configread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">config.configread</span></code></a>(config_fn[, encoding, cf, ...])</p></td>
 <td><p>Read configuration file and parse to (nested) dictionary.</p></td>
@@ -2603,12 +2463,8 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 </table>
 </section>
 <section id="logging">
-<h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">#</a></h3>
+<h3>Logging<a class="headerlink" href="#logging" title="Permalink to this heading">#</a></h3>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/hydromt.log.setuplog.html#hydromt.log.setuplog" title="hydromt.log.setuplog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log.setuplog</span></code></a>([name, path, log_level, fmt, ...])</p></td>
 <td><p></p></td>
@@ -2620,51 +2476,55 @@ visit the <a class="reference external" href="https://deltares.github.io/pyflwdi
 </section>
 
 
-              </div>
+              </article>
               
-              
-              <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="user_guide/methods_stats.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Statistical methods</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="_generated/hydromt.data_adapter.DataCatalog.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">hydromt.data_adapter.DataCatalog</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-              
-          </main>
-          
 
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="user_guide/methods_stats.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Statistical methods</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="_generated/hydromt.data_adapter.DataCatalog.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">hydromt.data_adapter.DataCatalog</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+              </footer>
+              
+          </div>
+          
       </div>
     </div>
+
+  
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-<footer class="footer mt-5 mt-md-0">
-  <div class="container">
-    
-    <div class="footer-item">
-      <p class="copyright">
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
     &copy; Copyright Deltares.<br>
 </p>
-    </div>
-    
-    <div class="footer-item">
-      <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
-</p>
-    </div>
-    
   </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br>
+</p>
+  </div>
+  
+</div>
 </footer>
   </body>
 </html>
